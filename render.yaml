@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: triset-solutions-website
+    env: node
+    plan: starter
+    buildCommand: npm install --prefix backend
+    startCommand: node backend/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production

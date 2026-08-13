@@ -1,0 +1,13 @@
+{
+  "name": "triset-solutions-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js",
+    "check": "node --check src/app.js && node --check src/content.js && npm --prefix backend run check"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "services": [
+    {
+      "id": "service-web-development",
+      "name": "Web Development",
+      "category": "Digital Solutions",
+      "shortDescription": "Custom websites, APIs, UI/UX, chatbot-enabled experiences and cloud-ready web platforms.",
+      "description": "TRISET builds responsive, maintainable web experiences shaped around clear information, practical workflows and reliable delivery.",
+      "image": "",
+      "active": true
+    },
+    {
+      "id": "service-app-development",
+      "name": "App Development",
+      "category": "Digital Solutions",
+      "shortDescription": "Scalable mobile applications with strong design, integrations and support.",
+      "description": "Application work is planned around performance, usable interfaces and long-term support.",
+      "image": "",
+      "active": true
+    }
+  ],
+  "projects": [
+    {
+      "id": "project-saraswathi-academy",
+      "title": "Saraswathi Academy",
+      "type": "Verified digital project",
+      "description": "A web presence for a music institute, retained as the clearest project asset found in the source material.",
+      "image": "",
+      "active": true
+    }
+  ],
+  "team": [
+    {
+      "id": "team-ramu",
+      "name": "Ramu Tiruveedula",
+      "role": "Photogrammetry",
+      "experience": "Over 15 years of experience",
+      "active": true
+    },
+    {
+      "id": "team-bhanu",
+      "name": "Bhanu Chennamsetty",
+      "role": "Data Entry",
+      "experience": "Over 6 years of experience",
+      "active": true
+    },
+    {
+      "id": "team-karthik",
+      "name": "Karthik Kakumanu",
+      "role": "Web Developer",
+      "experience": "Over 5 years of experience",
+      "active": true
+    },
+    {
+      "id": "team-poonam",
+      "name": "Poonam Purohit",
+      "role": "App Developer",
+      "experience": "Over 3 years of experience",
+      "active": true
+    },
+    {
+      "id": "team-sowjanya",
+      "name": "Sowjanya Yenuganti",
+      "role": "Digital Marketing",
+      "experience": "Over 3 years of experience",
+      "active": true
+    },
+    {
+      "id": "team-jayanth",
+      "name": "Jayanth Mukkala",
+      "role": "E-Commerce",
+      "experience": "Over 3 years of experience",
+      "active": true
+    }
+  ],
+  "company": {
+    "name": "TRISET Solutions",
+    "legalName": "TRISET SOLUTIONS INDIA PVT LTD",
+    "email": "info@trisetsolutions.com",
+    "phone": "+91 738 281 9292",
+    "location": "Hyderabad, India",
+    "tagline": "Precise. Powerful. Professional.",
+    "story": "TRISET Solutions India Private Limited is a Hyderabad-based company delivering geospatial and digital solutions."
+  }
+}
