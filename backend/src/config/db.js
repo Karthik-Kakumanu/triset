@@ -8,41 +8,55 @@ const pool = new Pool({
 });
 
 async function initializeDatabase() {
-  await pool.query(`
-    CREATE TABLE IF NOT EXISTS job_posts (
-      id SERIAL PRIMARY KEY,
-      title TEXT NOT NULL,
-      location TEXT NOT NULL,
-      department TEXT,
-      employment_type TEXT,
-      experience TEXT,
-      description TEXT NOT NULL,
-      requirements TEXT,
-      apply_email TEXT,
-      apply_url TEXT,
-      image_url TEXT,
-      is_featured BOOLEAN DEFAULT FALSE,
-      is_active BOOLEAN DEFAULT TRUE,
-      created_at TIMESTAMPTZ DEFAULT NOW(),
-      updated_at TIMESTAMPTZ DEFAULT NOW()
+  try {
+    // Test connection with 5 second timeout
+    const timeoutPromise = new Promise((_, reject) => 
+      setTimeout(() => reject(new Error('Database connection timeout')), 5000)
     );
-  `);
+    
+    await Promise.race([
+      pool.query('SELECT 1'),
+      timeoutPromise
+    ]);
 
-  await pool.query(`
-    ALTER TABLE job_posts
-      ADD COLUMN IF NOT EXISTS image_url TEXT,
-      ADD COLUMN IF NOT EXISTS is_featured BOOLEAN DEFAULT FALSE;
-  `);
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS job_posts (
+        id SERIAL PRIMARY KEY,
+        title TEXT NOT NULL,
+        location TEXT NOT NULL,
+        department TEXT,
+        employment_type TEXT,
+        experience TEXT,
+        description TEXT NOT NULL,
+        requirements TEXT,
+        apply_email TEXT,
+        apply_url TEXT,
+        image_url TEXT,
+        is_featured BOOLEAN DEFAULT FALSE,
+        is_active BOOLEAN DEFAULT TRUE,
+        created_at TIMESTAMPTZ DEFAULT NOW(),
+        updated_at TIMESTAMPTZ DEFAULT NOW()
+      );
+    `);
 
-  await pool.query(`
-    CREATE INDEX IF NOT EXISTS idx_job_posts_active_created
-    ON job_posts (is_active, created_at DESC);
-  `);
+    await pool.query(`
+      ALTER TABLE job_posts
+        ADD COLUMN IF NOT EXISTS image_url TEXT,
+        ADD COLUMN IF NOT EXISTS is_featured BOOLEAN DEFAULT FALSE;
+    `);
 
-  await pool.query(`
-    CREATE INDEX IF NOT EXISTS idx_job_posts_featured_active_created
-    ON job_posts (is_featured DESC, is_active, created_at DESC);
-  `);
+    await pool.query(`
+      CREATE INDEX IF NOT EXISTS idx_job_posts_active_created
+      ON job_posts (is_active, created_at DESC);
+    `);
+
+    await pool.query(`
+      CREATE INDEX IF NOT EXISTS idx_job_posts_featured_active_created
+      ON job_posts (is_featured DESC, is_active, created_at DESC);
+    `);
+  } catch (error) {
+    console.warn('[db:warning] Database initialization failed (will continue with limited features):', error.message);
+  }
 }
 
 module.exports = { pool, initializeDatabase };
