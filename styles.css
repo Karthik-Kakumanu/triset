@@ -1020,11 +1020,15 @@ select:focus-visible {
 }
 
 .home-page .hero {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
   min-height: clamp(430px, 46vw, 520px);
   padding: 2.8rem 0 2rem;
 }
 
 .home-page .hero-grid {
+  width: 100%;
+  max-width: none;
   grid-template-columns: minmax(0, .92fr) minmax(320px, .74fr);
   gap: clamp(1.2rem, 3.2vw, 3rem);
 }
@@ -1040,8 +1044,17 @@ select:focus-visible {
 }
 
 .home-page .spatial-visual {
+  width: 100%;
   min-height: clamp(300px, 32vw, 400px);
   box-shadow: 0 24px 70px rgba(0,0,0,.3);
+  border-radius: 0;
+}
+
+.home-page .spatial-visual video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .internal-page .hero {
@@ -1063,7 +1076,7 @@ select:focus-visible {
 .internal-page .hero-grid {
   min-height: clamp(360px, 38vw, 520px);
   grid-template-columns: minmax(0, 1.2fr) minmax(200px, 0.8fr);
-  gap: clamp(.8rem, 2vw, 1.2rem);
+  gap: clamp(1.2rem, 3vw, 2.2rem);
 }
 
 .internal-page .hero-copy {
@@ -1100,7 +1113,7 @@ select:focus-visible {
 
 .solutions-page .hero {
   min-height: 0;
-  padding: 2.8rem 0 2.8rem;
+  padding: 5.2rem 0 3.2rem;
   background: linear-gradient(135deg, #06192d 0%, #0b2f5f 40%, #0b2d4a 100%);
 }
 
@@ -1111,8 +1124,8 @@ select:focus-visible {
 
 .solutions-page .hero-grid {
   grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
-  gap: 2rem;
-  min-height: 440px;
+  gap: 2.4rem;
+  min-height: 380px;
 }
 
 .solutions-page .hero-copy {
@@ -1399,13 +1412,13 @@ select:focus-visible {
 }
 
 .solutions-page .band {
-  background: linear-gradient(135deg, #071018 0%, #0a2d4d 48%, #0a304e 100%);
+  background: #ffffff;
 }
 
 .solutions-page .band .metric {
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(232,240,248,0.14);
-  box-shadow: none;
+  background: rgba(255,255,255,0.96);
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
 }
 
 .solutions-page .band .metric strong,
@@ -2361,7 +2374,11 @@ textarea { min-height: 154px; resize: vertical; }
   .site-header.is-scrolled .container { min-height: 14px; padding: 0.35rem 0; }
   .brand img { width: 138px; height: 138px; }
   .site-nav { top: 50px; }
-  .hero { padding: 2.4rem 0 2.6rem; }
+  .hero { padding: 2rem 0 2.2rem; }
+  
+  .solutions-page .hero {
+    padding: 2.4rem 0 2rem;
+  }
   .home-page .hero {
     min-height: clamp(300px, 96vw, 380px);
     padding: 2rem 0 1.25rem;
@@ -2379,8 +2396,16 @@ textarea { min-height: 154px; resize: vertical; }
     margin-top: 1rem;
   }
   .home-page .spatial-visual {
-    min-height: 92px;
-    aspect-ratio: 16 / 5;
+    width: min(100%, 900px);
+    min-height: auto;
+    aspect-ratio: 16 / 9;
+    margin: 0 auto;
+    border-radius: 18px;
+  }
+
+  .home-page .spatial-visual video {
+    object-fit: cover;
+    object-position: center;
   }
   .home-page .visual-label,
   .home-page .terrain {
@@ -2617,33 +2642,62 @@ body.nav-open { overflow: hidden; }
 
 .site-header {
   position: fixed; left: 0; right: 0; top: 0; z-index: 70;
-  background: transparent;
-  border-bottom: 1px solid transparent;
-  backdrop-filter: none;
+  background: linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.08));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.35);
 }
 .site-header.is-scrolled {
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(16px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));
+  border-bottom: 1px solid rgba(15, 23, 36, 0.06);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 12px 30px rgba(15, 23, 36, 0.08), inset 0 1px 0 rgba(255,255,255,0.7);
 }
 .site-header .container {
-  min-height: 44px;
+  min-height: 52px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.18rem;
+  padding-bottom: 0.18rem;
+}
+
+.home-page .site-header .container {
+  width: 100%;
+  max-width: none;
+  padding-left: 1.5rem;
+  padding-right: 1.25rem;
 }
 
 .brand { display: inline-flex; align-items: center; gap: .72rem; font-weight: 800; text-transform: uppercase; }
-.brand img { width: 118px; height: 118px; object-fit: contain; }
+.brand img { width: 105px; height: 105px; object-fit: contain; }
 .brand span { display: grid; line-height: .96; }
 .brand small { color: var(--brand-signal); font-size: .66rem; letter-spacing: .28em; }
 
-.site-nav { display: flex; align-items: center; gap: .3rem; }
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: .12rem;
+  margin-left: auto;
+}
 .site-nav a, .theme-toggle, .menu-toggle {
-  padding: .5rem .75rem;
-  border-radius: var(--radius-xs);
+  padding: .48rem .68rem;
+  border-radius: 12px;
   color: var(--ink);
   font-size: 0.92rem;
+  font-weight: 600;
+  transition: all .25s cubic-bezier(.16,.84,.28,1);
+}
+.site-nav a:hover,
+.site-nav a.active,
+.theme-toggle:hover,
+.menu-toggle:hover {
+  background: rgba(255,255,255,0.34);
+  box-shadow: inset 0 0 0 1px rgba(11,102,255,0.08);
 }
 .site-nav a.active { color: var(--brand-primary); font-weight: 700; }
 

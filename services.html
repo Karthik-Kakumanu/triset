@@ -3,18 +3,287 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="TRISET delivers digital products, geospatial solutions, and business-ready technology systems for teams that need clarity, speed, and precision." />
-    <link rel="canonical" href="https://www.trisetsolutions.com/services.html" />
-    <meta property="og:title" content="Services | TRISET Solutions" />
-    <meta property="og:description" content="Digital systems, geospatial engineering, and practical technology support built for real business outcomes." />
-    <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#061B35" />
+    <meta name="description" content="TRISET delivers digital products, geospatial solutions, and business-ready technology systems." />
     <title>Services | TRISET Solutions</title>
     <link rel="icon" href="assets/logo_final.png" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="premium-system.css" />
+    <style>
+      /* =======================================================
+         0. ROBUST HERO IMAGE FIX (Mobile & Desktop)
+         ======================================================= */
+      .skh-visual {
+        position: relative;
+        width: 100%;
+        max-width: 520px;
+        aspect-ratio: 16 / 10;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        background: #061b35;
+      }
+      .skh-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      @media (max-width: 980px) {
+        .services-kinetic-hero .skh-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+        .services-kinetic-hero .skh-side { display: flex !important; width: 100% !important; justify-content: center !important; padding: 1rem 0 !important; }
+        .skh-visual { width: 100% !important; max-width: 480px !important; aspect-ratio: 16 / 10 !important; display: block !important; }
+      }
+
+      /* =======================================================
+         1. PHYSICS STAGE (Pill Pile)
+         ======================================================= */
+      .pill-pile-section { padding: 6rem 0; background: var(--paper); border-bottom: 1px solid var(--line); overflow: hidden; }
+      .pill-pile-split { display: grid; grid-template-columns: 400px 1fr; gap: 4rem; align-items: center; }
+      .pill-pile-stage {
+        width: 100%; height: 550px; position: relative;
+        background: linear-gradient(rgba(15,23,36,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,36,.035) 1px, transparent 1px);
+        background-size: 32px 32px; border: 1px solid var(--line); border-radius: var(--radius-md);
+        overflow: hidden; box-shadow: inset 0 0 40px rgba(0,0,0,0.02);
+      }
+      .pp-pill {
+        position: absolute; top: 0; left: 0; padding: 0.6rem 1.2rem; border-radius: 999px;
+        font-family: var(--font-display); font-weight: 600; font-size: 0.85rem; color: #fff;
+        white-space: nowrap; user-select: none; cursor: grab; box-shadow: 0 10px 22px rgba(15,23,36,.16);
+      }
+      .pp-pill.is-dragging { cursor: grabbing; box-shadow: 0 24px 44px rgba(15,23,36,.3); z-index: 100 !important; }
+      .pp-pill--blue   { background: linear-gradient(135deg, #0B66FF, #2E86FF); }
+      .pp-pill--coral  { background: linear-gradient(135deg, #D92B2B, #FF5C5C); }
+      .pp-pill--mint   { background: linear-gradient(135deg, #0E9E86, #1FC9AA); }
+      .pp-pill--amber  { background: linear-gradient(135deg, #C9860A, #F5B63D); color: #2a1c00; }
+      .pp-pill--violet { background: linear-gradient(135deg, #6047C4, #8B7CF0); }
+      @media (max-width: 900px) { .pill-pile-split { grid-template-columns: 1fr; gap: 2rem; } .pill-pile-stage { height: 450px; } }
+
+      /* =======================================================
+         2. EXACT RADIAL ECOSYSTEM (SUPERCHARGED MOLECULES)
+         ======================================================= */
+      .exact-radial-section {
+        padding: 6rem 0 8rem;
+        background: var(--paper);
+        overflow: hidden;
+        position: relative;
+      }
+      .exact-radial-section::before {
+        content: ''; position: absolute; inset: -100%;
+        background: linear-gradient(rgba(11, 102, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(11, 102, 255, 0.04) 1px, transparent 1px);
+        background-size: 60px 60px; pointer-events: none; z-index: 0;
+        animation: gridDrift 60s linear infinite;
+      }
+      .exact-radial-section::after {
+        content: ''; position: absolute; inset: 0;
+        background: radial-gradient(circle at center, rgba(11, 102, 255, 0.08) 0%, transparent 60%);
+        animation: pulseAmbient 4s infinite alternate;
+        z-index: 0; pointer-events: none;
+      }
+      @keyframes gridDrift { 0% { transform: translate(0, 0); } 100% { transform: translate(60px, 60px); } }
+      @keyframes pulseAmbient { 0% { opacity: 0.5; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1.1); } }
+
+      .exact-workspace-wrapper {
+        position: relative; width: 100%; height: 750px;
+        display: flex; justify-content: center; align-items: center; overflow: hidden; z-index: 2;
+      }
+      .exact-workspace {
+        position: absolute; width: 1300px; height: 700px; transform: scale(1); transform-origin: center center;
+      }
+      
+      @media (max-width: 1400px) { .exact-workspace-wrapper { height: 650px; } .exact-workspace { transform: scale(0.85); } }
+      @media (max-width: 1100px) { .exact-workspace-wrapper { height: 500px; } .exact-workspace { transform: scale(0.65); } }
+      @media (max-width: 800px)  { .exact-workspace-wrapper { height: 380px; } .exact-workspace { transform: scale(0.48); } }
+      @media (max-width: 600px)  { .exact-workspace-wrapper { height: 300px; } .exact-workspace { transform: scale(0.38); } }
+      @media (max-width: 450px)  { .exact-workspace-wrapper { height: 260px; } .exact-workspace { transform: scale(0.32); } }
+      @media (max-width: 380px)  { .exact-workspace-wrapper { height: 220px; } .exact-workspace { transform: scale(0.28); } }
+      
+      .exact-svg-lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+      .exact-line { 
+        fill: none; 
+        stroke: rgba(11, 102, 255, 0.35); 
+        stroke-width: 2px; 
+        stroke-dasharray: 8 8; 
+        filter: drop-shadow(0 0 5px rgba(11, 102, 255, 0.5));
+        animation: lineDash 20s linear infinite reverse;
+      }
+      @keyframes lineDash { to { stroke-dashoffset: 400; } }
+
+      .exact-molecule { offset-rotate: auto; }
+      .mol-blue { fill: #0B66FF; filter: drop-shadow(0 0 8px #0B66FF) drop-shadow(0 0 15px #0B66FF); }
+      .mol-red { fill: #D92B2B; filter: drop-shadow(0 0 8px #D92B2B) drop-shadow(0 0 15px #D92B2B); }
+      .m-fast { animation: particleFlowOut 2s linear infinite; }
+      .m-med  { animation: particleFlowOut 3.5s linear infinite; }
+      .m-slow { animation: particleFlowOut 5.5s linear infinite; }
+      .d1 { animation-delay: 0.4s; } .d2 { animation-delay: 1.1s; } .d3 { animation-delay: 1.9s; } .d4 { animation-delay: 2.7s; }
+      @keyframes particleFlowOut { 
+        0% { offset-distance: 0%; opacity: 0; transform: scale(0.1); } 
+        10% { opacity: 1; transform: scale(1); } 
+        90% { opacity: 1; transform: scale(1); } 
+        100% { offset-distance: 100%; opacity: 0; transform: scale(0.1); } 
+      }
+
+      .p-tl { offset-path: path("M 650 350 L 300 150"); }
+      .p-tr { offset-path: path("M 650 350 L 1000 150"); }
+      .p-bl { offset-path: path("M 650 350 L 300 550"); }
+      .p-br { offset-path: path("M 650 350 L 1000 550"); }
+
+      .exact-grid { display: grid; grid-template-columns: 1fr 200px 1fr; grid-template-rows: 1fr 100px 1fr; gap: 2rem; align-items: center; position: relative; z-index: 5; height: 100%; padding: 2rem; }
+
+      .exact-hub { grid-column: 2; grid-row: 2; position: relative; display: flex; justify-content: center; align-items: center; }
+      .hub-concentric-1, .hub-concentric-2, .hub-concentric-3 { position: absolute; border-radius: 50%; border: 1px solid rgba(11, 102, 255, 0.2); }
+      .hub-concentric-1 { width: 180px; height: 180px; }
+      .hub-concentric-2 { width: 260px; height: 260px; border-style: dashed; animation: spinSlow 20s linear infinite; }
+      .hub-concentric-3 { width: 340px; height: 340px; border: 1px solid rgba(11, 102, 255, 0.1); animation: spinSlow 35s linear infinite reverse; }
+      .hub-pulse { position: absolute; width: 110px; height: 110px; border-radius: 50%; border: 2px solid var(--brand-primary); opacity: 0; animation: radarPulse 3s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
+      .hub-pulse:nth-child(2) { animation-delay: 1s; } .hub-pulse:nth-child(3) { animation-delay: 2s; border-color: var(--brand-signal); }
+      @keyframes spinSlow { 100% { transform: rotate(360deg); } }
+      @keyframes radarPulse { 0% { transform: scale(1); opacity: 0.8; border-width: 3px; } 100% { transform: scale(3.5); opacity: 0; border-width: 1px; } }
+
+      .exact-core-orb {
+        width: 110px; height: 110px; border-radius: 50%; background: linear-gradient(135deg, var(--brand-primary-dark), #0B66FF);
+        box-shadow: 0 10px 40px rgba(11, 102, 255, 0.6), inset 0 0 20px rgba(0,0,0,0.6); display: flex; flex-direction: column; justify-content: center; align-items: center;
+        color: #fff; z-index: 10; border: 4px solid var(--surface);
+      }
+      .exact-core-orb img { width: 32px; margin-bottom: 2px; opacity: 0.9; }
+      .exact-core-orb strong { font-family: var(--font-display); font-size: 0.65rem; letter-spacing: 0.1em; }
+
+      .exact-card {
+        background: #fff; border-radius: 16px; padding: 2rem; position: relative; box-shadow: 0 15px 40px rgba(15, 23, 36, 0.05); border: 1px solid rgba(15, 23, 36, 0.04);
+        display: flex; gap: 1.5rem; align-items: center; transition: box-shadow 0.3s ease, border-color 0.3s ease;
+      }
+      .card-float-1 { animation: gentleFloat 5s ease-in-out infinite; } .card-float-2 { animation: gentleFloat 6s ease-in-out infinite 1s; }
+      .card-float-3 { animation: gentleFloat 5.5s ease-in-out infinite 2s; } .card-float-4 { animation: gentleFloat 6.5s ease-in-out infinite 0.5s; }
+      @keyframes gentleFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+      .exact-card:hover { box-shadow: 0 30px 60px rgba(11, 102, 255, 0.15); border-color: rgba(11, 102, 255, 0.3); z-index: 20; animation-play-state: paused; }
+      .exact-card-half { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+      .exact-tag { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.4rem; font-weight: 700; }
+      .exact-title { font-family: var(--font-display); font-size: 1.35rem; color: var(--ink); margin: 0; line-height: 1.1; }
+      .exact-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; margin: 0; }
+
+      .exact-floater {
+        position: absolute; width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 1px solid rgba(11, 102, 255, 0.15); box-shadow: 0 8px 20px rgba(11, 102, 255, 0.1);
+        display: flex; justify-content: center; align-items: center; font-size: 1.2rem; z-index: 10; top: 50%; transform: translateY(-50%);
+      }
+      .exact-floater::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid rgba(11, 102, 255, 0.08); }
+
+      .card-tl { grid-column: 1; grid-row: 1; }
+      .card-tl .exact-card-half:first-child { text-align: right; border-right: 1px solid var(--line); padding-right: 1.5rem; }
+      .card-tl .exact-card-half:last-child { text-align: right; }
+      .card-tl .exact-tag { color: #D92B2B; }
+      .card-tl .exact-floater { right: -70px; }
+
+      .card-tr { grid-column: 3; grid-row: 1; }
+      .card-tr .exact-card-half:first-child { text-align: left; border-right: 1px solid var(--line); padding-right: 1.5rem; }
+      .card-tr .exact-card-half:last-child { text-align: left; }
+      .card-tr .exact-tag { color: var(--brand-primary); }
+      .card-tr .exact-floater { left: -70px; }
+
+      .card-bl { grid-column: 1; grid-row: 3; }
+      .card-bl .exact-card-half:first-child { text-align: right; border-right: 1px solid var(--line); padding-right: 1.5rem; }
+      .card-bl .exact-card-half:last-child { text-align: right; }
+      .card-bl .exact-tag { color: var(--brand-primary-deep); }
+      .card-bl .exact-floater { right: -70px; }
+
+      .card-br { grid-column: 3; grid-row: 3; }
+      .card-br .exact-card-half:first-child { text-align: left; border-right: 1px solid var(--line); padding-right: 1.5rem; }
+      .card-br .exact-card-half:last-child { text-align: left; }
+      .card-br .exact-tag { color: #D92B2B; }
+      .card-br .exact-floater { left: -70px; }
+
+      /* =======================================================
+         3. DIAMOND / CROSS IMAGE GRID (PERFECT NO-CUT LAYOUT)
+         ======================================================= */
+      .diamond-showcase-section {
+        padding: 4rem 0 8rem; background: var(--surface); overflow: hidden; border-bottom: 1px solid var(--line);
+      }
+      .diamond-workspace-wrapper {
+        position: relative; width: 100%; height: 850px;
+        display: flex; justify-content: center; align-items: center; overflow: hidden;
+      }
+      .diamond-strip {
+        position: absolute; width: 1200px; height: 850px;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        transform: scale(1); transform-origin: center center;
+      }
+      
+      @media (max-width: 1300px) { .diamond-workspace-wrapper { height: 650px; } .diamond-strip { transform: scale(0.85); } }
+      @media (max-width: 1100px) { .diamond-workspace-wrapper { height: 500px; } .diamond-strip { transform: scale(0.65); } }
+      @media (max-width: 800px)  { .diamond-workspace-wrapper { height: 380px; } .diamond-strip { transform: scale(0.48); } }
+      @media (max-width: 600px)  { .diamond-workspace-wrapper { height: 280px; } .diamond-strip { transform: scale(0.35); } }
+      @media (max-width: 450px)  { .diamond-workspace-wrapper { height: 230px; } .diamond-strip { transform: scale(0.28); } }
+      @media (max-width: 380px)  { .diamond-workspace-wrapper { height: 190px; } .diamond-strip { transform: scale(0.24); } }
+
+      .d-row {
+        display: flex; justify-content: center; gap: 6rem;
+        margin-bottom: 1rem;
+      }
+      .d-row.offset { transform: translateX(185px); } 
+      .d-item {
+        width: 220px; height: 220px; transform: rotate(45deg);
+        border: 4px solid #fff; border-radius: 12px; overflow: hidden;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.06); transition: transform 0.4s ease, box-shadow 0.4s ease;
+        position: relative; background: var(--paper);
+      }
+      .d-item:hover {
+        transform: rotate(45deg) scale(1.08); box-shadow: 0 25px 50px rgba(11, 102, 255, 0.2); z-index: 10;
+      }
+      
+      .d-item img {
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 170% !important; height: 170% !important; max-width: none !important;
+        object-fit: cover;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+      .d-item:hover img { 
+        transform: translate(-50%, -50%) rotate(-45deg) scale(1.1); 
+        opacity: 0.9; 
+      }
+
+      /* =======================================================
+         4. GIANT TEXT MARQUEE (Animated, All 4 Categories)
+         ======================================================= */
+      .giant-marquee-section { padding: 5rem 0 3rem; background: var(--paper); border-top: 1px solid var(--line); overflow: hidden; }
+      .marquee-wrapper { margin-bottom: 3.5rem; width: 100%; overflow: hidden; }
+      .marquee-wrapper:last-child { margin-bottom: 0; }
+      .marquee-category-title {
+        font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.2em; color: var(--brand-primary);
+        text-transform: uppercase; margin-bottom: 1rem; text-align: center; font-weight: 700;
+      }
+      .giant-marquee-row { display: flex; width: max-content; flex-wrap: nowrap; margin-bottom: 0.5rem; }
+      
+      .track-left { animation: scrollLeft 40s linear infinite; }
+      .track-right { animation: scrollRight 45s linear infinite; }
+      .track-fast-left { animation: scrollLeft 25s linear infinite; }
+      .track-fast-right { animation: scrollRight 25s linear infinite; }
+      .track-slow-right { animation: scrollRight 60s linear infinite; }
+      
+      .giant-text {
+        font-family: var(--font-display); font-size: clamp(3rem, 5vw, 5rem); font-weight: 800;
+        text-transform: uppercase; letter-spacing: -0.02em; padding: 0 1.5rem; line-height: 1;
+        white-space: nowrap !important; display: inline-block; transition: color 0.3s ease, -webkit-text-stroke 0.3s ease;
+      }
+      .text-solid { color: var(--ink); }
+      .text-outline { color: transparent; -webkit-text-stroke: 2px rgba(15,23,36,0.25); }
+      
+      .giant-marquee-row:hover .giant-text { opacity: 0.2; }
+      .giant-marquee-row .giant-text:hover { opacity: 1; color: var(--brand-primary); -webkit-text-stroke: 0px; cursor: default; }
+
+      @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+      @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+
+      @media (max-width: 768px) {
+        .giant-text { font-size: 1.8rem; padding: 0 1rem; -webkit-text-stroke: 1px rgba(15,23,36,0.25); }
+        .marquee-wrapper { margin-bottom: 2rem; }
+        .giant-marquee-row:hover .giant-text { opacity: 1; }
+        .giant-marquee-row .giant-text:hover { color: inherit; -webkit-text-stroke: 1px rgba(15,23,36,0.25); }
+      }
+
+    </style>
   </head>
   <body class="internal-page triset-service-studio">
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -24,7 +293,6 @@
       <div class="container site-header-container">
         <a class="brand" href="index.html" aria-label="TRISET Solutions home">
           <img src="assets/logo_final.png" alt="" width="36" height="36" />
-
         </a>
         <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Open navigation">Menu</button>
         <nav class="site-nav" data-site-nav aria-label="Primary navigation">
@@ -41,7 +309,9 @@
     </header>
 
     <main id="main-content">
-      <section class="services-kinetic-hero">
+      
+      <!-- 1. CINEMATIC HERO -->
+      <section class="services-kinetic-hero" style="background: linear-gradient(135deg, rgba(6, 27, 53, 0.85), rgba(11, 47, 92, 0.85)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop') center/cover;">
         <div class="container skh-grid">
           <div class="skh-copy">
             <p class="skh-kicker">Services / capabilities</p>
@@ -49,63 +319,309 @@
               <span>Services</span>
               <span class="skh-title-accent">for digital momentum.</span>
             </h1>
-            <p class="skh-lead">Digital systems. Spatial intelligence. Growth execution.</p>
+            <p class="skh-lead">We deploy digital systems, capture spatial intelligence, and execute growth strategies.</p>
           </div>
-          <div class="skh-side" aria-live="polite">
-            <div class="skh-ambient" aria-hidden="true">
-              <span class="skh-orb skh-orb--one"></span>
-              <span class="skh-orb skh-orb--two"></span>
-              <span class="skh-orb skh-orb--three"></span>
-              <span class="skh-orb skh-orb--four"></span>
-            </div>
-            <div class="skh-mini-visual" aria-hidden="true"></div>
-            <div class="skh-visual" aria-hidden="true">
-              <div class="skh-visual-art"></div>
-              <div class="skh-visual-copy">
-                <strong>Digital systems.</strong>
-                <span>Spatial insight.</span>
+          <div class="skh-side">
+            <div class="skh-visual" style="border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.5);">
+               <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=800&auto=format&fit=crop" alt="Technology visualization" style="width: 100%; height: 100%; object-fit: cover;">
+               <div class="skh-visual-copy">
+                <strong>Advanced Engineering.</strong>
+                <span>Spatial precision.</span>
               </div>
             </div>
-            <div class="skh-stage" data-skh-stage aria-label="TRISET service tags"></div>
-            <div class="skh-meta" aria-label="Service categories summary">
-              <span>Digital</span>
-              <span>Geospatial</span>
-              <span>Marketing</span>
-              <span>Data</span>
-            </div>
           </div>
         </div>
       </section>
 
+      <!-- 2. THE ANIMATED PILL PILE (PHYSICS DRAG) -->
       <section class="pill-pile-section">
         <div class="container">
+          <div class="pill-pile-head">
+            <h2 style="font-size: 2.5rem; font-family: var(--font-display); color: var(--ink); margin-bottom: 0.5rem; letter-spacing: -0.02em;">Capabilities at a glance.</h2>
+            <span class="pill-pile-hint" style="color: var(--brand-signal); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem;">◆ Drag and drop a tag</span>
+          </div>
           <div class="pill-pile-split">
-            <div class="pill-pile-stage" data-pill-pile aria-label="TRISET capabilities — draggable"></div>
+            <!-- INTERACTIVE PHYSICS CANVAS -->
+            <div class="pill-pile-stage" id="physics-stage" aria-label="Interactive capability tags">
+              <!-- JavaScript injects pills here -->
+            </div>
             <div class="pill-pile-copy">
-              <p class="eyebrow">Everything, one roof</p>
-              <h2>Fourteen capabilities. One team.</h2>
-              <p class="pill-pile-lead">Our impact in services — from geospatial mapping to full-stack digital delivery, one team carries every capability end to end.</p>
-              <span class="pill-pile-hint">Drag a tag &middot; grab and fling</span>
+              <p class="pill-pile-lead" style="font-size: 1.1rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem;">
+                Our impact spans across the entire technology stack. From capturing raw spatial topography via drones and LiDAR, to engineering the custom software that processes it, to executing the digital campaigns that market it to the world.
+              </p>
+              <p class="pill-pile-lead" style="font-size: 1.1rem; color: var(--muted); line-height: 1.7;">
+                Play with the tags to explore our core disciplines. Every element represents a specialized team at TRISET ready to execute.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <div class="services-hero-highlight" aria-hidden="true">
-        <div class="container highlight-strip">
-          <span>Digital systems</span>
-          <span>Spatial intelligence</span>
-          <span>Growth execution</span>
+      <!-- 3. EXACT RADIAL ECOSYSTEM (Supercharged Molecules & Mobile Scaling) -->
+      <section class="exact-radial-section" id="ecosystem-section">
+        <div class="container radial-header" style="text-align: center; margin-bottom: 2rem; position: relative; z-index: 10;">
+          <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.5rem); color: var(--ink); margin: 0;">Technology Platforms</h2>
         </div>
-      </div>
 
-      <div class="services-marquee-root" data-services-marquee aria-live="polite"></div>
+        <div class="exact-workspace-wrapper">
+          <div class="exact-workspace">
+            
+            <!-- Animated SVG Dashed Lines & Glowing Molecule Data Streams -->
+            <svg class="exact-svg-lines" viewBox="0 0 1300 700" preserveAspectRatio="xMidYMid slice">
+              <path class="exact-line" d="M 650 350 L 300 150" />
+              <path class="exact-line" d="M 650 350 L 1000 150" />
+              <path class="exact-line" d="M 650 350 L 300 550" />
+              <path class="exact-line" d="M 650 350 L 1000 550" />
 
-      <section class="services-cta reveal">
+              <circle class="exact-molecule mol-blue m-fast p-tl" cx="0" cy="0" r="4" />
+              <circle class="exact-molecule mol-red m-slow p-tl d2" cx="0" cy="0" r="2.5" />
+              <circle class="exact-molecule mol-blue m-med p-tl d4" cx="0" cy="0" r="5" />
+
+              <circle class="exact-molecule mol-blue m-med p-tr d1" cx="0" cy="0" r="4" />
+              <circle class="exact-molecule mol-red m-fast p-tr d3" cx="0" cy="0" r="3" />
+              <circle class="exact-molecule mol-blue m-slow p-tr d4" cx="0" cy="0" r="5" />
+
+              <circle class="exact-molecule mol-blue m-slow p-bl d1" cx="0" cy="0" r="5" />
+              <circle class="exact-molecule mol-blue m-fast p-bl d2" cx="0" cy="0" r="3" />
+              <circle class="exact-molecule mol-red m-med p-bl d4" cx="0" cy="0" r="4" />
+
+              <circle class="exact-molecule mol-red m-med p-br d2" cx="0" cy="0" r="3" />
+              <circle class="exact-molecule mol-blue m-fast p-br d3" cx="0" cy="0" r="5" />
+              <circle class="exact-molecule mol-blue m-slow p-br d4" cx="0" cy="0" r="4" />
+            </svg>
+
+            <div class="exact-grid">
+              <!-- Top Left Node (Capture) -->
+              <div class="exact-card card-tl card-float-1">
+                <div class="exact-card-half">
+                  <span class="exact-tag">Capture</span>
+                  <h3 class="exact-title">Geo-Spatial<br>Solutions</h3>
+                </div>
+                <div class="exact-card-half">
+                  <p class="exact-desc">Photogrammetry, LiDAR, GIS Mapping, Drone Surveying, Digital Elevation Models (DEM), Orthophoto & BIM.</p>
+                </div>
+                <div class="exact-floater">🗺️</div>
+              </div>
+
+              <!-- Top Right Node (Architect) -->
+              <div class="exact-card card-tr card-float-2">
+                <div class="exact-card-half">
+                  <span class="exact-tag">Architect</span>
+                  <h3 class="exact-title">Digital<br>Solutions</h3>
+                </div>
+                <div class="exact-card-half">
+                  <p class="exact-desc">Custom Web & Mobile Apps, E-Commerce platforms, API Integrations, Cloud Deployment & UI/UX Engineering.</p>
+                </div>
+                <div class="exact-floater">💻</div>
+              </div>
+
+              <!-- Central Hub (Pulsing Core) -->
+              <div class="exact-hub">
+                <div class="hub-pulse"></div>
+                <div class="hub-pulse"></div>
+                <div class="hub-pulse"></div>
+                <div class="hub-concentric-1"></div>
+                <div class="hub-concentric-2"></div>
+                <div class="hub-concentric-3"></div>
+                <div class="exact-core-orb">
+                  <img src="assets/logo_final.png" alt="TRISET" onerror="this.style.display='none'"/>
+                  <strong>CORE</strong>
+                </div>
+              </div>
+
+              <!-- Bottom Left Node (Process) -->
+              <div class="exact-card card-bl card-float-3">
+                <div class="exact-card-half">
+                  <span class="exact-tag">Process</span>
+                  <h3 class="exact-title">Data<br>Processing</h3>
+                </div>
+                <div class="exact-card-half">
+                  <p class="exact-desc">Structured Data Entry, Cleansing, Conversion, Analytics, and Business Intelligence Workflows.</p>
+                </div>
+                <div class="exact-floater">📊</div>
+              </div>
+
+              <!-- Bottom Right Node (Deliver) -->
+              <div class="exact-card card-br card-float-4">
+                <div class="exact-card-half">
+                  <span class="exact-tag">Deliver</span>
+                  <h3 class="exact-title">Digital<br>Marketing</h3>
+                </div>
+                <div class="exact-card-half">
+                  <p class="exact-desc">Advanced SEO, Paid Ads (PPC), Content Strategy, Social Media Campaigns, and Conversion Analytics.</p>
+                </div>
+                <div class="exact-floater">🚀</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. DIAMOND / CROSS IMAGE GRID (PERFECT NO-CUT LAYOUT) -->
+      <section class="diamond-showcase-section">
+        <div class="container" style="text-align: center; position: relative; z-index: 10;">
+          <span class="eyebrow" style="color: var(--brand-primary);">Real World Applications</span>
+          <h2 style="font-family: var(--font-display); font-size: clamp(2.2rem, 4vw, 3rem); margin-top: 0.5rem; color: var(--ink);">Industries & Solutions</h2>
+        </div>
+
+        <div class="diamond-workspace-wrapper">
+          <div class="diamond-strip">
+            <!-- Row 1 -->
+            <div class="d-row">
+              <div class="d-item"><img src="assets/1.png" alt="Tech" onerror="this.src='https://images.unsplash.com/photo-1541888086425-d81bb19240f5?q=80&w=800&auto=format&fit=crop'"></div>
+              <div class="d-item"><img src="assets/2.png" alt="3D" onerror="this.src='https://images.unsplash.com/photo-1620325867502-221ddb5b4e2a?q=80&w=800&auto=format&fit=crop'"></div>
+              <div class="d-item"><img src="assets/3.png" alt="Drone" onerror="this.src='https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=800&auto=format&fit=crop'"></div>
+              <div class="d-item"><img src="assets/4.png" alt="Network" onerror="this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop'"></div>
+            </div>
+            <!-- Row 2 -->
+            <div class="d-row offset">
+              <div class="d-item"><img src="assets/5.png" alt="Code" onerror="this.src='https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop'"></div>
+              <div class="d-item"><img src="assets/6.png" alt="Map" onerror="this.src='https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800&auto=format&fit=crop'"></div>
+              <div class="d-item"><img src="assets/7.png" alt="Analytics" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop'"></div>
+            </div>
+            <!-- Row 3 -->
+            <div class="d-row">
+              <div class="d-item"><img src="assets/8.png" alt="Dashboard" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop'"></div>
+              <div class="d-item"><img src="assets/9.png" alt="Mobile" onerror="this.src='https://images.unsplash.com/photo-1512756290469-ec264b7fbf87?q=80&w=800&auto=format&fit=crop'"></div>
+              <div class="d-item"><img src="assets/10.png" alt="Servers" onerror="this.src='https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop'"></div>
+              <div class="d-item"><img src="assets/11.png" alt="Flight" onerror="this.src='https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=800&auto=format&fit=crop'"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. GIANT TEXT MARQUEE (Animated, All 4 Categories) -->
+      <section class="giant-marquee-section">
+        
+        <!-- 01. Digital & Software -->
+        <div class="marquee-wrapper">
+          <div class="marquee-category-title">01 // Digital & Software</div>
+          <div class="giant-marquee-row track-fast-left">
+            <span class="giant-text text-solid">CYBERSECURITY</span>
+            <span class="giant-text text-outline">CUSTOM SOFTWARE</span>
+            <span class="giant-text text-solid">WEB DEVELOPMENT</span>
+            <span class="giant-text text-outline">UI / UX</span>
+            <span class="giant-text text-solid">MOBILE APPS</span>
+            <!-- Duplicate for loop -->
+            <span class="giant-text text-solid">CYBERSECURITY</span>
+            <span class="giant-text text-outline">CUSTOM SOFTWARE</span>
+            <span class="giant-text text-solid">WEB DEVELOPMENT</span>
+            <span class="giant-text text-outline">UI / UX</span>
+            <span class="giant-text text-solid">MOBILE APPS</span>
+          </div>
+          <div class="giant-marquee-row track-right">
+            <span class="giant-text text-outline">INTEGRATIONS</span>
+            <span class="giant-text text-solid">WORKFLOW SYSTEMS</span>
+            <span class="giant-text text-outline">SAAS</span>
+            <span class="giant-text text-solid">CRM</span>
+            <span class="giant-text text-outline">ERP</span>
+            <span class="giant-text text-solid">AUTOMATION</span>
+            <!-- Duplicate -->
+            <span class="giant-text text-outline">INTEGRATIONS</span>
+            <span class="giant-text text-solid">WORKFLOW SYSTEMS</span>
+            <span class="giant-text text-outline">SAAS</span>
+            <span class="giant-text text-solid">CRM</span>
+            <span class="giant-text text-outline">ERP</span>
+            <span class="giant-text text-solid">AUTOMATION</span>
+          </div>
+        </div>
+
+        <!-- 02. Geospatial -->
+        <div class="marquee-wrapper">
+          <div class="marquee-category-title">02 // Geospatial Solutions</div>
+          <div class="giant-marquee-row track-left">
+            <span class="giant-text text-solid">REMOTE SENSING</span>
+            <span class="giant-text text-outline">LIDAR</span>
+            <span class="giant-text text-solid">DRONE SURVEYING</span>
+            <span class="giant-text text-outline">PHOTOGRAMMETRY</span>
+            <span class="giant-text text-solid">WEBGIS</span>
+            <!-- Duplicate -->
+            <span class="giant-text text-solid">REMOTE SENSING</span>
+            <span class="giant-text text-outline">LIDAR</span>
+            <span class="giant-text text-solid">DRONE SURVEYING</span>
+            <span class="giant-text text-outline">PHOTOGRAMMETRY</span>
+            <span class="giant-text text-solid">WEBGIS</span>
+          </div>
+          <div class="giant-marquee-row track-slow-right">
+            <span class="giant-text text-outline">3D MAPPING</span>
+            <span class="giant-text text-solid">LOCATION INTELLIGENCE</span>
+            <span class="giant-text text-outline">SATELLITE DATA</span>
+            <span class="giant-text text-solid">SPATIAL ANALYSIS</span>
+            <!-- Duplicate -->
+            <span class="giant-text text-outline">3D MAPPING</span>
+            <span class="giant-text text-solid">LOCATION INTELLIGENCE</span>
+            <span class="giant-text text-outline">SATELLITE DATA</span>
+            <span class="giant-text text-solid">SPATIAL ANALYSIS</span>
+          </div>
+        </div>
+
+        <!-- 03. Digital Marketing -->
+        <div class="marquee-wrapper">
+          <div class="marquee-category-title">03 // Digital Marketing</div>
+          <div class="giant-marquee-row track-left">
+            <span class="giant-text text-solid">ANALYTICS</span>
+            <span class="giant-text text-outline">SEO STRATEGY</span>
+            <span class="giant-text text-solid">PPC CAMPAIGNS</span>
+            <span class="giant-text text-outline">SOCIAL MEDIA</span>
+            <span class="giant-text text-solid">CONTENT</span>
+            <span class="giant-text text-outline">EMAIL</span>
+            <!-- Duplicate -->
+            <span class="giant-text text-solid">ANALYTICS</span>
+            <span class="giant-text text-outline">SEO STRATEGY</span>
+            <span class="giant-text text-solid">PPC CAMPAIGNS</span>
+            <span class="giant-text text-outline">SOCIAL MEDIA</span>
+            <span class="giant-text text-solid">CONTENT</span>
+            <span class="giant-text text-outline">EMAIL</span>
+          </div>
+          <div class="giant-marquee-row track-fast-right">
+            <span class="giant-text text-outline">CAMPAIGN SYSTEMS</span>
+            <span class="giant-text text-solid">GROWTH STRATEGY</span>
+            <span class="giant-text text-outline">DEMAND GENERATION</span>
+            <span class="giant-text text-solid">BRAND REACH</span>
+            <!-- Duplicate -->
+            <span class="giant-text text-outline">CAMPAIGN SYSTEMS</span>
+            <span class="giant-text text-solid">GROWTH STRATEGY</span>
+            <span class="giant-text text-outline">DEMAND GENERATION</span>
+            <span class="giant-text text-solid">BRAND REACH</span>
+          </div>
+        </div>
+
+        <!-- 04. Data Processing -->
+        <div class="marquee-wrapper" style="margin-bottom: 0;">
+          <div class="marquee-category-title">04 // Data Processing</div>
+          <div class="giant-marquee-row track-fast-left">
+            <span class="giant-text text-solid">DATA ENTRY</span>
+            <span class="giant-text text-outline">CLEANSING</span>
+            <span class="giant-text text-solid">VALIDATION</span>
+            <span class="giant-text text-outline">MIGRATION</span>
+            <span class="giant-text text-solid">REPORTING</span>
+            <!-- Duplicate -->
+            <span class="giant-text text-solid">DATA ENTRY</span>
+            <span class="giant-text text-outline">CLEANSING</span>
+            <span class="giant-text text-solid">VALIDATION</span>
+            <span class="giant-text text-outline">MIGRATION</span>
+            <span class="giant-text text-solid">REPORTING</span>
+          </div>
+          <div class="giant-marquee-row track-right">
+            <span class="giant-text text-outline">SPREADSHEET OPS</span>
+            <span class="giant-text text-solid">DATABASE HANDLING</span>
+            <span class="giant-text text-outline">ETL</span>
+            <span class="giant-text text-solid">DOCUMENT DIGITIZATION</span>
+            <!-- Duplicate -->
+            <span class="giant-text text-outline">SPREADSHEET OPS</span>
+            <span class="giant-text text-solid">DATABASE HANDLING</span>
+            <span class="giant-text text-outline">ETL</span>
+            <span class="giant-text text-solid">DOCUMENT DIGITIZATION</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. CTA SECTION -->
+      <section class="services-cta">
         <div class="container cta-band">
           <div>
             <p class="eyebrow">Start a conversation</p>
-            <h2>Need a complete digital, geospatial, marketing, or data solution?</h2>
+            <h2>Need a complete digital, geospatial, or data solution?</h2>
             <p class="lead">Let’s build the right system, analytics layer, or growth engine for your business.</p>
           </div>
           <div class="inline-actions">
@@ -114,6 +630,7 @@
           </div>
         </div>
       </section>
+
     </main>
 
     <!-- FOOTER -->
@@ -137,188 +654,117 @@
       </div>
     </footer>
 
-    <script src="src/content.js"></script>
     <script src="src/app.js"></script>
-    <script src="src/services-explorer.js"></script>
-    <script src="src/kinetic-services.js" defer></script>
-    <script src="src/service-kinetic-field.js" defer></script>
-    <script src="src/services-marquee.js" defer></script>
-    <script src="src/services-pill-pile.js" defer></script>
+
+    <!-- 1. INTERACTIVE PHYSICS ENGINE SCRIPT (Draggable Tags) -->
     <script>
-      function copyEmail() {
-        navigator.clipboard.writeText('info@trisetsolutions.com').then(() => {
-          const toast = document.getElementById('toast');
-          if (toast) {
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
-          }
-        });
-      }
+      (function () {
+        'use strict';
+        const stage = document.getElementById('physics-stage');
+        if (!stage) return;
 
-      // World-Class Interactive 3D Canvas & Service Studio Script
-      document.addEventListener('DOMContentLoaded', () => {
-        const digitalServices = {
-          'web-dev': { cat: 'Digital Solutions', title: 'Web Development', desc: 'Custom websites, robust APIs, UI/UX, and cloud-ready web applications.', caps: ['Custom Web Architecture', 'RESTful API Integration', 'UI/UX Engineering', 'Cloud Deployment'], details: 'Engineered using modular component frameworks, optimized asset delivery pipelines, and secure backend endpoints for high-traffic environments.', image: 'assets/web_development.webp', cta: 'Discuss a web project', badge: '3D Vector Grid active' },
-          'app-dev': { cat: 'Digital Solutions', title: 'App Development', desc: 'Cross-platform and native mobile applications built for performance and scale.', caps: ['Flutter & Dart Cross-Platform', 'iOS & Android Native Apps', 'App Integration', 'Maintenance & Support'], details: 'Developed with robust state management, secure token authentication, and optimized offline-first synchronization.', image: 'assets/app-development.webp', cta: 'Plan an app', badge: 'Mobile Wireframe active' },
-          'crm-saas': { cat: 'Digital Solutions', title: 'CRM & SaaS', desc: 'Operational systems, SaaS products, and customer workflows built for daily execution.', caps: ['CRM Design & Setup', 'SaaS MVP Launches', 'Workflow Automation', 'Client Access & Dashboards'], details: 'Built for teams that need structured data, clean process visibility, and scalable digital operations from day one.', image: 'assets/web_development.webp', cta: 'Design a system', badge: 'Workflow Engine active' },
-          'ui-ux': { cat: 'Digital Solutions', title: 'UI/UX Design', desc: 'User-centered interface design, comprehensive wireframing, prototyping, and design systems.', caps: ['User Research & Journey Mapping', 'Wireframing & Prototyping', 'Design Systems & UI Kits', 'Accessibility Compliance'], details: 'Focused on reducing cognitive load, establishing clear visual hierarchies, and delivering delightful user interactions.', image: 'assets/web_development.webp', cta: 'Design UI/UX', badge: 'UI Matrix active' },
-          'integration': { cat: 'Digital Solutions', title: 'API & Integrations', desc: 'Connected systems that automate data flow, reduce manual effort, and improve reliability.', caps: ['API Design & Connectors', 'Third-Party Integrations', 'Automation Pipelines', 'Data Sync & Validation'], details: 'Built to unify scattered tools into one working system with reliable data movement and clean operational handoff.', image: 'assets/web_development.webp', cta: 'Connect systems', badge: 'Data Flow active' },
-          'ecommerce': { cat: 'Digital Solutions', title: 'E-Commerce', desc: 'High-performance online stores, secure payment integration, marketplace setups, and PWA optimization.', caps: ['Storefront Setup & Upgrade', 'Custom Theme Development', 'Marketplace & Payment Sync', 'PWA Optimization'], details: 'Optimized conversion paths, high-speed transactional checkouts, and secure inventory synchronization.', image: 'assets/e-commerce.webp', cta: 'Build a store', badge: 'Transaction Node active' },
-          'digital-marketing': { cat: 'Digital Solutions', title: 'Digital Marketing', desc: 'Data-driven SEO, local search optimization, paid acquisition campaigns, and multi-channel reach.', caps: ['Advanced SEO & Local SEO', 'Paid Ads & Social Media', 'Conversion Rate Analytics', 'Content Strategy'], details: 'Executed with analytical tracking, targeted audience segmentation, and performance-driven ad spend optimization.', image: 'assets/digital_market.webp', cta: 'Scale Growth', badge: 'Analytics Pulse active' },
-          'data-entry': { cat: 'Digital Solutions', title: 'Data Entry & Processing', desc: 'Accurate data processing, conversion, cleansing, and structured records management.', caps: ['Data Entry Services', 'Data Processing & Cleansing', 'Format Conversion', 'Structured Records Management'], details: 'Handled with rigorous multi-tier verification protocols and secure database formatting.', image: 'assets/dataentry.webp', cta: 'Organize data', badge: 'Database Schema active' },
-          'web-security': { cat: 'Digital Solutions', title: 'Web Security', desc: 'Vulnerability assessments, SSL provisioning, robust data protection, and continuous system hardening.', caps: ['Security Audits & Hardening', 'SSL & Access Control Setup', 'Threat Mitigation', 'Continuous Monitoring'], details: 'Implemented following strict industry compliance standards and proactive penetration testing.', image: 'assets/web_development.webp', cta: 'Secure systems', badge: 'Shield Matrix active' }
-        };
+        const TAGS = [
+          { label: '3D Services', color: 'amber' }, { label: '2D/3D Cartography', color: 'mint' },
+          { label: 'Orthophoto and Mosaicing', color: 'coral' }, { label: 'DEM', color: 'blue' },
+          { label: 'GIS / Remote Sensing', color: 'coral' }, { label: 'Drone Services', color: 'violet' },
+          { label: 'Photogrammetry', color: 'blue' }, { label: 'BIM', color: 'amber' },
+          { label: 'Data Entry', color: 'violet' }, { label: 'E-Commerce', color: 'mint' },
+          { label: 'Digital Marketing', color: 'amber' }, { label: 'LiDAR', color: 'mint' },
+          { label: 'App Development', color: 'coral' }, { label: 'Web Development', color: 'blue' }
+        ];
 
-        const spatialServices = {
-          'photogrammetry': { cat: 'Geo-Spatial Solutions', title: 'Photogrammetry', desc: 'High-accuracy aerial mapping, orthomosaics, and 3D surface model generation.', caps: ['3D Surface Modeling', 'Orthomosaic Generation', 'DEM Generation', 'Feature Extraction'], details: 'Processed using industry-standard aerial triangulation, sub-centimeter point cloud density, and precise ground control alignment.', image: 'assets/2d_3d.webp', cta: 'Scope mapping work', badge: '3D Surface Mesh active' },
-          'gis': { cat: 'Geo-Spatial Solutions', title: 'GIS / Remote Sensing', desc: 'Comprehensive geographic information systems, remote sensing workflows, and spatial intelligence.', caps: ['GIS Database Mapping', 'Remote Sensing Workflows', 'Spatial Data Analytics', 'Custom Dashboards'], details: 'Integrated with vector/raster spatial layers, multi-spectral analysis, and automated feature detection.', image: 'assets/gis.jpg', cta: 'Map the workflow', badge: 'Vector Layer active' },
-          'lidar': { cat: 'Geo-Spatial Solutions', title: 'LiDAR Processing', desc: 'High-density LiDAR point-cloud support for intricate terrain and infrastructure asset surveying.', caps: ['Point Cloud Classification', 'Terrain Modeling (DTM/DSM)', 'Asset Survey & Mapping', 'Canopy Analysis'], details: 'Executed with advanced pulse return filtering, noise reduction algorithms, and high-precision spatial referencing.', image: 'assets/lidar.webp', cta: 'Review LiDAR', badge: 'Point Cloud Scan active' },
-          'bim': { cat: 'Geo-Spatial Solutions', title: 'BIM Integration', desc: 'Building Information Modeling organizing structural project data into coordinated 3D digital twins.', caps: ['Model Coordination & Twins', 'Clash Detection & Analysis', 'Structural Detail Mapping', 'Asset Tagging'], details: 'Coordinated model-based outputs structured for cross-disciplinary engineering and facilities management.', image: 'assets/bim.webp', cta: 'Coordinate a model', badge: 'Digital Twin active' },
-          'drone': { cat: 'Geo-Spatial Solutions', title: 'Drone Data Acquisition', desc: 'Aerial data capture for site surveys, project monitoring, and inspection-ready visual documentation.', caps: ['Aerial Survey Flights', 'Site Progress Monitoring', 'Orthophoto Flight Capture', 'Inspection Aerial Survey'], details: 'Conducted under certified operational safety protocols with precision autonomous flight paths.', image: 'assets/drone.webp', cta: 'Plan aerial capture', badge: 'Telemetry Grid active' },
-          'dem': { cat: 'Geo-Spatial Solutions', title: 'DEM (Digital Elevation Model)', desc: 'Digital Elevation Models and orthorectified image mosaicing for precise terrain visualization.', caps: ['Digital Elevation Models (DEM)', 'Terrain Analysis', 'Mapping Data Processing', 'Contour Generation'], details: 'Delivered as high-resolution raster grids optimized for hydrological and civil engineering modeling.', image: 'assets/DEM.jpg', cta: 'Discuss terrain data', badge: 'Elevation Wireframe active' },
-          'orthophoto': { cat: 'Geo-Spatial Solutions', title: 'Orthophoto & Mosaicing', desc: 'Orthophoto processing and precise image mosaicing transforming raw aerial imagery into inspection-ready maps.', caps: ['Orthophoto Processing', 'Image Mosaicing', 'Precise Image Alignment', 'Geo-referencing'], details: 'Seamlessly stitched imagery color-balanced and geometrically corrected against survey-grade control points.', image: 'assets/Orthophoto_&_Mosaicing.jpeg', cta: 'Process imagery', badge: 'Ortho Mosaic active' },
-          'cartography': { cat: 'Geo-Spatial Solutions', title: '2D/3D Cartography', desc: 'Precision 2D and 3D cartographic mapping and spatial interpretation.', caps: ['2D Mapping & 3D Visualization', 'Cartographic Outputs', 'Spatial Styling & Layouts', 'Thematic Mapping'], details: 'Designed for executive presentations, regulatory documentation, and advanced spatial visualization.', image: 'assets/2d_3d.webp', cta: 'Create map outputs', badge: 'Topographic Vector active' },
-          '3d-services': { cat: 'Geo-Spatial Solutions', title: '3D Services', desc: '3D visualization and model outputs supporting technical communication and project context.', caps: ['3D Visualization', 'Model Outputs & Presentation', 'Interactive Render Support', 'Spatial Rendering'], details: 'High-fidelity 3D assets optimized for client review meetings, digital twins, and marketing collateral.', image: 'assets/2d_3d.webp', cta: 'Discuss 3D outputs', badge: 'Spatial Render active' }
-        };
+        let GRAVITY = 1800; let FLOOR_BOUNCE = 0.3; let WALL_BOUNCE = 0.4; let FRICTION = 0.95; let AIR_DAMP = 0.99;
+        let pills = []; let stageW = 0, stageH = 0; let running = false; let raf = null; let lastT = 0; let dragging = null;
 
-        // 3D Animated Canvas Background Visualizer
-        function initCanvas3D(canvasId, type) {
-          const canvas = document.getElementById(canvasId);
-          if (!canvas) return;
-          const ctx = canvas.getContext('2d');
-          let width = canvas.parentElement.clientWidth;
-          let height = canvas.parentElement.clientHeight;
-          canvas.width = width;
-          canvas.height = height;
+        function buildDom() {
+          stage.innerHTML = ''; pills = [];
+          TAGS.forEach(function (tag, i) {
+            const el = document.createElement('div');
+            el.className = 'pp-pill pp-pill--' + tag.color; el.textContent = tag.label; stage.appendChild(el);
+            pills.push({
+              el: el, x: 0, y: 0, w: 0, h: 0, vx: 0, vy: 0,
+              rot: (Math.random() * 2 - 1) * 15, vrot: 0, seedX: 0.1 + (i % 5) * 0.15 + (Math.random() * 0.05), dropDelay: i * 150
+            });
+          });
+        }
 
-          window.addEventListener('resize', () => {
-            if (!canvas.parentElement) return;
-            width = canvas.parentElement.clientWidth;
-            height = canvas.parentElement.clientHeight;
-            canvas.width = width;
-            canvas.height = height;
+        function measure() {
+          const rect = stage.getBoundingClientRect(); stageW = rect.width; stageH = rect.height;
+          pills.forEach(function (p, i) {
+            p.w = p.el.offsetWidth; p.h = p.el.offsetHeight;
+            p.x = Math.max(10, Math.min(stageW - p.w - 10, stageW * p.seedX));
+            p.y = -p.h - 50 - i * 60; p.vx = (Math.random() * 2 - 1) * 50;
+          });
+        }
+
+        function paint(p) { p.el.style.transform = `translate3d(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px, 0) rotate(${p.rot.toFixed(1)}deg)`; }
+
+        function step(now) {
+          if (!running) return;
+          if (!lastT) lastT = now; const dt = Math.min((now - lastT) / 1000, 0.032); lastT = now;
+
+          pills.forEach(function (p) {
+            if (p === dragging) return;
+            p.vy += GRAVITY * dt; p.x += p.vx * dt; p.y += p.vy * dt; p.vx *= AIR_DAMP; p.vrot *= 0.98; p.rot += p.vrot * dt;
+            if (p.y + p.h > stageH) { p.y = stageH - p.h; if (p.vy > 40) { p.vy *= -FLOOR_BOUNCE; p.vrot += p.vx * 0.03; } else { p.vy = 0; } p.vx *= FRICTION; }
+            if (p.x < 0) { p.x = 0; p.vx *= -WALL_BOUNCE; } if (p.x + p.w > stageW) { p.x = stageW - p.w; p.vx *= -WALL_BOUNCE; }
           });
 
-          let frame = 0;
-          function render() {
-            ctx.clearRect(0, 0, width, height);
-
-            if (type === 'digital') {
-              // Draw rotating 3D digital wireframe lines & nodes
-              ctx.strokeStyle = 'rgba(11, 102, 255, 0.35)';
-              ctx.lineWidth = 1.2;
-              
-              const cx = width / 2;
-              const cy = height / 2;
-              const radius = Math.min(width, height) * 0.32;
-
-              // Rotating rings
-              for (let i = 0; i < 3; i++) {
-                ctx.beginPath();
-                const angleOffset = frame * 0.015 + (i * Math.PI / 3);
-                ctx.ellipse(cx, cy, radius * (0.6 + i * 0.2), radius * (0.2 + i * 0.1), angleOffset, 0, Math.PI * 2);
-                ctx.stroke();
-              }
-
-              // Glowing data nodes
-              for (let n = 0; n < 8; n++) {
-                const ang = (n * Math.PI / 4) + (frame * 0.01);
-                const nx = cx + Math.cos(ang) * (radius * 0.8);
-                const ny = cy + Math.sin(ang) * (radius * 0.5);
-                ctx.fillStyle = n % 2 === 0 ? '#0B66FF' : '#D92B2B';
-                ctx.beginPath();
-                ctx.arc(nx, ny, 3.5, 0, Math.PI * 2);
-                ctx.fill();
-              }
-            } else {
-              // Draw 3D animated topographic wireframe mesh
-              ctx.strokeStyle = 'rgba(197, 214, 231, 0.4)';
-              ctx.lineWidth = 1.1;
-
-              const rows = 12;
-              const cols = 20;
-              const colWidth = width / (cols - 1);
-              const rowHeight = height / (rows + 2);
-
-              for (let r = 0; r < rows; r++) {
-                ctx.beginPath();
-                for (let c = 0; c < cols; c++) {
-                  const x = c * colWidth;
-                  const wave = Math.sin(c * 0.4 + frame * 0.03 + r * 0.5) * 14;
-                  const y = (r * rowHeight) + 40 + wave;
-                  if (c === 0) ctx.moveTo(x, y);
-                  else ctx.lineTo(x, y);
+          for (let iter = 0; iter < 3; iter++) {
+            for (let i = 0; i < pills.length; i++) {
+              for (let j = i + 1; j < pills.length; j++) {
+                const a = pills[i], b = pills[j];
+                const overlapX = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x);
+                const overlapY = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y);
+                if (overlapX > 0 && overlapY > 0) {
+                  if (overlapX < overlapY) {
+                    const pushX = overlapX / 2;
+                    if (a.x < b.x) { if (a !== dragging) a.x -= pushX; if (b !== dragging) b.x += pushX; } else { if (a !== dragging) a.x += pushX; if (b !== dragging) b.x -= pushX; }
+                    if (a !== dragging) a.vx *= 0.8; if (b !== dragging) b.vx *= 0.8;
+                  } else {
+                    const pushY = overlapY / 2;
+                    if (a.y < b.y) { if (a !== dragging) a.y -= pushY; if (b !== dragging) b.y += pushY; } else { if (a !== dragging) a.y += pushY; if (b !== dragging) b.y -= pushY; }
+                    if (a !== dragging) a.vy *= 0.5; if (b !== dragging) b.vy *= 0.5;
+                  }
                 }
-                ctx.stroke();
               }
             }
-
-            frame++;
-            requestAnimationFrame(render);
           }
-          requestAnimationFrame(render);
+          pills.forEach(paint); raf = requestAnimationFrame(step);
         }
 
-        initCanvas3D('digital-3d-canvas', 'digital');
-        initCanvas3D('spatial-3d-canvas', 'spatial');
-
-        // Split Layout Workspace Logic
-        function initStudioSplit(workspaceType, dataSet) {
-          const workspace = document.querySelector(`[data-studio-workspace="${workspaceType}"]`);
-          if (!workspace) return;
-
-          const buttons = workspace.querySelectorAll('.studio-item-btn');
-          const imgEl = workspace.querySelector('.stage-img-overlay img');
-          const badgeEl = workspace.querySelector('.stage-badge');
-          const catEl = workspace.querySelector('.info-cat');
-          const titleEl = workspace.querySelector('.info-top h3');
-          const descEl = workspace.querySelector('.info-desc');
-          const capsList = workspace.querySelector('.studio-caps-list');
-          const detailsEl = workspace.querySelector('.disclosure-content');
-          const ctaBtn = workspace.querySelector('.info-actions .btn-primary');
-
-          buttons.forEach(btn => {
-            const activate = () => {
-              buttons.forEach(b => {
-                b.classList.remove('active');
-                b.setAttribute('aria-selected', 'false');
-              });
-              btn.classList.add('active');
-              btn.setAttribute('aria-selected', 'true');
-
-              const key = btn.dataset.serviceId;
-              const item = dataSet[key];
-              if (!item) return;
-
-              if (imgEl) {
-                imgEl.style.opacity = '0';
-                setTimeout(() => {
-                  imgEl.src = item.image;
-                  imgEl.alt = item.title;
-                  imgEl.onload = () => { imgEl.style.opacity = '1'; };
-                }, 100);
-              }
-
-              if (badgeEl) badgeEl.textContent = item.badge;
-              if (catEl) catEl.textContent = item.cat;
-              if (titleEl) titleEl.textContent = item.title;
-              if (descEl) descEl.textContent = item.desc;
-              if (capsList) capsList.innerHTML = item.caps.map(c => `<li>${c}</li>`).join('');
-              if (detailsEl) detailsEl.textContent = item.details;
-              if (ctaBtn) {
-                ctaBtn.textContent = item.cta;
-                ctaBtn.href = 'contact.html';
-              }
-            };
-
-            btn.addEventListener('click', activate);
-            btn.addEventListener('mouseenter', activate);
+        function attachDrag(p) {
+          const el = p.el; let offX = 0, offY = 0, lastX = 0, lastY = 0, lastMoveT = 0;
+          el.addEventListener('pointerdown', function (e) {
+            el.setPointerCapture(e.pointerId); const rect = stage.getBoundingClientRect();
+            offX = (e.clientX - rect.left) - p.x; offY = (e.clientY - rect.top) - p.y;
+            lastX = p.x; lastY = p.y; lastMoveT = performance.now(); dragging = p; el.classList.add('is-dragging'); p.vx = 0; p.vy = 0;
+            pills.forEach(p2 => p2.el.style.zIndex = '1'); el.style.zIndex = '10';
           });
+          el.addEventListener('pointermove', function (e) {
+            if (dragging !== p) return; const rect = stage.getBoundingClientRect();
+            const nx = (e.clientX - rect.left) - offX; const ny = (e.clientY - rect.top) - offY;
+            const now = performance.now(); const dt = Math.max(1, now - lastMoveT);
+            p.vx = ((nx - lastX) / dt) * 15; p.vy = ((ny - lastY) / dt) * 15;
+            p.x = Math.max(0, Math.min(stageW - p.w, nx)); p.y = Math.max(-stageH, Math.min(stageH - p.h, ny));
+            lastX = p.x; lastY = p.y; lastMoveT = now; paint(p);
+          });
+          function release(e) { if (dragging !== p) return; dragging = null; el.classList.remove('is-dragging'); el.releasePointerCapture(e.pointerId); }
+          el.addEventListener('pointerup', release); el.addEventListener('pointercancel', release);
         }
 
-        initStudioSplit('digital', digitalServices);
-        initStudioSplit('spatial', spatialServices);
-      });
+        function startEngine() {
+          buildDom(); setTimeout(() => { measure(); pills.forEach(paint); pills.forEach(attachDrag); running = true; lastT = 0; raf = requestAnimationFrame(step); }, 50);
+        }
+
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting && !running) { startEngine(); observer.disconnect(); } }); }, { threshold: 0.1 });
+        observer.observe(stage);
+        window.addEventListener('resize', () => { if (!running) return; const rect = stage.getBoundingClientRect(); stageW = rect.width; stageH = rect.height; });
+      })();
+
+      function copyEmail() {
+        navigator.clipboard.writeText('info@trisetsolutions.com').then(() => { alert("Email copied to clipboard!"); });
+      }
     </script>
   </body>
 </html>

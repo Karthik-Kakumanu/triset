@@ -1,532 +1,1125 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Contact TRISET Solutions for digital and geo-spatial project discussions." />
+    <meta name="description" content="Start your next project with TRISET. Premium geospatial, digital, and data solutions from India." />
     <link rel="canonical" href="https://www.trisetsolutions.com/contact.html" />
-    <meta property="og:title" content="Contact | TRISET Solutions" />
-    <meta property="og:description" content="Contact TRISET Solutions for digital and geo-spatial project discussions." />
+    <meta property="og:title" content="Start a Project | TRISET Solutions" />
+    <meta property="og:description" content="Start your next project with TRISET. Premium geospatial, digital, and data solutions from India." />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://www.trisetsolutions.com/assets/og-contact.png" />
     <meta name="theme-color" content="#185B9F" />
-    <title>Contact | TRISET Solutions</title>
+    <title>Start a Project | TRISET Solutions[cite: 20]</title>
     <link rel="icon" href="assets/logo_final.png" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="premium-system.css" />
     <style>
-      .contact-hero {
-        padding: clamp(5rem, 8vw, 8rem) 0 clamp(3rem, 6vw, 5rem);
-        background: radial-gradient(1000px 600px at 80% -15%, rgba(11, 102, 255, 0.32), transparent 50%),
-                    linear-gradient(155deg, #050d18 0%, #0a3a66 55%, #0f2b4a 100%);
+      /* ========================================
+         CONTACT PAGE — MOBILE-FIRST PREMIUM REDESIGN
+         ======================================== */
+
+      .contact-page-hero {
+        min-height: clamp(480px, 75vh, 750px);
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(180deg, #07131f 0%, #0a1c2d 100%);
+        display: grid;
+        place-items: center;
+        padding: clamp(4rem, 8vw, 6rem) 1rem;
+        border-bottom: 1px solid rgba(11, 102, 255, 0.08);
+      }
+
+      .contact-page-hero::before,
+      .contact-page-hero::after,
+      .final-cta-section::before,
+      .final-cta-section::after {
+        display: none;
+      }
+
+      .contact-hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        max-width: 800px;
+        width: 100%;
+        margin: 0 auto;
+        animation: reveal-fade 0.8s ease forwards;
+      }
+
+      @keyframes reveal-fade {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .contact-page-hero .eyebrow {
+        color: #ffffff;
+        margin-bottom: 1rem;
+      }
+
+      .contact-page-hero h1 {
+        font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        color: #ffffff;
+        font-weight: 700;
+        margin: 0 0 1.2rem;
+      }
+
+      .contact-page-hero p {
+        font-size: clamp(0.98rem, 1.8vw, 1.25rem);
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.85);
+        margin: 0 auto 2.5rem;
+        max-width: 640px;
+      }
+
+      .contact-hero-cta {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        animation: reveal-fade 0.8s ease 0.2s forwards;
+        opacity: 0;
+      }
+
+      .contact-hero-cta .btn {
+        font-size: 0.95rem;
+        padding: 0.85rem 1.6rem;
+        width: min(100%, 280px);
+      }
+
+      /* ========================================
+         SERVICES / INTERESTS SECTION (2 PER ROW)
+         ======================================== */
+
+      .contact-services-section {
+        padding: clamp(3.5rem, 7vw, 6rem) 0;
+        background: #ffffff;
+      }
+
+      .contact-services-header {
+        text-align: center;
+        margin-bottom: clamp(2.5rem, 5vw, 4rem);
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 1rem;
+      }
+
+      .contact-services-header h2 {
+        font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+        line-height: 1.25;
+        letter-spacing: -0.02em;
+        margin: 0.4rem 0 1rem;
+        color: var(--ink);
+      }
+
+      .contact-services-header p {
+        font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(0.8rem, 1.8vw, 1.5rem);
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .service-card {
+        padding: clamp(1.2rem, 2vw, 2.2rem);
+        background: #ffffff;
+        border: 1px solid rgba(11, 102, 255, 0.12);
+        border-radius: 12px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+
+      .service-card:hover {
+        border-color: var(--brand-primary);
+        transform: translateY(-2px);
+      }
+
+      .service-card input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      .service-card input[type="radio"]:checked + .service-card-content {
+        color: var(--brand-primary);
+      }
+
+      .service-card input[type="radio"]:checked ~ .service-card-indicator {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .service-card-indicator {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 18px;
+        height: 18px;
+        border: 2px solid var(--brand-primary);
+        border-radius: 50%;
+        opacity: 0;
+        transform: scale(0.8);
+        transition: all 0.3s var(--ease);
+      }
+
+      .service-card-indicator::after {
+        content: '';
+        position: absolute;
+        inset: 3px;
+        background: var(--brand-primary);
+        border-radius: 50%;
+      }
+
+      .service-card-content .eyebrow {
+        margin-bottom: 0.4rem;
+        color: var(--brand-signal);
+        font-size: 0.6rem;
+      }
+
+      .service-card-content h3 {
+        font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+        margin: 0 0 0.4rem;
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .service-card-content p {
+        font-size: 0.82rem;
+        line-height: 1.45;
+        color: var(--muted);
+        margin: 0;
+      }
+
+      /* ========================================
+         MAIN CONTACT SECTION — SPLIT LAYOUT
+         ======================================== */
+
+      .contact-main-section {
+        padding: clamp(3.5rem, 7vw, 6rem) 0;
+        background: #ffffff;
+      }
+
+      .contact-main-wrapper {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: clamp(2.5rem, 4vw, 4rem);
+        align-items: start;
+      }
+
+      .contact-editorial {
+        animation: reveal-fade 0.8s ease 0.1s forwards;
+        opacity: 0;
+      }
+
+      .contact-editorial .eyebrow {
+        margin-bottom: 1rem;
+        color: var(--brand-signal);
+      }
+
+      .contact-editorial h2 {
+        font-size: clamp(2rem, 3.8vw, 3.2rem);
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin: 0 0 1.2rem;
+        color: var(--ink);
+      }
+
+      .contact-editorial p {
+        font-size: clamp(0.98rem, 1.6vw, 1.15rem);
+        line-height: 1.65;
+        color: var(--muted);
+        margin-bottom: 2rem;
+      }
+
+      .contact-editorial-points {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+
+      .editorial-point {
+        display: flex;
+        gap: 0.9rem;
+        align-items: flex-start;
+      }
+
+      .editorial-point-icon {
+        flex-shrink: 0;
+        width: 30px;
+        height: 30px;
+        display: grid;
+        place-items: center;
+        background: rgba(11, 102, 255, 0.1);
+        border-radius: 8px;
+        color: var(--brand-primary);
+        font-size: 1.2rem;
+        line-height: 1;
+      }
+
+      .editorial-point-text h3 {
+        font-size: 0.98rem;
+        font-weight: 600;
+        color: var(--ink);
+        margin: 0 0 0.2rem;
+      }
+
+      .editorial-point-text p {
+        font-size: 0.88rem;
+        color: var(--muted);
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      /* ========================================
+         CONTACT FORM
+         ======================================== */
+
+      .contact-form-wrapper {
+        position: sticky;
+        top: 90px;
+        animation: reveal-fade 0.8s ease 0.2s forwards;
+        opacity: 0;
+      }
+
+      .contact-form-panel {
+        padding: clamp(1.5rem, 3vw, 3rem);
+        background: #ffffff;
+        border: 1px solid rgba(11, 102, 255, 0.1);
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(7, 16, 24, 0.04);
+      }
+
+      .contact-form-panel h3 {
+        font-size: clamp(1.5rem, 2.2vw, 1.8rem);
+        line-height: 1.3;
+        letter-spacing: -0.01em;
+        margin: 0 0 0.3rem;
+        color: var(--ink);
+      }
+
+      .contact-form-panel > p {
+        font-size: 0.88rem;
+        color: var(--muted);
+        margin: 0 0 1.5rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.2rem;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--ink);
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+      }
+
+      .form-group .required {
+        color: var(--brand-signal);
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        border: 1px solid rgba(11, 102, 255, 0.18);
+        border-radius: 8px;
+        font-size: 16px;
+        font-family: var(--font-body);
+        background: #ffffff;
+        color: var(--ink);
+        transition: all 0.3s var(--ease);
+        box-sizing: border-box;
+      }
+
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: rgba(91, 107, 124, 0.5);
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--brand-primary);
+        box-shadow: 0 0 0 3px rgba(11, 102, 255, 0.12);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 110px;
+      }
+
+      .form-two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .form-group.full {
+        grid-column: 1 / -1;
+      }
+
+      .form-file-upload {
+        position: relative;
+        border: 2px dashed rgba(11, 102, 255, 0.22);
+        border-radius: 10px;
+        padding: 1.5rem 1rem;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s var(--ease);
+      }
+
+      .form-file-upload:hover {
+        border-color: var(--brand-primary);
+        background: rgba(11, 102, 255, 0.03);
+      }
+
+      .form-file-upload input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        inset: 0;
+      }
+
+      .form-file-label {
+        font-size: 0.88rem;
+        color: var(--ink);
+        font-weight: 600;
+        display: block;
+        margin-bottom: 0.2rem;
+      }
+
+      .form-file-hint {
+        font-size: 0.78rem;
+        color: var(--muted);
+      }
+
+      .form-actions {
+        display: grid;
+        gap: 0.8rem;
+        margin-top: 1.5rem;
+      }
+
+      .form-submit-btn {
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(135deg, var(--brand-primary), #0A6AFF);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.98rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s var(--ease);
+        font-family: var(--font-display);
+      }
+
+      .form-submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(11, 102, 255, 0.28);
+      }
+
+      .form-submit-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .form-notice {
+        font-size: 0.82rem;
+        color: var(--muted);
+        text-align: center;
+        margin-top: 0.8rem;
+      }
+
+      .form-success,
+      .form-error {
+        padding: 0.9rem;
+        border-radius: 8px;
+        font-size: 0.88rem;
+        margin-bottom: 1rem;
+      }
+
+      .form-success {
+        background: rgba(76, 175, 80, 0.12);
+        color: #2e7d32;
+        border: 1px solid rgba(76, 175, 80, 0.2);
+      }
+
+      .form-error {
+        background: rgba(217, 43, 43, 0.12);
+        color: #c62828;
+        border: 1px solid rgba(217, 43, 43, 0.2);
+      }
+
+      /* ========================================
+         CONTACT INFORMATION (3 IN A SINGLE ROW)
+         ======================================== */
+
+      .contact-info-section {
+        padding: clamp(2.5rem, 5vw, 4rem) 0;
+        background: #ffffff;
+      }
+
+      .contact-info-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 SIDE-BY-SIDE IN A SINGLE ROW */
+        gap: clamp(1.2rem, 2.5vw, 2rem);
+      }
+
+      .info-card {
+        padding: clamp(1.5rem, 2.5vw, 2.4rem);
+        background: #ffffff;
+        border: 1px solid rgba(11, 102, 255, 0.12);
+        border-radius: 14px;
+      }
+
+      .info-card-icon {
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .info-card h3 {
+        font-size: 1.2rem;
+        line-height: 1.3;
+        margin: 0 0 0.6rem;
+        color: var(--ink);
+      }
+
+      .info-card-content {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+
+      .info-card-content a {
+        color: var(--brand-primary);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      @media (max-width: 768px) {
+        .contact-info-wrapper {
+          grid-template-columns: 1fr; /* Stack on mobile screens */
+        }
+      }
+
+      /* ========================================
+         LOCATIONS SECTION (2 PER ROW)
+         ======================================== */
+
+      .locations-premium-section {
+        padding: clamp(3.5rem, 7vw, 6rem) 0;
+        background: #ffffff;
+      }
+
+      .locations-premium-header {
+        text-align: center;
+        margin-bottom: clamp(2.5rem, 5vw, 4rem);
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 1rem;
+      }
+
+      .locations-premium-header h2 {
+        font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+        line-height: 1.25;
+        margin: 0.4rem 0 1rem;
+        color: var(--ink);
+      }
+
+      .locations-grid-premium {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(1.5rem, 2.5vw, 2.5rem);
+      }
+
+      @media (max-width: 768px) {
+        .locations-grid-premium {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      .location-card-premium {
+        padding: clamp(2rem, 3vw, 3rem);
+        background: #ffffff;
+        border: 1px solid rgba(11, 102, 255, 0.12);
+        border-radius: 16px;
+      }
+
+      .location-number-premium {
+        font-size: 0.68rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--brand-signal);
+        font-weight: 700;
+        margin-bottom: 0.6rem;
+      }
+
+      .location-card-premium h3 {
+        font-size: clamp(1.5rem, 2.2vw, 1.8rem);
+        line-height: 1.2;
+        margin: 0 0 1.2rem;
+        color: var(--ink);
+      }
+
+      .location-details-premium {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+
+      .detail-item-premium {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+
+      .detail-label-premium {
+        font-size: 0.68rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--brand-signal);
+        font-weight: 700;
+      }
+
+      .detail-value-premium {
+        font-size: 0.92rem;
+        line-height: 1.55;
+        color: var(--muted);
+      }
+
+      .detail-value-premium a {
+        color: var(--brand-primary);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      /* ========================================
+         PROJECT TYPES SECTION (2 PER ROW)
+         ======================================== */
+
+      .project-types-section {
+        padding: clamp(3.5rem, 7vw, 6rem) 0;
+        background: #ffffff;
+      }
+
+      .project-types-header {
+        text-align: center;
+        margin-bottom: clamp(2.5rem, 5vw, 4rem);
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 1rem;
+      }
+
+      .project-types-header h2 {
+        font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+        line-height: 1.25;
+        margin: 0.4rem 0 1rem;
+        color: var(--ink);
+      }
+
+      .project-types-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(1.2rem, 2vw, 1.8rem);
+      }
+
+      .project-type-card {
+        padding: clamp(1.5rem, 2.5vw, 2.2rem);
+        background: #ffffff;
+        border: 1px solid rgba(11, 102, 255, 0.12);
+        border-radius: 14px;
+        text-align: center;
+      }
+
+      .project-type-icon {
+        font-size: 2.2rem;
+        margin-bottom: 0.8rem;
+        display: block;
+      }
+
+      .project-type-card h3 {
+        font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+        line-height: 1.3;
+        margin: 0;
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      /* ========================================
+         TRUST SECTION (2 PER ROW)
+         ======================================== */
+
+      .trust-section {
+        padding: clamp(2.5rem, 5vw, 4rem) 0;
+        background: #ffffff;
+      }
+
+      .trust-wrapper {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(1.5rem, 2.5vw, 2.5rem);
+      }
+
+      .trust-card {
+        text-align: center;
+      }
+
+      .trust-icon {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .trust-card h3 {
+        font-size: 1.15rem;
+        line-height: 1.3;
+        margin: 0 0 0.5rem;
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .trust-card p {
+        font-size: 0.9rem;
+        line-height: 1.55;
+        color: var(--muted);
+        margin: 0;
+      }
+
+      /* ========================================
+         FINAL CTA SECTION
+         ======================================== */
+
+      .final-cta-section {
+        padding: clamp(3.5rem, 7vw, 6rem) 0;
+        background: #ffffff;
         position: relative;
         overflow: hidden;
       }
 
-      .contact-hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-        background-size: 56px 56px;
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      .contact-hero > .container {
+      .final-cta-content {
         position: relative;
         z-index: 1;
-      }
-
-      .contact-hero h1 {
-        font-size: clamp(3.2rem, 5vw, 5.2rem);
-        line-height: 1.1;
-        margin: 0 0 1rem;
-        letter-spacing: -0.03em;
-        color: #ffffff;
-        font-weight: 600;
-        font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
-      }
-
-      .contact-hero-lead {
-        font-size: clamp(1rem, 2vw, 1.2rem);
-        color: rgba(255, 255, 255, 0.85);
-        max-width: 65ch;
-        line-height: 1.6;
-        margin: 0 0 2.5rem;
-      }
-
-      .contact-quick {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: clamp(1.5rem, 3vw, 2.5rem);
-      }
-
-      .quick-card {
-        padding: clamp(1.8rem, 3vw, 2.4rem);
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 16px;
-        backdrop-filter: blur(25px);
-        transition: all 0.3s ease;
-      }
-
-      .quick-card:hover {
-        border-color: rgba(11, 102, 255, 0.5);
-        box-shadow: 0 12px 40px rgba(11, 102, 255, 0.2);
-        transform: translateY(-4px);
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.08));
-      }
-
-      .quick-card .eyebrow {
-        margin: 0 0 0.6rem;
-        font-size: 0.72rem;
-        letter-spacing: 0.2em;
-        color: rgba(255, 255, 255, 0.7);
-      }
-
-      .quick-card strong {
-        display: block;
-        font-size: clamp(1.1rem, 2vw, 1.4rem);
-        line-height: 1.4;
-        color: #ffffff;
-      }
-
-      .quick-card a {
-        color: #64B5FF;
-        text-decoration: none;
-        font-weight: 600;
-        transition: color 0.2s ease;
-      }
-
-      .quick-card a:hover {
-        color: #FFD700;
-      }
-
-      .quick-card p {
-        font-size: 0.95rem;
-        color: rgba(255, 255, 255, 0.75);
-        margin: 0.3rem 0 0;
-      }
-
-      .locations-section {
-        padding: clamp(4rem, 7vw, 6rem) 0;
-        background: linear-gradient(180deg, rgba(255,255,255,0.3), rgba(242,246,251,0.5));
-      }
-
-      .locations-header {
         text-align: center;
-        margin-bottom: clamp(2.5rem, 5vw, 4rem);
-      }
-
-      .locations-header .eyebrow {
-        font-size: 0.76rem;
-        letter-spacing: 0.24em;
-        color: var(--brand-signal);
-        margin-bottom: 0.8rem;
-      }
-
-      .locations-header h2 {
-        font-size: clamp(2.4rem, 4vw, 4rem);
-        line-height: 1.2;
-        letter-spacing: -0.03em;
-        margin: 0;
-      }
-
-      .locations-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: clamp(2rem, 3vw, 3rem);
-      }
-
-      .location-card {
-        padding: clamp(2rem, 3vw, 3rem);
-        background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6));
-        border: 1px solid rgba(24, 91, 159, 0.1);
-        border-radius: 20px;
-        backdrop-filter: blur(25px);
-        transition: all 0.4s ease;
-      }
-
-      .location-card:hover {
-        border-color: rgba(24, 91, 159, 0.2);
-        box-shadow: 0 20px 50px rgba(24, 91, 159, 0.12);
-        transform: translateY(-6px);
-      }
-
-      .location-header {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .location-number {
-        font-size: 0.72rem;
-        letter-spacing: 0.24em;
-        color: var(--brand-primary);
-        font-weight: 700;
-      }
-
-      .location-card h3 {
-        margin: 0;
-        font-size: 1.8rem;
-        letter-spacing: -0.02em;
-      }
-
-      .location-details {
-        display: flex;
-        flex-direction: column;
-        gap: 1.2rem;
-      }
-
-      .detail-item {
-        display: flex;
-        flex-direction: column;
-        gap: 0.4rem;
-      }
-
-      .detail-label {
-        font-size: 0.75rem;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: var(--brand-signal);
-        font-weight: 600;
-      }
-
-      .detail-value {
-        font-size: 0.95rem;
-        line-height: 1.6;
-        color: var(--text-primary);
-      }
-
-      .detail-value a {
-        color: var(--brand-primary);
-        text-decoration: none;
-        font-weight: 600;
-        transition: color 0.2s ease;
-      }
-
-      .detail-value a:hover {
-        color: var(--brand-accent);
-      }
-
-      .form-section {
-        padding: clamp(3rem, 6vw, 5rem) 0;
-      }
-
-      .form-wrapper {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: clamp(2rem, 4vw, 4rem);
-        max-width: 1200px;
+        max-width: 700px;
         margin: 0 auto;
+        padding: 0 1rem;
       }
 
-      .form-panel {
-        padding: clamp(2rem, 3vw, 3.5rem);
-        background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.7));
-        border: 1px solid rgba(24, 91, 159, 0.1);
-        border-radius: 20px;
-        backdrop-filter: blur(25px);
-      }
-
-      .form-panel h2 {
-        font-size: clamp(1.8rem, 3vw, 2.6rem);
-        line-height: 1.3;
+      .final-cta-content h2 {
+        font-size: clamp(1.8rem, 4vw, 3.5rem);
+        line-height: 1.25;
         letter-spacing: -0.02em;
-        margin: 0.5rem 0 1.5rem;
+        color: var(--ink);
+        margin: 0 0 1.2rem;
       }
 
-      .form-grid {
-        display: grid;
-        gap: 1.2rem;
-        margin-bottom: 1.5rem;
+      .final-cta-content p {
+        font-size: clamp(0.98rem, 1.8vw, 1.15rem);
+        line-height: 1.65;
+        color: var(--muted);
+        margin: 0 0 2rem;
       }
 
-      .form-grid.two-col {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .form-panel label {
+      .final-cta-actions {
         display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        font-size: 0.9rem;
-        font-weight: 500;
-      }
-
-      .form-panel input,
-      .form-panel select,
-      .form-panel textarea {
-        padding: 0.85rem 1.2rem;
-        border: 1px solid rgba(24, 91, 159, 0.15);
-        border-radius: 10px;
-        font-size: 0.95rem;
-        font-family: inherit;
-        background: rgba(255,255,255,0.8);
-        transition: all 0.2s ease;
-      }
-
-      .form-panel input:focus,
-      .form-panel select:focus,
-      .form-panel textarea:focus {
-        outline: none;
-        border-color: var(--brand-primary);
-        box-shadow: 0 0 0 3px rgba(24, 91, 159, 0.1);
-        background: white;
-      }
-
-      .form-panel textarea {
-        resize: vertical;
-        min-height: 120px;
-      }
-
-      .form-submit {
-        width: 100%;
-        padding: 1rem;
-        font-size: 1rem;
-      }
-
-      .form-note {
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-        margin-top: 1rem;
-      }
-
-      .info-panel h2 {
-        font-size: clamp(1.8rem, 3vw, 2.6rem);
-        line-height: 1.3;
-        letter-spacing: -0.02em;
-        margin: 0.5rem 0 1.5rem;
-      }
-
-      .info-panel ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
         gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
       }
 
-      .info-panel li {
-        padding-left: 1.8rem;
-        position: relative;
+      .final-cta-actions .btn {
         font-size: 0.95rem;
-        line-height: 1.6;
-        color: var(--text-primary);
+        padding: 0.85rem 1.6rem;
+        width: min(100%, 260px);
       }
 
-      .info-panel li:before {
-        content: "✓";
-        position: absolute;
-        left: 0;
-        color: var(--brand-primary);
-        font-weight: bold;
-        font-size: 1.1rem;
-      }
+      /* ========================================
+         RESPONSIVE OVERRIDES FOR MOBILE
+         ======================================== */
 
-      @media (max-width: 768px) {
-        .form-wrapper {
+      @media (max-width: 900px) {
+        .contact-main-wrapper {
           grid-template-columns: 1fr;
         }
 
-        .locations-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .form-grid.two-col {
-          grid-template-columns: 1fr;
+        .contact-form-wrapper {
+          position: static;
         }
       }
 
-      @media (max-width: 768px) {
-        .contact-hero h1 {
-          font-size: clamp(2.4rem, 5vw, 3.2rem);
+      @media (max-width: 600px) {
+        .form-two-col {
+          grid-template-columns: 1fr;
+          gap: 0;
         }
 
-        .contact-hero-lead {
-          font-size: clamp(0.9rem, 1.8vw, 1rem);
+        .contact-hero-cta {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .contact-hero-cta .btn,
+        .final-cta-actions .btn {
+          width: 100%;
         }
       }
 
-      @media (max-width: 640px) {
-        .contact-hero {
-          padding: clamp(2.5rem, 5vw, 3.5rem) 0 clamp(1.5rem, 3vw, 2.5rem);
-        }
+      /* ========================================
+         ACCESSIBILITY & MOTION
+         ======================================== */
 
-        .contact-hero h1 {
-          font-size: clamp(2rem, 4vw, 2.8rem);
-          margin-bottom: 0.8rem;
-        }
-
-        .contact-hero-lead {
-          font-size: 0.88rem;
-          max-width: 45ch;
-          margin-bottom: 1.8rem;
-        }
-
-        .contact-quick {
-          grid-template-columns: 1fr;
-          gap: 1rem;
-        }
-
-        .quick-card {
-          padding: 1.2rem;
-        }
-
-        .quick-card .eyebrow {
-          font-size: 0.65rem;
-          margin-bottom: 0.4rem;
-        }
-
-        .quick-card strong {
-          font-size: 0.95rem;
-        }
-
-        .quick-card p {
-          font-size: 0.85rem;
-        }
-
-        .locations-header h2 {
-          font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-        }
-
-        .locations-grid {
-          grid-template-columns: 1fr;
-          gap: 1.2rem;
-        }
-
-        .location-card {
-          padding: clamp(1.2rem, 2vw, 1.5rem);
-        }
-
-        .location-card h3 {
-          font-size: 1.4rem;
-        }
-
-        .detail-label {
-          font-size: 0.7rem;
-        }
-
-        .detail-value {
-          font-size: 0.88rem;
-        }
-
-        .form-section {
-          padding: clamp(2rem, 4vw, 3rem) 0;
-        }
-
-        .form-wrapper {
-          gap: 1.2rem;
-        }
-
-        .form-panel {
-          padding: clamp(1.5rem, 2.5vw, 2rem);
-        }
-
-        .form-panel h2 {
-          font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-          margin-bottom: 1rem;
-        }
-
-        .form-grid {
-          gap: 1rem;
-          margin-bottom: 1rem;
-        }
-
-        .form-panel label {
-          font-size: 0.85rem;
-          gap: 0.35rem;
-        }
-
-        .form-panel input,
-        .form-panel select,
-        .form-panel textarea {
-          padding: 0.7rem 1rem;
-          font-size: 0.9rem;
-        }
-
-        .form-panel textarea {
-          min-height: 100px;
-        }
-
-        .info-panel ul {
-          gap: 0.8rem;
-        }
-
-        .info-panel li {
-          font-size: 0.88rem;
-          padding-left: 1.5rem;
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
         }
       }
     </style>
   </head>
   <body class="internal-page">
     <a class="skip-link" href="#main-content">Skip to content</a>
-    <header class="site-header"><div class="container"><a class="brand" href="index.html"><img src="assets/logo_final.png" alt="TRISET Logo" /></a><button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Open navigation">Menu</button><nav class="site-nav" data-site-nav aria-label="Primary navigation"><a href="about.html">About</a><a href="services.html">Services</a><a href="solutions.html">Solutions</a><a href="projects.html">Work</a><a href="careers.html">Careers</a><a class="active" href="contact.html">Contact</a><button class="theme-toggle" data-theme-toggle type="button">☾ Dark</button><a class="nav-cta" href="#inquiry-form">Start a project</a></nav></div></header>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="index.html"><img src="assets/logo_final.png" alt="TRISET Logo" /></a>
+        <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Open navigation">Menu</button>
+        <nav class="site-nav" data-site-nav aria-label="Primary navigation">
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="solutions.html">Solutions</a>
+          <a href="projects.html">Work</a>
+          <a href="careers.html">Careers</a>
+          <a class="active" href="contact.html">Contact</a>
+          <button class="theme-toggle" data-theme-toggle type="button">☾ Dark</button>
+          <a class="nav-cta" href="#inquiry-form">Start a project</a>
+        </nav>
+      </div>
+    </header>
 
     <main id="main-content">
       <!-- Hero Section -->
-      <section class="contact-hero">
+      <section class="contact-page-hero">
+        <div class="contact-hero-content">
+          <p class="eyebrow">Let's Build What Comes Next</p>
+          <h1>Have a Challenge? Let's Solve It.</h1>
+          <p>TRISET brings together geospatial intelligence, digital solutions, software engineering, data, and creative technology. If you have a problem worth solving, we're ready to talk.</p>
+          <div class="contact-hero-cta">
+            <a class="btn btn-primary" href="#inquiry-form">Start the conversation</a>
+            <a class="btn btn-quiet" href="#quick-contact" style="color: #fff; border-color: rgba(255,255,255,0.3);">Get in touch instantly</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services / Interests Section -->
+      <section class="contact-services-section">
         <div class="container">
-          <h1>Tell TRISET what you need.</h1>
-          <p class="contact-hero-lead">Share the service area, goal, available data and timeline.</p>
-          
-          <div class="contact-quick">
-            <div class="quick-card">
-              <p class="eyebrow">📧 Email</p>
-              <strong><a href="mailto:info@trisetsolutions.com">info@trisetsolutions.com</a></strong>
+          <div class="contact-services-header">
+            <p class="eyebrow">Service Areas</p>
+            <h2>What are you building?</h2>
+            <p>Select the area that best matches your project. We'll prioritize the details that matter most.</p>
+          </div>
+
+          <div class="services-grid">
+            <label class="service-card">
+              <input type="radio" name="interest" value="geospatial" />
+              <div class="service-card-content">
+                <p class="eyebrow">Geographic Intelligence</p>
+                <h3>Geospatial Solutions</h3>
+                <p>Maps, LiDAR, satellite imagery, spatial databases, and location-based intelligence.</p>
+              </div>
+              <div class="service-card-indicator"></div>
+            </label>
+
+            <label class="service-card">
+              <input type="radio" name="interest" value="digital" />
+              <div class="service-card-content">
+                <p class="eyebrow">Digital & Software</p>
+                <h3>Digital Solutions</h3>
+                <p>Web applications, product design, software architecture, and digital transformation.</p>
+              </div>
+              <div class="service-card-indicator"></div>
+            </label>
+
+            <label class="service-card">
+              <input type="radio" name="interest" value="data" />
+              <div class="service-card-content">
+                <p class="eyebrow">Data Intelligence</p>
+                <h3>Data Services</h3>
+                <p>Analytics, data pipelines, visualization, machine learning, and data strategy.</p>
+              </div>
+              <div class="service-card-indicator"></div>
+            </label>
+
+            <label class="service-card">
+              <input type="radio" name="interest" value="marketing" />
+              <div class="service-card-content">
+                <p class="eyebrow">Digital Growth</p>
+                <h3>Digital Marketing</h3>
+                <p>Content strategy, brand positioning, digital campaigns, and customer engagement.</p>
+              </div>
+              <div class="service-card-indicator"></div>
+            </label>
+
+            <label class="service-card">
+              <input type="radio" name="interest" value="custom" />
+              <div class="service-card-content">
+                <p class="eyebrow">Cross-Disciplinary</p>
+                <h3>Custom Project</h3>
+                <p>Multi-discipline projects combining geospatial, digital, data, and marketing expertise.</p>
+              </div>
+              <div class="service-card-indicator"></div>
+            </label>
+
+            <label class="service-card">
+              <input type="radio" name="interest" value="other" />
+              <div class="service-card-content">
+                <p class="eyebrow">Not Sure Yet</p>
+                <h3>Other / Explore</h3>
+                <p>Let's discuss your challenge and find the right approach together.</p>
+              </div>
+              <div class="service-card-indicator"></div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Contact Section -->
+      <section class="contact-main-section" id="inquiry-form">
+        <div class="contact-main-wrapper">
+          <!-- Editorial Statement -->
+          <div class="contact-editorial">
+            <p class="eyebrow">Start Here</p>
+            <h2>Tell us what you're building.</h2>
+            <p>The more specific you are, the better we can help. Share your vision, constraints, and timeline. We'll review your submission and respond within one business day.</p>
+
+            <div class="contact-editorial-points">
+              <div class="editorial-point">
+                <div class="editorial-point-icon">✓</div>
+                <div class="editorial-point-text">
+                  <h3>Be Specific</h3>
+                  <p>Clear details about your challenge help us scope accurately.</p>
+                </div>
+              </div>
+              <div class="editorial-point">
+                <div class="editorial-point-icon">✓</div>
+                <div class="editorial-point-text">
+                  <h3>Share Context</h3>
+                  <p>Budget, timeline, and technical constraints guide our recommendations.</p>
+                </div>
+              </div>
+              <div class="editorial-point">
+                <div class="editorial-point-icon">✓</div>
+                <div class="editorial-point-text">
+                  <h3>Add Files</h3>
+                  <p>Briefs, requirements, reference materials strengthen your submission.</p>
+                </div>
+              </div>
             </div>
-            <div class="quick-card">
-              <p class="eyebrow">📞 Phone</p>
-              <strong><a href="tel:+917382819292">+91 7382 819 292</a></strong>
-            </div>
-            <div class="quick-card">
-              <p class="eyebrow">⏰ Hours</p>
-              <strong>Mon–Fri: 9:00–18:00</strong>
-              <p>IST • Saturday by appointment</p>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-wrapper">
+            <div class="contact-form-panel">
+              <h3>Your Project Brief</h3>
+              <p>Complete the essential details below</p>
+
+              <form data-contact-form>
+                <!-- Row 1: Name & Email -->
+                <div class="form-two-col">
+                  <div class="form-group">
+                    <label for="name">Full Name <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" autocomplete="name" placeholder="Your name" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" autocomplete="email" placeholder="your@email.com" required />
+                  </div>
+                </div>
+
+                <!-- Row 2: Company & Phone -->
+                <div class="form-two-col">
+                  <div class="form-group">
+                    <label for="company">Company / Organization</label>
+                    <input type="text" id="company" name="company" autocomplete="organization" placeholder="Company name" />
+                  </div>
+                  <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+91 7382819292" />
+                  </div>
+                </div>
+
+                <!-- Interest Selection -->
+                <div class="form-group full">
+                  <label for="interest-select">Area of Interest <span class="required">*</span></label>
+                  <select id="interest-select" name="interest" required>
+                    <option value="">Select a service area...</option>
+                    <option value="geospatial">Geospatial Solutions</option>
+                    <option value="digital">Digital & Software Solutions</option>
+                    <option value="data">Data Services</option>
+                    <option value="marketing">Digital Marketing</option>
+                    <option value="custom">Custom / Multi-Discipline Project</option>
+                    <option value="other">Other / Let's Explore</option>
+                  </select>
+                </div>
+
+                <!-- Project Details -->
+                <div class="form-group full">
+                  <label for="message">Project Details <span class="required">*</span></label>
+                  <textarea id="message" name="message" placeholder="Describe your challenge, goals, current situation, and timeline..." required></textarea>
+                </div>
+
+                <!-- Budget & Timeline -->
+                <div class="form-two-col">
+                  <div class="form-group">
+                    <label for="budget">Estimated Budget</label>
+                    <select id="budget" name="budget">
+                      <option value="">Select range...</option>
+                      <option value="startup">$5K–$25K</option>
+                      <option value="growth">$25K–$100K</option>
+                      <option value="enterprise">$100K–$500K</option>
+                      <option value="strategic">$500K+</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="timeline">Timeline</label>
+                    <select id="timeline" name="timeline">
+                      <option value="">Select timeframe...</option>
+                      <option value="immediate">Immediate (Next 30 days)</option>
+                      <option value="short">Short-term (1–3 months)</option>
+                      <option value="medium">Medium (3–6 months)</option>
+                      <option value="long">Long-term (6+ months)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- File Upload -->
+                <div class="form-group full">
+                  <label for="file-upload">Project Brief or Attachments (Optional)</label>
+                  <div class="form-file-upload">
+                    <input type="file" id="file-upload" name="attachment" accept=".pdf,.doc,.docx,.txt,.zip" />
+                    <div class="form-file-label">Drop files here or click to browse</div>
+                    <div class="form-file-hint">PDF, DOC, or ZIP (max 10MB)</div>
+                  </div>
+                </div>
+
+                <!-- Honeypot -->
+                <label style="display: none;">
+                  Website
+                  <input type="text" name="website" tabindex="-1" autocomplete="off" />
+                </label>
+
+                <!-- Submit -->
+                <div class="form-actions">
+                  <button type="submit" class="form-submit-btn">Start the Conversation</button>
+                  <p class="form-notice" data-form-notice></p>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Locations Section -->
-      <section class="locations-section">
-        <div class="container">
-          <div class="locations-header">
-            <p class="eyebrow">◆ Where We Are</p>
-            <h2>Twin hubs. One vision.</h2>
+      <!-- Contact Information (3 Side-by-Side in a Single Row) -->
+      <section class="contact-info-section" id="quick-contact">
+        <div class="contact-info-wrapper">
+          <div class="info-card">
+            <div class="info-card-icon">📧</div>
+            <h3>Email</h3>
+            <div class="info-card-content">
+              <p><a href="mailto:info@trisetsolutions.com">info@trisetsolutions.com</a></p>
+              <p style="font-size: 0.8rem; margin-top: 0.3rem;">Response within 24 hours</p>
+            </div>
           </div>
-          <div class="locations-grid">
+
+          <div class="info-card">
+            <div class="info-card-icon">📞</div>
+            <h3>Phone</h3>
+            <div class="info-card-content">
+              <p><a href="tel:+917382819292">+91 738 281 9292</a></p>
+              <p style="font-size: 0.8rem; margin-top: 0.3rem;">Mon–Fri, 9:00–18:00 IST</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-icon">🕐</div>
+            <h3>Office Hours</h3>
+            <div class="info-card-content">
+              <p>Monday–Friday<br />9:00 AM – 6:00 PM IST</p>
+              <p style="font-size: 0.8rem; margin-top: 0.3rem;">Saturday by appointment</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Locations -->
+      <section class="locations-premium-section">
+        <div class="container">
+          <div class="locations-premium-header">
+            <p class="eyebrow">Twin Hubs</p>
+            <h2>Where We Work</h2>
+            <p>We operate from two strategic locations in India, serving clients globally.</p>
+          </div>
+
+          <div class="locations-grid-premium">
             <!-- Hyderabad -->
-            <div class="location-card">
-              <div class="location-header">
-                <span class="location-number">01</span>
-                <h3>Hyderabad</h3>
-              </div>
-              <div class="location-details">
-                <div class="detail-item">
-                  <div class="detail-label">Location</div>
-                  <div class="detail-value">
-                    Pragati Nagar, Kukatpally<br>
-                    Hyderabad, Telangana 500072<br>
+            <div class="location-card-premium">
+              <div class="location-number-premium">Headquarters</div>
+              <h3>Hyderabad, India</h3>
+              <div class="location-details-premium">
+                <div class="detail-item-premium">
+                  <div class="detail-label-premium">📍 Address</div>
+                  <div class="detail-value-premium">
+                    Pragati Nagar, Kukatpally<br />
+                    Hyderabad, Telangana 500072<br />
                     India
                   </div>
                 </div>
-                <div class="detail-item">
-                  <div class="detail-label">Phone</div>
-                  <div class="detail-value">
+                <div class="detail-item-premium">
+                  <div class="detail-label-premium">📞 Direct</div>
+                  <div class="detail-value-premium">
                     <a href="tel:+917382819292">+91 7382 819 292</a>
                   </div>
                 </div>
-                <div class="detail-item">
-                  <div class="detail-label">Email</div>
-                  <div class="detail-value">
+                <div class="detail-item-premium">
+                  <div class="detail-label-premium">📧 Email</div>
+                  <div class="detail-value-premium">
                     <a href="mailto:hyderabad@trisetsolutions.com">hyderabad@trisetsolutions.com</a>
                   </div>
                 </div>
@@ -534,29 +1127,27 @@
             </div>
 
             <!-- Bapatla -->
-            <div class="location-card">
-              <div class="location-header">
-                <span class="location-number">02</span>
-                <h3>Bapatla</h3>
-              </div>
-              <div class="location-details">
-                <div class="detail-item">
-                  <div class="detail-label">Location</div>
-                  <div class="detail-value">
-                    Bapatla<br>
-                    Andhra Pradesh 524101<br>
+            <div class="location-card-premium">
+              <div class="location-number-premium">Regional Hub</div>
+              <h3>Bapatla, India</h3>
+              <div class="location-details-premium">
+                <div class="detail-item-premium">
+                  <div class="detail-label-premium">📍 Address</div>
+                  <div class="detail-value-premium">
+                    Bapatla<br />
+                    Andhra Pradesh 524101<br />
                     India
                   </div>
                 </div>
-                <div class="detail-item">
-                  <div class="detail-label">Phone</div>
-                  <div class="detail-value">
+                <div class="detail-item-premium">
+                  <div class="detail-label-premium">📞 Direct</div>
+                  <div class="detail-value-premium">
                     <a href="tel:+917382819292">+91 7382 819 292</a>
                   </div>
                 </div>
-                <div class="detail-item">
-                  <div class="detail-label">Email</div>
-                  <div class="detail-value">
+                <div class="detail-item-premium">
+                  <div class="detail-label-premium">📧 Email</div>
+                  <div class="detail-value-premium">
                     <a href="mailto:bapatla@trisetsolutions.com">bapatla@trisetsolutions.com</a>
                   </div>
                 </div>
@@ -566,77 +1157,197 @@
         </div>
       </section>
 
-      <!-- Form Section -->
-      <section class="form-section" id="inquiry-form">
+      <!-- Project Types -->
+      <section class="project-types-section">
         <div class="container">
-          <div class="form-wrapper">
-            <!-- Form -->
-            <form class="form-panel" data-contact-form>
-              <div>
-                <p class="eyebrow">Get Started</p>
-                <h2>Tell us about your project.</h2>
-              </div>
-              <div class="form-grid two-col">
-                <label>Full Name <span style="color: var(--brand-signal);">*</span>
-                  <input type="text" name="name" autocomplete="name" required />
-                </label>
-                <label>Email <span style="color: var(--brand-signal);">*</span>
-                  <input type="email" name="email" autocomplete="email" required />
-                </label>
-              </div>
-              <div class="form-grid two-col">
-                <label>Company
-                  <input type="text" name="company" autocomplete="organization" />
-                </label>
-                <label>Phone
-                  <input type="tel" name="phone" autocomplete="tel" />
-                </label>
-              </div>
-              <div class="form-grid">
-                <label>Service Area <span style="color: var(--brand-signal);">*</span>
-                  <select name="service" required>
-                    <option value="">Select a service</option>
-                    <option>Digital Solutions</option>
-                    <option>Geo-Spatial Solutions</option>
-                    <option>Both</option>
-                  </select>
-                </label>
-              </div>
-              <label>Project Details <span style="color: var(--brand-signal);">*</span>
-                <textarea name="message" required placeholder="Describe your project, goals, and timeline..."></textarea>
-              </label>
-              <label class="visually-hidden">Website
-                <input type="text" name="website" tabindex="-1" autocomplete="off" />
-              </label>
-              <button class="btn btn-primary form-submit" type="submit">Send Inquiry</button>
-              <p class="form-note" data-form-notice></p>
-            </form>
+          <div class="project-types-header">
+            <p class="eyebrow">Use Cases</p>
+            <h2>Types of Projects We Excel At</h2>
+            <p>Whether you need a single discipline or a cross-functional team, we have deep experience across these project categories.</p>
+          </div>
 
-            <!-- Info Panel -->
-            <div class="form-panel info-panel">
-              <div>
-                <p class="eyebrow">What To Include</p>
-                <h2>Help us help you.</h2>
-              </div>
-              <ul>
-                <li><strong>Service type:</strong> Digital, geo-spatial, or hybrid</li>
-                <li><strong>Scope details:</strong> New build, improvement, or workflow</li>
-                <li><strong>Timeline:</strong> Desired completion or phase dates</li>
-                <li><strong>Existing assets:</strong> Website, app, data, maps, imagery</li>
-                <li><strong>Constraints:</strong> Technical, legal, or delivery requirements</li>
-                <li><strong>Budget range:</strong> Helps us scope appropriately</li>
-              </ul>
+          <div class="project-types-grid">
+            <div class="project-type-card">
+              <span class="project-type-icon">🗺️</span>
+              <h3>Geospatial Mapping</h3>
             </div>
+            <div class="project-type-card">
+              <span class="project-type-icon">💻</span>
+              <h3>Software Development</h3>
+            </div>
+            <div class="project-type-card">
+              <span class="project-type-icon">📊</span>
+              <h3>Data Analytics</h3>
+            </div>
+            <div class="project-type-card">
+              <span class="project-type-icon">🎨</span>
+              <h3>Digital Design</h3>
+            </div>
+            <div class="project-type-card">
+              <span class="project-type-icon">📱</span>
+              <h3>Mobile Apps</h3>
+            </div>
+            <div class="project-type-card">
+              <span class="project-type-icon">🌐</span>
+              <h3>Web Platforms</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trust Section -->
+      <section class="trust-section">
+        <div class="trust-wrapper">
+          <div class="trust-card">
+            <div class="trust-icon">⚡</div>
+            <h3>Precise Delivery</h3>
+            <p>Clear timelines, measurable results, and proactive communication at every stage.</p>
+          </div>
+          <div class="trust-card">
+            <div class="trust-icon">🔧</div>
+            <h3>Technical Depth</h3>
+            <p>Modern technology stack, scalable architecture, and production-grade practices.</p>
+          </div>
+          <div class="trust-card">
+            <div class="trust-icon">🤝</div>
+            <h3>True Partnership</h3>
+            <p>We become an extension of your team, invested in your success long-term.</p>
+          </div>
+          <div class="trust-card">
+            <div class="trust-icon">📈</div>
+            <h3>Measurable Impact</h3>
+            <p>Your work matters. We focus on solutions that create real business value.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final CTA -->
+      <section class="final-cta-section">
+        <div class="final-cta-content">
+          <h2>Your Next Project Starts With a Conversation.</h2>
+          <p>We're ready to listen, understand your challenge, and share how TRISET can help.</p>
+          <div class="final-cta-actions">
+            <a class="btn btn-primary" href="#inquiry-form">Start the Conversation</a>
+            <a class="btn btn-quiet" href="tel:+917382819292" style="border-color: rgba(11,102,255,0.2);">Call Us Now</a>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="footer"><div class="container"><div class="footer-grid"><div><h2>TRISET Solutions</h2><p>Premium digital and geo-spatial solutions from India.</p></div><div><h3>Explore</h3><a href="about.html">About</a><a href="projects.html">Work</a><a href="careers.html">Careers</a></div><div><h3>Services</h3><a href="services.html#digital">Digital Solutions</a><a href="services.html#geospatial">Geo-Spatial Solutions</a><a href="solutions.html">Solutions</a></div><div><h3>Contact</h3><a href="mailto:info@trisetsolutions.com">info@trisetsolutions.com</a><a href="tel:+917382819292">+91 738 281 9292</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div><div class="copyright">Copyright 2026 TRISET Solutions. All rights reserved.</div></div></footer>
-    <script src="src/content.js"></script><script src="src/app.js"></script>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <h2>TRISET Solutions</h2>
+            <p>Premium digital and geo-spatial solutions from India.</p>
+          </div>
+          <div>
+            <h3>Explore</h3>
+            <a href="about.html">About</a>
+            <a href="projects.html">Work</a>
+            <a href="careers.html">Careers</a>
+          </div>
+          <div>
+            <h3>Services</h3>
+            <a href="services.html#digital">Digital Solutions</a>
+            <a href="services.html#geospatial">Geo-Spatial Solutions</a>
+            <a href="solutions.html">Solutions</a>
+          </div>
+          <div>
+            <h3>Contact</h3>
+            <a href="mailto:info@trisetsolutions.com">info@trisetsolutions.com</a>
+            <a href="tel:+917382819292">+91 738 281 9292</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+          </div>
+        </div>
+        <div class="copyright">Copyright 2026 TRISET Solutions. All rights reserved.</div>
+      </div>
+    </footer>
+
+    <script src="src/content.js"></script>
+    <script src="src/app.js"></script>
+    <script>
+      /* ========================================
+         CONTACT FORM SUBMISSION HANDLER
+         ======================================== */
+      const contactForm = document.querySelector('[data-contact-form]');
+      const formNotice = document.querySelector('[data-form-notice]');
+
+      if (contactForm) {
+        contactForm.addEventListener('submit', async (event) => {
+          event.preventDefault();
+
+          const websiteField = contactForm.querySelector('input[name="website"]');
+          if (websiteField.value) {
+            return;
+          }
+
+          const submitBtn = contactForm.querySelector('.form-submit-btn');
+          const originalText = submitBtn.textContent;
+
+          try {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            formNotice.className = '';
+            formNotice.textContent = '';
+
+            const formData = new FormData(contactForm);
+            const payload = Object.fromEntries(formData);
+
+            if (!payload.name || !payload.email || !payload.message) {
+              throw new Error('Please fill in all required fields.');
+            }
+
+            const response = await fetch('/api/contact', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+              throw new Error(result.error || 'Submission failed. Please try again.');
+            }
+
+            contactForm.reset();
+            submitBtn.textContent = 'Message Sent! ✓';
+            submitBtn.disabled = false;
+            formNotice.className = 'form-success';
+            formNotice.textContent = "Thanks for reaching out. We'll respond within one business day.";
+
+            setTimeout(() => {
+              submitBtn.textContent = originalText;
+            }, 3000);
+          } catch (error) {
+            console.error('Form submission error:', error);
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+            formNotice.className = 'form-error';
+            formNotice.textContent = error.message || 'Something went wrong. Please try again.';
+          }
+        });
+      }
+
+      /* ========================================
+         SYNC INTEREST SELECTION
+         ======================================== */
+      const interestRadios = document.querySelectorAll('input[name="interest"]');
+      const interestSelect = document.querySelector('#interest-select');
+
+      if (interestRadios.length && interestSelect) {
+        interestRadios.forEach((radio) => {
+          radio.addEventListener('change', () => {
+            interestSelect.value = radio.value;
+          });
+        });
+
+        interestSelect.addEventListener('change', () => {
+          const radio = document.querySelector(`input[name="interest"][value="${interestSelect.value}"]`);
+          if (radio) radio.checked = true;
+        });
+      }
+    </script>
   </body>
 </html>
-
-
-
-

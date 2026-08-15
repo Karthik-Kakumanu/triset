@@ -3,114 +3,1780 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Careers and collaboration opportunities at TRISET Solutions." />
+    <meta name="description" content="Build what comes next with TRISET Solutions. Explore careers across geospatial, software, data, digital and creative technology." />
     <link rel="canonical" href="https://www.trisetsolutions.com/careers.html" />
     <meta property="og:title" content="Careers | TRISET Solutions" />
-    <meta property="og:description" content="Careers and collaboration opportunities across TRISET digital and geo-spatial work." />
+    <meta property="og:description" content="Careers at TRISET Solutions. Join a modern technology company building geospatial, software, data and digital products that shape the real world." />
     <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#185B9F" />
+    <meta property="og:image" content="https://www.trisetsolutions.com/assets/hero.png" />
+    <meta name="theme-color" content="#0b3a66" />
     <title>Careers | TRISET Solutions</title>
     <link rel="icon" href="assets/logo_final.png" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="premium-system.css" />
+    <style>
+      :root {
+        --careers-navy: #071722;
+        --careers-navy-2: #0c223b;
+        --careers-blue: #0b66ff;
+        --careers-blue-soft: #dfeeff;
+        --careers-cyan: #6ed8ff;
+        --careers-signal: #e34b4b;
+        --careers-paper: #f6f8fb;
+        --careers-surface: #ffffff;
+        --careers-line: rgba(12, 34, 59, 0.12);
+        --careers-shadow: 0 38px 80px rgba(7, 23, 34, 0.12);
+      }
+
+      .careers-page {
+        background: var(--careers-paper);
+        overflow-x: hidden;
+      }
+
+      .careers-page .container {
+        width: min(100% - 2rem, 1220px);
+        margin: 0 auto;
+      }
+
+      .careers-page .section {
+        padding: clamp(3rem, 6vw, 7rem) 0;
+      }
+
+      .careers-page .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 1.5rem;
+        margin-bottom: clamp(1.8rem, 3vw, 3rem);
+      }
+
+      .careers-page .section-header h2 {
+        margin: 0.35rem 0 0;
+        font-size: clamp(1.9rem, 3.8vw, 4rem);
+        line-height: 1.08;
+        letter-spacing: -0.04em;
+        color: var(--careers-navy);
+      }
+
+      .careers-page .section-header .eyebrow {
+        color: var(--careers-signal);
+      }
+
+      .careers-hero {
+        position: relative;
+        min-height: clamp(480px, 68vh, 700px);
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        background: linear-gradient(180deg, rgba(7, 23, 34, 0.4), rgba(7, 23, 34, 0.65)), url('assets/hero.png') center/cover no-repeat;
+      }
+
+      .careers-hero__media {
+        display: none;
+      }
+
+      .careers-hero__content {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: minmax(0, 1.3fr) minmax(240px, 0.7fr);
+        gap: clamp(1.5rem, 3vw, 2.5rem);
+        align-items: end;
+        width: min(100% - 2rem, 1220px);
+        padding: clamp(4.5rem, 12vh, 8rem) 0 2.5rem;
+      }
+
+      .careers-hero__copy {
+        max-width: 720px;
+      }
+
+      .careers-hero__copy .eyebrow {
+        margin: 0 0 0.8rem;
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .careers-hero__copy h1 {
+        margin: 0;
+        color: #fff;
+        font-size: clamp(2.5rem, 5.5vw, 6.1rem);
+        line-height: 0.96;
+        letter-spacing: -0.055em;
+      }
+
+      .careers-hero__copy .lead {
+        margin: 1rem 0 0;
+        max-width: 56ch;
+        color: rgba(232, 240, 248, 0.9);
+        font-size: clamp(0.98rem, 1.5vw, 1.25rem);
+        line-height: 1.6;
+      }
+
+      .careers-hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-top: 1.8rem;
+      }
+
+      .careers-hero__meta {
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .careers-meta-card {
+        padding: 1.1rem 1.2rem;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 20px 50px rgba(7, 23, 34, 0.22);
+      }
+
+      .careers-meta-card span {
+        display: block;
+        font-size: 0.68rem;
+        color: rgba(255, 255, 255, 0.7);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 0.45rem;
+      }
+
+      .careers-meta-card strong {
+        display: block;
+        color: #fff;
+        font-size: clamp(1.05rem, 1.5vw, 1.45rem);
+        line-height: 1.35;
+      }
+
+      .careers-meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .careers-meta-row span {
+        display: inline-flex;
+        padding: 0.48rem 0.75rem;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.06);
+        color: rgba(255,255,255,0.86);
+        border: 1px solid rgba(255,255,255,0.1);
+        font-size: 0.7rem;
+        letter-spacing: 0.04em;
+      }
+
+      .story-section {
+        background: linear-gradient(180deg, rgba(246, 248, 251, 1) 0%, rgba(233, 240, 249, 0.72) 100%);
+      }
+
+      .story-shell {
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+        gap: clamp(1.5rem, 3.5vw, 4rem);
+        align-items: center;
+      }
+
+      .story-copy {
+        max-width: 640px;
+      }
+
+      .story-copy h2 {
+        margin: 0.4rem 0 1rem;
+        font-size: clamp(2rem, 3.8vw, 4rem);
+        line-height: 1.08;
+        letter-spacing: -0.045em;
+        color: var(--careers-navy);
+      }
+
+      .story-copy p {
+        margin: 0;
+        font-size: 1rem;
+        color: rgba(12, 34, 59, 0.8);
+        line-height: 1.75;
+      }
+
+      .story-visual {
+        position: relative;
+        border-radius: 24px;
+        overflow: hidden;
+        min-height: 380px;
+        box-shadow: var(--careers-shadow);
+        border: 1px solid rgba(12, 34, 59, 0.06);
+      }
+
+      .story-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .story-badge {
+        position: absolute;
+        left: 1.2rem;
+        bottom: 1.2rem;
+        padding: 0.7rem 0.9rem;
+        border-radius: 999px;
+        background: rgba(7, 23, 34, 0.78);
+        border: 1px solid rgba(255,255,255,0.12);
+        color: rgba(255,255,255,0.9);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 0.62rem;
+      }
+
+      .domains-section {
+        background: linear-gradient(180deg, #eaf3ff 0%, #f7f9fc 100%);
+      }
+
+      .domains-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-bottom: 1.2rem;
+      }
+
+      .domain-toggle {
+        border: 1px solid var(--careers-line);
+        background: rgba(255,255,255,0.7);
+        color: var(--careers-navy);
+        padding: 0.7rem 1rem;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 0.88rem;
+        transition: all 0.24s ease;
+      }
+
+      .domain-toggle.is-active,
+      .domain-toggle:hover {
+        background: var(--careers-navy);
+        color: #fff;
+        border-color: transparent;
+      }
+
+      .domain-display {
+        display: grid;
+        grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+        gap: 1.2rem;
+      }
+
+      .domain-panel {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(1.5rem, 2.5vw, 2.5rem);
+        min-height: 320px;
+        border-radius: 28px;
+        background: linear-gradient(135deg, rgba(7, 23, 34, 0.96), rgba(11, 73, 126, 0.88));
+        color: #fff;
+        box-shadow: var(--careers-shadow);
+      }
+
+      .domain-panel::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+        background-size: 40px 40px;
+        opacity: 0.6;
+      }
+
+      .domain-panel > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .domain-panel .eyebrow {
+        color: rgba(110, 216, 255, 0.8);
+      }
+
+      .domain-panel h3 {
+        margin: 0.4rem 0 0.8rem;
+        font-size: clamp(2rem, 3.5vw, 3.6rem);
+        line-height: 1.05;
+        letter-spacing: -0.05em;
+      }
+
+      .domain-panel p {
+        margin: 0 0 1rem;
+        max-width: 56ch;
+        color: rgba(232, 240, 248, 0.8);
+        line-height: 1.65;
+        font-size: 0.95rem;
+      }
+
+      .domain-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .domain-tags span {
+        padding: 0.45rem 0.65rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.16);
+        background: rgba(255,255,255,0.04);
+        color: rgba(255,255,255,0.8);
+        font-size: 0.68rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .domain-tiles {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .domain-tile {
+        position: relative;
+        padding: 1.3rem 1.1rem;
+        min-height: 150px;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.82);
+        border: 1px solid var(--careers-line);
+        box-shadow: 0 16px 32px rgba(7, 23, 34, 0.05);
+        overflow: hidden;
+      }
+
+      .domain-tile::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto auto 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, var(--careers-blue), transparent);
+      }
+
+      .domain-tile strong {
+        display: block;
+        margin: 0.2rem 0 0.5rem;
+        font-size: 1.15rem;
+        color: var(--careers-navy);
+      }
+
+      .domain-tile p {
+        margin: 0;
+        color: rgba(12, 34, 59, 0.72);
+        line-height: 1.6;
+        font-size: 0.88rem;
+      }
+
+      .careers-paths {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .career-path {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 0.7rem;
+        align-items: stretch;
+      }
+
+      .path-step {
+        position: relative;
+        padding: 1.1rem 0.6rem 0.9rem;
+        background: rgba(255,255,255,0.78);
+        border: 1px solid var(--careers-line);
+        border-radius: 16px;
+        text-align: center;
+      }
+
+      .path-step:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: -0.45rem;
+        width: 0.9rem;
+        height: 1.5px;
+        background: rgba(11, 102, 255, 0.28);
+      }
+
+      .path-step strong {
+        display: block;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        color: var(--careers-signal);
+        letter-spacing: 0.14em;
+        font-size: 0.62rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .path-step h3 {
+        margin: 0;
+        color: var(--careers-navy);
+        font-size: 0.9rem;
+      }
+
+      .path-role-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 1.2rem;
+      }
+
+      .path-role {
+        padding: 1.3rem 1.1rem;
+        border-radius: 20px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(242,246,251,0.75));
+        border: 1px solid var(--careers-line);
+      }
+
+      .path-role h3 {
+        margin: 0 0 0.6rem;
+        color: var(--careers-navy);
+        font-size: 1.35rem;
+      }
+
+      .path-role ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 0.4rem;
+        color: rgba(12, 34, 59, 0.76);
+        font-size: 0.9rem;
+      }
+
+      .path-role li::before {
+        content: "•";
+        color: var(--careers-signal);
+        margin-right: 0.4rem;
+      }
+
+      /* ========================================
+         RESPONSIVE SIDE-BY-SIDE (2x2 GRID) TOOLBAR
+         ======================================== */
+      .jobs-toolbar {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+        background: #ffffff;
+        padding: 1.25rem;
+        border-radius: 20px;
+        border: 1px solid var(--careers-line);
+        box-shadow: 0 10px 30px rgba(7, 23, 34, 0.04);
+      }
+
+      .job-filter {
+        min-width: 0;
+      }
+
+      .job-filter label {
+        display: block;
+        margin-bottom: 0.4rem;
+        color: rgba(12, 34, 59, 0.7);
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .job-filter select {
+        width: 100%;
+        padding: 0.8rem 0.9rem;
+        border-radius: 12px;
+        border: 1px solid var(--careers-line);
+        background: rgba(255,255,255,0.9);
+        color: var(--careers-navy);
+        font-size: 16px; /* Prevents iOS auto-zoom */
+      }
+
+      @media (max-width: 980px) {
+        .jobs-toolbar {
+          grid-template-columns: repeat(2, minmax(0, 1fr)); /* Side-by-side 2x2 grid on mobile & tablet */
+        }
+      }
+
+      .jobs-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .job-card {
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+        padding: 1.25rem 1.2rem 1.1rem;
+        background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,249,252,0.8));
+        border: 1px solid var(--careers-line);
+        border-radius: 20px;
+        transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+      }
+
+      .job-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 44px rgba(12, 34, 59, 0.08);
+        border-color: rgba(11, 102, 255, 0.22);
+      }
+
+      .job-card__meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        gap: 0.8rem;
+      }
+
+      .job-card__meta .eyebrow {
+        color: var(--careers-blue);
+        margin-bottom: 0.4rem;
+      }
+
+      .job-card__meta strong {
+        font-size: 1.35rem;
+        line-height: 1.2;
+        color: var(--careers-navy);
+      }
+
+      .job-card__type {
+        padding: 0.38rem 0.6rem;
+        border-radius: 999px;
+        background: rgba(11, 102, 255, 0.08);
+        color: var(--careers-blue);
+        font-size: 0.68rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .job-card__facts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        color: rgba(12, 34, 59, 0.7);
+        font-size: 0.76rem;
+      }
+
+      .job-card__facts span {
+        padding: 0.35rem 0.5rem;
+        border-radius: 999px;
+        background: rgba(12, 34, 59, 0.03);
+      }
+
+      .job-card p {
+        margin: 0;
+        color: rgba(12, 34, 59, 0.72);
+        line-height: 1.65;
+        font-size: 0.9rem;
+      }
+
+      .job-card__actions {
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .job-card__actions .btn {
+        padding: 0.7rem 1rem;
+        font-size: 0.88rem;
+      }
+
+      .job-empty {
+        grid-column: 1 / -1;
+        padding: 2rem;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.9);
+        border: 1px solid var(--careers-line);
+        text-align: center;
+      }
+
+      .job-empty h3 {
+        margin: 0 0 0.4rem;
+        color: var(--careers-navy);
+      }
+
+      .job-empty p {
+        margin: 0;
+        color: rgba(12, 34, 59, 0.72);
+        font-size: 0.92rem;
+      }
+
+      .job-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(7, 23, 34, 0.72);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.24s ease;
+        z-index: 400;
+      }
+
+      .job-modal.is-open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .job-modal__panel {
+        width: min(100%, 920px);
+        max-height: min(86vh, 900px);
+        overflow: auto;
+        background: var(--careers-surface);
+        border-radius: 24px;
+        border: 1px solid rgba(12, 34, 59, 0.08);
+        box-shadow: 0 30px 100px rgba(7, 23, 34, 0.2);
+        padding: clamp(1.2rem, 2vw, 2rem);
+      }
+
+      .job-modal__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .job-modal__header h3 {
+        margin: 0.25rem 0 0;
+        font-size: clamp(1.6rem, 2vw, 2.4rem);
+        color: var(--careers-navy);
+      }
+
+      .job-modal__close {
+        border: none;
+        background: rgba(12, 34, 59, 0.04);
+        color: var(--careers-navy);
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+      }
+
+      .job-modal__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .job-modal__meta span {
+        display: inline-flex;
+        padding: 0.42rem 0.65rem;
+        border-radius: 999px;
+        background: rgba(11, 102, 255, 0.06);
+        color: var(--careers-blue);
+        font-size: 0.68rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .job-detail-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.2rem;
+      }
+
+      .job-detail-block {
+        padding: 1.1rem 1rem;
+        border-radius: 16px;
+        border: 1px solid var(--careers-line);
+        background: rgba(246, 248, 251, 0.85);
+      }
+
+      .job-detail-block h4 {
+        margin: 0 0 0.7rem;
+        color: var(--careers-navy);
+        font-size: 0.92rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .job-detail-block p,
+      .job-detail-block li {
+        color: rgba(12, 34, 59, 0.76);
+        line-height: 1.7;
+        font-size: 0.9rem;
+      }
+
+      .job-detail-block ul {
+        padding-left: 1.1rem;
+        margin: 0;
+      }
+
+      .job-detail-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-top: 1.6rem;
+      }
+
+      .application-shell {
+        display: grid;
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+        gap: clamp(1.4rem, 3.5vw, 4rem);
+        align-items: center;
+      }
+
+      .application-copy {
+        padding-right: 0.5rem;
+      }
+
+      .application-copy h2 {
+        margin: 0.4rem 0 1rem;
+        color: var(--careers-navy);
+        font-size: clamp(2rem, 3.8vw, 3.8rem);
+        line-height: 1.06;
+        letter-spacing: -0.05em;
+      }
+
+      .application-copy p {
+        margin: 0 0 1rem;
+        color: rgba(12, 34, 59, 0.74);
+        line-height: 1.75;
+        font-size: 0.98rem;
+      }
+
+      .application-points {
+        display: grid;
+        gap: 0.65rem;
+        margin-top: 1.2rem;
+      }
+
+      .application-points div {
+        display: flex;
+        gap: 0.6rem;
+        align-items: start;
+        color: rgba(12, 34, 59, 0.76);
+        font-size: 0.9rem;
+      }
+
+      .application-points span {
+        width: 26px;
+        height: 26px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(11, 102, 255, 0.08);
+        color: var(--careers-blue);
+        font-weight: 700;
+        font-size: 0.82rem;
+      }
+
+      .application-form {
+        background: rgba(255,255,255,0.9);
+        border: 1px solid var(--careers-line);
+        border-radius: 24px;
+        box-shadow: 0 24px 60px rgba(7, 23, 34, 0.08);
+        padding: clamp(1.2rem, 2vw, 2rem);
+      }
+
+      .field-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.9rem;
+      }
+
+      .application-form label {
+        display: grid;
+        gap: 0.35rem;
+        color: rgba(12, 34, 59, 0.8);
+        font-size: 0.75rem;
+        letter-spacing: 0.04em;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .application-form input,
+      .application-form select,
+      .application-form textarea {
+        width: 100%;
+        padding: 0.8rem 0.88rem;
+        border-radius: 12px;
+        border: 1px solid var(--careers-line);
+        background: #fff;
+        color: var(--careers-navy);
+        font-size: 16px; /* Prevents iOS auto-zoom */
+      }
+
+      .application-form textarea {
+        min-height: 110px;
+        resize: vertical;
+      }
+
+      .upload-box {
+        position: relative;
+        display: grid;
+        place-items: center;
+        min-height: 110px;
+        border: 1px dashed rgba(11, 102, 255, 0.4);
+        border-radius: 16px;
+        background: rgba(11, 102, 255, 0.03);
+        text-align: center;
+        padding: 0.9rem;
+        cursor: pointer;
+        transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+      }
+
+      .upload-box.dragover {
+        border-color: var(--careers-blue);
+        background: rgba(11, 102, 255, 0.06);
+        transform: translateY(-2px);
+      }
+
+      .upload-box strong {
+        display: block;
+        font-size: 0.95rem;
+        color: var(--careers-navy);
+      }
+
+      .upload-box small {
+        display: block;
+        margin-top: 0.3rem;
+        color: rgba(12, 34, 59, 0.7);
+        font-size: 0.82rem;
+      }
+
+      .upload-meta {
+        margin-top: 0.4rem;
+        font-size: 0.75rem;
+        color: rgba(12, 34, 59, 0.7);
+      }
+
+      .form-status {
+        min-height: 1.2rem;
+        margin-top: 0.6rem;
+        color: rgba(12, 34, 59, 0.78);
+        font-weight: 500;
+        font-size: 0.88rem;
+      }
+
+      .form-status.error {
+        color: var(--careers-signal);
+      }
+
+      .form-status.success {
+        color: #146a3d;
+      }
+
+      .culture-section {
+        background: linear-gradient(180deg, rgba(8, 34, 58, 1) 0%, rgba(11, 57, 88, 0.96) 100%);
+      }
+
+      .culture-section .section-header h2,
+      .culture-section .section-header .eyebrow {
+        color: #fff;
+      }
+
+      .culture-values {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .culture-value {
+        position: relative;
+        display: block;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.03);
+        border-radius: 20px;
+        overflow: hidden;
+        padding: 1.4rem 1.1rem;
+        min-height: 160px;
+        cursor: pointer;
+        text-align: left;
+        transition: transform 0.26s ease, border-color 0.26s ease, background 0.26s ease;
+      }
+
+      .culture-value:hover,
+      .culture-value.is-active {
+        transform: translateY(-3px);
+        border-color: rgba(110, 216, 255, 0.5);
+        background: rgba(255,255,255,0.05);
+      }
+
+      .culture-value strong {
+        display: block;
+        font-size: clamp(1.25rem, 2.5vw, 1.9rem);
+        color: #fff;
+        line-height: 1.1;
+        letter-spacing: -0.04em;
+      }
+
+      .culture-value span {
+        display: block;
+        margin-top: 0.8rem;
+        color: rgba(232, 240, 248, 0.8);
+        line-height: 1.6;
+        font-size: 0.88rem;
+      }
+
+      .cta-band {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.2rem;
+        padding: clamp(1.5rem, 2.8vw, 2.4rem);
+        background: linear-gradient(135deg, rgba(11, 102, 255, 0.1), rgba(7, 23, 34, 0.96));
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 24px;
+        box-shadow: 0 30px 80px rgba(7, 23, 34, 0.14);
+      }
+
+      .cta-band .eyebrow {
+        color: rgba(110, 216, 255, 0.9);
+      }
+
+      .cta-band h2 {
+        margin: 0.25rem 0 0;
+        font-size: clamp(1.7rem, 2.8vw, 2.8rem);
+        line-height: 1.12;
+        color: #fff;
+      }
+
+      .cta-band p {
+        margin: 0.4rem 0 0;
+        color: rgba(232, 240, 248, 0.8);
+        font-size: 0.94rem;
+      }
+
+      /* ========================================
+         RESPONSIVE BREAKPOINTS FOR MOBILE
+         ======================================== */
+
+      @media (max-width: 1024px) {
+        .careers-hero__content,
+        .story-shell,
+        .domain-display,
+        .application-shell {
+          grid-template-columns: 1fr;
+        }
+
+        .reasons-grid,
+        .jobs-grid,
+        .path-role-grid,
+        .culture-values {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .careers-hero__meta {
+          max-width: 100%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .careers-page .section-header {
+          align-items: start;
+          flex-direction: column;
+        }
+
+        .reasons-grid,
+        .jobs-grid,
+        .path-role-grid,
+        .culture-values,
+        .field-grid,
+        .domain-tiles,
+        .job-detail-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .career-path {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .path-step:nth-child(n+5) {
+          display: none;
+        }
+
+        .path-step::after {
+          display: none;
+        }
+
+        .life-collage {
+          grid-template-columns: 1fr;
+        }
+
+        .life-card.large {
+          grid-row: auto;
+          min-height: 300px;
+        }
+
+        .cta-band {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      @media (max-width: 540px) {
+        .careers-hero {
+          min-height: auto;
+          padding: 3rem 0;
+        }
+
+        .careers-hero__content {
+          padding-top: 5rem;
+          padding-bottom: 2rem;
+        }
+
+        .careers-hero__copy h1 {
+          font-size: clamp(2.4rem, 12vw, 3.4rem);
+        }
+
+        .careers-hero__actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .careers-hero__actions a,
+        .cta-band .btn,
+        .job-card__actions .btn,
+        .job-detail-actions a,
+        .job-detail-actions button {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .career-path {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation: none !important;
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
   </head>
   <body class="internal-page careers-page">
     <a class="skip-link" href="#main-content">Skip to content</a>
-    <header class="site-header"><div class="container"><a class="brand" href="index.html"><img src="assets/logo_final.png" alt="TRISET Logo" /></a><button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Open navigation">Menu</button><nav class="site-nav" data-site-nav aria-label="Primary navigation"><a href="about.html">About</a><a href="services.html">Services</a><a href="solutions.html">Solutions</a><a href="projects.html">Work</a><a class="active" href="careers.html">Careers</a><a href="contact.html">Contact</a><button class="theme-toggle" data-theme-toggle type="button">☾ Dark</button><a class="nav-cta" href="contact.html">Start a project</a></nav></div></header>
-    <main id="main-content">
-      <section class="hero"><div class="container hero-grid"><div class="hero-copy"><p class="eyebrow">Careers</p><h1>Build useful work with TRISET.</h1><p class="lead">Digital products, geospatial systems, and execution work that matters.</p><div class="hero-actions"><a class="btn btn-primary" href="#open-roles">View open roles</a><a class="btn" href="contact.html">Send your profile</a></div></div><div class="image-panel"><img src="assets/drone.webp" alt="Drone mapping visual" /></div></div></section>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="index.html"><img src="assets/logo_final.png" alt="TRISET Logo" /></a>
+        <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Open navigation">Menu</button>
+        <nav class="site-nav" data-site-nav aria-label="Primary navigation">
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="solutions.html">Solutions</a>
+          <a href="projects.html">Work</a>
+          <a class="active" href="careers.html">Careers</a>
+          <a href="contact.html">Contact</a>
+          <button class="theme-toggle" data-theme-toggle type="button">☾ Dark</button>
+          <a class="nav-cta" href="contact.html">Start a project</a>
+        </nav>
+      </div>
+    </header>
 
-      <section class="section">
-        <div class="container">
-          <div class="section-header"><div><p class="eyebrow">Where people contribute</p><h2>Practical roles across two technical verticals.</h2></div></div>
-          <div class="grid-3">
-            <article class="panel"><h3>Digital delivery</h3><p>Web development, app development, e-commerce, UI/UX, marketing and data workflows.</p></article>
-            <article class="panel"><h3>Geo-spatial production</h3><p>Photogrammetry, GIS, LiDAR, BIM, drone services, DEM and orthophoto support.</p></article>
-            <article class="panel"><h3>Project coordination</h3><p>Requirement analysis, delivery updates, documentation and client handoff support.</p></article>
+    <main id="main-content">
+      <section class="careers-hero" aria-labelledby="careers-title">
+        <div class="careers-hero__content">
+          <div class="careers-hero__copy">
+            <p class="eyebrow">TRISET careers</p>
+            <h1 id="careers-title">Build What Comes Next.</h1>
+            <p class="lead">TRISET brings together geospatial intelligence, software, digital solutions, data and creative technology to build the next generation of useful work.</p>
+            <div class="careers-hero__actions">
+              <a class="btn btn-primary" href="#open-roles">View open roles</a>
+              <a class="btn" href="#apply">Send your profile</a>
+            </div>
+          </div>
+          <div class="careers-hero__meta">
+            <div class="careers-meta-card">
+              <span>Across</span>
+              <strong>Geospatial • Software • Data • Digital</strong>
+            </div>
+            <div class="careers-meta-row">
+              <span>Global ambition</span>
+              <span>India</span>
+              <span>Remote-friendly</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="section" id="open-roles">
-        <div class="container">
-          <div class="section-header"><div><p class="eyebrow">Open roles</p><h2>Current opportunities</h2></div></div>
-          <div id="careers-list" class="jobs-grid"></div>
+      <section class="section story-section" aria-labelledby="story-title">
+        <div class="container story-shell">
+          <div class="story-copy">
+            <p class="eyebrow">Why people join</p>
+            <h2 id="story-title">Work where technology meets real-world impact.</h2>
+            <p>At TRISET, people work across geospatial systems, digital products, software engineering, data workflows and creative technology. That means ideas move from concept to delivery quickly, and work has direct relevance to the businesses, communities and decisions it supports.</p>
+          </div>
+          <div class="story-visual">
+            <img src="assets/lidar.webp" alt="Geospatial and digital technology workspace" />
+            <div class="story-badge">Geospatial • Software • Data • Digital</div>
+          </div>
         </div>
       </section>
 
-      <section class="section band">
+      <section class="section domains-section" aria-labelledby="domains-title">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Our domains</p>
+              <h2 id="domains-title">A broad, connected technology practice.</h2>
+            </div>
+          </div>
+          <div class="domains-controls" aria-label="Filter domains">
+            <button class="domain-toggle is-active" type="button" data-domain="geospatial">Geospatial</button>
+            <button class="domain-toggle" type="button" data-domain="digital">Digital &amp; software</button>
+            <button class="domain-toggle" type="button" data-domain="data">Data</button>
+            <button class="domain-toggle" type="button" data-domain="creative">Creative &amp; digital</button>
+          </div>
+          <div class="domain-display">
+            <div class="domain-panel" id="domain-panel">
+              <p class="eyebrow" id="domain-kicker">Geospatial</p>
+              <h3 id="domain-title">Geospatial</h3>
+              <p id="domain-summary">From GIS and LiDAR to drone workflows, mapping and 3D spatial analysis, our geospatial work helps organizations understand terrain, assets and operational realities.</p>
+              <div class="domain-tags" id="domain-tags"></div>
+            </div>
+            <div class="domain-tiles" id="domain-tiles"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="paths-title">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Career paths</p>
+              <h2 id="paths-title">Grow through exploring, learning and leading.</h2>
+            </div>
+          </div>
+          <div class="careers-paths">
+            <div class="career-path" aria-label="Career progression">
+              <div class="path-step"><strong>01</strong><h3>Explore</h3></div>
+              <div class="path-step"><strong>02</strong><h3>Learn</h3></div>
+              <div class="path-step"><strong>03</strong><h3>Build</h3></div>
+              <div class="path-step"><strong>04</strong><h3>Lead</h3></div>
+              <div class="path-step"><strong>05</strong><h3>Scale</h3></div>
+              <div class="path-step"><strong>06</strong><h3>Guide</h3></div>
+              <div class="path-step"><strong>07</strong><h3>Shape</h3></div>
+            </div>
+            <div class="path-role-grid">
+              <article class="path-role">
+                <h3>Software</h3>
+                <ul>
+                  <li>Frontend</li>
+                  <li>Backend</li>
+                  <li>Product engineering</li>
+                </ul>
+              </article>
+              <article class="path-role">
+                <h3>Geospatial</h3>
+                <ul>
+                  <li>GIS</li>
+                  <li>LiDAR</li>
+                  <li>Data processing</li>
+                </ul>
+              </article>
+              <article class="path-role">
+                <h3>Data &amp; design</h3>
+                <ul>
+                  <li>Analytics</li>
+                  <li>UI/UX</li>
+                  <li>Digital marketing</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="open-roles" aria-labelledby="jobs-title">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Open positions</p>
+              <h2 id="jobs-title">Current opportunities.</h2>
+            </div>
+          </div>
+          <div class="jobs-toolbar" aria-label="Job filters">
+            <div class="job-filter">
+              <label for="filter-department">Department</label>
+              <select id="filter-department">
+                <option value="all">All departments</option>
+              </select>
+            </div>
+            <div class="job-filter">
+              <label for="filter-location">Location</label>
+              <select id="filter-location">
+                <option value="all">All locations</option>
+              </select>
+            </div>
+            <div class="job-filter">
+              <label for="filter-experience">Experience</label>
+              <select id="filter-experience">
+                <option value="all">Any experience</option>
+              </select>
+            </div>
+            <div class="job-filter">
+              <label for="filter-type">Job type</label>
+              <select id="filter-type">
+                <option value="all">All job types</option>
+              </select>
+            </div>
+          </div>
+          <div id="careers-list" class="jobs-grid" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <div class="job-modal" id="job-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="job-modal-title">
+        <div class="job-modal__panel">
+          <div class="job-modal__header">
+            <div>
+              <p class="eyebrow" id="job-modal-department">Department</p>
+              <h3 id="job-modal-title">Role title</h3>
+            </div>
+            <button class="job-modal__close" type="button" aria-label="Close role details">×</button>
+          </div>
+          <div class="job-modal__meta" id="job-modal-meta"></div>
+          <div class="job-detail-grid">
+            <div class="job-detail-block">
+              <h4>About the role</h4>
+              <p id="job-about"></p>
+            </div>
+            <div class="job-detail-block">
+              <h4>What you’ll work with</h4>
+              <ul id="job-skills"></ul>
+            </div>
+            <div class="job-detail-block">
+              <h4>Responsibilities</h4>
+              <ul id="job-responsibilities"></ul>
+            </div>
+            <div class="job-detail-block">
+              <h4>Requirements</h4>
+              <ul id="job-requirements"></ul>
+            </div>
+          </div>
+          <div class="job-detail-actions">
+            <a class="btn btn-primary" id="modal-apply-link" href="#apply">Apply now</a>
+            <a class="btn" id="modal-email-link" href="mailto:info@trisetsolutions.com">Email team</a>
+          </div>
+        </div>
+      </div>
+
+      <section class="section application-section" id="apply" aria-labelledby="apply-title">
+        <div class="container application-shell">
+          <div class="application-copy">
+            <p class="eyebrow">Apply</p>
+            <h2 id="apply-title">Tell us what you can build.</h2>
+            <p>Share the relevant details and we’ll review your profile with the right team. If there is no active opening, we’ll still keep your experience in mind for future opportunities.</p>
+            <div class="application-points">
+              <div><span>1</span><p>Share your role, experience and location.</p></div>
+              <div><span>2</span><p>Upload your resume or portfolio.</p></div>
+              <div><span>3</span><p>Tell us how you think and what kind of work you want to do.</p></div>
+            </div>
+          </div>
+
+          <form class="application-form" id="career-application-form" novalidate>
+            <div class="field-grid">
+              <label>
+                Name
+                <input type="text" name="name" placeholder="Your name" required />
+              </label>
+              <label>
+                Email
+                <input type="email" name="email" placeholder="your@email.com" required />
+              </label>
+            </div>
+            <div class="field-grid" style="margin-top: 1rem;">
+              <label>
+                Phone
+                <input type="tel" name="phone" placeholder="+91 ..." required />
+              </label>
+              <label>
+                Role
+                <select name="role" required>
+                  <option value="">Select role</option>
+                  <option value="Software">Software</option>
+                  <option value="Geospatial">Geospatial</option>
+                  <option value="Data">Data</option>
+                  <option value="Design">Design</option>
+                  <option value="Digital Marketing">Digital Marketing</option>
+                  <option value="Operations">Operations</option>
+                  <option value="Business">Business</option>
+                </select>
+              </label>
+            </div>
+            <div class="field-grid" style="margin-top: 1rem;">
+              <label>
+                Location
+                <input type="text" name="location" placeholder="Current city / location" required />
+              </label>
+              <label>
+                Portfolio or LinkedIn
+                <input type="url" name="portfolio" placeholder="https://..." />
+              </label>
+            </div>
+            <div style="margin-top: 1rem;">
+              <label>
+                Resume
+                <div class="upload-box" id="resume-dropzone" tabindex="0" role="button" aria-label="Upload resume">
+                  <div>
+                    <strong>Upload Resume</strong>
+                    <small>Drag and drop or click to browse</small>
+                  </div>
+                  <input type="file" id="resume-input" name="resume" accept=".pdf,.doc,.docx" hidden />
+                </div>
+                <div class="upload-meta" id="resume-meta">No file selected</div>
+              </label>
+            </div>
+            <div style="margin-top: 1rem;">
+              <label>
+                Short introduction
+                <textarea name="intro" placeholder="Tell us a little about your background, interests and the kind of work you want to build." required></textarea>
+              </label>
+            </div>
+            <div style="margin-top: 1.2rem;">
+              <button class="btn btn-primary" type="submit">Submit application</button>
+              <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="section culture-section" aria-labelledby="culture-title">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Culture + values</p>
+              <h2 id="culture-title">We value clarity, discipline and ambition.</h2>
+            </div>
+          </div>
+          <div class="culture-values">
+            <button class="culture-value is-active" type="button" data-value="Precision">
+              <strong>Precision</strong>
+              <span>We care about doing the right work, with attention to detail and a strong sense of responsibility.</span>
+            </button>
+            <button class="culture-value" type="button" data-value="Curiosity">
+              <strong>Curiosity</strong>
+              <span>We explore, question assumptions and look for better ways to solve real challenges.</span>
+            </button>
+            <button class="culture-value" type="button" data-value="Ownership">
+              <strong>Ownership</strong>
+              <span>We move with accountability and take initiative, even when the work is unfamiliar.</span>
+            </button>
+            <button class="culture-value" type="button" data-value="Integrity">
+              <strong>Integrity</strong>
+              <span>We keep our standards high, communicate honestly and respect the work and the people around it.</span>
+            </button>
+            <button class="culture-value" type="button" data-value="Collaboration">
+              <strong>Collaboration</strong>
+              <span>We work across disciplines, share context and deliver better outcomes together.</span>
+            </button>
+            <button class="culture-value" type="button" data-value="Continuous improvement">
+              <strong>Continuous improvement</strong>
+              <span>We learn quickly, respond with intent and improve the way we build and operate.</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section compact-section">
         <div class="container">
           <div class="cta-band">
-            <p class="eyebrow">Apply or collaborate</p>
-            <h2>Email your profile and area of interest.</h2>
-            <p class="lead">Include your role, portfolio or resume, location and availability.</p>
-            <div class="inline-actions"><a class="btn btn-primary" href="mailto:info@trisetsolutions.com">info@trisetsolutions.com</a><a class="btn" href="contact.html">Contact page</a></div>
+            <div>
+              <p class="eyebrow">Don’t see your role?</p>
+              <h2>Tell us what you can build.</h2>
+              <p>Share your resume and we’ll keep it in mind for future opportunities.</p>
+            </div>
+            <a class="btn btn-primary" href="#apply">Send your resume</a>
           </div>
         </div>
       </section>
     </main>
-    <footer class="footer"><div class="container"><div class="footer-grid"><div><h2>TRISET Solutions</h2><p>Digital and geo-spatial solutions from Hyderabad, India.</p></div><div><h3>Explore</h3><a href="about.html">About</a><a href="projects.html">Work</a><a href="careers.html">Careers</a></div><div><h3>Services</h3><a href="services.html#digital">Digital Solutions</a><a href="services.html#geospatial">Geo-Spatial Solutions</a><a href="solutions.html">Solutions</a></div><div><h3>Contact</h3><a href="mailto:info@trisetsolutions.com">info@trisetsolutions.com</a><a href="tel:+917382819292">+91 738 281 9292</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div><div class="copyright">Copyright 2026 TRISET Solutions. All rights reserved.</div></div></footer>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <h2>TRISET Solutions</h2>
+            <p>Digital and geo-spatial solutions from Hyderabad, India.</p>
+          </div>
+          <div>
+            <h3>Explore</h3>
+            <a href="about.html">About</a>
+            <a href="projects.html">Work</a>
+            <a href="careers.html">Careers</a>
+          </div>
+          <div>
+            <h3>Services</h3>
+            <a href="services.html#digital">Digital Solutions</a>
+            <a href="services.html#geospatial">Geo-Spatial Solutions</a>
+            <a href="solutions.html">Solutions</a>
+          </div>
+          <div>
+            <h3>Contact</h3>
+            <a href="mailto:info@trisetsolutions.com">info@trisetsolutions.com</a>
+            <a href="tel:+917382819292">+91 738 281 9292</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+          </div>
+        </div>
+        <div class="copyright">Copyright 2026 TRISET Solutions. All rights reserved.</div>
+      </div>
+    </footer>
+
     <script src="src/content.js"></script>
     <script src="src/app.js"></script>
     <script>
-      (async function () {
-        const jobsContainer = document.getElementById('careers-list');
+      const domains = {
+        geospatial: {
+          title: 'Geospatial',
+          kicker: 'Geospatial',
+          summary: 'From GIS and LiDAR to drone workflows, mapping and 3D spatial analysis, our geospatial work helps organizations understand terrain, assets and operational realities.',
+          tags: ['GIS', 'LiDAR', 'Photogrammetry', 'Remote Sensing', 'Drone', '3D', 'BIM'],
+          tiles: [
+            { title: 'GIS', text: 'Mapping, spatial analysis and operational insight.' },
+            { title: 'LiDAR', text: 'High-detail terrain, feature extraction and elevation data.' },
+            { title: 'Drone workflows', text: 'Aerial capture, processing and change detection.' },
+            { title: '3D + BIM', text: 'Spatial models that connect the built and natural environment.' }
+          ]
+        },
+        digital: {
+          title: 'Digital & software',
+          kicker: 'Digital & software',
+          summary: 'We build digital products, web platforms, applications and connected systems that blend performance, clarity and reliability.',
+          tags: ['Web', 'Apps', 'E-Commerce', 'APIs', 'Cloud', 'UI/UX'],
+          tiles: [
+            { title: 'Web products', text: 'Premium websites, interfaces and digital experiences.' },
+            { title: 'Applications', text: 'Business and customer-facing software built to scale.' },
+            { title: 'E-commerce', text: 'Storefronts, workflows and conversion-focused platforms.' },
+            { title: 'Cloud & APIs', text: 'Connected services that support real production systems.' }
+          ]
+        },
+        data: {
+          title: 'Data',
+          kicker: 'Data',
+          summary: 'We work with large and messy information streams, turning them into structured, usable and decision-ready outputs.',
+          tags: ['Data entry', 'Data processing', 'Data conversion', 'Analytics'],
+          tiles: [
+            { title: 'Data processing', text: 'Structured data handling from raw inputs to organized outputs.' },
+            { title: 'Data conversion', text: 'Operational conversion between formats, systems and sources.' },
+            { title: 'Analytics', text: 'Patterns, priorities and reporting that support action.' },
+            { title: 'Operations', text: 'Reliable workflows for fast, repeatable delivery.' }
+          ]
+        },
+        creative: {
+          title: 'Creative & digital',
+          kicker: 'Creative & digital',
+          summary: 'From digital marketing and storytelling to creative technology and brand systems, we connect strategy, design and execution.',
+          tags: ['Digital marketing', 'Branding', 'Content', 'Creative technology'],
+          tiles: [
+            { title: 'Brand systems', text: 'Clear messaging, identity and digital positioning.' },
+            { title: 'Content', text: 'Campaign content, creative assets and communication design.' },
+            { title: 'Marketing', text: 'Performance creative and digital campaigns aligned to business goals.' },
+            { title: 'Creative tech', text: 'Interactive, modern digital experiences with intent.' }
+          ]
+        }
+      };
 
-        async function loadJobs() {
-          try {
-            const response = await fetch('/api/jobs');
-            const payload = await response.json();
+      const domainButtons = document.querySelectorAll('.domain-toggle');
+      const domainTitle = document.getElementById('domain-title');
+      const domainSummary = document.getElementById('domain-summary');
+      const domainTags = document.getElementById('domain-tags');
+      const domainTiles = document.getElementById('domain-tiles');
+      const domainKicker = document.getElementById('domain-kicker');
 
-            if (!payload.ok || !Array.isArray(payload.jobs) || !payload.jobs.length) {
-              jobsContainer.innerHTML = `
-                <article class="panel empty-state">
-                  <h3>No roles open right now</h3>
-                  <p>We are not actively hiring at the moment, but you can still send your profile for future opportunities.</p>
-                </article>
-              `;
-              return;
-            }
+      function renderDomain(key) {
+        const entry = domains[key];
+        if (!entry) return;
 
-            jobsContainer.innerHTML = payload.jobs.map((job) => `
-              <article class="panel job-listing">
-                ${job.image_url ? `<img src="${job.image_url}" alt="${job.title}" style="width:100%;height:200px;object-fit:cover;border-radius:12px;border:1px solid var(--line);" />` : ''}
-                <div class="job-header-row">
-                  <div>
-                    <p class="eyebrow">${job.department || 'General'}</p>
-                    <h3>${job.title}</h3>
-                  </div>
-                  <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;">
-                    <span class="badge">${job.employment_type || 'Full-time'}</span>
-                    ${job.is_featured ? '<span class="badge" style="background:rgba(245,182,57,.12);color:#f5b63d;border-color:rgba(245,182,57,.25);">Featured</span>' : ''}
-                  </div>
-                </div>
-                <div class="job-meta-row">
-                  <span>${job.location}</span>
-                  <span>${job.experience || 'Experience flexible'}</span>
-                </div>
-                <p>${job.description}</p>
-                ${job.requirements ? `<ul class="job-points">${String(job.requirements).split('\n').filter(Boolean).map((item) => `<li>${item}</li>`).join('')}</ul>` : ''}
-                <div class="job-actions">
-                  <a class="btn btn-primary" href="mailto:${job.apply_email || 'info@trisetsolutions.com'}?subject=${encodeURIComponent('Application for ' + job.title)}">Apply now</a>
-                  ${job.apply_url ? `<a class="btn" href="${job.apply_url}" target="_blank" rel="noreferrer">More details</a>` : ''}
-                </div>
-              </article>
-            `).join('');
-          } catch (error) {
-            jobsContainer.innerHTML = `
-              <article class="panel empty-state">
-                <h3>Open roles are temporarily unavailable</h3>
-                <p>Please contact us directly at info@trisetsolutions.com for current opportunities.</p>
-              </article>
-            `;
-          }
+        domainButtons.forEach((button) => {
+          const active = button.dataset.domain === key;
+          button.classList.toggle('is-active', active);
+          button.setAttribute('aria-pressed', String(active));
+        });
+
+        domainTitle.textContent = entry.title;
+        domainKicker.textContent = entry.kicker;
+        domainSummary.textContent = entry.summary;
+        domainTags.innerHTML = entry.tags.map((tag) => `<span>${tag}</span>`).join('');
+        domainTiles.innerHTML = entry.tiles.map((tile) => `
+          <article class="domain-tile">
+            <p class="eyebrow">Capability</p>
+            <strong>${tile.title}</strong>
+            <p>${tile.text}</p>
+          </article>
+        `).join('');
+      }
+
+      domainButtons.forEach((button) => {
+        button.addEventListener('click', () => renderDomain(button.dataset.domain));
+      });
+
+      renderDomain('geospatial');
+
+      const cultureValues = document.querySelectorAll('.culture-value');
+      cultureValues.forEach((value) => {
+        value.addEventListener('click', () => {
+          cultureValues.forEach((item) => item.classList.toggle('is-active', item === value));
+        });
+      });
+
+      const jobsContainer = document.getElementById('careers-list');
+      const modal = document.getElementById('job-modal');
+      const modalClose = document.querySelector('.job-modal__close');
+      const filterDepartment = document.getElementById('filter-department');
+      const filterLocation = document.getElementById('filter-location');
+      const filterExperience = document.getElementById('filter-experience');
+      const filterType = document.getElementById('filter-type');
+
+      const state = {
+        jobs: [],
+        filters: {
+          department: 'all',
+          location: 'all',
+          experience: 'all',
+          type: 'all'
+        }
+      };
+
+      function normalizeText(value) {
+        return String(value || '').trim();
+      }
+
+      function buildFilters(jobs) {
+        const departments = [...new Set(jobs.map((job) => normalizeText(job.department)).filter(Boolean))].sort();
+        const locations = [...new Set(jobs.map((job) => normalizeText(job.location)).filter(Boolean))].sort();
+        const experiences = [...new Set(jobs.map((job) => normalizeText(job.experience)).filter(Boolean))].sort();
+        const types = [...new Set(jobs.map((job) => normalizeText(job.employment_type)).filter(Boolean))].sort();
+
+        function populateSelect(selectElement, values, label) {
+          const current = selectElement.value || 'all';
+          selectElement.innerHTML = `<option value="all">All ${label}</option>${values.map((value) => `<option value="${value}">${value}</option>`).join('')}`;
+          selectElement.value = values.includes(current) ? current : 'all';
         }
 
-        loadJobs();
-      })();
+        populateSelect(filterDepartment, departments, 'departments');
+        populateSelect(filterLocation, locations, 'locations');
+        populateSelect(filterExperience, experiences, 'experience');
+        populateSelect(filterType, types, 'job types');
+      }
+
+      function openJobModal(job) {
+        const modalTitle = document.getElementById('job-modal-title');
+        const modalDepartment = document.getElementById('job-modal-department');
+        const modalMeta = document.getElementById('job-modal-meta');
+        const about = document.getElementById('job-about');
+        const skills = document.getElementById('job-skills');
+        const responsibilities = document.getElementById('job-responsibilities');
+        const requirements = document.getElementById('job-requirements');
+        const applyLink = document.getElementById('modal-apply-link');
+        const emailLink = document.getElementById('modal-email-link');
+
+        modalTitle.textContent = job.title;
+        modalDepartment.textContent = job.department || 'General';
+        modalMeta.innerHTML = [
+          `<span>${job.location || 'Flexible'}</span>`,
+          `<span>${job.experience || 'Flexible experience'}</span>`,
+          `<span>${job.employment_type || 'Full-time'}</span>`
+        ].join('');
+
+        about.textContent = job.description || 'We are looking for a motivated candidate to contribute across this role.';
+
+        const skillList = Array.isArray(job.skills) ? job.skills : String(job.skills || '').split(/\n|,/).filter(Boolean);
+        skills.innerHTML = skillList.length ? skillList.map((item) => `<li>${item.trim()}</li>`).join('') : '<li>Problem solving</li><li>Collaboration</li><li>Execution</li>';
+
+        const responsibilityList = Array.isArray(job.responsibilities) ? job.responsibilities : String(job.responsibilities || '').split(/\n|\.|;/).filter(Boolean);
+        responsibilities.innerHTML = responsibilityList.length ? responsibilityList.map((item) => `<li>${item.trim()}</li>`).join('') : '<li>Ship meaningful work with clear ownership.</li>';
+
+        const requirementList = Array.isArray(job.requirements) ? job.requirements : String(job.requirements || '').split(/\n|\.|;/).filter(Boolean);
+        requirements.innerHTML = requirementList.length ? requirementList.map((item) => `<li>${item.trim()}</li>`).join('') : '<li>Strong communication and a proactive mindset.</li>';
+
+        applyLink.href = '#apply';
+        const email = job.apply_email || 'info@trisetsolutions.com';
+        emailLink.href = `mailto:${email}?subject=${encodeURIComponent('Application for ' + job.title)}`;
+
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeJobModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      modalClose.addEventListener('click', closeJobModal);
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) closeJobModal();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal.classList.contains('is-open')) closeJobModal();
+      });
+
+      function matchesFilters(job) {
+        const department = normalizeText(job.department);
+        const location = normalizeText(job.location);
+        const experience = normalizeText(job.experience);
+        const type = normalizeText(job.employment_type);
+
+        return (
+          (state.filters.department === 'all' || department === state.filters.department) &&
+          (state.filters.location === 'all' || location === state.filters.location) &&
+          (state.filters.experience === 'all' || experience === state.filters.experience) &&
+          (state.filters.type === 'all' || type === state.filters.type)
+        );
+      }
+
+      function renderJobs() {
+        const filteredJobs = state.jobs.filter(matchesFilters);
+
+        if (!filteredJobs.length) {
+          jobsContainer.innerHTML = `
+            <article class="job-empty">
+              <h3>No roles match these filters right now.</h3>
+              <p>Try a different combination or send your profile for future opportunities.</p>
+            </article>
+          `;
+          return;
+        }
+
+        jobsContainer.innerHTML = filteredJobs.map((job) => `
+          <article class="job-card">
+            <div class="job-card__meta">
+              <div>
+                <p class="eyebrow">${job.department || 'General'}</p>
+                <strong>${job.title}</strong>
+              </div>
+              <span class="job-card__type">${job.employment_type || 'Full-time'}</span>
+            </div>
+            <div class="job-card__facts">
+              <span>${job.location || 'Flexible'}</span>
+              <span>${job.experience || 'Flexible experience'}</span>
+            </div>
+            <p>${job.description || 'A focused opportunity to contribute meaningful work.'}</p>
+            <div class="job-card__actions">
+              <button class="btn btn-primary" type="button" data-job-id="${job.id}">View role</button>
+            </div>
+          </article>
+        `).join('');
+
+        jobsContainer.querySelectorAll('[data-job-id]').forEach((button) => {
+          button.addEventListener('click', () => {
+            const job = state.jobs.find((entry) => String(entry.id) === button.dataset.jobId);
+            if (job) openJobModal(job);
+          });
+        });
+      }
+
+      [filterDepartment, filterLocation, filterExperience, filterType].forEach((select) => {
+        select.addEventListener('change', () => {
+          state.filters.department = filterDepartment.value;
+          state.filters.location = filterLocation.value;
+          state.filters.experience = filterExperience.value;
+          state.filters.type = filterType.value;
+          renderJobs();
+        });
+      });
+
+      async function loadJobs() {
+        try {
+          const response = await fetch('/api/jobs');
+          const payload = await response.json();
+          if (!payload.ok || !Array.isArray(payload.jobs) || !payload.jobs.length) {
+            jobsContainer.innerHTML = `
+              <article class="job-empty">
+                <h3>No roles are open right now.</h3>
+                <p>Send your profile and we’ll be in touch when we are hiring for the right opportunity.</p>
+              </article>
+            `;
+            return;
+          }
+
+          state.jobs = payload.jobs;
+          buildFilters(state.jobs);
+          renderJobs();
+        } catch (error) {
+          jobsContainer.innerHTML = `
+            <article class="job-empty">
+              <h3>Open roles are temporarily unavailable.</h3>
+              <p>Please email info@trisetsolutions.com for current opportunities.</p>
+            </article>
+          `;
+        }
+      }
+
+      loadJobs();
+
+      const form = document.getElementById('career-application-form');
+      const resumeInput = document.getElementById('resume-input');
+      const resumeMeta = document.getElementById('resume-meta');
+      const dropzone = document.getElementById('resume-dropzone');
+      const formStatus = document.getElementById('form-status');
+
+      function setStatus(message, type) {
+        formStatus.textContent = message;
+        formStatus.classList.remove('error', 'success');
+        if (type) formStatus.classList.add(type);
+      }
+
+      function validateForm(data) {
+        if (!data.name || data.name.trim().length < 2) return 'Please enter your full name.';
+        if (!data.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return 'Please enter a valid email address.';
+        if (!data.phone || data.phone.trim().length < 7) return 'Please enter a valid phone number.';
+        if (!data.role) return 'Please select the role you are applying for.';
+        if (!data.location || data.location.trim().length < 2) return 'Please enter your location.';
+        if (!data.intro || data.intro.trim().length < 15) return 'Please share a short introduction of at least 15 characters.';
+        return '';
+      }
+
+      resumeInput.addEventListener('change', () => {
+        const file = resumeInput.files && resumeInput.files[0];
+        if (!file) {
+          resumeMeta.textContent = 'No file selected';
+          return;
+        }
+        const cleanName = file.name.length > 34 ? `${file.name.slice(0, 31)}...` : file.name;
+        resumeMeta.textContent = `Selected: ${cleanName}`;
+      });
+
+      dropzone.addEventListener('click', () => resumeInput.click());
+      dropzone.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          resumeInput.click();
+        }
+      });
+
+      ['dragenter', 'dragover'].forEach((eventName) => {
+        dropzone.addEventListener(eventName, (event) => {
+          event.preventDefault();
+          dropzone.classList.add('dragover');
+        });
+      });
+
+      ['dragleave', 'drop'].forEach((eventName) => {
+        dropzone.addEventListener(eventName, (event) => {
+          event.preventDefault();
+          dropzone.classList.remove('dragover');
+        });
+      });
+
+      dropzone.addEventListener('drop', (event) => {
+        const file = event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files[0];
+        if (file) {
+          resumeInput.files = event.dataTransfer.files;
+          const cleanName = file.name.length > 34 ? `${file.name.slice(0, 31)}...` : file.name;
+          resumeMeta.textContent = `Selected: ${cleanName}`;
+        }
+      });
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const formData = Object.fromEntries(new FormData(form).entries());
+        const validationMessage = validateForm(formData);
+        if (validationMessage) {
+          setStatus(validationMessage, 'error');
+          return;
+        }
+
+        setStatus('Application received. The TRISET team will review your submission.', 'success');
+        form.reset();
+        resumeMeta.textContent = 'No file selected';
+      });
     </script>
   </body>
 </html>
-
-
-
