@@ -12,6 +12,91 @@
     <title>Privacy Policy | TRISET Solutions</title>
     <link rel="icon" href="assets/logo_final.png" />
     <link rel="stylesheet" href="styles.css" />
+      <style>
+      /* Service Worker Notifications */
+      .sw-update-notification,
+      .sw-offline-notification,
+      .sw-online-notification {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        max-width: 360px;
+        padding: 16px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        z-index: 9999;
+        animation: slideInUp 300ms ease-out;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .sw-update-notification {
+        background: #0B66FF;
+        color: white;
+      }
+
+      .sw-notification-content {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .sw-notification-content p {
+        margin: 0;
+        flex: 1;
+      }
+
+      .sw-notification-content button {
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .sw-update-notification #sw-update-btn {
+        background: white;
+        color: #0B66FF;
+      }
+
+      .sw-update-notification #sw-dismiss-btn {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+      }
+
+      .sw-offline-notification {
+        background: #F59E0B;
+        color: #78350F;
+      }
+
+      .sw-online-notification {
+        background: #10B981;
+        color: white;
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .sw-update-notification,
+        .sw-offline-notification,
+        .sw-online-notification {
+          left: 12px;
+          right: 12px;
+          max-width: none;
+        }
+      }
+    </style>
   </head>
   <body class="internal-page">
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -22,8 +107,14 @@
     </main>
     <footer class="footer"><div class="container"><div class="footer-grid"><div><h2>TRISET Solutions</h2><p>Digital and geo-spatial solutions from Hyderabad, India.</p></div><div><h3>Explore</h3><a href="about.html">About</a><a href="projects.html">Work</a><a href="careers.html">Careers</a></div><div><h3>Services</h3><a href="services.html#digital">Digital Solutions</a><a href="services.html#geospatial">Geo-Spatial Solutions</a><a href="solutions.html">Solutions</a></div><div><h3>Contact</h3><a href="mailto:info@trisetsolutions.com">info@trisetsolutions.com</a><a href="tel:+917382819292">+91 738 281 9292</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div><div class="copyright">Copyright 2026 TRISET Solutions. All rights reserved.</div></div></footer>
     <script src="src/content.js"></script><script src="src/app.js"></script>
+  
+    <!-- Service Worker Registration & Cache Preloading -->
+    <script src="src/sw-register.js"></script>
+    <script src="src/cache-preloader.js"></script>
   </body>
 </html>
+
+
 
 
 

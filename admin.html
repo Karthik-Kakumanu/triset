@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -467,6 +467,91 @@
         .admin-topbar { flex-direction: column; align-items: flex-start; }
       }
     </style>
+      <style>
+      /* Service Worker Notifications */
+      .sw-update-notification,
+      .sw-offline-notification,
+      .sw-online-notification {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        max-width: 360px;
+        padding: 16px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        z-index: 9999;
+        animation: slideInUp 300ms ease-out;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .sw-update-notification {
+        background: #0B66FF;
+        color: white;
+      }
+
+      .sw-notification-content {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .sw-notification-content p {
+        margin: 0;
+        flex: 1;
+      }
+
+      .sw-notification-content button {
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .sw-update-notification #sw-update-btn {
+        background: white;
+        color: #0B66FF;
+      }
+
+      .sw-update-notification #sw-dismiss-btn {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+      }
+
+      .sw-offline-notification {
+        background: #F59E0B;
+        color: #78350F;
+      }
+
+      .sw-online-notification {
+        background: #10B981;
+        color: white;
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .sw-update-notification,
+        .sw-offline-notification,
+        .sw-online-notification {
+          left: 12px;
+          right: 12px;
+          max-width: none;
+        }
+      }
+    </style>
   </head>
   <body class="internal-page">
     <header class="site-header">
@@ -479,7 +564,7 @@
           <a href="contact.html">Contact</a>
         </nav>
         <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Open navigation">Menu</button>
-        <button class="theme-toggle" data-theme-toggle type="button">☾ Dark</button>
+        <button class="theme-toggle" data-theme-toggle type="button">â˜¾ Dark</button>
       </div>
     </header>
 
@@ -1198,7 +1283,7 @@
                 </div>
               </div>
               ${job.image_url ? `<img src="${job.image_url}" alt="${job.title}" style="width:100%;height:180px;object-fit:cover;border-radius:0.75rem;margin:0.75rem 0;border:1px solid rgba(178,148,96,0.2);" />` : ''}
-              <p><strong>${job.location}</strong> • ${job.experience || 'Experience details'}</p>
+              <p><strong>${job.location}</strong> â€¢ ${job.experience || 'Experience details'}</p>
               <p class="muted">${job.description}</p>
               <p class="muted">Apply email: ${job.apply_email || 'info@trisetsolutions.com'}</p>
             </article>
@@ -1757,5 +1842,11 @@
         }
       })();
     </script>
+  
+    <!-- Service Worker Registration & Cache Preloading -->
+    <script src="src/sw-register.js"></script>
+    <script src="src/cache-preloader.js"></script>
   </body>
 </html>
+
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="premium-system.css" />
     <style>
       /* ========================================
-         CONTACT PAGE — MOBILE-FIRST PREMIUM REDESIGN
+         CONTACT PAGE â€” MOBILE-FIRST PREMIUM REDESIGN
          ======================================== */
 
       .contact-page-hero {
@@ -205,7 +205,7 @@
       }
 
       /* ========================================
-         MAIN CONTACT SECTION — SPLIT LAYOUT
+         MAIN CONTACT SECTION â€” SPLIT LAYOUT
          ======================================== */
 
       .contact-main-section {
@@ -813,6 +813,91 @@
         }
       }
     </style>
+      <style>
+      /* Service Worker Notifications */
+      .sw-update-notification,
+      .sw-offline-notification,
+      .sw-online-notification {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        max-width: 360px;
+        padding: 16px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        z-index: 9999;
+        animation: slideInUp 300ms ease-out;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .sw-update-notification {
+        background: #0B66FF;
+        color: white;
+      }
+
+      .sw-notification-content {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .sw-notification-content p {
+        margin: 0;
+        flex: 1;
+      }
+
+      .sw-notification-content button {
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .sw-update-notification #sw-update-btn {
+        background: white;
+        color: #0B66FF;
+      }
+
+      .sw-update-notification #sw-dismiss-btn {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+      }
+
+      .sw-offline-notification {
+        background: #F59E0B;
+        color: #78350F;
+      }
+
+      .sw-online-notification {
+        background: #10B981;
+        color: white;
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .sw-update-notification,
+        .sw-offline-notification,
+        .sw-online-notification {
+          left: 12px;
+          right: 12px;
+          max-width: none;
+        }
+      }
+    </style>
   </head>
   <body class="internal-page">
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -827,7 +912,7 @@
           <a href="projects.html">Work</a>
           <a href="careers.html">Careers</a>
           <a class="active" href="contact.html">Contact</a>
-          <button class="theme-toggle" data-theme-toggle type="button">☾ Dark</button>
+          <button class="theme-toggle" data-theme-toggle type="button">â˜¾ Dark</button>
           <a class="nav-cta" href="#inquiry-form">Start a project</a>
         </nav>
       </div>
@@ -931,21 +1016,21 @@
 
             <div class="contact-editorial-points">
               <div class="editorial-point">
-                <div class="editorial-point-icon">✓</div>
+                <div class="editorial-point-icon">âœ“</div>
                 <div class="editorial-point-text">
                   <h3>Be Specific</h3>
                   <p>Clear details about your challenge help us scope accurately.</p>
                 </div>
               </div>
               <div class="editorial-point">
-                <div class="editorial-point-icon">✓</div>
+                <div class="editorial-point-icon">âœ“</div>
                 <div class="editorial-point-text">
                   <h3>Share Context</h3>
                   <p>Budget, timeline, and technical constraints guide our recommendations.</p>
                 </div>
               </div>
               <div class="editorial-point">
-                <div class="editorial-point-icon">✓</div>
+                <div class="editorial-point-icon">âœ“</div>
                 <div class="editorial-point-text">
                   <h3>Add Files</h3>
                   <p>Briefs, requirements, reference materials strengthen your submission.</p>
@@ -1011,9 +1096,9 @@
                     <label for="budget">Estimated Budget</label>
                     <select id="budget" name="budget">
                       <option value="">Select range...</option>
-                      <option value="startup">$5K–$25K</option>
-                      <option value="growth">$25K–$100K</option>
-                      <option value="enterprise">$100K–$500K</option>
+                      <option value="startup">$5Kâ€“$25K</option>
+                      <option value="growth">$25Kâ€“$100K</option>
+                      <option value="enterprise">$100Kâ€“$500K</option>
                       <option value="strategic">$500K+</option>
                     </select>
                   </div>
@@ -1022,8 +1107,8 @@
                     <select id="timeline" name="timeline">
                       <option value="">Select timeframe...</option>
                       <option value="immediate">Immediate (Next 30 days)</option>
-                      <option value="short">Short-term (1–3 months)</option>
-                      <option value="medium">Medium (3–6 months)</option>
+                      <option value="short">Short-term (1â€“3 months)</option>
+                      <option value="medium">Medium (3â€“6 months)</option>
                       <option value="long">Long-term (6+ months)</option>
                     </select>
                   </div>
@@ -1060,7 +1145,7 @@
       <section class="contact-info-section" id="quick-contact">
         <div class="contact-info-wrapper">
           <div class="info-card">
-            <div class="info-card-icon">📧</div>
+            <div class="info-card-icon">ðŸ“§</div>
             <h3>Email</h3>
             <div class="info-card-content">
               <p><a href="mailto:info@trisetsolutions.com">info@trisetsolutions.com</a></p>
@@ -1069,19 +1154,19 @@
           </div>
 
           <div class="info-card">
-            <div class="info-card-icon">📞</div>
+            <div class="info-card-icon">ðŸ“ž</div>
             <h3>Phone</h3>
             <div class="info-card-content">
               <p><a href="tel:+917382819292">+91 738 281 9292</a></p>
-              <p style="font-size: 0.8rem; margin-top: 0.3rem;">Mon–Fri, 9:00–18:00 IST</p>
+              <p style="font-size: 0.8rem; margin-top: 0.3rem;">Monâ€“Fri, 9:00â€“18:00 IST</p>
             </div>
           </div>
 
           <div class="info-card">
-            <div class="info-card-icon">🕐</div>
+            <div class="info-card-icon">ðŸ•</div>
             <h3>Office Hours</h3>
             <div class="info-card-content">
-              <p>Monday–Friday<br />9:00 AM – 6:00 PM IST</p>
+              <p>Mondayâ€“Friday<br />9:00 AM â€“ 6:00 PM IST</p>
               <p style="font-size: 0.8rem; margin-top: 0.3rem;">Saturday by appointment</p>
             </div>
           </div>
@@ -1104,7 +1189,7 @@
               <h3>Hyderabad, India</h3>
               <div class="location-details-premium">
                 <div class="detail-item-premium">
-                  <div class="detail-label-premium">📍 Address</div>
+                  <div class="detail-label-premium">ðŸ“ Address</div>
                   <div class="detail-value-premium">
                     Pragati Nagar, Kukatpally<br />
                     Hyderabad, Telangana 500072<br />
@@ -1112,13 +1197,13 @@
                   </div>
                 </div>
                 <div class="detail-item-premium">
-                  <div class="detail-label-premium">📞 Direct</div>
+                  <div class="detail-label-premium">ðŸ“ž Direct</div>
                   <div class="detail-value-premium">
                     <a href="tel:+917382819292">+91 7382 819 292</a>
                   </div>
                 </div>
                 <div class="detail-item-premium">
-                  <div class="detail-label-premium">📧 Email</div>
+                  <div class="detail-label-premium">ðŸ“§ Email</div>
                   <div class="detail-value-premium">
                     <a href="mailto:hyderabad@trisetsolutions.com">hyderabad@trisetsolutions.com</a>
                   </div>
@@ -1132,7 +1217,7 @@
               <h3>Bapatla, India</h3>
               <div class="location-details-premium">
                 <div class="detail-item-premium">
-                  <div class="detail-label-premium">📍 Address</div>
+                  <div class="detail-label-premium">ðŸ“ Address</div>
                   <div class="detail-value-premium">
                     Bapatla<br />
                     Andhra Pradesh 524101<br />
@@ -1140,13 +1225,13 @@
                   </div>
                 </div>
                 <div class="detail-item-premium">
-                  <div class="detail-label-premium">📞 Direct</div>
+                  <div class="detail-label-premium">ðŸ“ž Direct</div>
                   <div class="detail-value-premium">
                     <a href="tel:+917382819292">+91 7382 819 292</a>
                   </div>
                 </div>
                 <div class="detail-item-premium">
-                  <div class="detail-label-premium">📧 Email</div>
+                  <div class="detail-label-premium">ðŸ“§ Email</div>
                   <div class="detail-value-premium">
                     <a href="mailto:bapatla@trisetsolutions.com">bapatla@trisetsolutions.com</a>
                   </div>
@@ -1168,27 +1253,27 @@
 
           <div class="project-types-grid">
             <div class="project-type-card">
-              <span class="project-type-icon">🗺️</span>
+              <span class="project-type-icon">ðŸ—ºï¸</span>
               <h3>Geospatial Mapping</h3>
             </div>
             <div class="project-type-card">
-              <span class="project-type-icon">💻</span>
+              <span class="project-type-icon">ðŸ’»</span>
               <h3>Software Development</h3>
             </div>
             <div class="project-type-card">
-              <span class="project-type-icon">📊</span>
+              <span class="project-type-icon">ðŸ“Š</span>
               <h3>Data Analytics</h3>
             </div>
             <div class="project-type-card">
-              <span class="project-type-icon">🎨</span>
+              <span class="project-type-icon">ðŸŽ¨</span>
               <h3>Digital Design</h3>
             </div>
             <div class="project-type-card">
-              <span class="project-type-icon">📱</span>
+              <span class="project-type-icon">ðŸ“±</span>
               <h3>Mobile Apps</h3>
             </div>
             <div class="project-type-card">
-              <span class="project-type-icon">🌐</span>
+              <span class="project-type-icon">ðŸŒ</span>
               <h3>Web Platforms</h3>
             </div>
           </div>
@@ -1199,22 +1284,22 @@
       <section class="trust-section">
         <div class="trust-wrapper">
           <div class="trust-card">
-            <div class="trust-icon">⚡</div>
+            <div class="trust-icon">âš¡</div>
             <h3>Precise Delivery</h3>
             <p>Clear timelines, measurable results, and proactive communication at every stage.</p>
           </div>
           <div class="trust-card">
-            <div class="trust-icon">🔧</div>
+            <div class="trust-icon">ðŸ”§</div>
             <h3>Technical Depth</h3>
             <p>Modern technology stack, scalable architecture, and production-grade practices.</p>
           </div>
           <div class="trust-card">
-            <div class="trust-icon">🤝</div>
+            <div class="trust-icon">ðŸ¤</div>
             <h3>True Partnership</h3>
             <p>We become an extension of your team, invested in your success long-term.</p>
           </div>
           <div class="trust-card">
-            <div class="trust-icon">📈</div>
+            <div class="trust-icon">ðŸ“ˆ</div>
             <h3>Measurable Impact</h3>
             <p>Your work matters. We focus on solutions that create real business value.</p>
           </div>
@@ -1312,7 +1397,7 @@
             }
 
             contactForm.reset();
-            submitBtn.textContent = 'Message Sent! ✓';
+            submitBtn.textContent = 'Message Sent! âœ“';
             submitBtn.disabled = false;
             formNotice.className = 'form-success';
             formNotice.textContent = "Thanks for reaching out. We'll respond within one business day.";
@@ -1349,5 +1434,10 @@
         });
       }
     </script>
+  
+    <!-- Service Worker Registration & Cache Preloading -->
+    <script src="src/sw-register.js"></script>
+    <script src="src/cache-preloader.js"></script>
   </body>
 </html>
+

@@ -1049,6 +1049,91 @@
         }
       }
     </style>
+      <style>
+      /* Service Worker Notifications */
+      .sw-update-notification,
+      .sw-offline-notification,
+      .sw-online-notification {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        max-width: 360px;
+        padding: 16px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        z-index: 9999;
+        animation: slideInUp 300ms ease-out;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .sw-update-notification {
+        background: #0B66FF;
+        color: white;
+      }
+
+      .sw-notification-content {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .sw-notification-content p {
+        margin: 0;
+        flex: 1;
+      }
+
+      .sw-notification-content button {
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .sw-update-notification #sw-update-btn {
+        background: white;
+        color: #0B66FF;
+      }
+
+      .sw-update-notification #sw-dismiss-btn {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+      }
+
+      .sw-offline-notification {
+        background: #F59E0B;
+        color: #78350F;
+      }
+
+      .sw-online-notification {
+        background: #10B981;
+        color: white;
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .sw-update-notification,
+        .sw-offline-notification,
+        .sw-online-notification {
+          left: 12px;
+          right: 12px;
+          max-width: none;
+        }
+      }
+    </style>
   </head>
   <body class="internal-page careers-page">
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -1778,5 +1863,10 @@
         resumeMeta.textContent = 'No file selected';
       });
     </script>
+  
+    <!-- Service Worker Registration & Cache Preloading -->
+    <script src="src/sw-register.js"></script>
+    <script src="src/cache-preloader.js"></script>
   </body>
 </html>
+
