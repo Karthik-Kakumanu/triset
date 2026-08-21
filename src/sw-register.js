@@ -37,6 +37,13 @@
       });
   });
 
+  let refreshing = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (refreshing) return;
+    refreshing = true;
+    window.location.reload();
+  });
+
   // Handle offline/online status
   window.addEventListener('online', () => {
     console.log('[APP] Back online');

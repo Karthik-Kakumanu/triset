@@ -3,7 +3,7 @@
  * Provides offline functionality, fast caching, and performance optimization
  */
 
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v6';
 const CACHE_NAMES = {
   static: `triset-static-${CACHE_VERSION}`,
   dynamic: `triset-dynamic-${CACHE_VERSION}`,
@@ -23,6 +23,7 @@ const CRITICAL_ASSETS = [
   '/contact.html',
   '/styles.css',
   '/premium-system.css',
+  '/src/theme-init.js',
   '/src/app.js',
   '/src/content.js',
   '/src/sw-register.js',
@@ -219,21 +220,20 @@ function cacheDocumentStrategy(request) {
     });
 }
 
-// Cache-first: CSS, JS (fast load, update rarely)
+// Network-first: CSS, JS (fresh UI/theme code with cached offline fallback)
 function cacheAssetStrategy(request) {
-  return caches.open(CACHE_NAMES.static).then((cache) => {
-    return cache.match(request).then((response) => {
-      if (response) {
-        return response;
-      }
-
-      // Fetch and cache
-      return fetch(request).then((response) => {
-        if (response && response.status === 200) {
-          cache.put(request, response.clone());
-        }
-        return response;
-      }).catch(() => {
+  return fetch(request).then((response) => {
+    if (response && response.status === 200) {
+      const clonedResponse = response.clone();
+      caches.open(CACHE_NAMES.static).then((cache) => {
+        cache.put(request, clonedResponse);
+      });
+    }
+    return response;
+  }).catch(() => {
+    return caches.open(CACHE_NAMES.static).then((cache) => {
+      return cache.match(request).then((response) => {
+        if (response) return response;
         return new Response('/* Resource not available offline */', {
           status: 503,
           headers: { 'Content-Type': 'text/css' },
