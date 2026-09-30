@@ -179,6 +179,6 @@ app.get('/api/share/:token/pdf', async (req, res, next) => {
   } catch (error) { error.status = 404; next(error); }
 });
 
-if (process.env.NODE_ENV === 'production') { const dist = path.resolve(process.cwd(), 'dist'); app.use(express.static(dist)); app.get('*', (_req, res) => res.sendFile(path.join(dist, 'index.html'))); }
+if (process.env.NODE_ENV === 'production') { const dist = path.resolve(process.cwd(), 'dist'); app.use(express.static(dist, { setHeaders: (res, filePath) => { if (filePath.includes(`${path.sep}assets${path.sep}`)) { res.setHeader('Cache-Control', 'public, max-age=31536000, immutable'); } } })); app.get('*', (_req, res) => res.sendFile(path.join(dist, 'index.html'))); }
 app.use((error, _req, res, _next) => { console.error('[documents:error]', error); res.status(500).json({ ok: false, error: 'Internal server error' }); });
 app.listen(config.port, () => console.log(`TRISET Documents running at http://127.0.0.1:${config.port}`));
