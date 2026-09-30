@@ -101,11 +101,11 @@ for (const resource of ['clients', 'employees', 'services', 'documents']) {
     if (!config.database) return res.status(503).json({ ok: false, error: 'Database is not configured' });
     try {
       let result;
-      if (resource === 'clients') result = await query('INSERT INTO clients (name, contact_person, city, state, email, phone) VALUES (?, ?, ?, ?, ?, ?)', [req.body.name, req.body.contact, req.body.city, req.body.state, req.body.email, req.body.phone]);
-      else if (resource === 'employees') result = await query('INSERT INTO employees (employee_id, name, designation, department, date_of_joining, location, band_grade) VALUES (?, ?, ?, ?, ?, ?, ?)', [req.body.id || req.body.employeeId, req.body.name, req.body.designation, req.body.department, req.body.joining || null, req.body.location, req.body.grade]);
+      if (resource === 'clients') { if (!String(req.body.name || '').trim()) return res.status(400).json({ ok: false, error: 'Client name is required' }); result = await query('INSERT INTO clients (name, contact_person, city, state, email, phone) VALUES (?, ?, ?, ?, ?, ?)', [String(req.body.name).trim(), req.body.contact || null, req.body.city || null, req.body.state || null, req.body.email || null, req.body.phone || null]); }
+      else if (resource === 'employees') { const employeeId = String(req.body.employeeId || req.body.id || '').trim(); const name = String(req.body.name || '').trim(); if (!employeeId || !name) return res.status(400).json({ ok: false, error: 'Employee ID and name are required' }); result = await query('INSERT INTO employees (employee_id, name, designation, department, date_of_joining, location, band_grade) VALUES (?, ?, ?, ?, ?, ?, ?)', [employeeId, name, req.body.designation || null, req.body.department || null, req.body.joining || null, req.body.location || null, req.body.grade || null]); }
       else return res.status(400).json({ ok: false, error: `Creation for ${resource} is not implemented yet` });
       return res.status(201).json({ ok: true, data: { id: result.insertId, ...req.body, createdAt: new Date().toISOString() } });
-    } catch (error) { return next(error); }
+    } catch (error) { if (error.code === 'ER_DUP_ENTRY') return res.status(409).json({ ok: false, error: 'That employee ID or record already exists' }); return next(error); }
   });
 }
 
