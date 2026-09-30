@@ -1,0 +1,46 @@
+/* TRISET document system uses only white and the brand blue. */
+:root {
+  --maroon: #0B66FF;
+  --deep: #084EBD;
+  --wash: rgba(11, 102, 255, .055);
+  --line: rgba(11, 102, 255, .16);
+  --soft: rgba(11, 102, 255, .62);
+}
+
+.modal-backdrop { background: rgba(11, 102, 255, .30); }
+.mobile-scrim { background: rgba(11, 102, 255, .20); }
+
+body,
+.page-header h1,
+.panel-heading h2,
+.form-panel h2,
+.stat-card strong,
+.quick-action,
+.service-row,
+.category-button,
+.modal h2,
+.paper-preview {
+  color: #000;
+}
+
+.page-header p,
+.quick-panel > p,
+.stat-label,
+.stat-card small,
+td,
+th,
+.field-grid label,
+.paper-meta,
+.paper-total,
+.paper-head small,
+.paper-footer small {
+  color: rgba(0, 0, 0, .65);
+}
+
+.global-search input,
+.field-grid input,
+.field-grid textarea,
+.inline-input,
+.line-item input {
+  color: #000;
+}

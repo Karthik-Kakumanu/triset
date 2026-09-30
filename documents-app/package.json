@@ -1,0 +1,38 @@
+{
+  "name": "triset-documents-app",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:client": "vite --config client/vite.config.js",
+    "dev:server": "node --watch server/src/server.js",
+    "build": "vite build --config client/vite.config.js --configLoader runner",
+    "start": "node server/src/server.js",
+    "seed:admin": "node server/src/createAdmin.js",
+    "test": "node --test server/src/**/*.test.js",
+    "check": "node --check server/src/server.js && node --check server/src/services/pdfService.js"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.12.0",
+    "pdf-lib": "^1.17.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "lucide-react": "^0.468.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "vite": "^6.0.7"
+  }
+}
