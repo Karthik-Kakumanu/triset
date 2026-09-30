@@ -56,6 +56,36 @@ app.post('/api/auth/login', async (req, res) => {
 app.post('/api/auth/logout', (_req, res) => { res.clearCookie('triset_session'); res.json({ ok: true }); });
 app.get('/api/auth/me', requireAuth, (req, res) => res.json({ ok: true, user: req.user }));
 
+const companySettingsColumns = 'id, company_name AS companyName, address, email, phone, gstin, pan, cin, udyam, bank_name AS bankName, account_name AS accountName, account_number AS accountNumber, ifsc, branch, logo_path AS logoPath, authorised_signatory AS authorisedSignatory, default_gst_rate AS defaultGstRate, invoice_prefix AS invoicePrefix, created_at AS createdAt, updated_at AS updatedAt';
+async function getCompanySettings() {
+  const rows = await query(`SELECT ${companySettingsColumns} FROM company_settings WHERE id = 1 LIMIT 1`);
+  return rows[0] || null;
+}
+
+app.get('/api/company/settings', requireAuth, async (_req, res, next) => {
+  if (!config.database) return res.status(503).json({ ok: false, error: 'Database is not configured' });
+  try {
+    const settings = await getCompanySettings();
+    if (!settings) return res.status(404).json({ ok: false, error: 'Company settings record was not found' });
+    return res.json({ ok: true, data: settings });
+  } catch (error) { return next(error); }
+});
+
+app.patch('/api/company/settings', requireAuth, allowRoles('Admin'), async (req, res, next) => {
+  if (!config.database) return res.status(503).json({ ok: false, error: 'Database is not configured' });
+  const allowed = ['companyName', 'address', 'email', 'phone', 'gstin', 'pan', 'cin', 'udyam', 'bankName', 'accountName', 'accountNumber', 'ifsc', 'branch', 'logoPath', 'authorisedSignatory', 'defaultGstRate', 'invoicePrefix'];
+  try {
+    const current = await getCompanySettings();
+    if (!current) return res.status(404).json({ ok: false, error: 'Company settings record was not found' });
+    const nextSettings = { ...current, ...Object.fromEntries(allowed.filter((key) => Object.prototype.hasOwnProperty.call(req.body || {}, key)).map((key) => [key, req.body[key]])) };
+    if (!String(nextSettings.companyName || '').trim() || !String(nextSettings.address || '').trim() || !String(nextSettings.email || '').trim() || !String(nextSettings.phone || '').trim()) return res.status(400).json({ ok: false, error: 'Company name, address, email, and phone are required' });
+    const gstRate = Number(nextSettings.defaultGstRate);
+    if (!Number.isFinite(gstRate) || gstRate < 0 || gstRate > 100) return res.status(400).json({ ok: false, error: 'Default GST rate must be a number between 0 and 100' });
+    await query(`UPDATE company_settings SET company_name = ?, address = ?, email = ?, phone = ?, gstin = ?, pan = ?, cin = ?, udyam = ?, bank_name = ?, account_name = ?, account_number = ?, ifsc = ?, branch = ?, logo_path = ?, authorised_signatory = ?, default_gst_rate = ?, invoice_prefix = ? WHERE id = 1`, [nextSettings.companyName, nextSettings.address, nextSettings.email, nextSettings.phone, nextSettings.gstin || null, nextSettings.pan || null, nextSettings.cin || null, nextSettings.udyam || null, nextSettings.bankName || null, nextSettings.accountName || null, nextSettings.accountNumber || null, nextSettings.ifsc || null, nextSettings.branch || null, nextSettings.logoPath || null, nextSettings.authorisedSignatory || null, gstRate, nextSettings.invoicePrefix || 'INV-']);
+    return res.json({ ok: true, data: await getCompanySettings() });
+  } catch (error) { return next(error); }
+});
+
 for (const resource of ['clients', 'employees', 'services', 'documents']) {
   app.get(`/api/${resource}`, requireAuth, async (_req, res, next) => {
     if (!config.database) return res.status(503).json({ ok: false, error: 'Database is not configured' });
@@ -78,7 +108,7 @@ for (const resource of ['clients', 'employees', 'services', 'documents']) {
     } catch (error) { return next(error); }
   });
 }
-app.post('/api/documents/:type/pdf', requireAuth, allowRoles('Admin', 'Accounts', 'HR'), async (req, res, next) => { try { const pdf = await createBusinessPdf({ ...req.body, type: req.params.type }); if (config.database) await query('INSERT INTO documents (document_type, document_number, category, amount, status, created_by, pdf_reference) VALUES (?, ?, ?, ?, ?, ?, ?)', [req.params.type, req.body.number || 'DRAFT', req.body.category || null, Number(req.body.amount || 0), 'Generated', req.user.id, pdf.filename]); res.setHeader('Content-Type', 'application/pdf'); res.setHeader('Content-Disposition', `attachment; filename="${pdf.filename}"`); res.send(Buffer.from(pdf.bytes)); } catch (error) { next(error); } });
+app.post('/api/documents/:type/pdf', requireAuth, allowRoles('Admin', 'Accounts', 'HR'), async (req, res, next) => { try { const settings = await getCompanySettings(); if (!settings) return res.status(503).json({ ok: false, error: 'Company settings record was not found' }); const pdf = await createBusinessPdf({ ...req.body, type: req.params.type }, settings); await query('INSERT INTO documents (document_type, document_number, category, amount, status, created_by, pdf_reference) VALUES (?, ?, ?, ?, ?, ?, ?)', [req.params.type, req.body.number || 'DRAFT', req.body.category || null, Number(req.body.amount ?? 0), 'Generated', req.user.id, pdf.filename]); res.setHeader('Content-Type', 'application/pdf'); res.setHeader('Content-Disposition', `attachment; filename="${pdf.filename}"`); res.send(Buffer.from(pdf.bytes)); } catch (error) { next(error); } });
 app.post('/api/documents/:type/share', requireAuth, allowRoles('Admin', 'Accounts', 'HR'), (req, res) => {
   const token = jwt.sign({ type: req.params.type, document: req.body }, config.jwtSecret, { expiresIn: '7d' });
   const origin = config.publicOrigin || config.clientOrigin;
