@@ -20,7 +20,13 @@ app.use(cookieParser());
 app.use('/api/auth/login', rateLimit({ windowMs: 15 * 60 * 1000, limit: 10 }));
 
 const demo = { clients: [], employees: [], services: [], documents: [] };
-app.get('/api/health', (_req, res) => res.json({ ok: true, service: 'triset-documents', database: Boolean(config.database) }));
+app.get('/api/health', async (_req, res) => {
+  let database = false;
+  if (config.database) {
+    try { await query('SELECT 1'); database = true; } catch { database = false; }
+  }
+  res.json({ ok: true, service: 'triset-documents', database });
+});
 app.post('/api/auth/login', async (req, res) => {
   const { email, password } = req.body || {};
   if (!email || !password) return res.status(400).json({ ok: false, error: 'Email and password are required' });
