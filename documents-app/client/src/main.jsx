@@ -26,6 +26,24 @@ const serviceSeed = {
   Photogrammetry: []
 };
 
+function LiveGenerator({ kind, addDocument, settings }) {
+  const [preview, setPreview] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [error, setError] = useState('');
+  const [fields, setFields] = useState({ number: '', date: '', party: '', reference: '', notes: '', description: '', quantity: '1', rate: '' });
+  const config = { quotation: ['Quotation', 'Quotation builder'], invoice: ['Tax invoice', 'Invoice engine'], 'purchase-order': ['Purchase order', 'Multi-page purchase order'], payslip: ['Payslip', 'Corporate payslip'] }[kind];
+  const gstRate = settings?.defaultGstRate ?? 0;
+  const update = (field, value) => setFields((current) => ({ ...current, [field]: value }));
+  const amount = Number(fields.quantity || 0) * Number(fields.rate || 0);
+  const generate = async () => {
+    setError(''); setSaved(false);
+    if (!fields.number.trim() || !fields.party.trim() || !fields.description.trim()) return setError('Enter a document number, client or employee, and line description before generating.');
+    const ok = await addDocument({ type: config[0], number: fields.number.trim(), date: fields.date, party: fields.party.trim(), reference: fields.reference.trim(), notes: fields.notes.trim(), description: fields.description.trim(), quantity: Number(fields.quantity || 0), rate: Number(fields.rate || 0), amount, gstRate, category: '', status: 'Generated' });
+    if (ok) setSaved(true); else setError('The PDF could not be generated. Nothing was added to document history.');
+  };
+  return <><PageHeader eyebrow={`Create / ${config[1]}`} title={config[0]} description="Build a document from your entered values, then generate the database-backed PDF." action={<div className="button-pair"><button className="secondary-button" onClick={() => setPreview(true)}><FileText size={16} /> Preview</button><button className="primary-button" onClick={generate}><ArrowDownToLine size={16} /> Generate PDF</button></div>} />{saved && <div className="notice"><ShieldCheck size={16} /> {config[0]} generated from the saved form values.</div>}{error && <div className="notice error-notice">{error}</div>}<div className="builder-layout"><div className="content-panel form-panel"><span className="eyebrow">Document details</span><h2>Header information</h2><div className="field-grid two"><label>{config[0]} number<input value={fields.number} onChange={(e) => update('number', e.target.value)} /></label><label>Date<input value={fields.date} onChange={(e) => update('date', e.target.value)} type="date" /></label><label>Client / employee<input value={fields.party} onChange={(e) => update('party', e.target.value)} /></label><label>Reference / PO<input value={fields.reference} onChange={(e) => update('reference', e.target.value)} placeholder="Optional reference" /></label><label className="wide">Notes<textarea value={fields.notes} onChange={(e) => update('notes', e.target.value)} placeholder="Add notes, delivery details, or terms" /></label></div><div className="line-item-heading"><h2>Line items</h2></div><div className="line-item"><input value={fields.description} onChange={(e) => update('description', e.target.value)} placeholder="Description" /><input value={fields.quantity} onChange={(e) => update('quantity', e.target.value)} placeholder="Qty" /><input value={fields.rate} onChange={(e) => update('rate', e.target.value)} placeholder="Rate" type="number" min="0" /><strong>INR {amount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</strong></div></div><div className="preview-panel"><div className="preview-toolbar"><span className="eyebrow">A4 preview</span><span>{gstRate}% GST</span></div><div className="paper-preview"><div className="paper-head"><img src="/logo_final.png" alt="TRISET" /><span>{config[0].toUpperCase()}<br /><small>{fields.number || 'DRAFT'}</small></span></div><div className="paper-rule" /><div className="paper-meta"><span><b>Bill to</b>{fields.party || 'Client / employee'}<br />{settings?.address || ''}</span><span><b>Document date</b>{fields.date || ''}<br /><b>Reference</b>{fields.reference || 'Not provided'}</span></div><div className="paper-table"><div><b>Description</b><b>Qty</b><b>Rate</b><b>Amount</b></div><div><span>{fields.description || 'Service item'}</span><span>{fields.quantity || '0'}</span><span>INR {Number(fields.rate || 0).toLocaleString('en-IN')}</span><span>INR {amount.toLocaleString('en-IN')}</span></div></div><div className="paper-total"><span>Subtotal<br />GST ({gstRate}%)<br /><b>Total</b></span><span>INR {amount.toLocaleString('en-IN')}<br />INR {(amount * Number(gstRate) / 100).toLocaleString('en-IN')}<br /><b>INR {(amount * (1 + Number(gstRate) / 100)).toLocaleString('en-IN')}</b></span></div><div className="paper-footer">{settings?.companyName || ''}<br /><small>{settings?.email || ''} | {settings?.phone || ''}</small></div></div></div></div>{preview && <div className="modal-backdrop" onClick={() => setPreview(false)}><div className="modal" onClick={(e) => e.stopPropagation()}><div className="modal-heading"><h2>Preview ready</h2><button className="icon-button" onClick={() => setPreview(false)} aria-label="Close preview"><X size={18} /></button></div><p>This preview uses the same entered values and company settings that will be sent to the PDF server.</p><button className="primary-button" onClick={() => { setPreview(false); generate(); }}><ArrowDownToLine size={16} /> Generate and download</button></div></div>}</>;
+}
+
 function App() {
   const [active, setActive] = useState('dashboard');
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -119,7 +137,7 @@ function Page({ active, search, clients, setClients, employees, setEmployees, se
   if (active === 'services') return <Services services={services} setServices={setServices} />;
   if (active === 'documents') return <History documents={documents} search={search} />;
   if (active === 'settings') return <Settings settings={companySettings} setSettings={setCompanySettings} />;
-  return <Generator kind={active} addDocument={addDocument} openPage={openPage} settings={companySettings} />;
+  return <LiveGenerator kind={active} addDocument={addDocument} settings={companySettings} />;
 }
 
 function Dashboard({ documents, openPage, dashboardStats }) {
