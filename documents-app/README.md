@@ -17,6 +17,6 @@ For MySQL, create a database user and run `migrations/001_initial.sql`, then set
 
 ## Production / Hostinger
 
-Build the frontend with `npm run build`, set `NODE_ENV=production`, configure `PORT` to the Hostinger assigned port, configure the MySQL and `JWT_SECRET` variables, and start with `npm start`. The backend serves `dist` in production and listens on `process.env.PORT`. Set `CLIENT_ORIGIN` to `https://documents.trisetsolutions.com` and configure the subdomain proxy to the Node Web App.
+Build the frontend with `npm install --include=dev && npm run build`, set `NODE_ENV=production`, configure `PORT` to the hosting provider assigned port, configure the MySQL and `JWT_SECRET` variables, and start with `npm start`. The backend serves `dist` in production and listens on `process.env.PORT`. Set `CLIENT_ORIGIN` to the production app URL and configure the custom domain.
 
 The migration includes users, company settings, clients, employees, editable service categories/services, quotations, invoices, purchase orders, payslips, and document history with foreign keys and search indexes. Seed the first admin user through your deployment secret/bootstrap process rather than committing a password.

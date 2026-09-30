@@ -13,7 +13,7 @@
     "test": "node --test server/src/**/*.test.js",
     "check": "node --check server/src/server.js && node --check server/src/services/pdfService.js"
   },
-  "engines": { "node": ">=18" },
+  "engines": { "node": "22.x" },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.7",
