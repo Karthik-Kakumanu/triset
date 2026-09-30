@@ -13,7 +13,21 @@ import { requireAuth, allowRoles } from './middleware/auth.js';
 import { createBusinessPdf } from './services/pdfService.js';
 
 const app = express();
-app.use(helmet({ crossOriginResourcePolicy: false }));
+app.use(helmet({
+  crossOriginResourcePolicy: false,
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+      fontSrc: ["'self'", 'https://fonts.gstatic.com', 'data:'],
+      imgSrc: ["'self'", 'data:', 'blob:'],
+      connectSrc: ["'self'"],
+      frameSrc: ["'self'", 'blob:'],
+      objectSrc: ["'self'", 'blob:']
+    }
+  }
+}));
 app.use(cors({ origin: config.clientOrigin, credentials: true }));
 app.use(express.json({ limit: '2mb' }));
 app.use(cookieParser());
