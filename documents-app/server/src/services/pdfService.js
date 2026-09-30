@@ -9,6 +9,18 @@ const A4 = [595.28, 841.89];
 
 function line(page, x, y, width, thickness = 1) { page.drawRectangle({ x, y, width, height: thickness, color: MAROON }); }
 function text(page, value, x, y, size, font, color = MAROON) { page.drawText(String(value ?? ''), { x, y, size, font, color, maxWidth: 500 }); }
+function wrappedText(page, value, x, y, size, font, maxWidth, lineHeight = size + 3, color = MAROON) {
+  const words = String(value ?? '').split(/\s+/).filter(Boolean);
+  const lines = [];
+  let current = '';
+  for (const word of words) {
+    const candidate = current ? `${current} ${word}` : word;
+    if (current && font.widthOfTextAtSize(candidate, size) > maxWidth) { lines.push(current); current = word; } else current = candidate;
+  }
+  if (current) lines.push(current);
+  lines.forEach((item, index) => text(page, item, x, y - index * lineHeight, size, font, color));
+  return lines.length || 1;
+}
 function money(value) { return `INR ${Number(value || 0).toLocaleString('en-IN', { minimumFractionDigits: 2 })}`; }
 
 export async function createBusinessPdf(document, settings = {}) {
@@ -28,17 +40,20 @@ export async function createBusinessPdf(document, settings = {}) {
   text(page, String(document.title || document.type || 'BUSINESS DOCUMENT').toUpperCase(), 395, height - 45, 11, bold, WHITE);
   text(page, document.number || 'DRAFT', 437, height - 63, 9, regular, WHITE);
   text(page, companyName, 42, height - 122, 10, bold);
-  text(page, address, 42, height - 137, 8.5, regular);
-  text(page, `${email}  |  ${phone}`, 42, height - 151, 8.5, regular);
-  line(page, 42, height - 174, width - 84, 2);
-  text(page, 'BILL TO', 42, height - 200, 8, bold);
-  text(page, document.party || 'Client / employee', 42, height - 216, 11, bold);
-  text(page, document.address || 'Address to be configured', 42, height - 232, 9, regular);
-  text(page, 'DOCUMENT DATE', 380, height - 200, 8, bold);
-  text(page, document.date || new Date().toISOString().slice(0, 10), 380, height - 216, 10, regular);
-  text(page, 'REFERENCE', 380, height - 242, 8, bold);
-  text(page, document.reference || 'Not provided', 380, height - 258, 10, regular);
-  const tableY = height - 304;
+  const addressLineCount = wrappedText(page, address, 42, height - 137, 8.5, regular, 270, 11);
+  const contactY = height - 137 - addressLineCount * 11 - 4;
+  text(page, `${email}  |  ${phone}`, 42, contactY, 8.5, regular);
+  const detailsLineY = contactY - 12;
+  line(page, 42, detailsLineY, width - 84, 2);
+  const billLabelY = detailsLineY - 26;
+  text(page, 'BILL TO', 42, billLabelY, 8, bold);
+  text(page, document.party || 'Client / employee', 42, billLabelY - 16, 11, bold);
+  wrappedText(page, document.address || 'Address to be configured', 42, billLabelY - 32, 9, regular, 270, 12);
+  text(page, 'DOCUMENT DATE', 380, billLabelY, 8, bold);
+  text(page, document.date || new Date().toISOString().slice(0, 10), 380, billLabelY - 16, 10, regular);
+  text(page, 'REFERENCE', 380, billLabelY - 42, 8, bold);
+  text(page, document.reference || 'Not provided', 380, billLabelY - 58, 10, regular);
+  const tableY = billLabelY - 104;
   page.drawRectangle({ x: 42, y: tableY, width: width - 84, height: 27, color: MAROON });
   text(page, 'DESCRIPTION', 52, tableY + 9, 8, bold, WHITE);
   text(page, 'QTY', 340, tableY + 9, 8, bold, WHITE);
