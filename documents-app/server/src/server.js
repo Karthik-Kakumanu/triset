@@ -120,6 +120,35 @@ app.delete('/api/employees/:id', requireAuth, allowRoles('Admin', 'Accounts', 'H
 app.delete('/api/documents/:id', requireAuth, allowRoles('Admin', 'Accounts', 'HR'), async (req, res, next) => { try { const result = await query('DELETE FROM documents WHERE id = ?', [req.params.id]); if (!result.affectedRows) return res.status(404).json({ ok: false, error: 'Document not found' }); res.json({ ok: true }); } catch (error) { next(error); } });
 app.post('/api/services', requireAuth, allowRoles('Admin', 'Accounts', 'HR'), async (req, res, next) => { try { await query('INSERT INTO service_categories (name) VALUES (?) ON DUPLICATE KEY UPDATE id = LAST_INSERT_ID(id)', [req.body.category]); const category = await query('SELECT id FROM service_categories WHERE name = ?', [req.body.category]); const result = await query('INSERT INTO services (category_id, name) VALUES (?, ?)', [category[0].id, req.body.name]); const rows = await query('SELECT s.id, sc.name AS category, s.name FROM services s JOIN service_categories sc ON sc.id = s.category_id WHERE s.id = ?', [result.insertId]); res.status(201).json({ ok: true, data: rows[0] }); } catch (error) { next(error); } });
 app.delete('/api/services/:id', requireAuth, allowRoles('Admin', 'Accounts', 'HR'), async (req, res, next) => { try { const result = await query('DELETE FROM services WHERE id = ?', [req.params.id]); if (!result.affectedRows) return res.status(404).json({ ok: false, error: 'Service not found' }); res.json({ ok: true }); } catch (error) { next(error); } });
+app.post('/api/services/sync-website', requireAuth, allowRoles('Admin', 'Accounts', 'HR'), async (_req, res, next) => {
+  const websiteServices = {
+    'Digital Solutions': ['Web Development', 'App Development', 'UI/UX Design', 'E-Commerce', 'Digital Marketing', 'Data Entry', 'Web Security', 'Custom Software Development', 'API Integrations', 'Cloud Deployment'],
+    'Geo-Spatial Solutions': ['Photogrammetry', 'LiDAR', 'GIS Mapping', 'Drone Surveying', 'Drone Services', 'Digital Elevation Models (DEM)', 'Orthophoto', 'BIM', '3D Services', '2D/3D Cartography', 'GIS / Remote Sensing'],
+    'Data Processing': ['Structured Data Entry', 'Data Cleansing', 'Data Conversion', 'Data Analytics', 'Business Intelligence Workflows']
+  };
+  try {
+    for (const [category, names] of Object.entries(websiteServices)) {
+      await query('INSERT INTO service_categories (name) VALUES (?) ON DUPLICATE KEY UPDATE id = LAST_INSERT_ID(id)', [category]);
+      const categoryRows = await query('SELECT id FROM service_categories WHERE name = ? LIMIT 1', [category]);
+      for (const name of names) await query('INSERT IGNORE INTO services (category_id, name) VALUES (?, ?)', [categoryRows[0].id, name]);
+    }
+    const rows = await query('SELECT s.id, sc.name AS category, s.name FROM services s JOIN service_categories sc ON sc.id = s.category_id WHERE s.active = 1 ORDER BY sc.name, s.name');
+    res.json({ ok: true, data: rows });
+  } catch (error) { next(error); }
+});
+app.get('/api/documents/:id/pdf', requireAuth, async (req, res, next) => {
+  try {
+    const rows = await query('SELECT id, document_type AS type, document_number AS number, category, amount, status, created_at AS createdAt FROM documents WHERE id = ? LIMIT 1', [req.params.id]);
+    const document = rows[0];
+    if (!document) return res.status(404).json({ ok: false, error: 'Document not found' });
+    const settings = await getCompanySettings();
+    if (!settings) return res.status(503).json({ ok: false, error: 'Company settings record was not found' });
+    const pdf = await createBusinessPdf({ ...document, title: document.type, party: 'Client / employee', date: document.createdAt, amount: Number(document.amount || 0), gstRate: settings.defaultGstRate }, settings);
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `inline; filename="${pdf.filename}"`);
+    res.send(Buffer.from(pdf.bytes));
+  } catch (error) { next(error); }
+});
 app.post('/api/documents/:type/pdf', requireAuth, allowRoles('Admin', 'Accounts', 'HR'), async (req, res, next) => { try { const settings = await getCompanySettings(); if (!settings) return res.status(503).json({ ok: false, error: 'Company settings record was not found' }); const pdf = await createBusinessPdf({ ...req.body, type: req.params.type }, settings); await query('INSERT INTO documents (document_type, document_number, category, amount, status, created_by, pdf_reference) VALUES (?, ?, ?, ?, ?, ?, ?)', [req.params.type, req.body.number || 'DRAFT', req.body.category || null, Number(req.body.amount ?? 0), 'Generated', req.user.id, pdf.filename]); res.setHeader('Content-Type', 'application/pdf'); res.setHeader('Content-Disposition', `attachment; filename="${pdf.filename}"`); res.send(Buffer.from(pdf.bytes)); } catch (error) { next(error); } });
 app.post('/api/documents/:type/share', requireAuth, allowRoles('Admin', 'Accounts', 'HR'), (req, res) => {
   const token = jwt.sign({ type: req.params.type, document: req.body }, config.jwtSecret, { expiresIn: '7d' });
