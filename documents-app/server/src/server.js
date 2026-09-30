@@ -27,6 +27,20 @@ app.get('/api/health', async (_req, res) => {
   }
   res.json({ ok: true, service: 'triset-documents', database });
 });
+app.get('/api/dashboard', requireAuth, async (_req, res, next) => {
+  try {
+    const [clients, employees, quotations, invoices, purchaseOrders, payslips, recent] = await Promise.all([
+      query('SELECT COUNT(*) AS total FROM clients'),
+      query('SELECT COUNT(*) AS total FROM employees'),
+      query('SELECT COUNT(*) AS total FROM quotations'),
+      query('SELECT COUNT(*) AS total FROM invoices'),
+      query('SELECT COUNT(*) AS total FROM purchase_orders'),
+      query('SELECT COUNT(*) AS total FROM payslips'),
+      query('SELECT id, document_type AS type, document_number AS number, category, amount, status, created_at AS createdAt FROM documents ORDER BY created_at DESC LIMIT 8')
+    ]);
+    res.json({ ok: true, stats: { clients: clients[0].total, employees: employees[0].total, quotations: quotations[0].total, invoices: invoices[0].total, purchaseOrders: purchaseOrders[0].total, payslips: payslips[0].total }, recent: recent });
+  } catch (error) { next(error); }
+});
 app.post('/api/auth/login', async (req, res) => {
   const { email, password } = req.body || {};
   if (!email || !password) return res.status(400).json({ ok: false, error: 'Email and password are required' });
