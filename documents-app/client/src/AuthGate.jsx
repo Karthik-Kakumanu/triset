@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LockKeyhole, ShieldCheck } from 'lucide-react';
+import { LockKeyhole, LogOut, ShieldCheck } from 'lucide-react';
 
 export function AuthGate({ children }) {
   const [loading, setLoading] = useState(true);
@@ -21,6 +21,7 @@ export function AuthGate({ children }) {
   };
 
   if (loading) return <div className="auth-loading"><ShieldCheck size={21} /> Checking secure session...</div>;
-  if (user) return children;
+  const logout = async () => { await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' }); setUser(null); };
+  if (user) return <><div className="auth-session">{children}</div><button className="global-logout" onClick={logout}><LogOut size={15} /> Sign out</button></>;
   return <main className="auth-page"><section className="auth-panel"><img src="/logo_final.png" alt="TRISET" /><span className="eyebrow">Private workspace / secure sign in</span><h1>TRISET Documents</h1><p>Sign in to manage company records and generate business documents.</p><form onSubmit={login}><label>Email address<input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="username" required /></label><label>Password<input type="password" value={password} onChange={(event) => setPassword(event.target.value)} autoComplete="current-password" required /></label>{error && <div className="auth-error"><LockKeyhole size={15} />{error}</div>}<button className="primary-button" type="submit"><LockKeyhole size={16} /> Sign in</button></form><small><ShieldCheck size={14} /> Access is protected by your workspace account.</small></section></main>;
 }

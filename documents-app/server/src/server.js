@@ -68,9 +68,18 @@ for (const resource of ['clients', 'employees', 'services', 'documents']) {
     }[resource];
     try { const rows = await query(sql); return res.json({ ok: true, data: rows }); } catch (error) { return next(error); }
   });
-  app.post(`/api/${resource}`, requireAuth, allowRoles('Admin', 'Accounts', 'HR'), (req, res) => { const record = { id: `${resource}-${Date.now()}`, ...req.body, createdAt: new Date().toISOString() }; demo[resource].push(record); res.status(201).json({ ok: true, data: record }); });
+  app.post(`/api/${resource}`, requireAuth, allowRoles('Admin', 'Accounts', 'HR'), async (req, res, next) => {
+    if (!config.database) { const record = { id: `${resource}-${Date.now()}`, ...req.body, createdAt: new Date().toISOString() }; demo[resource].push(record); return res.status(201).json({ ok: true, data: record }); }
+    try {
+      let result;
+      if (resource === 'clients') result = await query('INSERT INTO clients (name, contact_person, city, state, email, phone) VALUES (?, ?, ?, ?, ?, ?)', [req.body.name, req.body.contact, req.body.city, req.body.state, req.body.email, req.body.phone]);
+      else if (resource === 'employees') result = await query('INSERT INTO employees (employee_id, name, designation, department, date_of_joining, location, band_grade) VALUES (?, ?, ?, ?, ?, ?, ?)', [req.body.id || req.body.employeeId, req.body.name, req.body.designation, req.body.department, req.body.joining || null, req.body.location, req.body.grade]);
+      else return res.status(400).json({ ok: false, error: `Creation for ${resource} is not implemented yet` });
+      return res.status(201).json({ ok: true, data: { id: result.insertId, ...req.body, createdAt: new Date().toISOString() } });
+    } catch (error) { return next(error); }
+  });
 }
-app.post('/api/documents/:type/pdf', requireAuth, allowRoles('Admin', 'Accounts', 'HR'), async (req, res, next) => { try { const pdf = await createBusinessPdf({ ...req.body, type: req.params.type }); res.setHeader('Content-Type', 'application/pdf'); res.setHeader('Content-Disposition', `attachment; filename="${pdf.filename}"`); res.send(Buffer.from(pdf.bytes)); } catch (error) { next(error); } });
+app.post('/api/documents/:type/pdf', requireAuth, allowRoles('Admin', 'Accounts', 'HR'), async (req, res, next) => { try { const pdf = await createBusinessPdf({ ...req.body, type: req.params.type }); if (config.database) await query('INSERT INTO documents (document_type, document_number, category, amount, status, created_by, pdf_reference) VALUES (?, ?, ?, ?, ?, ?, ?)', [req.params.type, req.body.number || 'DRAFT', req.body.category || null, Number(req.body.amount || 0), 'Generated', req.user.id, pdf.filename]); res.setHeader('Content-Type', 'application/pdf'); res.setHeader('Content-Disposition', `attachment; filename="${pdf.filename}"`); res.send(Buffer.from(pdf.bytes)); } catch (error) { next(error); } });
 app.post('/api/documents/:type/share', requireAuth, allowRoles('Admin', 'Accounts', 'HR'), (req, res) => {
   const token = jwt.sign({ type: req.params.type, document: req.body }, config.jwtSecret, { expiresIn: '7d' });
   const origin = config.publicOrigin || config.clientOrigin;

@@ -1,11 +1,18 @@
-/* TRISET document system uses only white and the brand blue. */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+/* TRISET document system uses the public site's typography with white and brand blue. */
 :root {
   --maroon: #0B66FF;
   --deep: #084EBD;
   --wash: rgba(11, 102, 255, .055);
   --line: rgba(11, 102, 255, .16);
   --soft: rgba(11, 102, 255, .62);
+  --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
+  --mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
 }
+
+body, button, input, textarea { font-family: var(--font-body); }
+h1, h2, h3, .brand-lockup, .auth-panel h1 { font-family: var(--font-display); }
 
 .modal-backdrop { background: rgba(11, 102, 255, .30); }
 .mobile-scrim { background: rgba(11, 102, 255, .20); }
@@ -57,4 +64,7 @@ th,
 .auth-panel input:focus { border-color: #0B66FF; }
 .auth-panel small { display: flex; align-items: center; gap: 6px; margin-top: 24px; color: rgba(0, 0, 0, .58); font-size: 11px; }
 .auth-error { display: flex; align-items: center; gap: 7px; padding: 10px; color: #000; background: var(--wash); border-left: 3px solid #0B66FF; font-size: 12px; }
+.auth-session { min-height: 100vh; }
+.global-logout { position: fixed; right: 44px; top: 20px; z-index: 8; display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--line); background: #fff; color: #000; padding: 8px 11px; font-size: 11px; }
+.global-logout:hover { border-color: #0B66FF; color: #0B66FF; }
 @media(max-width:480px){.auth-panel{padding:26px}.auth-panel h1{font-size:25px}}

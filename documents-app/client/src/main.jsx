@@ -78,7 +78,17 @@ function App() {
   }, [active]);
 
   const openPage = (id) => { setActive(id); setMobileOpen(false); setSearch(''); };
-  const addDocument = (doc) => setDocuments((items) => [{ ...doc, id: `DOC-${2410 + items.length}`, date: '29 Sep 2026' }, ...items]);
+  const addDocument = async (doc) => {
+    setDocuments((items) => [{ ...doc, id: `DOC-${2410 + items.length}`, date: '29 Sep 2026' }, ...items]);
+    const type = doc.type === 'Tax invoice' ? 'invoice' : doc.type === 'Purchase order' ? 'purchase-order' : doc.type.toLowerCase();
+    const response = await fetch(`/api/documents/${type}/pdf`, { method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...doc, title: doc.type, number: doc.number, party: doc.party, amount: Number(String(doc.amount || '').replace(/[^0-9.]/g, '')) || 0 }) });
+    if (!response.ok) return;
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a'); link.href = url; link.download = `${doc.number || 'document'}.pdf`; link.click(); URL.revokeObjectURL(url);
+  };
+  const saveClients = async (next) => { const record = next[next.length - 1]; setClients(next); const response = await fetch('/api/clients', { method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record) }); if (response.ok) { const result = await response.json(); setClients((items) => [...items.slice(0, -1), result.data]); } };
+  const saveEmployees = async (next) => { const record = next[next.length - 1]; setEmployees(next); const response = await fetch('/api/employees', { method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record) }); if (response.ok) { const result = await response.json(); setEmployees((items) => [...items.slice(0, -1), result.data]); } };
 
   return <div className="app-shell">
     <aside className={`sidebar ${mobileOpen ? 'is-open' : ''}`}>
@@ -92,7 +102,7 @@ function App() {
     {mobileOpen && <button className="mobile-scrim" onClick={() => setMobileOpen(false)} aria-label="Close navigation overlay" />}
     <main className="main-content">
       <header className="topbar"><button className="icon-button mobile-menu" onClick={() => setMobileOpen(true)} aria-label="Open navigation"><Menu size={20} /></button><div className="crumbs"><span>TRISET Documents</span><ChevronRight size={14} /><b>{pageTitle}</b></div><div className="topbar-actions"><label className="global-search"><Search size={16} /><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search workspace" /></label><button className="help-button" aria-label="Help"><CircleHelp size={18} /></button></div></header>
-      <div className="page-body"><Page active={active} search={search} clients={clients} setClients={setClients} employees={employees} setEmployees={setEmployees} services={services} setServices={setServices} documents={documents} addDocument={addDocument} openPage={openPage} dashboardStats={dashboardStats} /></div>
+      <div className="page-body"><Page active={active} search={search} clients={clients} setClients={saveClients} employees={employees} setEmployees={saveEmployees} services={services} setServices={setServices} documents={documents} addDocument={addDocument} openPage={openPage} dashboardStats={dashboardStats} /></div>
     </main>
   </div>;
 }
