@@ -58,7 +58,16 @@ app.post('/api/auth/logout', (_req, res) => { res.clearCookie('triset_session');
 app.get('/api/auth/me', requireAuth, (req, res) => res.json({ ok: true, user: req.user }));
 
 for (const resource of ['clients', 'employees', 'services', 'documents']) {
-  app.get(`/api/${resource}`, requireAuth, (_req, res) => res.json({ ok: true, data: demo[resource] }));
+  app.get(`/api/${resource}`, requireAuth, async (_req, res, next) => {
+    if (!config.database) return res.json({ ok: true, data: demo[resource] });
+    const sql = {
+      clients: 'SELECT id, name, contact_person AS contact, city, state, email, phone, gstin FROM clients ORDER BY name',
+      employees: 'SELECT id, employee_id AS employeeId, name, designation, department, date_of_joining AS joining, location, band_grade AS grade FROM employees ORDER BY name',
+      services: 'SELECT sc.name AS category, s.name FROM services s JOIN service_categories sc ON sc.id = s.category_id WHERE s.active = 1 ORDER BY sc.name, s.name',
+      documents: 'SELECT id, document_type AS type, document_number AS number, category, amount, status, created_at AS createdAt FROM documents ORDER BY created_at DESC'
+    }[resource];
+    try { const rows = await query(sql); return res.json({ ok: true, data: rows }); } catch (error) { return next(error); }
+  });
   app.post(`/api/${resource}`, requireAuth, allowRoles('Admin', 'Accounts', 'HR'), (req, res) => { const record = { id: `${resource}-${Date.now()}`, ...req.body, createdAt: new Date().toISOString() }; demo[resource].push(record); res.status(201).json({ ok: true, data: record }); });
 }
 app.post('/api/documents/:type/pdf', requireAuth, allowRoles('Admin', 'Accounts', 'HR'), async (req, res, next) => { try { const pdf = await createBusinessPdf({ ...req.body, type: req.params.type }); res.setHeader('Content-Type', 'application/pdf'); res.setHeader('Content-Disposition', `attachment; filename="${pdf.filename}"`); res.send(Buffer.from(pdf.bytes)); } catch (error) { next(error); } });

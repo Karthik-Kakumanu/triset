@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Activity, ArrowDownToLine, BarChart3, Building2, ChevronRight, CircleHelp, ClipboardList, FileCheck2, FilePlus2, FileText, LayoutDashboard, LogOut, Menu, ReceiptText, Search, Settings2, ShieldCheck, Sparkles, Users, WalletCards, X } from 'lucide-react';
 import './styles.css';
@@ -44,12 +44,33 @@ function App() {
   const [clients, setClients] = useState(seedClients);
   const [employees, setEmployees] = useState(seedEmployees);
   const [services, setServices] = useState(serviceSeed);
+  const [dashboardStats, setDashboardStats] = useState({ clients: 24, employees: 42, quotations: 18, invoices: 36 });
   const [documents, setDocuments] = useState([
     { id: 'DOC-2409', type: 'Tax invoice', number: 'INV-2026-0048', category: 'Photogrammetry', party: 'Aster Infra Projects', amount: '₹ 2,36,000', status: 'Generated', date: '29 Sep 2026' },
     { id: 'DOC-2408', type: 'Quotation', number: 'QT-2026-0117', category: 'Digital Solutions', party: 'Northstar Geomatics', amount: '₹ 1,18,000', status: 'Draft', date: '28 Sep 2026' },
     { id: 'DOC-2407', type: 'Payslip', number: 'SEP-2026-TRI024', category: 'Corporate', party: 'Saraswathi A.', amount: '₹ 62,400', status: 'Generated', date: '27 Sep 2026' },
     { id: 'DOC-2406', type: 'Purchase order', number: 'PO-2026-0089', category: 'Digital Solutions', party: 'Cedarline Retail', amount: '₹ 84,960', status: 'Generated', date: '26 Sep 2026' }
   ]);
+
+  useEffect(() => {
+    const loadLiveData = async () => {
+      try {
+        const [dashboardResponse, documentsResponse] = await Promise.all([
+          fetch('/api/dashboard', { credentials: 'include' }),
+          fetch('/api/documents', { credentials: 'include' })
+        ]);
+        if (dashboardResponse.ok) {
+          const result = await dashboardResponse.json();
+          setDashboardStats(result.stats);
+        }
+        if (documentsResponse.ok) {
+          const result = await documentsResponse.json();
+          setDocuments(result.data.map((item) => ({ ...item, party: item.party || 'Not assigned', date: new Date(item.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) })));
+        }
+      } catch { /* Keep the workspace usable if the API is temporarily unavailable. */ }
+    };
+    loadLiveData();
+  }, []);
 
   const pageTitle = useMemo(() => {
     if (generators.some((item) => item.id === active)) return generators.find((item) => item.id === active).label;
@@ -71,13 +92,13 @@ function App() {
     {mobileOpen && <button className="mobile-scrim" onClick={() => setMobileOpen(false)} aria-label="Close navigation overlay" />}
     <main className="main-content">
       <header className="topbar"><button className="icon-button mobile-menu" onClick={() => setMobileOpen(true)} aria-label="Open navigation"><Menu size={20} /></button><div className="crumbs"><span>TRISET Documents</span><ChevronRight size={14} /><b>{pageTitle}</b></div><div className="topbar-actions"><label className="global-search"><Search size={16} /><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search workspace" /></label><button className="help-button" aria-label="Help"><CircleHelp size={18} /></button></div></header>
-      <div className="page-body"><Page active={active} search={search} clients={clients} setClients={setClients} employees={employees} setEmployees={setEmployees} services={services} setServices={setServices} documents={documents} addDocument={addDocument} openPage={openPage} /></div>
+      <div className="page-body"><Page active={active} search={search} clients={clients} setClients={setClients} employees={employees} setEmployees={setEmployees} services={services} setServices={setServices} documents={documents} addDocument={addDocument} openPage={openPage} dashboardStats={dashboardStats} /></div>
     </main>
   </div>;
 }
 
-function Page({ active, search, clients, setClients, employees, setEmployees, services, setServices, documents, addDocument, openPage }) {
-  if (active === 'dashboard') return <Dashboard documents={documents} openPage={openPage} />;
+function Page({ active, search, clients, setClients, employees, setEmployees, services, setServices, documents, addDocument, openPage, dashboardStats }) {
+  if (active === 'dashboard') return <Dashboard documents={documents} openPage={openPage} dashboardStats={dashboardStats} />;
   if (active === 'clients') return <Registry title="Clients" eyebrow="Directory / clients" description="Maintain billing-ready client records for every document workflow." columns={['Company / client', 'Contact person', 'Location', 'Email', 'Phone']} rows={clients.map((x) => [x.name, x.contact, `${x.city}, ${x.state}`, x.email, x.phone])} data={clients} setData={setClients} fields={['name', 'contact', 'city', 'state', 'email', 'phone']} search={search} />;
   if (active === 'employees') return <Registry title="Employees" eyebrow="People / payroll" description="Keep employee identity, payroll, and compliance data in one controlled register." columns={['Employee', 'Designation', 'Department', 'Joining date', 'Location']} rows={employees.map((x) => [`${x.id} / ${x.name}`, x.designation, x.department, x.joining, `${x.location} / ${x.grade}`])} data={employees} setData={setEmployees} fields={['id', 'name', 'designation', 'department', 'joining', 'location', 'grade']} search={search} />;
   if (active === 'services') return <Services services={services} setServices={setServices} />;
@@ -86,8 +107,8 @@ function Page({ active, search, clients, setClients, employees, setEmployees, se
   return <Generator kind={active} addDocument={addDocument} openPage={openPage} />;
 }
 
-function Dashboard({ documents, openPage }) {
-  const stats = [['Clients', '24', '03 this quarter', Users, 'clients'], ['Employees', '42', '02 pending profiles', Users, 'employees'], ['Quotations', '18', '06 awaiting response', FileCheck2, 'documents'], ['Invoices', '36', '₹ 12.48L this month', ReceiptText, 'documents']];
+function Dashboard({ documents, openPage, dashboardStats }) {
+  const stats = [['Clients', String(dashboardStats.clients ?? 0), 'Live database count', Users, 'clients'], ['Employees', String(dashboardStats.employees ?? 0), 'Live database count', Users, 'employees'], ['Quotations', String(dashboardStats.quotations ?? 0), 'Live database count', FileCheck2, 'documents'], ['Invoices', String(dashboardStats.invoices ?? 0), 'Live database count', ReceiptText, 'documents']];
   return <><PageHeader eyebrow="Overview / 29 September 2026" title="Good morning, Admin" description="A focused view of your company records and document activity." action={<button className="primary-button" onClick={() => openPage('quotation')}><FilePlus2 size={16} /> New quotation</button>} /><section className="stat-grid">{stats.map(([label, value, note, Icon, target]) => <button className="stat-card" key={label} onClick={() => openPage(target)}><span className="stat-icon"><Icon size={17} /></span><span className="stat-label">{label}</span><strong>{value}</strong><small>{note}</small><ChevronRight className="stat-arrow" size={16} /></button>)}</section><section className="dashboard-grid"><div className="content-panel activity-panel"><div className="panel-heading"><div><span className="eyebrow">Latest output</span><h2>Recent documents</h2></div><button className="text-button" onClick={() => openPage('documents')}>View all <ChevronRight size={15} /></button></div><DocumentTable documents={documents.slice(0, 4)} /></div><div className="content-panel quick-panel"><span className="eyebrow">Shortcuts</span><h2>Make a document</h2><p>Start with a trusted template. Company and banking details are pulled from settings.</p>{generators.map(({ id, label, icon: Icon }) => <button className="quick-action" key={id} onClick={() => openPage(id)}><span><Icon size={16} />{label}</span><ChevronRight size={15} /></button>)}</div></section></>;
 }
 
