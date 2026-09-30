@@ -74,6 +74,7 @@ th,
 .matched-paper { padding: 0 26px 30px; }
 .matched-paper-header { display: flex; justify-content: space-between; align-items: flex-start; margin: -30px -26px 20px; padding: 18px 26px; background: #0B66FF; color: #fff; font: 600 11px var(--font-display); }
 .matched-paper-header b { display: block; font-size: 16px; }
+.matched-paper-header > div:first-child:before { content: ''; display: block; width: 86px; height: 26px; margin-bottom: 5px; background: url('/logo_final.png') center / contain no-repeat; }
 .matched-paper-header strong { text-align: right; font: 600 11px var(--mono); }
 .matched-paper-header small { display: block; margin-top: 3px; font: 400 8px var(--mono); }
 .matched-paper > .paper-head { display: none; }

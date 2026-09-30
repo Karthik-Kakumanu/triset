@@ -1,11 +1,13 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
 import { config } from '../config.js';
 
 const MAROON = rgb(11 / 255, 102 / 255, 255 / 255);
 const WHITE = rgb(1, 1, 1);
 const A4 = [595.28, 841.89];
+const logoPath = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../client/public/logo_final.png');
 
 function line(page, x, y, width, thickness = 1) { page.drawRectangle({ x, y, width, height: thickness, color: MAROON }); }
 function text(page, value, x, y, size, font, color = MAROON) { page.drawText(String(value ?? ''), { x, y, size, font, color, maxWidth: 500 }); }
@@ -29,14 +31,17 @@ export async function createBusinessPdf(document, settings = {}) {
   const bold = await pdf.embedFont(StandardFonts.HelveticaBold);
   const page = pdf.addPage(A4);
   const [width, height] = A4;
+  let logo;
+  try { logo = await pdf.embedPng(await fs.readFile(logoPath)); } catch { logo = null; }
   page.drawRectangle({ x: 0, y: height - 86, width, height: 86, color: MAROON });
   const companyName = settings.companyName ?? '';
   const address = settings.address ?? '';
   const email = settings.email ?? '';
   const phone = settings.phone ?? '';
   const gstRate = settings.defaultGstRate ?? 0;
-  text(page, companyName, 42, height - 52, 18, bold, WHITE);
-  text(page, 'Business document', 42, height - 68, 9, regular, WHITE);
+  if (logo) { const logoSize = logo.scale(1); const logoHeight = 34; page.drawImage(logo, { x: 42, y: height - 66, width: logoHeight * logoSize.width / logoSize.height, height: logoHeight }); }
+  text(page, companyName, 155, height - 48, 15, bold, WHITE);
+  text(page, 'Business document', 155, height - 66, 9, regular, WHITE);
   text(page, String(document.title || document.type || 'BUSINESS DOCUMENT').toUpperCase(), 395, height - 45, 11, bold, WHITE);
   text(page, document.number || 'DRAFT', 437, height - 63, 9, regular, WHITE);
   text(page, companyName, 42, height - 122, 10, bold);
