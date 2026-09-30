@@ -19,7 +19,6 @@ app.use(express.json({ limit: '2mb' }));
 app.use(cookieParser());
 app.use('/api/auth/login', rateLimit({ windowMs: 15 * 60 * 1000, limit: 10 }));
 
-const demo = { clients: [], employees: [], services: [], documents: [] };
 app.get('/api/health', async (_req, res) => {
   let database = false;
   if (config.database) {
@@ -59,7 +58,7 @@ app.get('/api/auth/me', requireAuth, (req, res) => res.json({ ok: true, user: re
 
 for (const resource of ['clients', 'employees', 'services', 'documents']) {
   app.get(`/api/${resource}`, requireAuth, async (_req, res, next) => {
-    if (!config.database) return res.json({ ok: true, data: demo[resource] });
+    if (!config.database) return res.status(503).json({ ok: false, error: 'Database is not configured' });
     const sql = {
       clients: 'SELECT id, name, contact_person AS contact, city, state, email, phone, gstin FROM clients ORDER BY name',
       employees: 'SELECT id, employee_id AS employeeId, name, designation, department, date_of_joining AS joining, location, band_grade AS grade FROM employees ORDER BY name',
@@ -69,7 +68,7 @@ for (const resource of ['clients', 'employees', 'services', 'documents']) {
     try { const rows = await query(sql); return res.json({ ok: true, data: rows }); } catch (error) { return next(error); }
   });
   app.post(`/api/${resource}`, requireAuth, allowRoles('Admin', 'Accounts', 'HR'), async (req, res, next) => {
-    if (!config.database) { const record = { id: `${resource}-${Date.now()}`, ...req.body, createdAt: new Date().toISOString() }; demo[resource].push(record); return res.status(201).json({ ok: true, data: record }); }
+    if (!config.database) return res.status(503).json({ ok: false, error: 'Database is not configured' });
     try {
       let result;
       if (resource === 'clients') result = await query('INSERT INTO clients (name, contact_person, city, state, email, phone) VALUES (?, ?, ?, ?, ?, ?)', [req.body.name, req.body.contact, req.body.city, req.body.state, req.body.email, req.body.phone]);

@@ -21,43 +21,30 @@ const generators = [
   { id: 'payslip', label: 'Payslip', icon: WalletCards }
 ];
 
-const seedClients = [
-  { name: 'Aster Infra Projects', contact: 'Meera Iyer', city: 'Hyderabad', state: 'Telangana', gstin: 'Editable from client record', email: 'accounts@asterinfra.example', phone: '040 4000 2188' },
-  { name: 'Northstar Geomatics', contact: 'Rahul Verma', city: 'Bengaluru', state: 'Karnataka', gstin: 'Editable from client record', email: 'finance@northstar.example', phone: '080 4102 8290' },
-  { name: 'Cedarline Retail', contact: 'Anita Rao', city: 'Pune', state: 'Maharashtra', gstin: 'Editable from client record', email: 'ops@cedarline.example', phone: '020 3055 1010' }
-];
-const seedEmployees = [
-  { id: 'TRI-024', name: 'Saraswathi A.', designation: 'GIS Analyst', department: 'Photogrammetry', joining: '2024-04-22', location: 'Hyderabad', grade: 'G3' },
-  { id: 'TRI-031', name: 'Ramu K.', designation: 'Software Engineer', department: 'Digital Solutions', joining: '2023-11-06', location: 'Hyderabad', grade: 'G4' },
-  { id: 'TRI-039', name: 'Nikhil P.', designation: 'Process Associate', department: 'Data Entry', joining: '2025-01-13', location: 'Hyderabad', grade: 'G2' }
-];
 const serviceSeed = {
-  'Data entry': ['Data Entry', 'Excel Data Entry', 'PDF to Excel / Word', 'Data Processing', 'Online / Offline Support', 'Data Conversion'],
-  'Digital solutions': ['Custom Software Development', 'Web & Mobile App Development', 'UI/UX Design', 'CRM & Business Automation', 'Digital Marketing & Strategy Consulting'],
-  Photogrammetry: ['2D / 3D Mapping & Cartography', 'Orthophoto & Mosaicing', 'DEM / DTM & Contour Generation', 'Aerial Triangulation', 'GIS & Remote Sensing', 'BIM & 3D Modelling', 'Drone Data Processing', 'LiDAR Data Processing']
+  'Data entry': [],
+  'Digital solutions': [],
+  Photogrammetry: []
 };
 
 function App() {
   const [active, setActive] = useState('dashboard');
   const [mobileOpen, setMobileOpen] = useState(false);
   const [search, setSearch] = useState('');
-  const [clients, setClients] = useState(seedClients);
-  const [employees, setEmployees] = useState(seedEmployees);
+  const [clients, setClients] = useState([]);
+  const [employees, setEmployees] = useState([]);
   const [services, setServices] = useState(serviceSeed);
-  const [dashboardStats, setDashboardStats] = useState({ clients: 24, employees: 42, quotations: 18, invoices: 36 });
-  const [documents, setDocuments] = useState([
-    { id: 'DOC-2409', type: 'Tax invoice', number: 'INV-2026-0048', category: 'Photogrammetry', party: 'Aster Infra Projects', amount: '₹ 2,36,000', status: 'Generated', date: '29 Sep 2026' },
-    { id: 'DOC-2408', type: 'Quotation', number: 'QT-2026-0117', category: 'Digital Solutions', party: 'Northstar Geomatics', amount: '₹ 1,18,000', status: 'Draft', date: '28 Sep 2026' },
-    { id: 'DOC-2407', type: 'Payslip', number: 'SEP-2026-TRI024', category: 'Corporate', party: 'Saraswathi A.', amount: '₹ 62,400', status: 'Generated', date: '27 Sep 2026' },
-    { id: 'DOC-2406', type: 'Purchase order', number: 'PO-2026-0089', category: 'Digital Solutions', party: 'Cedarline Retail', amount: '₹ 84,960', status: 'Generated', date: '26 Sep 2026' }
-  ]);
+  const [dashboardStats, setDashboardStats] = useState({ clients: 0, employees: 0, quotations: 0, invoices: 0 });
+  const [documents, setDocuments] = useState([]);
 
   useEffect(() => {
     const loadLiveData = async () => {
       try {
-        const [dashboardResponse, documentsResponse] = await Promise.all([
+        const [dashboardResponse, documentsResponse, clientsResponse, employeesResponse] = await Promise.all([
           fetch('/api/dashboard', { credentials: 'include' }),
-          fetch('/api/documents', { credentials: 'include' })
+          fetch('/api/documents', { credentials: 'include' }),
+          fetch('/api/clients', { credentials: 'include' }),
+          fetch('/api/employees', { credentials: 'include' })
         ]);
         if (dashboardResponse.ok) {
           const result = await dashboardResponse.json();
@@ -66,6 +53,14 @@ function App() {
         if (documentsResponse.ok) {
           const result = await documentsResponse.json();
           setDocuments(result.data.map((item) => ({ ...item, party: item.party || 'Not assigned', date: new Date(item.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) })));
+        }
+        if (clientsResponse.ok) {
+          const result = await clientsResponse.json();
+          setClients(result.data);
+        }
+        if (employeesResponse.ok) {
+          const result = await employeesResponse.json();
+          setEmployees(result.data);
         }
       } catch { /* Keep the workspace usable if the API is temporarily unavailable. */ }
     };
@@ -79,13 +74,17 @@ function App() {
 
   const openPage = (id) => { setActive(id); setMobileOpen(false); setSearch(''); };
   const addDocument = async (doc) => {
-    setDocuments((items) => [{ ...doc, id: `DOC-${2410 + items.length}`, date: '29 Sep 2026' }, ...items]);
     const type = doc.type === 'Tax invoice' ? 'invoice' : doc.type === 'Purchase order' ? 'purchase-order' : doc.type.toLowerCase();
     const response = await fetch(`/api/documents/${type}/pdf`, { method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...doc, title: doc.type, number: doc.number, party: doc.party, amount: Number(String(doc.amount || '').replace(/[^0-9.]/g, '')) || 0 }) });
     if (!response.ok) return;
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a'); link.href = url; link.download = `${doc.number || 'document'}.pdf`; link.click(); URL.revokeObjectURL(url);
+    const historyResponse = await fetch('/api/documents', { credentials: 'include' });
+    if (historyResponse.ok) {
+      const result = await historyResponse.json();
+      setDocuments(result.data.map((item) => ({ ...item, party: item.party || 'Not assigned', date: new Date(item.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) })));
+    }
   };
   const saveClients = async (next) => { const record = next[next.length - 1]; setClients(next); const response = await fetch('/api/clients', { method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record) }); if (response.ok) { const result = await response.json(); setClients((items) => [...items.slice(0, -1), result.data]); } };
   const saveEmployees = async (next) => { const record = next[next.length - 1]; setEmployees(next); const response = await fetch('/api/employees', { method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record) }); if (response.ok) { const result = await response.json(); setEmployees((items) => [...items.slice(0, -1), result.data]); } };
@@ -128,6 +127,6 @@ function Services({ services, setServices }) { const [category, setCategory] = u
 function History({ documents, search }) { const filtered = documents.filter((x) => Object.values(x).join(' ').toLowerCase().includes(search.toLowerCase())); return <><PageHeader eyebrow="Audit trail / generated output" title="Document history" description="Every draft and generated document stays traceable from creation to download." action={<button className="secondary-button"><ArrowDownToLine size={16} /> Export log</button>} /><div className="content-panel table-panel"><div className="table-toolbar"><span>{filtered.length} documents</span><span className="toolbar-note">All document types</span></div><DocumentTable documents={filtered} full /></div></>; }
 function DocumentTable({ documents, full }) { return <div className="table-wrap"><table><thead><tr><th>Document</th><th>Number</th><th>Category</th><th>Client / employee</th><th>Amount</th><th>Status</th><th>Date</th>{full && <th> </th>}</tr></thead><tbody>{documents.map((item) => <tr key={item.id}><td><strong>{item.type}</strong><small className="table-sub">{item.id}</small></td><td>{item.number}</td><td>{item.category}</td><td>{item.party}</td><td>{item.amount}</td><td><span className={item.status === 'Draft' ? 'status draft' : 'status'}>{item.status}</span></td><td>{item.date}</td>{full && <td><button className="row-action" aria-label="Preview document"><ChevronRight size={16} /></button></td>}</tr>)}</tbody></table></div>; }
 function Settings() { const [saved, setSaved] = useState(false); return <><PageHeader eyebrow="Administration / company profile" title="Company settings" description="These details flow into generated documents. Tax and banking identifiers remain editable here." action={<button className="primary-button" onClick={() => setSaved(true)}><ShieldCheck size={16} /> Save settings</button>} />{saved && <div className="notice"><ShieldCheck size={16} /> Settings saved for this workspace.</div>}<div className="settings-grid"><div className="content-panel form-panel"><span className="eyebrow">Legal identity</span><h2>Company information</h2><div className="field-grid two"><label>Company name<input defaultValue={company} /></label><label>Email<input defaultValue="info@trisetsolutions.com" /></label><label>Phone<input defaultValue="7416612292" /></label><label>Authorised signatory<input placeholder="Add signatory name" /></label><label className="wide">Registered address<textarea defaultValue={'Flat No. 201, Plot No.851,\nRamakrishnapuram, Pragatinagar,\nHyderabad, Telangana, India - 500090'} /></label></div></div><div className="content-panel form-panel"><span className="eyebrow">Tax / bank details</span><h2>Optional identifiers</h2><div className="field-grid two"><label>GSTIN<input placeholder="Not configured" /></label><label>PAN<input placeholder="Not configured" /></label><label>CIN<input placeholder="Not configured" /></label><label>UDYAM<input placeholder="Not configured" /></label><label>Default GST rate<input defaultValue="18" /></label><label>Invoice prefix<input defaultValue="INV-2026-" /></label><label>Bank name<input placeholder="Not configured" /></label><label>IFSC<input placeholder="Not configured" /></label></div></div></div></>; }
-function Generator({ kind, addDocument, openPage }) { const [preview, setPreview] = useState(false); const [saved, setSaved] = useState(false); const config = { quotation: ['Quotation', 'QT-2026-0118', 'Quotation builder', 'Northstar Geomatics'], invoice: ['Tax invoice', 'INV-2026-0049', 'Invoice engine / Photogrammetry format', 'Aster Infra Projects'], 'purchase-order': ['Purchase order', 'PO-2026-0090', 'Multi-page purchase order', 'Cedarline Retail'], payslip: ['Payslip', 'SEP-2026-TRI024', 'Corporate payslip', 'Saraswathi A.'] }[kind]; const generate = () => { setSaved(true); addDocument({ type: config[0], number: config[1], category: kind === 'payslip' ? 'Corporate' : kind === 'invoice' ? 'Photogrammetry' : 'Digital Solutions', party: config[3], amount: kind === 'payslip' ? '₹ 62,400' : '₹ 1,18,000', status: 'Generated' }); }; return <><PageHeader eyebrow={`Create / ${config[2]}`} title={config[0]} description="Build a clean A4 document from structured records, then preview or generate the PDF." action={<div className="button-pair"><button className="secondary-button" onClick={() => setPreview(true)}><FileText size={16} /> Preview</button><button className="primary-button" onClick={generate}><ArrowDownToLine size={16} /> Generate PDF</button></div>} />{saved && <div className="notice"><ShieldCheck size={16} /> {config[0]} generated and added to document history.</div>}<div className="builder-layout"><div className="content-panel form-panel"><span className="eyebrow">Document details</span><h2>Header information</h2><div className="field-grid two"><label>{config[0]} number<input defaultValue={config[1]} /></label><label>Date<input defaultValue="2026-09-29" type="date" /></label><label>Client / employee<input defaultValue={config[3]} /></label><label>Reference / PO<input placeholder="Optional reference" /></label><label className="wide">Notes<textarea placeholder="Add notes, delivery details, or terms" /></label></div><div className="line-item-heading"><h2>Line items</h2><button className="text-button"><FilePlus2 size={15} /> Add line</button></div><div className="line-item"><input defaultValue={kind === 'payslip' ? 'Basic pay' : 'Professional services'} /><input defaultValue="1" /><input defaultValue="100000" /><strong>₹ 1,00,000</strong></div><div className="line-item"><input placeholder="Description" /><input placeholder="Qty" /><input placeholder="Rate" /><strong>₹ 0</strong></div></div><div className="preview-panel"><div className="preview-toolbar"><span className="eyebrow">A4 preview</span><span>100%</span></div><div className="paper-preview"><div className="paper-head"><img src="/logo_final.png" alt="TRISET" /><span>{config[0].toUpperCase()}<br /><small>{config[1]}</small></span></div><div className="paper-rule" /><div className="paper-meta"><span><b>Bill to</b>{config[3]}<br />Accounts department<br />India</span><span><b>Document date</b>29 September 2026<br /><b>Reference</b>Pending</span></div><div className="paper-table"><div><b>Description</b><b>Qty</b><b>Rate</b><b>Amount</b></div><div><span>Professional services</span><span>1</span><span>₹ 1,00,000</span><span>₹ 1,00,000</span></div><div><span>Implementation and delivery</span><span>1</span><span>₹ 0</span><span>₹ 0</span></div></div><div className="paper-total"><span>Subtotal<br />GST (18%)<br /><b>Total</b></span><span>₹ 1,00,000<br />₹ 18,000<br /><b>₹ 1,18,000</b></span></div><div className="paper-footer">TRISET Solutions India Private Limited<br /><small>info@trisetsolutions.com · 7416612292</small></div></div></div></div>{preview && <div className="modal-backdrop" onClick={() => setPreview(false)}><div className="modal" onClick={(e) => e.stopPropagation()}><div className="modal-heading"><h2>Preview ready</h2><button className="icon-button" onClick={() => setPreview(false)} aria-label="Close preview"><X size={18} /></button></div><p>The server PDF engine will render this document at A4 when you generate it. This preview confirms the populated content and layout.</p><button className="primary-button" onClick={() => { setPreview(false); generate(); }}><ArrowDownToLine size={16} /> Generate and download</button></div></div>}</>; }
+function Generator({ kind, addDocument, openPage }) { const [preview, setPreview] = useState(false); const [saved, setSaved] = useState(false); const config = { quotation: ['Quotation', '', 'Quotation builder', ''], invoice: ['Tax invoice', '', 'Invoice engine / Photogrammetry format', ''], 'purchase-order': ['Purchase order', '', 'Multi-page purchase order', ''], payslip: ['Payslip', '', 'Corporate payslip', ''] }[kind]; const generate = () => { setSaved(true); addDocument({ type: config[0], number: config[1], category: '', party: config[3], amount: '', status: 'Generated' }); }; return <><PageHeader eyebrow={`Create / ${config[2]}`} title={config[0]} description="Build a clean A4 document from structured records, then preview or generate the PDF." action={<div className="button-pair"><button className="secondary-button" onClick={() => setPreview(true)}><FileText size={16} /> Preview</button><button className="primary-button" onClick={generate}><ArrowDownToLine size={16} /> Generate PDF</button></div>} />{saved && <div className="notice"><ShieldCheck size={16} /> {config[0]} generated and added to document history.</div>}<div className="builder-layout"><div className="content-panel form-panel"><span className="eyebrow">Document details</span><h2>Header information</h2><div className="field-grid two"><label>{config[0]} number<input defaultValue={config[1]} /></label><label>Date<input defaultValue="" type="date" /></label><label>Client / employee<input defaultValue={config[3]} /></label><label>Reference / PO<input placeholder="Optional reference" /></label><label className="wide">Notes<textarea placeholder="Add notes, delivery details, or terms" /></label></div><div className="line-item-heading"><h2>Line items</h2><button className="text-button"><FilePlus2 size={15} /> Add line</button></div><div className="line-item"><input defaultValue="" placeholder="Description" /><input defaultValue="" placeholder="Qty" /><input defaultValue="" placeholder="Rate" /><strong>₹ 0</strong></div><div className="line-item"><input placeholder="Description" /><input placeholder="Qty" /><input placeholder="Rate" /><strong>₹ 0</strong></div></div><div className="preview-panel"><div className="preview-toolbar"><span className="eyebrow">A4 preview</span><span>100%</span></div><div className="paper-preview"><div className="paper-head"><img src="/logo_final.png" alt="TRISET" /><span>{config[0].toUpperCase()}<br /><small>{config[1]}</small></span></div><div className="paper-rule" /><div className="paper-meta"><span><b>Bill to</b>{config[3]}<br />Accounts department<br />India</span><span><b>Document date</b><br /><b>Reference</b>Pending</span></div><div className="paper-table"><div><b>Description</b><b>Qty</b><b>Rate</b><b>Amount</b></div><div><span>Professional services</span><span>0</span><span>₹ 0</span><span>₹ 0</span></div><div><span>Implementation and delivery</span><span>0</span><span>₹ 0</span><span>₹ 0</span></div></div><div className="paper-total"><span>Subtotal<br />GST (18%)<br /><b>Total</b></span><span>₹ 0<br />₹ 0<br /><b>₹ 0</b></span></div><div className="paper-footer">TRISET Solutions India Private Limited<br /><small>info@trisetsolutions.com · 7416612292</small></div></div></div></div>{preview && <div className="modal-backdrop" onClick={() => setPreview(false)}><div className="modal" onClick={(e) => e.stopPropagation()}><div className="modal-heading"><h2>Preview ready</h2><button className="icon-button" onClick={() => setPreview(false)} aria-label="Close preview"><X size={18} /></button></div><p>The server PDF engine will render this document at A4 when you generate it. This preview confirms the populated content and layout.</p><button className="primary-button" onClick={() => { setPreview(false); generate(); }}><ArrowDownToLine size={16} /> Generate and download</button></div></div>}</>; }
 
 createRoot(document.getElementById('root')).render(<AuthGate><App /></AuthGate>);
