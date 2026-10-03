@@ -73,7 +73,6 @@ th,
 .global-logout:hover { border-color: #0B66FF; color: #0B66FF; }
 .paper-meta { align-items: flex-start; gap: 18px; }
 .paper-meta > span { width: 48%; min-width: 0; overflow-wrap: anywhere; }
-.paper-meta > span:first-child { max-height: 1.35em; overflow: hidden; }
 .paper-meta > span:last-child { text-align: left; }
 .paper-meta b { margin-bottom: 3px; }
 .matched-paper { padding: 0 26px 30px; }
