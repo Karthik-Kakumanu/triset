@@ -9,6 +9,7 @@ const BLACK = rgb(0, 0, 0);
 const WHITE = rgb(1, 1, 1);
 const A4 = [595.28, 841.89];
 const logoPath = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../client/public/logo_final.png');
+const DEFAULT_NOTE = 'Payment Terms: 50% advance to start the project and 50% before final deployment.';
 
 function line(page, x, y, width, thickness = 1) { page.drawRectangle({ x, y, width, height: thickness, color: MAROON }); }
 function text(page, value, x, y, size, font, color = BLACK, maxWidth = 500) { page.drawText(String(value ?? ''), { x, y, size, font, color, maxWidth }); }
@@ -55,7 +56,6 @@ export async function createBusinessPdf(document, settings = {}) {
   const billLabelY = detailsLineY - 26;
   text(page, 'BILL TO', 42, billLabelY, 8, bold);
   text(page, document.party || 'Client / employee', 42, billLabelY - 16, 11, bold);
-  wrappedText(page, document.address || 'Address to be configured', 42, billLabelY - 32, 9, regular, 270, 12);
   text(page, 'DOCUMENT DATE', 380, billLabelY, 8, bold);
   text(page, document.date || new Date().toISOString().slice(0, 10), 380, billLabelY - 16, 10, regular);
   text(page, 'REFERENCE', 380, billLabelY - 42, 8, bold);
@@ -75,7 +75,8 @@ export async function createBusinessPdf(document, settings = {}) {
   text(page, 'SUBTOTAL', 380, totalY, 8, bold); text(page, money(subtotal), 482, totalY, 9, regular);
   text(page, `GST (${appliedGstRate}%)`, 380, totalY - 18, 8, bold); text(page, money(total - subtotal), 482, totalY - 18, 9, regular);
   line(page, 370, totalY - 31, 183, 1.5); text(page, 'TOTAL', 380, totalY - 50, 10, bold); text(page, money(total), 472, totalY - 50, 10, bold);
-  text(page, 'BANK DETAILS', 42, 150, 8, bold); text(page, 'Bank details are editable in Company Settings.', 42, 135, 9, regular);
+  text(page, 'NOTE', 42, 150, 8, bold);
+  wrappedText(page, document.notes || DEFAULT_NOTE, 42, 135, 9, regular, 300, 12);
   text(page, 'AUTHORISED SIGNATORY', 420, 150, 8, bold); line(page, 420, 112, 125, .7); text(page, `For ${companyName}`, 350, 97, 8, regular);
   text(page, 'Page 1 of 1', 480, 35, 8, regular);
   await fs.mkdir(config.pdfStoragePath, { recursive: true });
