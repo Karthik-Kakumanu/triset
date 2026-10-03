@@ -42,9 +42,12 @@ export async function createBusinessPdf(document, settings = {}) {
   const email = settings.email ?? '';
   const phone = settings.phone ?? '';
   const gstRate = settings.defaultGstRate ?? 0;
-  if (logo) { const logoSize = logo.scale(1); const logoHeight = 24; page.drawImage(logo, { x: 42, y: height - 58, width: logoHeight * logoSize.width / logoSize.height, height: logoHeight }); }
-  fittedText(page, companyName, 155, height - 48, 13, bold, 215, WHITE);
-  text(page, 'Business document', 155, height - 66, 9, regular, WHITE);
+  const logoHeight = 34;
+  const logoWidth = logo ? logoHeight * logo.width / logo.height : 0;
+  const headerTextX = 42 + logoWidth + 18;
+  if (logo) page.drawImage(logo, { x: 42, y: height - 64, width: logoWidth, height: logoHeight });
+  fittedText(page, companyName, headerTextX, height - 45, 13, bold, 205, WHITE);
+  text(page, 'Business document', headerTextX, height - 64, 9, regular, WHITE);
   text(page, String(document.title || document.type || 'BUSINESS DOCUMENT').toUpperCase(), 395, height - 45, 11, bold, WHITE);
   text(page, document.number || 'DRAFT', 437, height - 63, 9, regular, WHITE);
   text(page, companyName, 42, height - 122, 10, bold);
@@ -77,7 +80,7 @@ export async function createBusinessPdf(document, settings = {}) {
   line(page, 370, totalY - 31, 183, 1.5); text(page, 'TOTAL', 380, totalY - 50, 10, bold); text(page, money(total), 472, totalY - 50, 10, bold);
   text(page, 'NOTE', 42, 150, 8, bold);
   wrappedText(page, document.notes || DEFAULT_NOTE, 42, 135, 9, regular, 300, 12);
-  text(page, 'AUTHORISED SIGNATORY', 420, 150, 8, bold); line(page, 420, 112, 125, .7); text(page, `For ${companyName}`, 350, 97, 8, regular);
+  text(page, 'AUTHORISED SIGNATORY', 420, 150, 8, bold); line(page, 420, 112, 125, .7); fittedText(page, `For ${companyName}`, 420, 97, 8, regular, 125);
   text(page, 'Page 1 of 1', 480, 35, 8, regular);
   await fs.mkdir(config.pdfStoragePath, { recursive: true });
   const bytes = await pdf.save();
