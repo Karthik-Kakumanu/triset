@@ -4302,9 +4302,19 @@ body.nav-open .theme-toggle,
 
 /* Keep the mobile drawer readable when the site is in dark mode. */
 @media (max-width: 980px) {
+  :root[data-theme='dark'] body.nav-open .site-nav {
+    background: #0b1724 !important;
+    border-color: rgba(232, 240, 248, 0.16) !important;
+  }
+
   :root[data-theme='dark'] .site-nav a,
   :root[data-theme='dark'] .site-nav .theme-toggle {
     color: #f6f9fc !important;
+  }
+
+  :root[data-theme='dark'] body.nav-open .site-nav a:not(.nav-cta) {
+    color: #f6f9fc !important;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
   }
 
   :root[data-theme='dark'] .site-nav a:hover,
