@@ -4353,3 +4353,49 @@ body.nav-open .theme-toggle,
     transform-origin: 58px 52px;
   }
 }
+
+/* Make the light/dark mode control visibly identifiable. */
+.theme-toggle .theme-bulb {
+  display: inline-flex !important;
+  width: 24px !important;
+  height: 24px !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.theme-toggle .theme-bulb svg {
+  display: block !important;
+  width: 24px !important;
+  height: 24px !important;
+  overflow: visible !important;
+}
+
+.theme-toggle .theme-bulb-glass {
+  fill: currentColor !important;
+  fill-opacity: 0.18 !important;
+  stroke: currentColor !important;
+  stroke-width: 1.5 !important;
+}
+
+.theme-toggle .theme-bulb-filament,
+.theme-toggle .theme-bulb-stem,
+.theme-toggle .theme-bulb-ridge {
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.7 !important;
+  stroke-linecap: round !important;
+}
+
+.theme-toggle .theme-bulb-base {
+  fill: currentColor !important;
+  fill-opacity: 0.85 !important;
+}
+
+.theme-toggle .theme-bulb--on {
+  color: #f4ad22 !important;
+  filter: drop-shadow(0 0 4px rgba(244, 173, 34, 0.42));
+}
+
+.theme-toggle .theme-bulb--off {
+  color: #5ca8ff !important;
+}
