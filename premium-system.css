@@ -4073,10 +4073,8 @@ body.nav-open .site-header {
 .tech-badge--sheets::before { background-image: url("https://cdn.simpleicons.org/googlesheets/34A853"); }
 .tech-badge--powerbi::before { background-image: url("https://cdn.simpleicons.org/powerbi/F2C811"); }
 
-/* Reliable local fallbacks when the external icon CDN is unavailable. */
-.tech-stack-section .tech-badge--aws::before,
-.tech-stack-section .tech-badge--excel::before,
-.tech-stack-section .tech-badge--powerbi::before {
+/* Reliable local fallback when the external icon CDN is unavailable. */
+.tech-stack-section .tech-badge--aws::before {
   background-image: none !important;
   display: grid;
   place-items: center;
@@ -4091,31 +4089,15 @@ body.nav-open .site-header {
   color: #c76b00;
 }
 
-.tech-stack-section .tech-badge--excel::before {
-  content: "X";
-  color: #217346;
-  font-size: 1.2rem;
-}
-
-.tech-stack-section .tech-badge--powerbi::before {
-  content: "BI";
-  color: #b77900;
-}
-
 .tech-badge--ocr {
-  color: #334155 !important;
-  font-size: 0.88rem !important;
+  color: transparent !important;
+  font-size: 0 !important;
   font-weight: 800 !important;
 }
 
 .tech-stack-section .tech-badge--ocr::before {
-  display: grid !important;
-  place-items: center;
-  content: "O";
-  color: #334155;
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  font-weight: 800;
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%235B5BD6' d='M10 5h20l8 8v30H10z'/%3E%3Cpath fill='%23fff' d='M30 5v10h8z'/%3E%3Cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-width='3' d='M16 23h16M16 30h16M16 37h10'/%3E%3Cpath fill='none' stroke='%23F2C811' stroke-linecap='round' stroke-width='3' d='M34 34l7 7M32 27a7 7 0 1 0 0 14 7 7 0 0 0 0-14Z'/%3E%3C/svg%3E");
 }
 
 :root[data-theme='dark'] .tech-stack-section .tech-card {
