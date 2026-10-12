@@ -2117,6 +2117,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   padding: .72rem .68rem .85rem;
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
   transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+  min-width: 0;
+  overflow: hidden;
 }
 
 .tech-card:hover {
@@ -2174,6 +2176,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   margin: 0 0 .7rem;
   text-align: center;
   font-size: .9rem;
+  line-height: 1.15;
+  min-height: 2.3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-wrap: anywhere;
   color: var(--ink);
   letter-spacing: -.03em;
   font-weight: 600;
@@ -2189,6 +2197,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   font-size: .54rem;
   letter-spacing: .09em;
   font-weight: 700;
+  min-width: 0;
+}
+
+.tech-metric span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .tech-metric strong {
@@ -4057,14 +4073,49 @@ body.nav-open .site-header {
 .tech-badge--sheets::before { background-image: url("https://cdn.simpleicons.org/googlesheets/34A853"); }
 .tech-badge--powerbi::before { background-image: url("https://cdn.simpleicons.org/powerbi/F2C811"); }
 
+/* Reliable local fallbacks when the external icon CDN is unavailable. */
+.tech-stack-section .tech-badge--aws::before,
+.tech-stack-section .tech-badge--excel::before,
+.tech-stack-section .tech-badge--powerbi::before {
+  background-image: none !important;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.tech-stack-section .tech-badge--aws::before {
+  content: "AWS";
+  color: #c76b00;
+}
+
+.tech-stack-section .tech-badge--excel::before {
+  content: "X";
+  color: #217346;
+  font-size: 1.2rem;
+}
+
+.tech-stack-section .tech-badge--powerbi::before {
+  content: "BI";
+  color: #b77900;
+}
+
 .tech-badge--ocr {
   color: #334155 !important;
   font-size: 0.88rem !important;
   font-weight: 800 !important;
 }
 
-.tech-badge--ocr::before {
-  display: none !important;
+.tech-stack-section .tech-badge--ocr::before {
+  display: grid !important;
+  place-items: center;
+  content: "O";
+  color: #334155;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 800;
 }
 
 :root[data-theme='dark'] .tech-stack-section .tech-card {

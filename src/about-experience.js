@@ -81,7 +81,8 @@
     'Bhanu Chennamsetty': 'assets/dataentry.webp',
     'Karthik Kakumanu': 'assets/web_development.jpeg',
     'Poonam Purohit': 'assets/app_development.jpeg',
-    'Sowjanya Yenuganti': 'assets/digital_mark.jpg'
+    'Sowjanya Yenuganti': 'assets/digital_mark.jpg',
+    'Jayanth Mukkala': 'assets/e-commerce.jpg'
   };
 
   function normalizeMember(member) {
