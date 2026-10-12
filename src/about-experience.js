@@ -80,8 +80,9 @@
     'Ramu Tiruveedula': 'assets/ramu.jpg',
     'Bhanu Chennamsetty': 'assets/dataentry.webp',
     'Karthik Kakumanu': 'assets/web_development.jpeg',
-    'Poonam Purohit': 'assets/app_development.jpeg',
-    'Sowjanya Yenuganti': 'assets/digital_mark.jpg',
+    'Nagendram': 'assets/app_development.jpeg',
+    'Swetha': 'assets/digital_mark.jpg',
+    'Sirisha': 'assets/e-commerce.jpg',
     'Jayanth Mukkala': 'assets/e-commerce.jpg'
   };
 

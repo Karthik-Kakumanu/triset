@@ -211,9 +211,9 @@ window.siteData = {
     ['Ramu Tiruveedula', 'Photogrammetry', 'Over 15 years of experience'],
     ['Bhanu Chennamsetty', 'Data Entry', 'Over 6 years of experience'],
     ['Karthik Kakumanu', 'Web Developer', 'Over 5 years of experience'],
-    ['Poonam Purohit', 'App Developer', 'Over 3 years of experience'],
-    ['Sowjanya Yenuganti', 'Digital Marketing', 'Over 3 years of experience'],
-    ['Karthik Kakumanu', 'E-Commerce', 'Over 3 years of experience']
+    ['Nagendram', 'App Developer', 'Over 3 years of experience'],
+    ['Swetha', 'Digital Marketing', 'Over 3 years of experience'],
+    ['Sirisha', 'E-Commerce', 'Over 3 years of experience']
   ]
 };
 
