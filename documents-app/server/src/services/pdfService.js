@@ -75,7 +75,7 @@ export async function createBusinessPdf(document, settings = {}) {
     const documentTitle = isInvoice ? 'TAX INVOICE' : isPurchaseOrder ? 'PURCHASE ORDER' : isPayslip ? 'PAYSLIP' : 'QUOTATION';
     const documentSubject = document.subject || (isInvoice ? 'Business Services' : isPurchaseOrder ? 'Supply Order' : isPayslip ? 'Salary Statement' : 'Website Development');
     const recipientLabel = isInvoice ? 'BILL TO' : isPurchaseOrder ? 'VENDOR / SUPPLIER' : isPayslip ? 'EMPLOYEE' : 'QUOTATION FOR';
-    const headerTextX = 380;
+    const headerTextX = 410;
     const titleRight = headerTextX + bold.widthOfTextAtSize(documentTitle, 14);
     text(page, documentTitle, headerTextX, 776, 14, bold, ink);
     fittedRightText(page, String(documentSubject).toUpperCase(), titleRight, 757, 8, regular, 200, blue);
