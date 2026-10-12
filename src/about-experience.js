@@ -83,7 +83,6 @@
     'Nagendram': 'assets/app_development.jpeg',
     'Swetha': 'assets/digital_mark.jpg',
     'Sirisha': 'assets/e-commerce.jpg',
-    'Jayanth Mukkala': 'assets/e-commerce.jpg'
   };
 
   function normalizeMember(member) {
