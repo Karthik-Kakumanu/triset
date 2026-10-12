@@ -12,6 +12,7 @@ const logoPath = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../
 const DEFAULT_NOTE = 'Payment Terms: 50% advance to start the project and 50% before final deployment.';
 
 function line(page, x, y, width, thickness = 1) { page.drawRectangle({ x, y, width, height: thickness, color: MAROON }); }
+function coloredLine(page, x, y, width, thickness, color) { page.drawRectangle({ x, y, width, height: thickness, color }); }
 function text(page, value, x, y, size, font, color = BLACK, maxWidth = 500) { page.drawText(String(value ?? ''), { x, y, size, font, color, maxWidth }); }
 function rightText(page, value, right, y, size, font, color = BLACK) { const content = String(value ?? ''); text(page, content, right - font.widthOfTextAtSize(content, size), y, size, font, color); }
 function fittedText(page, value, x, y, size, font, maxWidth, color = BLACK) { let fitted = size; while (fitted > 7 && font.widthOfTextAtSize(String(value ?? ''), fitted) > maxWidth) fitted -= 0.5; text(page, value, x, y, fitted, font, color, maxWidth); }
@@ -41,7 +42,6 @@ export async function createBusinessPdf(document, settings = {}) {
   const [width, height] = A4;
   let logo;
   try { logo = await pdf.embedPng(await fs.readFile(logoPath)); } catch { logo = null; }
-  page.drawRectangle({ x: 0, y: height - 86, width, height: 86, color: MAROON });
   const companyName = settings.companyName ?? '';
   const address = settings.address ?? '';
   const email = settings.email ?? '';
@@ -73,13 +73,14 @@ export async function createBusinessPdf(document, settings = {}) {
     const documentSubject = document.subject || (isInvoice ? 'Business Services' : isPurchaseOrder ? 'Supply Order' : isPayslip ? 'Salary Statement' : 'Website Development');
     const recipientLabel = isInvoice ? 'BILL TO' : isPurchaseOrder ? 'VENDOR / SUPPLIER' : isPayslip ? 'EMPLOYEE' : 'QUOTATION FOR';
     text(page, documentTitle, 350, 776, 14, bold, ink);
-    fittedText(page, documentSubject, 350, 757, 8, regular, 200, blue);
-    line(page, 45, 730, 505, 1.7);
+    fittedText(page, String(documentSubject).toUpperCase(), 350, 757, 8, regular, 200, blue);
+    coloredLine(page, 45, 730, 505, 1.7, blue);
     text(page, companyName, 45, 702, 10, bold, ink);
-    const addressLines = String(address || '').split(/\r?\n|,\s*(?=[A-Z][a-z]+,)/).filter(Boolean).slice(0, 2);
-    const addressText = addressLines.length ? addressLines : [address];
-    addressText.forEach((value, index) => text(page, value, 45, 682 - index * 12, 8, regular, muted));
-    text(page, `${email} | ${phone}`, 45, 658 - (addressText.length - 2) * 12, 8, regular, muted);
+    const addressText = String(address || '').split(/\r?\n/).map((value) => value.trim()).filter(Boolean);
+    const addressLineCount = addressText.length
+      ? addressText.slice(0, 2).reduce((count, value, index) => count + wrappedText(page, value, 45, 682 - index * 12, 8, regular, 365, 12, muted), 0)
+      : 0;
+    text(page, `${email} | ${phone}`, 45, 658 - Math.max(0, addressLineCount - 2) * 12, 8, regular, muted);
     text(page, 'DOCUMENT DATE', 416, 704, 7.3, bold, muted);
     text(page, quotationDate(document.date), 416, 686, 9, regular, ink);
     text(page, 'REFERENCE', 416, 665, 7.3, bold, muted);
@@ -96,7 +97,7 @@ export async function createBusinessPdf(document, settings = {}) {
     text(page, 'AMOUNT', 485, 519, 7.5, bold, WHITE);
     quotationItems.forEach((item, index) => {
       const y = 482 - index * 49;
-      line(page, 45, y - 24, 505, .5);
+      coloredLine(page, 45, y - 24, 505, .5, border);
       fittedText(page, item.description || 'Service item', 57, y, 9, regular, 270, ink);
       text(page, item.quantity || 1, 361, y, 9, regular, ink);
       rightText(page, amount(item.rate), 470, y + 3, 9, regular, ink);
@@ -106,7 +107,7 @@ export async function createBusinessPdf(document, settings = {}) {
     text(page, isPayslip ? 'Payroll amounts in INR' : 'All amounts in INR', 45, 340, 7.5, regular, muted);
     text(page, 'SUBTOTAL', 347, 324, 8, bold, muted);
     rightText(page, `INR ${amount(subtotal)}`, 550, 319, 10, regular, ink);
-    line(page, 339, 307, 211, 1);
+    coloredLine(page, 339, 307, 211, 1, blue);
     text(page, 'TOTAL', 347, 286, 10, bold, blue);
     rightText(page, `INR ${amount(total)}`, 550, 281, 13, bold, ink);
     text(page, 'Before applicable taxes, if any.', 347, 264, 7.5, regular, muted);
@@ -137,6 +138,7 @@ export async function createBusinessPdf(document, settings = {}) {
     return { filename, filePath, bytes };
   }
 
+  page.drawRectangle({ x: 0, y: height - 86, width, height: 86, color: MAROON });
   if (logo) page.drawImage(logo, { x: 42, y: height - 64, width: logoWidth, height: logoHeight });
   fittedText(page, companyName, headerTextX, height - 45, 13, bold, 205, WHITE);
   text(page, 'Business document', headerTextX, height - 64, 9, regular, WHITE);
