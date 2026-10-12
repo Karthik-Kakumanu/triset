@@ -124,7 +124,8 @@ export async function createBusinessPdf(document, settings = {}) {
     text(page, termsLabel, 58, 168, 8, bold, ink);
     wrappedText(page, termsText, 58, 147, 9, regular, 270, 13.5, muted);
     text(page, 'AUTHORISED SIGNATORY', 360, 168, 7.5, bold, muted);
-    text(page, settings.authorisedSignatory || '', 360, 138, 10, regular, muted);
+    // Keep the signatory name blank in quotation-style documents.
+    text(page, '', 360, 138, 10, regular, muted);
     wrappedText(page, `For ${companyName}`, 360, 122, 7.5, regular, 150, 11.25, muted);
     const closingText = isInvoice ? 'Thank you for your business.' : isPurchaseOrder ? 'Thank you for your order.' : isPayslip ? 'This payslip is confidential.' : 'Thank you for considering Triset Solutions for your project.';
     text(page, closingText, 45, 78, 7.5, regular, muted);
