@@ -10,6 +10,7 @@ const WHITE = rgb(1, 1, 1);
 const A4 = [595.28, 841.89];
 const logoPath = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../client/public/logo_final.png');
 const DEFAULT_NOTE = 'Payment Terms: 50% advance to start the project and 50% before final deployment.';
+const DEFAULT_AUTHORISED_SIGNATORY = 'Ch. Venkatesh';
 
 function line(page, x, y, width, thickness = 1) { page.drawRectangle({ x, y, width, height: thickness, color: MAROON }); }
 function coloredLine(page, x, y, width, thickness, color) { page.drawRectangle({ x, y, width, height: thickness, color }); }
@@ -124,8 +125,7 @@ export async function createBusinessPdf(document, settings = {}) {
     text(page, termsLabel, 58, 168, 8, bold, ink);
     wrappedText(page, termsText, 58, 147, 9, regular, 270, 13.5, muted);
     text(page, 'AUTHORISED SIGNATORY', 360, 168, 7.5, bold, muted);
-    // Keep the signatory name blank in quotation-style documents.
-    text(page, '', 360, 138, 10, regular, muted);
+    text(page, DEFAULT_AUTHORISED_SIGNATORY, 360, 138, 10, bold, ink);
     wrappedText(page, `For ${companyName}`, 360, 122, 7.5, regular, 150, 11.25, muted);
     const closingText = isInvoice ? 'Thank you for your business.' : isPurchaseOrder ? 'Thank you for your order.' : isPayslip ? 'This payslip is confidential.' : 'Thank you for considering Triset Solutions for your project.';
     text(page, closingText, 45, 78, 7.5, regular, muted);
@@ -184,7 +184,7 @@ export async function createBusinessPdf(document, settings = {}) {
     text(page, 'NOTE', 42, 150, 8, bold);
     wrappedText(page, document.notes || DEFAULT_NOTE, 42, 135, 9, regular, 300, 12);
   }
-  text(page, 'AUTHORISED SIGNATORY', 420, 150, 8, bold); line(page, 420, 112, 125, .7); fittedText(page, `For ${companyName}`, 420, 97, 8, regular, 125);
+  text(page, 'AUTHORISED SIGNATORY', 420, 150, 8, bold); text(page, DEFAULT_AUTHORISED_SIGNATORY, 420, 117, 10, bold); fittedText(page, `For ${companyName}`, 420, 97, 8, regular, 125);
   text(page, 'Page 1 of 1', 480, 35, 8, regular);
   if (isQuotation) text(page, 'Thank you for considering TRISET Solutions for your project.', 42, 55, 8, regular);
   await fs.mkdir(config.pdfStoragePath, { recursive: true });
