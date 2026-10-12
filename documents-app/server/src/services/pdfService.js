@@ -8,7 +8,7 @@ const MAROON = rgb(11 / 255, 102 / 255, 255 / 255);
 const BLACK = rgb(0, 0, 0);
 const WHITE = rgb(1, 1, 1);
 const A4 = [595.28, 841.89];
-const logoPath = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../client/public/logo_final.png');
+const logoPath = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../assets/logo_final.png');
 const DEFAULT_NOTE = 'Payment Terms: 50% advance to start the project and 50% before final deployment.';
 const DEFAULT_AUTHORISED_SIGNATORY = 'Ch. Venkatesh';
 
@@ -17,6 +17,8 @@ function coloredLine(page, x, y, width, thickness, color) { page.drawRectangle({
 function text(page, value, x, y, size, font, color = BLACK, maxWidth = 500) { page.drawText(String(value ?? ''), { x, y, size, font, color, maxWidth }); }
 function rightText(page, value, right, y, size, font, color = BLACK) { const content = String(value ?? ''); text(page, content, right - font.widthOfTextAtSize(content, size), y, size, font, color); }
 function fittedText(page, value, x, y, size, font, maxWidth, color = BLACK) { let fitted = size; while (fitted > 7 && font.widthOfTextAtSize(String(value ?? ''), fitted) > maxWidth) fitted -= 0.5; text(page, value, x, y, fitted, font, color, maxWidth); }
+function fittedRightText(page, value, right, y, size, font, maxWidth, color = BLACK) { let fitted = size; while (fitted > 7 && font.widthOfTextAtSize(String(value ?? ''), fitted) > maxWidth) fitted -= 0.5; rightText(page, value, right, y, fitted, font, color); }
+function centeredText(page, value, center, y, size, font, color = BLACK) { const content = String(value ?? ''); text(page, content, center - font.widthOfTextAtSize(content, size) / 2, y, size, font, color); }
 function wrappedText(page, value, x, y, size, font, maxWidth, lineHeight = size + 3, color = MAROON) {
   const words = String(value ?? '').split(/\s+/).filter(Boolean);
   const lines = [];
@@ -73,8 +75,9 @@ export async function createBusinessPdf(document, settings = {}) {
     const documentTitle = isInvoice ? 'TAX INVOICE' : isPurchaseOrder ? 'PURCHASE ORDER' : isPayslip ? 'PAYSLIP' : 'QUOTATION';
     const documentSubject = document.subject || (isInvoice ? 'Business Services' : isPurchaseOrder ? 'Supply Order' : isPayslip ? 'Salary Statement' : 'Website Development');
     const recipientLabel = isInvoice ? 'BILL TO' : isPurchaseOrder ? 'VENDOR / SUPPLIER' : isPayslip ? 'EMPLOYEE' : 'QUOTATION FOR';
+    const titleRight = 350 + bold.widthOfTextAtSize(documentTitle, 14);
     text(page, documentTitle, 350, 776, 14, bold, ink);
-    fittedText(page, String(documentSubject).toUpperCase(), 350, 757, 8, regular, 200, blue);
+    fittedRightText(page, String(documentSubject).toUpperCase(), titleRight, 757, 8, regular, 200, blue);
     coloredLine(page, 45, 730, 505, 1.7, blue);
     text(page, companyName, 45, 702, 10, bold, ink);
     const addressText = String(address || '').split(/\r?\n/).map((value) => value.trim()).filter(Boolean);
@@ -128,9 +131,9 @@ export async function createBusinessPdf(document, settings = {}) {
     text(page, DEFAULT_AUTHORISED_SIGNATORY, 360, 138, 10, bold, ink);
     wrappedText(page, `For ${companyName}`, 360, 122, 7.5, regular, 150, 11.25, muted);
     const closingText = isInvoice ? 'Thank you for your business.' : isPurchaseOrder ? 'Thank you for your order.' : isPayslip ? 'This payslip is confidential.' : 'Thank you for considering Triset Solutions for your project.';
-    text(page, closingText, 45, 78, 7.5, regular, muted);
+    centeredText(page, closingText, width / 2, 78, 7.5, regular, muted);
     page.drawRectangle({ x: 45, y: 46, width: 505, height: 23, color: pale });
-    text(page, 'Triset Solutions India Pvt Ltd | Confidential - For Official Use Only', 79, 55, 7, regular, muted);
+    centeredText(page, 'Triset Solutions India Pvt Ltd | Confidential - For Official Use Only', width / 2, 55, 7, regular, muted);
     await fs.mkdir(config.pdfStoragePath, { recursive: true });
     const bytes = await pdf.save();
     const filename = `${String(document.number || 'document').replace(/[^a-z0-9_-]/gi, '_')}.pdf`;
