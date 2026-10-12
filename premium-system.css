@@ -4100,6 +4100,17 @@ body.nav-open .site-header {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%235B5BD6' d='M10 5h20l8 8v30H10z'/%3E%3Cpath fill='%23fff' d='M30 5v10h8z'/%3E%3Cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-width='3' d='M16 23h16M16 30h16M16 37h10'/%3E%3Cpath fill='none' stroke='%23F2C811' stroke-linecap='round' stroke-width='3' d='M34 34l7 7M32 27a7 7 0 1 0 0 14 7 7 0 0 0 0-14Z'/%3E%3C/svg%3E");
 }
 
+/* Embedded brand marks keep these two icons visible even when the CDN is blocked. */
+.tech-stack-section .tech-badge--excel::before {
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%23217346' d='M10 4h21l8 8v32H10z'/%3E%3Cpath fill='%2333A852' d='M31 4v10h8z'/%3E%3Cpath fill='%23fff' d='m15 18 5 6-5 6h5l3-4 3 4h5l-5-6 5-6h-5l-3 4-3-4z'/%3E%3C/svg%3E") !important;
+}
+
+.tech-stack-section .tech-badge--powerbi::before {
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%23F2C811' d='M10 35h7V20h-7zm10 0h7V13h-7zm10 0h7V7h-7z'/%3E%3Ccircle cx='35' cy='11' r='4' fill='%23F2C811'/%3E%3Cpath fill='%23D9A900' d='M10 38h27v3H10z'/%3E%3C/svg%3E") !important;
+}
+
 :root[data-theme='dark'] .tech-stack-section .tech-card {
   background: rgba(255, 255, 255, 0.96) !important;
   border-color: rgba(255, 255, 255, 0.18) !important;
