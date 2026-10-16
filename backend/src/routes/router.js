@@ -49,7 +49,7 @@ const routeFiles = new Map([
   ['/', 'index.html'],
   ['/about', 'about.html'],
   ['/services', 'services.html'],
-  ['/solutions', 'solutions.html'],
+  ['/industries', 'solutions.html'],
   ['/work', 'projects.html'],
   ['/projects', 'projects.html'],
   ['/careers', 'careers.html'],
@@ -61,6 +61,7 @@ const routeFiles = new Map([
 ]);
 
 const legacyRedirects = new Map([
+  ['/solutions', '/industries'],
   ['/web_development_service.php', '/services#web-development'],
   ['/app-development_service.php', '/services#app-development'],
   ['/e-commerce_service.php', '/services#e-commerce'],
