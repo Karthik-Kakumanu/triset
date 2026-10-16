@@ -297,7 +297,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function animateThemeSwitch(targetTheme) {
+    // Theme changes should feel immediate; keep the control responsive and
+    // avoid delaying the page style update with the decorative transition.
     if (themeMotion.active) return;
+    setTheme(targetTheme);
+    return;
 
     const sourceTheme = root.dataset.theme === 'dark' ? 'dark' : 'light';
     const toDark = targetTheme === 'dark';
