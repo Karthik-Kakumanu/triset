@@ -443,9 +443,11 @@ document.addEventListener('DOMContentLoaded', () => {
     return micro;
   }
 
-  const themeMicro = createThemeMicro();
+  // Keep the light/dark control, but do not add the decorative character.
+  const themeMicro = null;
 
   function positionThemeMicro() {
+    if (!themeMicro) return;
     const mobileToggle = document.querySelector('.mobile-theme-toggle');
     const navToggle = siteNav ? siteNav.querySelector('[data-theme-toggle]') : themeToggle;
     const useMobile = window.matchMedia('(max-width: 980px)').matches && mobileToggle;
