@@ -4695,7 +4695,9 @@ body.nav-open .theme-toggle,
   width: 100%;
   max-height: 165px;
   object-fit: contain;
-  mix-blend-mode: multiply;
+  /* The generated illustrations use a dark presentation backdrop; screen keeps
+     that backdrop visually transparent against each pastel service card. */
+  mix-blend-mode: screen;
   transition: transform .35s var(--ease);
 }
 .service-card-link:hover .service-pill-panel > img { transform: scale(1.06); }
