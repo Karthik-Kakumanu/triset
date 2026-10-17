@@ -31,6 +31,47 @@ document.addEventListener('DOMContentLoaded', () => {
 	    document.body.insertBefore(marquee, siteHeader);
 	  }
 
+	  // Services mega-menu shared by every public page.
+	  const servicesLink = siteNav && Array.from(siteNav.querySelectorAll('a')).find((link) => link.textContent.trim() === 'Services');
+	  if (servicesLink && !siteNav.querySelector('.services-nav-item')) {
+	    const servicesItem = document.createElement('div');
+	    servicesItem.className = 'services-nav-item';
+	    servicesLink.parentNode.insertBefore(servicesItem, servicesLink);
+	    servicesItem.appendChild(servicesLink);
+	    servicesLink.setAttribute('aria-haspopup', 'true');
+	    servicesLink.setAttribute('aria-expanded', 'false');
+	    servicesItem.insertAdjacentHTML('beforeend', `
+	      <div class="services-mega-menu" role="menu" aria-label="Services menu">
+	        <div class="services-mega-column">
+	          <a class="services-mega-title" href="services.html#digital-marketing">Digital Marketing</a>
+	          <a href="services.html#digital-marketing">SEO &amp; Local SEO</a><a href="services.html#digital-marketing">Technical SEO</a><a href="services.html#digital-marketing">PPC &amp; Paid Ads</a><a href="services.html#digital-marketing">Social Media Marketing</a><a href="services.html#digital-marketing">Email &amp; Content Marketing</a>
+	        </div>
+	        <div class="services-mega-column">
+	          <a class="services-mega-title" href="services.html#web-development">Web Development</a>
+	          <a href="services.html#web-development">Custom Web Development</a><a href="services.html#web-development">WordPress</a><a href="services.html#web-development">Shopify</a><a href="services.html#web-development">UI/UX &amp; API Integration</a>
+	        </div>
+	        <div class="services-mega-column">
+	          <a class="services-mega-title" href="services.html#app-development">App Development</a>
+	          <a href="services.html#app-development">Android Apps</a><a href="services.html#app-development">iOS Apps</a><a href="services.html#app-development">Cross-Platform Apps</a><a href="services.html#app-development">App UI/UX</a>
+	        </div>
+	        <div class="services-mega-column">
+	          <a class="services-mega-title" href="services.html#data-entry">Data Entry</a>
+	          <a href="services.html#data-entry">Data Entry Services</a><a href="services.html#data-entry">Data Processing</a><a href="services.html#data-entry">Data Cleansing</a><a href="services.html#data-entry">Data Conversion</a><a href="services.html#data-entry">Document Digitization</a>
+	        </div>
+	        <div class="services-mega-column">
+	          <a class="services-mega-title" href="services.html#photogrammetry">Photogrammetry</a>
+	          <a href="services.html#photogrammetry">Image Analysis</a><a href="services.html#photogrammetry">3D Modeling</a><a href="services.html#photogrammetry">Mapping &amp; Cartography</a><a href="services.html#photogrammetry">DEM &amp; Orthophoto</a><a href="services.html#photogrammetry">LiDAR, GIS &amp; Drone Services</a>
+	        </div>
+	      </div>`);
+
+	    servicesItem.addEventListener('mouseenter', () => servicesLink.setAttribute('aria-expanded', 'true'));
+	    servicesItem.addEventListener('mouseleave', () => servicesLink.setAttribute('aria-expanded', 'false'));
+	    servicesItem.addEventListener('focusin', () => servicesLink.setAttribute('aria-expanded', 'true'));
+	    servicesItem.addEventListener('focusout', (event) => {
+	      if (!servicesItem.contains(event.relatedTarget)) servicesLink.setAttribute('aria-expanded', 'false');
+	    });
+	  }
+
   const storedTheme = localStorage.getItem('triset-theme');
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
