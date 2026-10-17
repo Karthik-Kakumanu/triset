@@ -5675,6 +5675,49 @@ body.nav-open .theme-toggle,
 }
 
 @media (max-width: 720px) {
+  body.nav-open { overflow: hidden; }
+  .site-nav.open {
+    left: .75rem !important;
+    right: .75rem !important;
+    width: calc(100vw - 1.5rem) !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+    max-height: calc(100dvh - 84px) !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    padding: .65rem !important;
+  }
+  .services-nav-item,
+  .industries-nav-item {
+    flex: 0 0 auto;
+  }
+  .services-nav-item .services-mega-menu,
+  .industries-nav-item .industries-dropdown {
+    position: static !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+  }
+  .services-nav-item:focus-within .services-mega-menu,
+  .industries-nav-item:focus-within .industries-dropdown {
+    display: none;
+  }
+  .services-nav-item.is-open:focus-within .services-mega-menu,
+  .industries-nav-item.is-open:focus-within .industries-dropdown {
+    display: grid;
+  }
+  .services-mega-column,
+  .services-mega-column a,
+  .industries-dropdown a {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+@media (max-width: 720px) {
   .services-nav-item.is-open .services-mega-menu,
   .industries-nav-item.is-open .industries-dropdown {
     display: grid;
