@@ -5575,6 +5575,22 @@ body.nav-open .theme-toggle,
 .footer-bottom > span:last-child { display: inline-flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: .2rem .9rem; text-align: right; }
 .footer-credit { color: #50c8ff; }
 
+/* Dedicated legal pages: keep content below the fixed marquee and header. */
+.legal-page main { padding-top: calc(76px + var(--company-marquee-height)); }
+.legal-page .legal-hero { margin-top: 0; padding: clamp(4.5rem, 9vw, 7rem) 0; }
+.legal-page .legal-hero h1 { max-width: 920px; }
+.legal-page .legal-hero .lead { max-width: 720px; }
+.legal-privacy .legal-hero { background: linear-gradient(135deg, #08233f, #145b9f); }
+.legal-terms .legal-hero { background: linear-gradient(135deg, #24173f, #6945a8); }
+.legal-disclaimer .legal-hero { background: linear-gradient(135deg, #123c39, #13806e); }
+.legal-page .section { padding-top: clamp(3rem, 7vw, 6rem); }
+@media (max-width: 720px) {
+  .legal-page main { padding-top: calc(58px + var(--company-marquee-height)); }
+  .legal-page .legal-hero { padding: 3.5rem 0 3rem; }
+  .legal-page .legal-hero h1 { font-size: clamp(2.4rem, 12vw, 4rem); line-height: 1; }
+  .legal-page .legal-hero .lead { font-size: .98rem; line-height: 1.55; }
+}
+
 /* Service detail pages: a richer, branded presentation shared by all five services. */
 .service-detail-page {
   --service-accent: #0b66ff;
