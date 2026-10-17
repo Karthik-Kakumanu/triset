@@ -28,7 +28,7 @@ function validateContact(payload) {
   const errors = {};
   if (data.website) errors.website = 'Spam check failed.';
   if (!data.name || data.name.length < 2) errors.name = 'Name must be at least 2 characters.';
-  if (!data.email || !isEmail(data.email)) errors.email = 'Enter a valid email address.';
+  if (data.email && !isEmail(data.email)) errors.email = 'Enter a valid email address.';
   if (data.phone && !isPhone(data.phone)) errors.phone = 'Enter a valid phone number.';
   if (!data.message || data.message.length < 10) errors.message = 'Message must be at least 10 characters.';
 

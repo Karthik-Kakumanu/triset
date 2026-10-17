@@ -56,6 +56,25 @@ document.addEventListener('DOMContentLoaded', () => {
 	    floatingActions.querySelector('[data-scroll-top]').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 	  }
 
+	  const footer = document.querySelector('.footer');
+	  if (footer && !footer.querySelector('.footer-service-directory')) {
+	    footer.innerHTML = `
+	      <div class="container">
+	        <div class="footer-intro">
+	          <div><a class="footer-brand" href="index.html">TRISET<small>Solutions India Pvt. Ltd.</small></a><p>Digital and geo-spatial solutions from Hyderabad, India.</p></div>
+	          <div class="footer-contact"><a href="mailto:info@trisetsolutions.com">info@trisetsolutions.com</a><a href="tel:+917382819292">+91 7382 819 292</a><a href="contact.html">Start a project →</a></div>
+	        </div>
+	        <div class="footer-service-directory">
+	          <div class="footer-service-column"><h3>Data Entry</h3><a href="data-entry.html">Data Entry Services</a><a href="data-entry.html">Data Processing</a><a href="data-entry.html">Data Cleansing</a><a href="data-entry.html">Data Conversion</a><a href="data-entry.html">Document Digitization</a></div>
+	          <div class="footer-service-column"><h3>Photogrammetry</h3><a href="photogrammetry.html">Image Analysis</a><a href="photogrammetry.html">3D Modeling</a><a href="photogrammetry.html">Mapping &amp; Cartography</a><a href="photogrammetry.html">DEM &amp; Orthophoto</a><a href="photogrammetry.html">LiDAR, GIS &amp; Drone Services</a></div>
+	          <div class="footer-service-column"><h3>Web Development</h3><a href="web-development.html">Custom Web Development</a><a href="web-development.html">WordPress</a><a href="web-development.html">Shopify</a><a href="web-development.html">UI/UX Design</a><a href="web-development.html">API Integration</a></div>
+	          <div class="footer-service-column"><h3>App Development</h3><a href="app-development.html">Android Apps</a><a href="app-development.html">iOS Apps</a><a href="app-development.html">Cross-Platform Apps</a><a href="app-development.html">App UI/UX</a><a href="app-development.html">Integrations &amp; Support</a></div>
+	          <div class="footer-service-column"><h3>Digital Marketing</h3><a href="digital-marketing.html">SEO &amp; Local SEO</a><a href="digital-marketing.html">Technical SEO</a><a href="digital-marketing.html">PPC &amp; Paid Ads</a><a href="digital-marketing.html">Social Media</a><a href="digital-marketing.html">Email &amp; Content Marketing</a></div>
+	        </div>
+	        <div class="footer-bottom"><span>© 2026 TRISET Solutions India Pvt. Ltd. All rights reserved.</span><span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span></div>
+	      </div>`;
+	  }
+
 	  // Services mega-menu shared by every public page.
 	  const servicesLink = siteNav && Array.from(siteNav.querySelectorAll('a')).find((link) => link.textContent.trim() === 'Services');
 	  if (servicesLink && !siteNav.querySelector('.services-nav-item')) {
@@ -68,24 +87,24 @@ document.addEventListener('DOMContentLoaded', () => {
 	    servicesItem.insertAdjacentHTML('beforeend', `
 	      <div class="services-mega-menu" role="menu" aria-label="Services menu">
 	        <div class="services-mega-column">
-	          <a class="services-mega-title" href="services.html#digital-marketing">Digital Marketing</a>
-	          <a href="services.html#digital-marketing">SEO &amp; Local SEO</a><a href="services.html#digital-marketing">Technical SEO</a><a href="services.html#digital-marketing">PPC &amp; Paid Ads</a><a href="services.html#digital-marketing">Social Media Marketing</a><a href="services.html#digital-marketing">Email &amp; Content Marketing</a>
+	          <a class="services-mega-title" href="digital-marketing.html">Digital Marketing</a>
+	          <a href="digital-marketing.html">SEO &amp; Local SEO</a><a href="digital-marketing.html">Technical SEO</a><a href="digital-marketing.html">PPC &amp; Paid Ads</a><a href="digital-marketing.html">Social Media Marketing</a><a href="digital-marketing.html">Email &amp; Content Marketing</a>
 	        </div>
 	        <div class="services-mega-column">
-	          <a class="services-mega-title" href="services.html#web-development">Web Development</a>
-	          <a href="services.html#web-development">Custom Web Development</a><a href="services.html#web-development">WordPress</a><a href="services.html#web-development">Shopify</a><a href="services.html#web-development">UI/UX &amp; API Integration</a>
+	          <a class="services-mega-title" href="web-development.html">Web Development</a>
+	          <a href="web-development.html">Custom Web Development</a><a href="web-development.html">WordPress</a><a href="web-development.html">Shopify</a><a href="web-development.html">UI/UX &amp; API Integration</a>
 	        </div>
 	        <div class="services-mega-column">
-	          <a class="services-mega-title" href="services.html#app-development">App Development</a>
-	          <a href="services.html#app-development">Android Apps</a><a href="services.html#app-development">iOS Apps</a><a href="services.html#app-development">Cross-Platform Apps</a><a href="services.html#app-development">App UI/UX</a>
+	          <a class="services-mega-title" href="app-development.html">App Development</a>
+	          <a href="app-development.html">Android Apps</a><a href="app-development.html">iOS Apps</a><a href="app-development.html">Cross-Platform Apps</a><a href="app-development.html">App UI/UX</a>
 	        </div>
 	        <div class="services-mega-column">
-	          <a class="services-mega-title" href="services.html#data-entry">Data Entry</a>
-	          <a href="services.html#data-entry">Data Entry Services</a><a href="services.html#data-entry">Data Processing</a><a href="services.html#data-entry">Data Cleansing</a><a href="services.html#data-entry">Data Conversion</a><a href="services.html#data-entry">Document Digitization</a>
+	          <a class="services-mega-title" href="data-entry.html">Data Entry</a>
+	          <a href="data-entry.html">Data Entry Services</a><a href="data-entry.html">Data Processing</a><a href="data-entry.html">Data Cleansing</a><a href="data-entry.html">Data Conversion</a><a href="data-entry.html">Document Digitization</a>
 	        </div>
 	        <div class="services-mega-column">
-	          <a class="services-mega-title" href="services.html#photogrammetry">Photogrammetry</a>
-	          <a href="services.html#photogrammetry">Image Analysis</a><a href="services.html#photogrammetry">3D Modeling</a><a href="services.html#photogrammetry">Mapping &amp; Cartography</a><a href="services.html#photogrammetry">DEM &amp; Orthophoto</a><a href="services.html#photogrammetry">LiDAR, GIS &amp; Drone Services</a>
+	          <a class="services-mega-title" href="photogrammetry.html">Photogrammetry</a>
+	          <a href="photogrammetry.html">Image Analysis</a><a href="photogrammetry.html">3D Modeling</a><a href="photogrammetry.html">Mapping &amp; Cartography</a><a href="photogrammetry.html">DEM &amp; Orthophoto</a><a href="photogrammetry.html">LiDAR, GIS &amp; Drone Services</a>
 	        </div>
 	      </div>`);
 
@@ -94,6 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	    servicesItem.addEventListener('focusin', () => servicesLink.setAttribute('aria-expanded', 'true'));
 	    servicesItem.addEventListener('focusout', (event) => {
 	      if (!servicesItem.contains(event.relatedTarget)) servicesLink.setAttribute('aria-expanded', 'false');
+	    });
+	    servicesLink.addEventListener('click', (event) => {
+	      if (window.matchMedia('(max-width: 720px)').matches && servicesLink.getAttribute('aria-expanded') !== 'true') {
+	        event.preventDefault();
+	        servicesLink.setAttribute('aria-expanded', 'true');
+	      }
 	    });
 	  }
 

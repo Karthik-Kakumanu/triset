@@ -29,7 +29,7 @@ async function sendContactEmail(submission) {
   await transporter.sendMail({
     from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
     to: process.env.CONTACT_RECEIVER || process.env.EMAIL_USER,
-    replyTo: submission.email,
+    replyTo: submission.email || undefined,
     subject: `TRISET website inquiry: ${submission.service || 'General'}`,
     text: [
       `Name: ${submission.name}`,

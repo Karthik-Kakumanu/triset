@@ -929,7 +929,7 @@
           <p>TRISET brings together geospatial intelligence, digital solutions, software engineering, data, and creative technology. If you have a problem worth solving, we're ready to talk.</p>
           <div class="contact-hero-cta">
             <a class="btn btn-primary" href="#inquiry-form">Start the conversation</a>
-            <a class="btn btn-quiet" href="#quick-contact" style="color: #fff; border-color: rgba(255,255,255,0.3);">Get in touch instantly</a>
+            <a class="btn contact-whatsapp-cta" href="https://wa.me/917382819292" target="_blank" rel="noopener noreferrer" aria-label="Chat with TRISET on WhatsApp">&#128172; Chat on WhatsApp</a>
           </div>
         </div>
       </section>
@@ -1055,8 +1055,8 @@
                     <input type="text" id="name" name="name" autocomplete="name" placeholder="Your name" required />
                   </div>
                   <div class="form-group">
-                    <label for="email">Email <span class="required">*</span></label>
-                    <input type="email" id="email" name="email" autocomplete="email" placeholder="your@email.com" required />
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" autocomplete="email" placeholder="your@email.com" />
                   </div>
                 </div>
 
@@ -1067,8 +1067,8 @@
                     <input type="text" id="company" name="company" autocomplete="organization" placeholder="Company name" />
                   </div>
                   <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+91 7382819292" />
+                    <label for="phone">Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+91 7382819292" required />
                   </div>
                 </div>
 
@@ -1382,7 +1382,7 @@
             const formData = new FormData(contactForm);
             const payload = Object.fromEntries(formData);
 
-            if (!payload.name || !payload.email || !payload.message) {
+            if (!payload.name || !payload.phone || !payload.message) {
               throw new Error('Please fill in all required fields.');
             }
 
