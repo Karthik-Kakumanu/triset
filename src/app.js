@@ -11,23 +11,23 @@ document.addEventListener('DOMContentLoaded', () => {
 	    marquee.className = 'company-marquee';
 	    marquee.setAttribute('aria-label', 'TRISET company information');
 	    marquee.innerHTML = `
-	      <div class="company-marquee__viewport">
-	        <div class="company-marquee__track">
-	          <div class="company-marquee__items">
-	            <span class="company-marquee__item company-marquee__brand">TRISET Solutions India Pvt. Ltd.</span>
-	            <span class="company-marquee__item"><span class="company-marquee__icon" aria-hidden="true">☎</span> Sales: <a href="tel:+917382819292">+91 7382 819 292</a></span>
-	            <span class="company-marquee__item"><span class="company-marquee__icon" aria-hidden="true">◉</span> Support: Mon–Sat, 6:30–22:30</span>
-	            <span class="company-marquee__item"><span class="company-marquee__icon" aria-hidden="true">✉</span> <a href="mailto:info@trisetsolutions.com">info@trisetsolutions.com</a></span>
-	            <span class="company-marquee__item"><span class="company-marquee__icon" aria-hidden="true">⌖</span> Hyderabad, India</span>
-	            <span class="company-marquee__item">Digital &amp; Geo-Spatial Solutions</span>
-	          </div>
-	          <div class="company-marquee__items" aria-hidden="true"></div>
+	      <div class="company-marquee__inner">
+	        <div class="company-marquee__contact-group">
+	          <span class="company-marquee__item"><span class="company-marquee__icon" aria-hidden="true">☎</span> Sales: <a href="tel:+917382819292">+91 7382 819 292</a></span>
+	          <span class="company-marquee__divider" aria-hidden="true"></span>
+	          <span class="company-marquee__item"><span class="company-marquee__icon" aria-hidden="true">◉</span> Support: <a href="tel:+917382819292">+91 7382 819 292</a></span>
+	          <span class="company-marquee__divider" aria-hidden="true"></span>
+	          <span class="company-marquee__item"><span class="company-marquee__icon" aria-hidden="true">✉</span> <a href="mailto:info@trisetsolutions.com">info@trisetsolutions.com</a></span>
+	        </div>
+	        <div class="company-marquee__socials" aria-label="Social media links">
+	          <span class="company-marquee__social company-marquee__social--facebook" aria-label="Facebook">f</span>
+	          <span class="company-marquee__social company-marquee__social--x" aria-label="X">X</span>
+	          <span class="company-marquee__social company-marquee__social--instagram" aria-label="Instagram">◎</span>
+	          <span class="company-marquee__social company-marquee__social--youtube" aria-label="YouTube">▶</span>
+	          <span class="company-marquee__social company-marquee__social--linkedin" aria-label="LinkedIn">in</span>
+	          <span class="company-marquee__social company-marquee__social--whatsapp" aria-label="WhatsApp">◔</span>
 	        </div>
 	      </div>`;
-
-	    const source = marquee.querySelector('.company-marquee__items');
-	    const duplicate = marquee.querySelector('.company-marquee__items[aria-hidden]');
-	    duplicate.innerHTML = source.innerHTML;
 	    document.body.insertBefore(marquee, siteHeader);
 	  }
 

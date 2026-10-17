@@ -4539,3 +4539,71 @@ body.nav-open .theme-toggle,
   .company-marquee__track { animation: none; }
   .company-marquee__items[aria-hidden="true"] { display: none; }
 }
+
+/* Static contact layout: contacts stay left and social icons stay right. */
+.company-marquee {
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
+.company-marquee__inner {
+  width: min(100% - 2rem, var(--max));
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.company-marquee__contact-group,
+.company-marquee__socials {
+  display: flex;
+  align-items: center;
+}
+
+.company-marquee__contact-group {
+  min-width: 0;
+  gap: clamp(.7rem, 2vw, 1.4rem);
+}
+
+.company-marquee__divider {
+  width: 1px;
+  height: 15px;
+  flex: 0 0 1px;
+  background: rgba(219, 232, 245, .2);
+}
+
+.company-marquee__socials {
+  flex: 0 0 auto;
+  gap: 6px;
+}
+
+.company-marquee__social {
+  width: 26px;
+  height: 26px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #142033;
+  background: #fff;
+  font: 700 14px Arial, sans-serif;
+  line-height: 1;
+}
+
+.company-marquee__social--facebook { color: #1877f2; font-size: 18px; }
+.company-marquee__social--x { color: #111827; font-size: 12px; }
+.company-marquee__social--instagram { color: #e1306c; font-size: 21px; }
+.company-marquee__social--youtube { color: #f00; font-size: 11px; }
+.company-marquee__social--linkedin { color: #0a66c2; font-size: 11px; }
+.company-marquee__social--whatsapp { color: #18b957; font-size: 19px; }
+
+@media (max-width: 720px) {
+  .company-marquee__inner { width: calc(100% - 1rem); }
+  .company-marquee__contact-group { gap: .55rem; }
+  .company-marquee__contact-group .company-marquee__item:first-child { display: none; }
+  .company-marquee__divider:first-of-type { display: none; }
+  .company-marquee__item { font-size: 9px; }
+  .company-marquee__socials { gap: 3px; }
+  .company-marquee__social { width: 22px; height: 22px; font-size: 11px; }
+}
