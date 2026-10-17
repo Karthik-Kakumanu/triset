@@ -4926,6 +4926,7 @@ body.nav-open .theme-toggle,
   transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
 }
 
+.industries-nav-item:hover .industries-dropdown,
 .industries-nav-item.is-open .industries-dropdown,
 .industries-nav-item:focus-within .industries-dropdown {
   opacity: 1;
@@ -4973,6 +4974,7 @@ body.nav-open .theme-toggle,
     pointer-events: auto;
     transform: none;
   }
+  .industries-nav-item:hover .industries-dropdown,
   .industries-nav-item.is-open .industries-dropdown,
   .industries-nav-item:focus-within .industries-dropdown { display: flex; }
 }

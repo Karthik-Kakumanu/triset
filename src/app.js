@@ -90,10 +90,20 @@ document.addEventListener('DOMContentLoaded', () => {
 	      industriesItem.classList.remove('is-open');
 	      industriesLink.setAttribute('aria-expanded', 'false');
 	    };
+	    industriesItem.addEventListener('mouseenter', () => industriesLink.setAttribute('aria-expanded', 'true'));
+	    industriesItem.addEventListener('mouseleave', closeIndustries);
+	    industriesItem.addEventListener('focusin', () => industriesLink.setAttribute('aria-expanded', 'true'));
+	    industriesItem.addEventListener('focusout', (event) => {
+	      if (!industriesItem.contains(event.relatedTarget)) closeIndustries();
+	    });
 	    industriesLink.addEventListener('click', (event) => {
-	      event.preventDefault();
-	      const open = industriesItem.classList.toggle('is-open');
-	      industriesLink.setAttribute('aria-expanded', String(open));
+	      // On mobile there is no hover, so the first tap opens the submenu;
+	      // desktop clicks keep the normal Industries page navigation.
+	      if (window.matchMedia('(max-width: 720px)').matches && !industriesItem.classList.contains('is-open')) {
+	        event.preventDefault();
+	        industriesItem.classList.add('is-open');
+	        industriesLink.setAttribute('aria-expanded', 'true');
+	      }
 	    });
 	    document.addEventListener('click', (event) => {
 	      if (!industriesItem.contains(event.target)) closeIndustries();
