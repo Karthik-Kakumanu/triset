@@ -5003,8 +5003,8 @@ body.nav-open .theme-toggle,
   border-top: 1px solid rgba(11,102,255,.1);
   border-bottom: 1px solid rgba(11,102,255,.12);
 }
-.triset-service-studio .service-subservice-section { order: 3; }
-.triset-service-studio .services-five-section { order: 4; }
+.triset-service-studio .services-five-section { order: 3; }
+.triset-service-studio .service-subservice-section { order: 4; }
 .triset-service-studio .services-cta { order: 5; }
 .triset-service-studio .pill-pile-head { align-items: center; }
 .triset-service-studio .pill-pile-head h2 { color: #0d2447 !important; }
@@ -5288,4 +5288,53 @@ body.nav-open .theme-toggle,
     padding: .8rem;
   }
   .triset-service-studio .services-five-card img { order: -1; height: 82px; max-height: 82px; }
+}
+
+/* Floating call, WhatsApp, and back-to-top controls */
+.floating-contact-actions {
+  position: fixed;
+  right: clamp(14px, 2.5vw, 34px);
+  bottom: clamp(18px, 4vw, 42px);
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.floating-contact-action {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(15, 23, 36, .18);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.floating-contact-action:hover,
+.floating-contact-action:focus-visible {
+  color: #fff;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 28px rgba(15, 23, 36, .25);
+}
+.floating-contact-action svg { width: 23px; height: 23px; fill: currentColor; }
+.floating-contact-action--call,
+.floating-contact-action--whatsapp { background: #25d366; }
+.floating-contact-action--call { margin-bottom: -.45rem; }
+.floating-contact-action--whatsapp { background: #22c864; }
+.floating-contact-action--top {
+  width: 54px;
+  height: 54px;
+  margin-top: .35rem;
+  background: linear-gradient(145deg, #4169ee, #2947d5);
+  box-shadow: 0 12px 26px rgba(41, 71, 213, .35);
+}
+.floating-contact-action--top svg { width: 24px; height: 24px; }
+@media (max-width: 720px) {
+  .floating-contact-actions { right: 12px; bottom: 18px; gap: .75rem; }
+  .floating-contact-action { width: 42px; height: 42px; }
+  .floating-contact-action--top { width: 50px; height: 50px; }
 }
