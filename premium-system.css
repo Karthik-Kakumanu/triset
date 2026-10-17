@@ -4598,6 +4598,29 @@ body.nav-open .theme-toggle,
 .company-marquee__social--linkedin { color: #0a66c2; font-size: 11px; }
 .company-marquee__social--whatsapp { color: #18b957; font-size: 19px; }
 
+.company-marquee__social svg {
+  width: 15px;
+  height: 15px;
+  display: block;
+  fill: currentColor;
+}
+
+.company-marquee__social--instagram svg rect,
+.company-marquee__social--instagram svg circle:first-of-type {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+.company-marquee__social--instagram svg .social-dot {
+  fill: currentColor;
+  stroke: none;
+}
+
+.company-marquee__social--youtube svg { width: 17px; height: 17px; }
+.company-marquee__social--linkedin svg { width: 16px; height: 16px; }
+.company-marquee__social--whatsapp svg { width: 17px; height: 17px; }
+
 @media (max-width: 720px) {
   .company-marquee__inner { width: calc(100% - 1rem); }
   .company-marquee__contact-group { gap: .55rem; }
