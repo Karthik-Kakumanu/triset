@@ -5570,8 +5570,10 @@ body.nav-open .theme-toggle,
 .footer-service-column a { display: block; margin: .58rem 0; color: #a9bad0 !important; font-size: .78rem; line-height: 1.35; text-decoration: none; }
 .footer-service-column a::before { content: '›'; margin-right: .42rem; color: #50c8ff; font-weight: 800; }
 .footer-service-column a:hover { color: #fff !important; transform: translateX(3px); }
-.footer-bottom { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 0; border-top: 1px solid rgba(220,232,245,.14); color: #7f96b0; font-size: .7rem; }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; padding: 1rem 0; border-top: 1px solid rgba(220,232,245,.14); color: #7f96b0; font-size: .7rem; line-height: 1.6; }
 .footer-bottom a { color: #a9bad0 !important; text-decoration: none; }
+.footer-bottom > span:last-child { display: inline-flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: .2rem .9rem; text-align: right; }
+.footer-credit { color: #50c8ff; }
 
 /* Service detail pages: a richer, branded presentation shared by all five services. */
 .service-detail-page {
@@ -5617,8 +5619,9 @@ body.nav-open .theme-toggle,
   .footer-service-directory { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.8rem 1rem; padding: 1.8rem 0 2rem; }
   .footer-service-column h3 { font-size: .9rem; }
   .footer-service-column a { font-size: .7rem; }
-  .footer-bottom { display: block; line-height: 1.7; }
-  .footer-bottom span:last-child { display: block; margin-top: .35rem; }
+  .footer-bottom { display: block; line-height: 1.7; text-align: center; }
+  .footer-bottom > span:first-child { display: block; }
+  .footer-bottom > span:last-child { display: flex; justify-content: center; margin-top: .55rem; text-align: center; }
 }
 
 /* Mobile navigation expand controls for Services and Industries. */

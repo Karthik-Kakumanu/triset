@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	          <div class="footer-service-column"><h3>App Development</h3><a href="app-development.html">Android Apps</a><a href="app-development.html">iOS Apps</a><a href="app-development.html">Cross-Platform Apps</a><a href="app-development.html">App UI/UX</a><a href="app-development.html">Integrations &amp; Support</a></div>
 	          <div class="footer-service-column"><h3>Digital Marketing</h3><a href="digital-marketing.html">SEO &amp; Local SEO</a><a href="digital-marketing.html">Technical SEO</a><a href="digital-marketing.html">PPC &amp; Paid Ads</a><a href="digital-marketing.html">Social Media</a><a href="digital-marketing.html">Email &amp; Content Marketing</a></div>
 	        </div>
-	        <div class="footer-bottom"><span>© 2026 TRISET Solutions India Pvt. Ltd. All rights reserved.</span><span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span></div>
+	        <div class="footer-bottom"><span>Copyright © 2026 Triset Solutions India Private Limited. All Rights Reserved.</span><span><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a><a href="terms.html#disclaimer">Disclaimer</a><span class="footer-credit">Designed &amp; Developed by Triset Team</span></span></div>
 	      </div>`;
 	  }
 
