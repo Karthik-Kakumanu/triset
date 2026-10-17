@@ -5003,8 +5003,9 @@ body.nav-open .theme-toggle,
   border-top: 1px solid rgba(11,102,255,.1);
   border-bottom: 1px solid rgba(11,102,255,.12);
 }
-.triset-service-studio .services-five-section { order: 3; }
-.triset-service-studio .services-cta { order: 4; }
+.triset-service-studio .service-subservice-section { order: 3; }
+.triset-service-studio .services-five-section { order: 4; }
+.triset-service-studio .services-cta { order: 5; }
 .triset-service-studio .pill-pile-head { align-items: center; }
 .triset-service-studio .pill-pile-head h2 { color: #0d2447 !important; }
 .triset-service-studio .pill-pile-hint { color: #0b66ff !important; }
@@ -5029,6 +5030,90 @@ body.nav-open .theme-toggle,
 }
 .triset-service-studio .pill-pile-copy .pill-pile-lead { color: #5a6d84 !important; }
 
+/* Single-line animated sub-service streams */
+.service-subservice-section {
+  position: relative;
+  padding: clamp(3.2rem, 6vw, 5rem) 0;
+  overflow: hidden;
+  background: #0b1930;
+  color: #fff;
+}
+.service-subservice-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 86% 12%, rgba(11,102,255,.35), transparent 30%), radial-gradient(circle at 12% 90%, rgba(239,59,72,.16), transparent 28%);
+}
+.service-subservice-heading,
+.service-subservice-list { position: relative; z-index: 1; }
+.service-subservice-heading { margin-bottom: 1.8rem; }
+.service-subservice-heading .eyebrow { color: #50c8ff; }
+.service-subservice-heading h2 {
+  max-width: 700px;
+  margin: .35rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3.6vw, 2.8rem);
+  line-height: 1.08;
+}
+.service-subservice-list { display: grid; gap: .65rem; }
+.service-subservice-row--amber { order: 1; }
+.service-subservice-row--coral { order: 2; }
+.service-subservice-row--cyan { order: 3; }
+.service-subservice-row--violet { order: 4; }
+.service-subservice-row--blue { order: 5; }
+.service-subservice-row {
+  display: grid;
+  grid-template-columns: minmax(155px, 20%) minmax(0, 1fr);
+  align-items: center;
+  min-height: 58px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 10px;
+  background: rgba(255,255,255,.065);
+  overflow: hidden;
+}
+.service-subservice-label {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  height: 100%;
+  padding: .9rem 1rem;
+  border-right: 1px solid rgba(255,255,255,.14);
+  white-space: nowrap;
+}
+.service-subservice-label span { color: #89a2c6; font: 700 .7rem var(--font-mono); }
+.service-subservice-label strong { font-size: .86rem; }
+.service-subservice-viewport { min-width: 0; overflow: hidden; }
+.service-subservice-track { display: flex; width: max-content; animation: subserviceStream 28s linear infinite; }
+.service-subservice-track--reverse { animation-name: subserviceStreamReverse; animation-duration: 32s; }
+.service-subservice-items { display: flex; align-items: center; gap: .7rem; padding-right: .7rem; white-space: nowrap; }
+.service-subservice-items span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: .35rem .7rem;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px;
+  color: #dcecff;
+  background: rgba(255,255,255,.08);
+  font-size: .74rem;
+  font-weight: 650;
+}
+.service-subservice-row--blue .service-subservice-items span { border-color: rgba(55,157,255,.45); }
+.service-subservice-row--cyan .service-subservice-items span { border-color: rgba(67,220,228,.45); }
+.service-subservice-row--violet .service-subservice-items span { border-color: rgba(151,124,255,.5); }
+.service-subservice-row--amber .service-subservice-items span { border-color: rgba(247,182,61,.5); }
+.service-subservice-row--coral .service-subservice-items span { border-color: rgba(255,105,105,.5); }
+.service-subservice-row:hover .service-subservice-track,
+.service-subservice-row:focus-within .service-subservice-track { animation-play-state: paused; }
+@keyframes subserviceStream { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes subserviceStreamReverse { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .service-subservice-track { animation: none; }
+  .service-subservice-items[aria-hidden="true"] { display: none; }
+}
+
 @media (max-width: 900px) {
   .triset-service-studio .pill-pile-stage { min-height: 420px; }
 }
@@ -5036,6 +5121,9 @@ body.nav-open .theme-toggle,
 @media (max-width: 720px) {
   .triset-service-studio .pill-pile-section { padding: 3rem 0; }
   .triset-service-studio .pill-pile-stage { min-height: 390px; }
+  .service-subservice-row { grid-template-columns: 125px minmax(0, 1fr); }
+  .service-subservice-label { padding: .75rem .7rem; gap: .4rem; }
+  .service-subservice-label strong { font-size: .72rem; }
 }
 
 /* Simple reference-style service cards below the pills. */
@@ -5043,6 +5131,11 @@ body.nav-open .theme-toggle,
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
+.services-five-card#data-entry { order: 1; }
+.services-five-card#photogrammetry { order: 2; }
+.services-five-card#web-development { order: 3; }
+.services-five-card#app-development { order: 4; }
+.services-five-card#digital-marketing { order: 5; }
 .services-five-card,
 .services-five-card:last-child {
   grid-column: auto;
