@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	    servicesItem.appendChild(servicesLink);
 	    servicesLink.setAttribute('aria-haspopup', 'true');
 	    servicesLink.setAttribute('aria-expanded', 'false');
+	    servicesLink.insertAdjacentHTML('afterend', '<button class="nav-expand-toggle" type="button" aria-label="Expand Services" aria-expanded="false"><span aria-hidden="true">+</span></button>');
 	    servicesItem.insertAdjacentHTML('beforeend', `
 	      <div class="services-mega-menu" role="menu" aria-label="Services menu">
 	        <div class="services-mega-column">
@@ -112,6 +113,19 @@ document.addEventListener('DOMContentLoaded', () => {
 	          <a href="photogrammetry.html">Image Analysis</a><a href="photogrammetry.html">3D Modeling</a><a href="photogrammetry.html">Mapping &amp; Cartography</a><a href="photogrammetry.html">DEM &amp; Orthophoto</a><a href="photogrammetry.html">LiDAR, GIS &amp; Drone Services</a>
 	        </div>
 	      </div>`);
+	    const servicesToggle = servicesItem.querySelector('.nav-expand-toggle');
+	    const setServicesOpen = (open) => {
+	      servicesItem.classList.toggle('is-open', open);
+	      servicesLink.setAttribute('aria-expanded', String(open));
+	      servicesToggle.setAttribute('aria-expanded', String(open));
+	      servicesToggle.setAttribute('aria-label', `${open ? 'Collapse' : 'Expand'} Services`);
+	      servicesToggle.querySelector('span').textContent = open ? '−' : '+';
+	    };
+	    servicesToggle.addEventListener('click', (event) => {
+	      event.preventDefault();
+	      event.stopPropagation();
+	      if (window.matchMedia('(max-width: 720px)').matches) setServicesOpen(!servicesItem.classList.contains('is-open'));
+	    });
 
 	    servicesItem.addEventListener('mouseenter', () => servicesLink.setAttribute('aria-expanded', 'true'));
 	    servicesItem.addEventListener('mouseleave', () => servicesLink.setAttribute('aria-expanded', 'false'));
@@ -136,15 +150,34 @@ document.addEventListener('DOMContentLoaded', () => {
 	    industriesItem.appendChild(industriesLink);
     industriesLink.setAttribute('aria-haspopup', 'true');
     industriesLink.setAttribute('aria-expanded', 'false');
+	    industriesLink.insertAdjacentHTML('afterend', '<button class="nav-expand-toggle" type="button" aria-label="Expand Industries" aria-expanded="false"><span aria-hidden="true">+</span></button>');
     industriesItem.insertAdjacentHTML('beforeend', `
 	      <div class="industries-dropdown" role="menu" aria-label="Industries menu">
 	        <a href="solutions.html#healthcare">Healthcare</a><a href="solutions.html#education">Education</a><a href="solutions.html#it-ites">IT &amp; ITES</a><a href="solutions.html#ngos">NGOs</a><a href="solutions.html#real-estate">Real Estate</a><a href="solutions.html#fintech">Fintech</a><a href="solutions.html#manufacturing">Manufacturers</a><a href="solutions.html#entertainment">Entertainment</a><a href="solutions.html#fashion-beauty">Fashion &amp; Beauty</a><a href="solutions.html#solar">Solar</a><a href="solutions.html#e-commerce">E-Commerce</a><a href="solutions.html#human-resources">Human Resources</a>
 	      </div>`);
+	    const industriesToggle = industriesItem.querySelector('.nav-expand-toggle');
 
 	    const closeIndustries = () => {
 	      industriesItem.classList.remove('is-open');
 	      industriesLink.setAttribute('aria-expanded', 'false');
+	      industriesToggle.setAttribute('aria-expanded', 'false');
+	      industriesToggle.setAttribute('aria-label', 'Expand Industries');
+	      industriesToggle.querySelector('span').textContent = '+';
 	    };
+	    industriesToggle.addEventListener('click', (event) => {
+	      event.preventDefault();
+	      event.stopPropagation();
+	      if (window.matchMedia('(max-width: 720px)').matches) {
+	        if (industriesItem.classList.contains('is-open')) closeIndustries();
+	        else {
+	          industriesItem.classList.add('is-open');
+	          industriesLink.setAttribute('aria-expanded', 'true');
+	          industriesToggle.setAttribute('aria-expanded', 'true');
+	          industriesToggle.setAttribute('aria-label', 'Collapse Industries');
+	          industriesToggle.querySelector('span').textContent = '−';
+	        }
+	      }
+	    });
 	    industriesItem.addEventListener('mouseenter', () => industriesLink.setAttribute('aria-expanded', 'true'));
 	    industriesItem.addEventListener('mouseleave', closeIndustries);
 	    industriesItem.addEventListener('focusin', () => industriesLink.setAttribute('aria-expanded', 'true'));
