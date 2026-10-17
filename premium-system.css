@@ -5558,6 +5558,8 @@ body.nav-open .theme-toggle,
 .footer-brand { display: inline-flex; flex-direction: column; color: #fff !important; font: 800 1.55rem var(--font-display); letter-spacing: .08em; text-decoration: none; }
 .footer-brand-mark { display: inline-block; color: #fff; font-size: 1.7rem; letter-spacing: .09em; line-height: 1; }
 .footer-brand small { margin-top: .18rem; color: #50c8ff; font: 700 .52rem var(--font-mono); letter-spacing: .15em; }
+.footer-brand-logo { width: 210px; padding: .35rem .55rem; border-radius: 7px; background: #fff; box-shadow: 0 8px 20px rgba(0,0,0,.16); }
+.footer-brand-logo img { display: block; width: 100%; height: 46px; object-fit: contain; }
 .footer-intro p { margin: .8rem 0 0; color: #91a7c0; font-size: .9rem; }
 .footer-contact { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .7rem 1.2rem; }
 .footer-contact a { color: #dce8f5 !important; font-size: .82rem; text-decoration: none; }

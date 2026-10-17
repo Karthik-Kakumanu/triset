@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	    footer.innerHTML = `
 	      <div class="container">
 	        <div class="footer-intro">
-	          <div><a class="footer-brand" href="index.html" aria-label="TRISET Solutions India home"><span class="footer-brand-mark">TRISET</span><small>Solutions India Pvt. Ltd.</small></a><p>Digital and geo-spatial solutions from Hyderabad, India.</p></div>
+	          <div><a class="footer-brand footer-brand-logo" href="index.html" aria-label="TRISET Solutions India home"><img src="assets/logo_final.png" alt="TRISET Solutions India Pvt. Ltd." /></a><p>Digital and geo-spatial solutions from Hyderabad, India.</p></div>
 	          <div class="footer-contact"><a href="mailto:info@trisetsolutions.com">info@trisetsolutions.com</a><a href="tel:+917382819292">+91 7382 819 292</a><a href="contact.html">Start a project →</a></div>
 	        </div>
 	        <div class="footer-service-directory">
