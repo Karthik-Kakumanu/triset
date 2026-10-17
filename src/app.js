@@ -72,6 +72,37 @@ document.addEventListener('DOMContentLoaded', () => {
 	    });
 	  }
 
+	  // Click-open Industries dropdown, matching the compact reference menu.
+	  const industriesLink = siteNav && Array.from(siteNav.querySelectorAll('a')).find((link) => /industries\.html/.test(link.getAttribute('href') || ''));
+	  if (industriesLink && !siteNav.querySelector('.industries-nav-item')) {
+	    const industriesItem = document.createElement('div');
+	    industriesItem.className = 'industries-nav-item';
+	    industriesLink.parentNode.insertBefore(industriesItem, industriesLink);
+	    industriesItem.appendChild(industriesLink);
+    industriesLink.setAttribute('aria-haspopup', 'true');
+    industriesLink.setAttribute('aria-expanded', 'false');
+    industriesItem.insertAdjacentHTML('beforeend', `
+	      <div class="industries-dropdown" role="menu" aria-label="Industries menu">
+	        <a href="solutions.html#healthcare">Healthcare</a><a href="solutions.html#education">Education</a><a href="solutions.html#it-ites">IT &amp; ITES</a><a href="solutions.html#ngos">NGOs</a><a href="solutions.html#real-estate">Real Estate</a><a href="solutions.html#fintech">Fintech</a><a href="solutions.html#manufacturing">Manufacturers</a><a href="solutions.html#entertainment">Entertainment</a><a href="solutions.html#fashion-beauty">Fashion &amp; Beauty</a><a href="solutions.html#solar">Solar</a><a href="solutions.html#e-commerce">E-Commerce</a><a href="solutions.html#human-resources">Human Resources</a>
+	      </div>`);
+
+	    const closeIndustries = () => {
+	      industriesItem.classList.remove('is-open');
+	      industriesLink.setAttribute('aria-expanded', 'false');
+	    };
+	    industriesLink.addEventListener('click', (event) => {
+	      event.preventDefault();
+	      const open = industriesItem.classList.toggle('is-open');
+	      industriesLink.setAttribute('aria-expanded', String(open));
+	    });
+	    document.addEventListener('click', (event) => {
+	      if (!industriesItem.contains(event.target)) closeIndustries();
+	    });
+	    document.addEventListener('keydown', (event) => {
+	      if (event.key === 'Escape') closeIndustries();
+	    });
+	  }
+
   const storedTheme = localStorage.getItem('triset-theme');
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');

@@ -4888,12 +4888,152 @@ body.nav-open .theme-toggle,
   .services-nav-item > a[aria-expanded="true"] + .services-mega-menu { display: grid; }
 }
 
+/* Click-open Industries dropdown */
+.industries-nav-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+}
+
+.industries-nav-item > a::after {
+  content: '⌄';
+  display: inline-block;
+  margin-left: .35rem;
+  color: #0b66ff;
+  font-size: .9em;
+  transform: translateY(-1px);
+}
+
+.industries-dropdown {
+  position: absolute;
+  top: calc(100% + .55rem);
+  left: 0;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  padding: .9rem 0 1rem;
+  border: 1px solid rgba(11, 102, 255, .12);
+  border-top: 3px solid #0b66ff;
+  border-radius: 0 0 3px 3px;
+  background: rgba(255, 255, 255, .99);
+  box-shadow: 0 20px 45px rgba(10, 36, 78, .18);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-7px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+}
+
+.industries-nav-item.is-open .industries-dropdown,
+.industries-nav-item:focus-within .industries-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.industries-dropdown a {
+  min-height: 0 !important;
+  justify-content: flex-start !important;
+  padding: .58rem 1.85rem !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: #1b1f2b !important;
+  font-size: .88rem !important;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.industries-dropdown a:hover,
+.industries-dropdown a:focus-visible {
+  color: #0b66ff !important;
+  background: #eef5ff !important;
+  transform: translateX(3px);
+}
+
+:root[data-theme='dark'] .industries-dropdown {
+  background: #0a131f;
+  border-color: rgba(232, 240, 248, .16);
+}
+:root[data-theme='dark'] .industries-dropdown a { color: #e1ebf6 !important; }
+
+@media (max-width: 720px) {
+  .industries-nav-item { display: block; height: auto; }
+  .industries-dropdown {
+    position: static;
+    display: none;
+    width: 100%;
+    margin: .25rem 0 .5rem;
+    border-radius: 8px;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+  }
+  .industries-nav-item.is-open .industries-dropdown,
+  .industries-nav-item:focus-within .industries-dropdown { display: flex; }
+}
+
 /* Five-service presentation on the Services page */
 .triset-service-studio .pill-pile-section,
 .triset-service-studio .exact-radial-section,
 .triset-service-studio .diamond-showcase-section,
 .triset-service-studio .giant-marquee-section {
   display: none !important;
+}
+
+/* Keep the interactive capability pills above the five core service cards. */
+.triset-service-studio #main-content {
+  display: flex;
+  flex-direction: column;
+}
+.triset-service-studio .services-kinetic-hero { order: 1; }
+.triset-service-studio .pill-pile-section {
+  display: block !important;
+  order: 2;
+  padding: clamp(3.5rem, 7vw, 6rem) 0;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(11,102,255,.1), transparent 32%),
+    linear-gradient(135deg, #f8fbff, #eef5ff 56%, #fff7f5);
+  border-top: 1px solid rgba(11,102,255,.1);
+  border-bottom: 1px solid rgba(11,102,255,.12);
+}
+.triset-service-studio .services-five-section { order: 3; }
+.triset-service-studio .services-cta { order: 4; }
+.triset-service-studio .pill-pile-head { align-items: center; }
+.triset-service-studio .pill-pile-head h2 { color: #0d2447 !important; }
+.triset-service-studio .pill-pile-hint { color: #0b66ff !important; }
+.triset-service-studio .pill-pile-stage {
+  max-width: none;
+  min-height: 360px;
+  border: 1px solid rgba(11,102,255,.14);
+  background:
+    radial-gradient(circle at 50% 48%, rgba(255,255,255,.9), transparent 46%),
+    linear-gradient(rgba(11,102,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11,102,255,.045) 1px, transparent 1px),
+    #fff;
+  background-size: auto, 32px 32px, 32px 32px, auto;
+  box-shadow: 0 20px 45px rgba(10,36,78,.09), inset 0 1px 0 rgba(255,255,255,.9);
+}
+.triset-service-studio .pill-pile-copy {
+  padding: clamp(1.4rem, 3vw, 2.5rem);
+  border: 1px solid rgba(11,102,255,.12);
+  border-radius: 16px;
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 16px 35px rgba(10,36,78,.07);
+}
+.triset-service-studio .pill-pile-copy .pill-pile-lead { color: #5a6d84 !important; }
+
+@media (max-width: 900px) {
+  .triset-service-studio .pill-pile-stage { min-height: 420px; }
+}
+
+@media (max-width: 720px) {
+  .triset-service-studio .pill-pile-section { padding: 3rem 0; }
+  .triset-service-studio .pill-pile-stage { min-height: 390px; }
 }
 
 .services-five-section {
