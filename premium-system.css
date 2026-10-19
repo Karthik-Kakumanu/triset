@@ -10,7 +10,7 @@
    than generic gradients-and-glow decoration.
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap');
 
 :root {
   /* refined tokens — same names as legacy file, values are the ones
@@ -30,8 +30,8 @@
   --ease: cubic-bezier(.16,.84,.28,1);
 
   /* new tokens */
-  --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
-  --font-body: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-display: 'Sora', 'Segoe UI', sans-serif;
+  --font-body: 'Manrope', 'Segoe UI', Roboto, Arial, sans-serif;
   --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
 
   --space-1: .5rem;
@@ -1388,10 +1388,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 .ah-heading {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(2.9rem, 5.2vw, 5.5rem);
-  line-height: .94;
-  letter-spacing: -.045em;
+  line-height: .98;
+  letter-spacing: -.065em;
   color: #fff;
   margin: .9rem 0 1rem;
   text-shadow: 0 12px 40px rgba(11,22,38,.42);
@@ -1405,7 +1405,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .ah-line:nth-child(1) > span { animation-delay: .12s; }
 .ah-line:nth-child(2) > span { animation-delay: .24s; }
 .ah-line-accent > span {
-  background: linear-gradient(100deg, #fff 20%, #bcd6ff 55%, #fff 80%);
+  background: linear-gradient(100deg, #ffffff 8%, #c7dcff 48%, #6ea9ff 82%, #ffffff 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
   animation-delay: .36s;
 }
@@ -1434,8 +1434,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   border-radius: 999px;
   background: rgba(247,251,255,.07);
   color: rgba(232,240,248,.78);
-  font-family: var(--font-mono);
-  font-size: .63rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: .62rem;
   line-height: 1;
   letter-spacing: .06em;
   text-transform: uppercase;
@@ -1507,6 +1508,27 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   }
   .ah-heading { font-size: clamp(2.35rem, 11vw, 3.5rem); }
   .about-hero-visual { height: 260px; }
+}
+
+/* About hero type polish: editorial scale with a calm, premium rhythm. */
+.about-page .ah-eyebrow {
+  font-family: var(--font-body);
+  font-weight: 800;
+  letter-spacing: .18em;
+}
+.about-page .ah-lead {
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: -.012em;
+}
+.about-page .ah-company-facts span {
+  transition: transform .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease);
+}
+.about-page .ah-company-facts span:hover {
+  transform: translateY(-3px);
+  border-color: rgba(147, 194, 255, .52);
+  background: rgba(70, 139, 230, .2);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .16);
 }
 
 .about-page .ax-story,
