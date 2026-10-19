@@ -23,8 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	        <div class="company-marquee__contact-group">
 	          <span class="company-marquee__item"><span class="company-marquee__icon" aria-hidden="true">☎</span> Sales: <a href="tel:+917382819292">+91 7382 819 292</a></span>
 	          <span class="company-marquee__divider" aria-hidden="true"></span>
-	          <span class="company-marquee__item"><span class="company-marquee__icon" aria-hidden="true">◉</span> Support: <a href="https://wa.me/917382819292" target="_blank" rel="noopener noreferrer">+91 7382 819 292</a></span>
-	          <span class="company-marquee__divider" aria-hidden="true"></span>
 	          <span class="company-marquee__item"><span class="company-marquee__icon" aria-hidden="true">✉</span> <a href="mailto:info@trisetsolutions.com">info@trisetsolutions.com</a></span>
 	        </div>
 	        <div class="company-marquee__socials" aria-label="Social media links">
