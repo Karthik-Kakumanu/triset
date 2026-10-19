@@ -6346,3 +6346,12 @@ body:not(.home-page) > main#main-content {
     margin-top: calc(var(--company-marquee-height) + 12px);
   }
 }
+
+.footer-bottom {
+  justify-content: center !important;
+  text-align: center !important;
+}
+.footer-bottom > span:last-child {
+  justify-content: center !important;
+  text-align: center !important;
+}
