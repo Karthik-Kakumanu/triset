@@ -6042,7 +6042,7 @@ body.nav-open .theme-toggle,
   .company-marquee__contact-group .company-marquee__item,
   .company-marquee__contact-group .company-marquee__item a {
     min-width: 0;
-    font-size: 10px;
+    font-size: clamp(7px, 2.6vw, 9px);
     line-height: 1.1;
     letter-spacing: .01em;
   }
@@ -6053,7 +6053,10 @@ body.nav-open .theme-toggle,
     left: 0;
     z-index: 1;
     transform: translateY(-50%);
-    min-width: 0;
+    width: 48%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .company-marquee__contact-group .company-marquee__item:last-child {
     position: absolute;
@@ -6062,13 +6065,14 @@ body.nav-open .theme-toggle,
     z-index: 1;
     display: inline-flex;
     transform: translateY(-50%);
-    min-width: 0;
-    max-width: 100%;
+    width: 48%;
+    max-width: 48%;
     overflow: hidden;
     text-align: right;
   }
   .company-marquee__contact-group .company-marquee__item:last-child a {
     display: inline-block;
+    width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     vertical-align: bottom;
