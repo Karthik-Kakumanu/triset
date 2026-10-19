@@ -1124,12 +1124,6 @@
               <input id="filter-search" type="search" placeholder="Search by role or skill" autocomplete="off" />
             </div>
             <div class="job-filter">
-              <label for="filter-department">Department</label>
-              <select id="filter-department">
-                <option value="all">All departments</option>
-              </select>
-            </div>
-            <div class="job-filter">
               <label for="filter-location">Location</label>
               <select id="filter-location">
                 <option value="all">All locations</option>
@@ -1156,7 +1150,6 @@
         <div class="job-modal__panel">
           <div class="job-modal__header">
             <div>
-              <p class="eyebrow" id="job-modal-department">Department</p>
               <h3 id="job-modal-title">Role title</h3>
             </div>
             <button class="job-modal__close" type="button" aria-label="Close role details">×</button>
@@ -1442,7 +1435,6 @@
       const jobsContainer = document.getElementById('careers-list');
       const modal = document.getElementById('job-modal');
       const modalClose = document.querySelector('.job-modal__close');
-      const filterDepartment = document.getElementById('filter-department');
       const filterLocation = document.getElementById('filter-location');
       const filterExperience = document.getElementById('filter-experience');
       const filterType = document.getElementById('filter-type');
@@ -1452,7 +1444,6 @@
       const state = {
         jobs: [],
         filters: {
-          department: 'all',
           location: 'all',
           experience: 'all',
           type: 'all',
@@ -1465,7 +1456,6 @@
       }
 
       function buildFilters(jobs) {
-        const departments = [...new Set(jobs.map((job) => normalizeText(job.department)).filter(Boolean))].sort();
         const locations = [...new Set(jobs.map((job) => normalizeText(job.location)).filter(Boolean))].sort();
         const experiences = [...new Set(jobs.map((job) => normalizeText(job.experience)).filter(Boolean))].sort();
         const types = [...new Set(jobs.map((job) => normalizeText(job.employment_type)).filter(Boolean))].sort();
@@ -1476,7 +1466,6 @@
           selectElement.value = values.includes(current) ? current : 'all';
         }
 
-        populateSelect(filterDepartment, departments, 'departments');
         populateSelect(filterLocation, locations, 'locations');
         populateSelect(filterExperience, experiences, 'experience');
         populateSelect(filterType, types, 'job types');
@@ -1484,7 +1473,6 @@
 
       function openJobModal(job) {
         const modalTitle = document.getElementById('job-modal-title');
-        const modalDepartment = document.getElementById('job-modal-department');
         const modalMeta = document.getElementById('job-modal-meta');
         const about = document.getElementById('job-about');
         const skills = document.getElementById('job-skills');
@@ -1494,7 +1482,6 @@
         const emailLink = document.getElementById('modal-email-link');
 
         modalTitle.textContent = job.title;
-        modalDepartment.textContent = job.department || 'General';
         modalMeta.innerHTML = [
           `<span>${job.location || 'Flexible'}</span>`,
           `<span>${job.experience || 'Flexible experience'}</span>`,
@@ -1535,15 +1522,13 @@
       });
 
       function matchesFilters(job) {
-        const department = normalizeText(job.department);
         const location = normalizeText(job.location);
         const experience = normalizeText(job.experience);
         const type = normalizeText(job.employment_type);
         const search = state.filters.search.toLowerCase();
-        const searchable = [job.title, job.department, job.description, job.experience, job.skills, job.requirements].join(' ').toLowerCase();
+        const searchable = [job.title, job.description, job.experience, job.skills, job.requirements].join(' ').toLowerCase();
 
         return (
-          (state.filters.department === 'all' || department === state.filters.department) &&
           (state.filters.location === 'all' || location === state.filters.location) &&
           (state.filters.experience === 'all' || experience === state.filters.experience) &&
           (state.filters.type === 'all' || type === state.filters.type) &&
@@ -1568,7 +1553,6 @@
           <article class="job-card">
             <div class="job-card__meta">
               <div>
-                <p class="eyebrow">${job.department || 'General'}</p>
                 <strong>${job.title}</strong>
               </div>
               <span class="job-card__type">${job.employment_type || 'Full-time'}</span>
@@ -1596,9 +1580,8 @@
         applicationRole.innerHTML = `<option value="">Select role</option>${jobs.map((job) => `<option value="${job.title}">${job.title} — ${job.employment_type}</option>`).join('')}`;
       }
 
-      [filterDepartment, filterLocation, filterExperience, filterType].forEach((select) => {
+      [filterLocation, filterExperience, filterType].forEach((select) => {
         select.addEventListener('change', () => {
-          state.filters.department = filterDepartment.value;
           state.filters.location = filterLocation.value;
           state.filters.experience = filterExperience.value;
           state.filters.type = filterType.value;

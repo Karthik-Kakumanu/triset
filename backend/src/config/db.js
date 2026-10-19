@@ -68,6 +68,13 @@ async function initializeDatabase() {
         [job.title, job.location, job.department, job.employment_type, job.experience, job.description, job.responsibilities.join('\n'), job.requirements.join('\n'), 'info@trisetsolutions.com']
       );
     }
+
+    await pool.query(`
+      UPDATE job_posts
+      SET department = 'Web Development', updated_at = NOW()
+      WHERE department = 'Software Engineering'
+        AND title IN ('Web Developer Intern', 'Web Developer')
+    `);
   } catch (error) {
     console.warn('[db:warning] Database initialization failed (will continue with limited features):', error.message);
   }
