@@ -95,10 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	      <div class="services-mega-menu" role="menu" aria-label="Services menu">
 	        <div class="services-mega-sidebar" role="tablist" aria-label="Service categories">
 	          <a class="services-mega-service is-active" href="photogrammetry.html" data-service-menu="photogrammetry" role="tab" aria-selected="true"><span aria-hidden="true">◉</span> Photogrammetry</a>
+	          <a class="services-mega-service" href="digital-marketing.html" data-service-menu="digital-marketing" role="tab" aria-selected="false"><span aria-hidden="true">◈</span> Digital Marketing</a>
 	          <a class="services-mega-service" href="web-development.html" data-service-menu="web-development" role="tab" aria-selected="false"><span aria-hidden="true">▣</span> Web Development</a>
 	          <a class="services-mega-service" href="app-development.html" data-service-menu="app-development" role="tab" aria-selected="false"><span aria-hidden="true">▯</span> App Development</a>
 	          <a class="services-mega-service" href="data-entry.html" data-service-menu="data-entry" role="tab" aria-selected="false"><span aria-hidden="true">▤</span> Data Entry</a>
-	          <a class="services-mega-service" href="digital-marketing.html" data-service-menu="digital-marketing" role="tab" aria-selected="false"><span aria-hidden="true">◈</span> Digital Marketing</a>
 	        </div>
 	        <div class="services-mega-content">
 	          <section class="services-mega-panel is-active" data-service-panel="photogrammetry" role="tabpanel">
