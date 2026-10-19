@@ -4788,6 +4788,7 @@ body.nav-open .theme-toggle,
 }
 
 .services-mega-menu {
+  isolation: isolate;
   position: absolute;
   top: calc(100% + .55rem);
   left: 50%;
@@ -4947,6 +4948,17 @@ body.nav-open .theme-toggle,
   box-shadow: 0 24px 55px rgba(5, 45, 100, .42), 0 0 0 1px rgba(255,255,255,.2) inset, 0 1px 0 rgba(255,255,255,.35) inset;
   backdrop-filter: blur(18px);
 }
+.services-mega-menu::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .28;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255,255,255,.7) 1px, transparent 1px);
+  background-size: 18px 18px;
+  mask-image: linear-gradient(135deg, rgba(0,0,0,.8), transparent 70%);
+}
 
 .services-mega-menu::before { display: none; }
 .services-mega-sidebar {
@@ -4979,6 +4991,17 @@ body.nav-open .theme-toggle,
   font-size: 1.05rem;
   text-align: center;
 }
+.services-mega-service::after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  margin-left: auto;
+  border-radius: 50%;
+  background: rgba(255,255,255,.35);
+  box-shadow: 0 0 0 3px rgba(255,255,255,.06);
+  opacity: .7;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
 .services-mega-service:hover,
 .services-mega-service:focus-visible,
 .services-mega-service.is-active {
@@ -4987,13 +5010,20 @@ body.nav-open .theme-toggle,
   box-shadow: inset 3px 0 0 #8ed4ff, 0 8px 18px rgba(2, 30, 75, .16);
   transform: translateX(3px) !important;
 }
+.services-mega-service:hover::after,
+.services-mega-service:focus-visible::after,
+.services-mega-service.is-active::after {
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(142,212,255,.2), 0 0 12px rgba(255,255,255,.8);
+  transform: scale(1.25);
+}
 .services-mega-content {
   min-width: 0;
   padding-left: 1.1rem;
 }
 .services-mega-panel {
   display: none;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  grid-template-columns: 1fr;
   gap: 1.3rem;
   height: 100%;
 }
@@ -5019,7 +5049,7 @@ body.nav-open .theme-toggle,
   border: 0 !important;
   border-radius: 0 !important;
   color: #fff !important;
-  font-size: .94rem !important;
+  font-size: 1rem !important;
   font-weight: 600;
   line-height: 1.35;
   justify-content: flex-start !important;
@@ -5083,7 +5113,7 @@ body.nav-open .theme-toggle,
   }
   .services-mega-service { min-height: 38px !important; }
   .services-mega-content { padding: .8rem 0 0; }
-  .services-mega-panel { grid-template-columns: 1fr 1fr; gap: .7rem; }
+  .services-mega-panel { grid-template-columns: 1fr; gap: .7rem; }
 }
 
 /* Click-open Industries dropdown */

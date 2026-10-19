@@ -103,23 +103,18 @@ document.addEventListener('DOMContentLoaded', () => {
 	        <div class="services-mega-content">
 	          <section class="services-mega-panel is-active" data-service-panel="photogrammetry" role="tabpanel">
 	            <div class="services-mega-panel-column"><h3>Services</h3><a href="photogrammetry.html">Image Analysis</a><a href="photogrammetry.html">3D Modeling</a><a href="photogrammetry.html">Mapping &amp; Cartography</a><a href="photogrammetry.html">DEM &amp; Orthophoto</a><a href="photogrammetry.html">LiDAR, GIS &amp; Drone Services</a></div>
-	            <div class="services-mega-panel-column"><h3>Technologies</h3><a href="photogrammetry.html">Photogrammetry</a><a href="photogrammetry.html">GIS</a><a href="photogrammetry.html">LiDAR</a><a href="photogrammetry.html">Drone Mapping</a></div>
 	          </section>
 	          <section class="services-mega-panel" data-service-panel="web-development" role="tabpanel">
 	            <div class="services-mega-panel-column"><h3>Services</h3><a href="web-development.html">Custom Web Development</a><a href="web-development.html">WordPress</a><a href="web-development.html">UI/UX Design</a><a href="web-development.html">API Integration</a></div>
-	            <div class="services-mega-panel-column"><h3>Technologies</h3><a href="web-development.html">HTML &amp; CSS</a><a href="web-development.html">JavaScript</a><a href="web-development.html">WordPress</a><a href="web-development.html">APIs</a></div>
 	          </section>
 	          <section class="services-mega-panel" data-service-panel="app-development" role="tabpanel">
 	            <div class="services-mega-panel-column"><h3>Services</h3><a href="app-development.html">Android Apps</a><a href="app-development.html">iOS Apps</a><a href="app-development.html">Cross-Platform Apps</a><a href="app-development.html">App UI/UX</a></div>
-	            <div class="services-mega-panel-column"><h3>Technologies</h3><a href="app-development.html">Flutter</a><a href="app-development.html">Dart</a><a href="app-development.html">Mobile APIs</a><a href="app-development.html">App Integrations</a></div>
 	          </section>
 	          <section class="services-mega-panel" data-service-panel="data-entry" role="tabpanel">
 	            <div class="services-mega-panel-column"><h3>Services</h3><a href="data-entry.html">Data Entry Services</a><a href="data-entry.html">Data Processing</a><a href="data-entry.html">Data Cleansing</a><a href="data-entry.html">Data Conversion</a><a href="data-entry.html">Document Digitization</a></div>
-	            <div class="services-mega-panel-column"><h3>Technologies</h3><a href="data-entry.html">Spreadsheets</a><a href="data-entry.html">Databases</a><a href="data-entry.html">Document Workflows</a><a href="data-entry.html">Quality Checks</a></div>
 	          </section>
 	          <section class="services-mega-panel" data-service-panel="digital-marketing" role="tabpanel">
 	            <div class="services-mega-panel-column"><h3>Services</h3><a href="digital-marketing.html">SEO &amp; Local SEO</a><a href="digital-marketing.html">Technical SEO</a><a href="digital-marketing.html">PPC &amp; Paid Ads</a><a href="digital-marketing.html">Social Media Marketing</a><a href="digital-marketing.html">Email &amp; Content Marketing</a></div>
-	            <div class="services-mega-panel-column"><h3>Technologies</h3><a href="digital-marketing.html">Search Analytics</a><a href="digital-marketing.html">Paid Campaigns</a><a href="digital-marketing.html">Social Platforms</a><a href="digital-marketing.html">Content Systems</a></div>
 	          </section>
 	        </div>
 	      </div>`);
