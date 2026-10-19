@@ -5806,6 +5806,7 @@ body.nav-open .theme-toggle,
 .footer:has(.footer-service-directory) .container { position: relative; z-index: 1; }
 .footer-intro { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; padding: 3rem 0 2.2rem; border-bottom: 1px solid rgba(220,232,245,.14); }
 .footer-brand { display: inline-flex; flex-direction: column; color: #fff !important; font: 800 1.55rem var(--font-display); letter-spacing: .08em; text-decoration: none; }
+.footer-service-caption { margin: .55rem 0 0; color: #8fa8c5; font-size: .62rem; line-height: 1.5; letter-spacing: .035em; }
 .footer-brand-mark { display: inline-block; color: #fff; font-size: 1.7rem; letter-spacing: .09em; line-height: 1; }
 .footer-brand small { margin-top: .18rem; color: #50c8ff; font: 700 .52rem var(--font-mono); letter-spacing: .15em; }
 .footer-brand-logo { width: 210px; padding: .35rem .55rem; border-radius: 7px; background: #fff; box-shadow: 0 8px 20px rgba(0,0,0,.16); }

@@ -66,8 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	    footer.innerHTML = `
 	      <div class="container">
 	        <div class="footer-intro">
-	          <div><a class="footer-brand footer-brand-logo" href="index.html" aria-label="TRISET Solutions India home"><img src="assets/logo_final.png" alt="TRISET Solutions India Pvt. Ltd." /></a><p>Digital and geo-spatial solutions from Hyderabad, India.</p></div>
-	          <div class="footer-contact"><a href="mailto:info@trisetsolutions.com">info@trisetsolutions.com</a><a href="tel:+917382819292">+91 7382 819 292</a><a href="contact.html">Start a project →</a></div>
+	          <div><a class="footer-brand footer-brand-logo" href="index.html" aria-label="TRISET Solutions India home"><img src="assets/logo_final.png" alt="TRISET Solutions India Pvt. Ltd." /></a><p class="footer-service-caption">From precise Photogrammetry and Data Entry to Digital Marketing, Web Development, and App Development, TRISET turns complex business needs into clear, reliable digital solutions.</p></div>
+	          <div class="footer-contact"><a href="mailto:info@trisetsolutions.com">info@trisetsolutions.com</a><a href="tel:+917382819292">+91 7382 819 292</a></div>
 	        </div>
 	        <div class="footer-service-directory">
 	          <div class="footer-service-column"><h3>Data Entry</h3><a href="data-entry.html">Data Entry Services</a><a href="data-entry.html">Data Processing</a><a href="data-entry.html">Data Cleansing</a><a href="data-entry.html">Data Conversion</a><a href="data-entry.html">Document Digitization</a></div>
