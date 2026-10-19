@@ -6013,24 +6013,27 @@ body.nav-open .theme-toggle,
 
 /* Premium two-row mobile company bar: details first, social links second. */
 @media (max-width: 720px) {
-  :root { --company-marquee-height: 62px; }
+  :root { --company-marquee-height: 72px; }
   .company-marquee {
     height: var(--company-marquee-height);
-    padding: 5px 0;
-    background: linear-gradient(135deg, #0c1930, #142b4d);
+    padding: 7px 0;
+    background:
+      radial-gradient(circle at 12% 0%, rgba(49, 158, 255, .22), transparent 42%),
+      linear-gradient(135deg, #091a35, #123b68 68%, #0c2749);
     border-bottom: 1px solid rgba(80, 200, 255, .32);
+    box-shadow: 0 8px 22px rgba(4, 27, 58, .18);
   }
   .company-marquee__inner {
     width: calc(100% - 1rem);
     height: 100%;
     display: grid;
     grid-template-rows: 1fr 1fr;
-    gap: 3px;
+    gap: 5px;
   }
   .company-marquee__contact-group {
     width: 100%;
     justify-content: space-between;
-    gap: .55rem;
+    gap: .8rem;
     overflow: hidden;
     white-space: nowrap;
   }
@@ -6038,9 +6041,11 @@ body.nav-open .theme-toggle,
   .company-marquee__contact-group .company-marquee__item,
   .company-marquee__contact-group .company-marquee__item a {
     min-width: 0;
-    font-size: 9px;
-    line-height: 1;
+    font-size: 10px;
+    line-height: 1.1;
+    letter-spacing: .01em;
   }
+  .company-marquee__contact-group .company-marquee__item:first-child { font-weight: 800; }
   .company-marquee__contact-group .company-marquee__item:first-child { flex: 0 1 auto; }
   .company-marquee__contact-group .company-marquee__item:last-child {
     flex: 1 1 auto;
@@ -6054,17 +6059,25 @@ body.nav-open .theme-toggle,
     text-overflow: ellipsis;
     vertical-align: bottom;
   }
-  .company-marquee__divider { height: 11px; }
+  .company-marquee__icon { font-size: 12px; }
+  .company-marquee__divider { height: 14px; }
   .company-marquee__socials {
     justify-content: center;
-    gap: 9px;
+    gap: 10px;
   }
   .company-marquee__social {
-    width: 22px;
-    height: 22px;
-    box-shadow: 0 3px 8px rgba(0,0,0,.22);
+    position: relative;
+    width: 26px;
+    height: 26px;
+    box-shadow: 0 5px 12px rgba(0,0,0,.26), inset 0 1px 1px rgba(255,255,255,.75);
+    transition: transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s ease;
   }
-  .company-marquee__social svg { width: 13px; height: 13px; }
+  .company-marquee__social:hover,
+  .company-marquee__social:focus-visible {
+    transform: translateY(-2px) scale(1.08);
+    box-shadow: 0 8px 16px rgba(0,0,0,.3), inset 0 1px 1px rgba(255,255,255,.85);
+  }
+  .company-marquee__social svg { width: 15px; height: 15px; }
   .company-marquee__social--whatsapp svg { width: 14px; height: 14px; }
 }
 
