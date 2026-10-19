@@ -1508,6 +1508,13 @@
         modal.setAttribute('aria-hidden', 'false');
       }
 
+      document.getElementById('modal-apply-link').addEventListener('click', (event) => {
+        event.preventDefault();
+        closeJobModal();
+        window.history.replaceState(null, '', '#apply');
+        document.getElementById('apply').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
       function closeJobModal() {
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden', 'true');
