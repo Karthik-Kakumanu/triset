@@ -6378,10 +6378,23 @@ body:not(.home-page) > main#main-content {
 /* Premium mobile floating controls: compact blue glass buttons with subtle motion. */
 @media (max-width: 720px) {
   .floating-contact-actions {
+    position: fixed;
     gap: .7rem;
     right: 14px;
     bottom: 20px;
     filter: drop-shadow(0 12px 20px rgba(14, 67, 142, .16));
+  }
+  .floating-contact-actions::before {
+    content: '';
+    position: absolute;
+    inset: -13px -10px;
+    z-index: -2;
+    border: 1px solid rgba(91, 164, 255, .2);
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(232, 244, 255, .76), rgba(255,255,255,.38));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.85), 0 16px 35px rgba(26, 82, 160, .12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
   .floating-contact-action,
   .floating-contact-action--top {
@@ -6411,7 +6424,7 @@ body:not(.home-page) > main#main-content {
     position: absolute;
     inset: -5px;
     z-index: -1;
-    border: 1px solid rgba(78, 159, 255, .18);
+    border: 1px solid rgba(78, 159, 255, .3);
     border-radius: inherit;
     opacity: 0;
     transform: scale(.82);
