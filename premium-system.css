@@ -6347,11 +6347,39 @@ body:not(.home-page) > main#main-content {
   }
 }
 
+/* Center only the three policy links; keep copyright and designer credit in place. */
 .footer-bottom {
-  justify-content: center !important;
-  text-align: center !important;
+  position: relative;
+  justify-content: space-between !important;
+  text-align: initial !important;
 }
 .footer-bottom > span:last-child {
+  position: absolute;
+  inset: 0;
+  display: flex !important;
+  align-items: center;
   justify-content: center !important;
+  gap: .9rem;
+  pointer-events: none;
   text-align: center !important;
+}
+.footer-bottom > span:last-child > a { pointer-events: auto; }
+.footer-bottom .footer-credit {
+  position: absolute;
+  right: 0;
+  pointer-events: auto;
+  white-space: nowrap;
+}
+@media (max-width: 720px) {
+  .footer-bottom > span:last-child {
+    position: static;
+    inset: auto;
+    flex-wrap: wrap;
+    gap: .55rem .9rem;
+    margin-top: .55rem;
+  }
+  .footer-bottom .footer-credit {
+    position: static;
+    width: 100%;
+  }
 }
