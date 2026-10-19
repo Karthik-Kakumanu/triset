@@ -6415,6 +6415,12 @@ body:not(.home-page) > main#main-content {
     border-color: rgba(11, 102, 255, .28);
     box-shadow: 0 8px 0 rgba(11, 76, 180, .18), 0 14px 24px rgba(16, 76, 190, .2), inset 0 2px 2px rgba(255,255,255,.95), inset 0 -4px 7px rgba(11, 102, 255, .08) !important;
   }
+  .floating-contact-action--call:hover,
+  .floating-contact-action--call:focus-visible {
+    color: #0b66ff !important;
+    background: linear-gradient(145deg, #ffffff, #eaf3ff) !important;
+    filter: brightness(1.04) saturate(1.08) drop-shadow(0 0 8px rgba(11,102,255,.34));
+  }
   .floating-contact-action:nth-child(2) { animation-delay: .18s; }
   .floating-contact-action:nth-child(3) { animation-delay: .36s; }
   .floating-contact-action--top {
