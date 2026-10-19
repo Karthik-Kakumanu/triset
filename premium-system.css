@@ -6953,6 +6953,127 @@ body:not(.home-page) > main#main-content {
 :root[data-theme='dark'] .industry-detail-content { background: #050b12 !important; color: var(--theme-text) !important; }
 :root[data-theme='dark'] .industry-detail-card { background: #0b1724; border-color: var(--theme-border); color: var(--theme-text); box-shadow: 0 18px 48px rgba(0,0,0,.3); }
 :root[data-theme='dark'] .industry-detail-card p { color: var(--theme-muted); }
+
+/* Industries overview: stronger editorial hero with spatial depth. */
+.industries-page .hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: clamp(560px, 72vh, 780px);
+  padding-top: clamp(8rem, 13vw, 11rem);
+  padding-bottom: clamp(4rem, 8vw, 6rem);
+  background:
+    radial-gradient(720px 420px at 86% 18%, rgba(17,116,255,.26), transparent 65%),
+    radial-gradient(460px 300px at 8% 90%, rgba(217,43,43,.12), transparent 70%),
+    linear-gradient(145deg, #04101f 0%, #082b50 58%, #0b4e85 100%);
+}
+.industries-page .hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .48;
+  background-image: linear-gradient(rgba(179,216,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(179,216,255,.07) 1px, transparent 1px);
+  background-size: 58px 58px;
+  mask-image: linear-gradient(90deg, #000 0%, transparent 88%);
+  animation: industry-grid-flow 18s linear infinite;
+}
+.industries-page .hero::after {
+  content: 'TRISET / INDUSTRY INTELLIGENCE';
+  position: absolute;
+  right: clamp(1rem, 5vw, 5rem);
+  bottom: 1.5rem;
+  color: rgba(210,232,255,.46);
+  font: 700 .64rem var(--font-mono);
+  letter-spacing: .18em;
+  pointer-events: none;
+}
+.industries-page .hero-grid { position: relative; z-index: 1; }
+.industries-page .hero-copy { max-width: 700px; }
+.industries-page .hero-copy .eyebrow { color: #8cc3ff; }
+.industries-page .hero-copy h1 {
+  max-width: 9ch;
+  color: #fff;
+  font-size: clamp(3.3rem, 7vw, 7rem);
+  line-height: .91;
+  letter-spacing: -.075em;
+  text-wrap: balance;
+  text-shadow: 0 18px 55px rgba(0,0,0,.3);
+}
+.industries-page .hero-copy .lead { max-width: 560px; color: rgba(228,241,255,.78); font-size: clamp(1rem, 1.5vw, 1.2rem); }
+.industries-page .image-panel {
+  position: relative;
+  min-height: clamp(330px, 38vw, 500px);
+  overflow: hidden;
+  border: 1px solid rgba(185,220,255,.26);
+  border-radius: 24px;
+  box-shadow: 0 32px 90px rgba(0,0,0,.4), 0 0 0 10px rgba(115,180,255,.05);
+  transform: perspective(1200px) rotateY(-7deg) rotateX(2deg);
+  animation: industry-hero-in 1s var(--ease) .18s both;
+}
+.industries-page .image-panel::before {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  z-index: 1;
+  border: 1px solid rgba(210,233,255,.25);
+  border-radius: 16px;
+  pointer-events: none;
+}
+.industries-page .image-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,.18) 48%, transparent 72%), linear-gradient(0deg, rgba(2,12,25,.65), transparent 58%);
+  background-size: 220% 100%, 100% 100%;
+  animation: industry-image-sheen 9s ease-in-out infinite;
+  pointer-events: none;
+}
+.industries-page .image-panel img { width: 100%; height: 100%; min-height: inherit; object-fit: cover; filter: saturate(1.12) contrast(1.06); transition: transform .8s var(--ease); }
+.industries-page .image-panel:hover img { transform: scale(1.07); }
+.industries-page .orbit-section { background: #f6faff; }
+@keyframes industry-grid-flow { to { background-position: 58px 58px; } }
+@keyframes industry-hero-in { from { opacity: 0; transform: perspective(1200px) rotateY(-12deg) translateY(28px); } to { opacity: 1; transform: perspective(1200px) rotateY(-7deg) rotateX(2deg); } }
+@keyframes industry-image-sheen { 0%, 72% { background-position: 160% 0, 0 0; opacity: .25; } 84% { opacity: .85; } 100% { background-position: -40% 0, 0 0; opacity: .25; } }
+@media (max-width: 760px) {
+  .industries-page .hero { min-height: auto; padding-top: 7.5rem; }
+  .industries-page .hero-copy h1 { max-width: 10ch; font-size: clamp(2.8rem, 14vw, 4.5rem); }
+  .industries-page .image-panel { min-height: 280px; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .industries-page .hero::before,
+  .industries-page .image-panel,
+  .industries-page .image-panel::after { animation: none; }
+}
+
+/* About CTA: one-line headline and centered action row. */
+.about-page .ax-cta-inner {
+  max-width: min(1180px, calc(100% - 2rem));
+  text-align: center;
+}
+.about-page .ax-cta-heading {
+  white-space: nowrap;
+  font-size: clamp(1.8rem, 4vw, 3.65rem);
+  letter-spacing: -.055em;
+}
+.about-page .ax-cta-lead {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.about-page .ax-cta .hero-actions {
+  justify-content: center;
+  align-items: center;
+  gap: .8rem;
+}
+@media (max-width: 760px) {
+  .about-page .ax-cta-heading {
+    white-space: normal;
+    font-size: clamp(1.75rem, 8vw, 2.65rem);
+  }
+  .about-page .ax-cta .hero-actions { flex-wrap: wrap; }
+}
 @media (prefers-reduced-motion: reduce) {
   .industry-detail-visual, .industry-detail-card { animation: none; }
 }
