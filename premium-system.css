@@ -4940,8 +4940,12 @@ body.nav-open .theme-toggle,
   border: 0;
   border-top: 0;
   border-radius: 8px;
-  background: linear-gradient(135deg, #063b80 0%, #0b66d4 58%, #1685e8 100%);
-  box-shadow: 0 18px 34px rgba(5, 45, 100, .34), 0 0 0 1px rgba(255,255,255,.12) inset;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(126, 219, 255, .28), transparent 28%),
+    radial-gradient(circle at 8% 92%, rgba(0, 29, 91, .32), transparent 34%),
+    linear-gradient(135deg, #063b80 0%, #0b66d4 58%, #1685e8 100%);
+  box-shadow: 0 24px 55px rgba(5, 45, 100, .42), 0 0 0 1px rgba(255,255,255,.2) inset, 0 1px 0 rgba(255,255,255,.35) inset;
+  backdrop-filter: blur(18px);
 }
 
 .services-mega-menu::before { display: none; }
@@ -4950,7 +4954,9 @@ body.nav-open .theme-toggle,
   flex-direction: column;
   gap: .2rem;
   padding-right: .8rem;
-  border-right: 1px solid rgba(255, 255, 255, .7);
+  border-right: 1px solid rgba(255, 255, 255, .42);
+  background: linear-gradient(180deg, rgba(0, 33, 89, .22), rgba(0, 33, 89, .04));
+  border-radius: 6px;
 }
 .services-mega-service {
   display: flex !important;
@@ -5004,6 +5010,7 @@ body.nav-open .theme-toggle,
   border-bottom: 1px solid rgba(255, 255, 255, .7);
   color: #fff;
   font-size: 1.15rem;
+  letter-spacing: .02em;
   line-height: 1.2;
 }
 .services-mega-panel-column a {
@@ -5023,6 +5030,26 @@ body.nav-open .theme-toggle,
   color: #fff !important;
   background: rgba(255, 255, 255, .1) !important;
   transform: translateX(3px);
+}
+
+/* The main site header has a dark-text rule; keep the blue mega-menu readable. */
+.site-header .site-nav .services-mega-menu .services-mega-service,
+.site-header .site-nav .services-mega-menu .services-mega-service span,
+.site-header .site-nav .services-mega-menu .services-mega-panel-column h3,
+.site-header .site-nav .services-mega-menu .services-mega-panel-column a {
+  color: #fff !important;
+}
+.site-header .site-nav .services-mega-menu .services-mega-panel-column a:hover,
+.site-header .site-nav .services-mega-menu .services-mega-panel-column a:focus-visible {
+  color: #fff !important;
+  background: rgba(255,255,255,.14) !important;
+}
+.site-header .site-nav .services-mega-menu .services-mega-service:hover,
+.site-header .site-nav .services-mega-menu .services-mega-service:focus-visible,
+.site-header .site-nav .services-mega-menu .services-mega-service.is-active {
+  color: #fff !important;
+  background: linear-gradient(90deg, rgba(255,255,255,.2), rgba(255,255,255,.06)) !important;
+  border-color: transparent !important;
 }
 
 /* Keep the five service collections in the same order everywhere. */
