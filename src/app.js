@@ -90,27 +90,51 @@ document.addEventListener('DOMContentLoaded', () => {
 	    servicesLink.insertAdjacentHTML('afterend', '<button class="nav-expand-toggle" type="button" aria-label="Expand Services" aria-expanded="false"><span aria-hidden="true">+</span></button>');
 	    servicesItem.insertAdjacentHTML('beforeend', `
 	      <div class="services-mega-menu" role="menu" aria-label="Services menu">
-	        <div class="services-mega-column">
-	          <a class="services-mega-title" href="digital-marketing.html">Digital Marketing</a>
-	          <a href="digital-marketing.html">SEO &amp; Local SEO</a><a href="digital-marketing.html">Technical SEO</a><a href="digital-marketing.html">PPC &amp; Paid Ads</a><a href="digital-marketing.html">Social Media Marketing</a><a href="digital-marketing.html">Email &amp; Content Marketing</a>
+	        <div class="services-mega-sidebar" role="tablist" aria-label="Service categories">
+	          <a class="services-mega-service is-active" href="photogrammetry.html" data-service-menu="photogrammetry" role="tab" aria-selected="true"><span aria-hidden="true">◉</span> Photogrammetry</a>
+	          <a class="services-mega-service" href="web-development.html" data-service-menu="web-development" role="tab" aria-selected="false"><span aria-hidden="true">▣</span> Web Development</a>
+	          <a class="services-mega-service" href="app-development.html" data-service-menu="app-development" role="tab" aria-selected="false"><span aria-hidden="true">▯</span> App Development</a>
+	          <a class="services-mega-service" href="data-entry.html" data-service-menu="data-entry" role="tab" aria-selected="false"><span aria-hidden="true">▤</span> Data Entry</a>
+	          <a class="services-mega-service" href="digital-marketing.html" data-service-menu="digital-marketing" role="tab" aria-selected="false"><span aria-hidden="true">◈</span> Digital Marketing</a>
 	        </div>
-	        <div class="services-mega-column">
-	          <a class="services-mega-title" href="web-development.html">Web Development</a>
-	          <a href="web-development.html">Custom Web Development</a><a href="web-development.html">WordPress</a><a href="web-development.html">Shopify</a><a href="web-development.html">UI/UX &amp; API Integration</a>
-	        </div>
-	        <div class="services-mega-column">
-	          <a class="services-mega-title" href="app-development.html">App Development</a>
-	          <a href="app-development.html">Android Apps</a><a href="app-development.html">iOS Apps</a><a href="app-development.html">Cross-Platform Apps</a><a href="app-development.html">App UI/UX</a>
-	        </div>
-	        <div class="services-mega-column">
-	          <a class="services-mega-title" href="data-entry.html">Data Entry</a>
-	          <a href="data-entry.html">Data Entry Services</a><a href="data-entry.html">Data Processing</a><a href="data-entry.html">Data Cleansing</a><a href="data-entry.html">Data Conversion</a><a href="data-entry.html">Document Digitization</a>
-	        </div>
-	        <div class="services-mega-column">
-	          <a class="services-mega-title" href="photogrammetry.html">Photogrammetry</a>
-	          <a href="photogrammetry.html">Image Analysis</a><a href="photogrammetry.html">3D Modeling</a><a href="photogrammetry.html">Mapping &amp; Cartography</a><a href="photogrammetry.html">DEM &amp; Orthophoto</a><a href="photogrammetry.html">LiDAR, GIS &amp; Drone Services</a>
+	        <div class="services-mega-content">
+	          <section class="services-mega-panel is-active" data-service-panel="photogrammetry" role="tabpanel">
+	            <div class="services-mega-panel-column"><h3>Services</h3><a href="photogrammetry.html">Image Analysis</a><a href="photogrammetry.html">3D Modeling</a><a href="photogrammetry.html">Mapping &amp; Cartography</a><a href="photogrammetry.html">DEM &amp; Orthophoto</a><a href="photogrammetry.html">LiDAR, GIS &amp; Drone Services</a></div>
+	            <div class="services-mega-panel-column"><h3>Technologies</h3><a href="photogrammetry.html">Photogrammetry</a><a href="photogrammetry.html">GIS</a><a href="photogrammetry.html">LiDAR</a><a href="photogrammetry.html">Drone Mapping</a></div>
+	          </section>
+	          <section class="services-mega-panel" data-service-panel="web-development" role="tabpanel">
+	            <div class="services-mega-panel-column"><h3>Services</h3><a href="web-development.html">Custom Web Development</a><a href="web-development.html">WordPress</a><a href="web-development.html">UI/UX Design</a><a href="web-development.html">API Integration</a></div>
+	            <div class="services-mega-panel-column"><h3>Technologies</h3><a href="web-development.html">HTML &amp; CSS</a><a href="web-development.html">JavaScript</a><a href="web-development.html">WordPress</a><a href="web-development.html">APIs</a></div>
+	          </section>
+	          <section class="services-mega-panel" data-service-panel="app-development" role="tabpanel">
+	            <div class="services-mega-panel-column"><h3>Services</h3><a href="app-development.html">Android Apps</a><a href="app-development.html">iOS Apps</a><a href="app-development.html">Cross-Platform Apps</a><a href="app-development.html">App UI/UX</a></div>
+	            <div class="services-mega-panel-column"><h3>Technologies</h3><a href="app-development.html">Flutter</a><a href="app-development.html">Dart</a><a href="app-development.html">Mobile APIs</a><a href="app-development.html">App Integrations</a></div>
+	          </section>
+	          <section class="services-mega-panel" data-service-panel="data-entry" role="tabpanel">
+	            <div class="services-mega-panel-column"><h3>Services</h3><a href="data-entry.html">Data Entry Services</a><a href="data-entry.html">Data Processing</a><a href="data-entry.html">Data Cleansing</a><a href="data-entry.html">Data Conversion</a><a href="data-entry.html">Document Digitization</a></div>
+	            <div class="services-mega-panel-column"><h3>Technologies</h3><a href="data-entry.html">Spreadsheets</a><a href="data-entry.html">Databases</a><a href="data-entry.html">Document Workflows</a><a href="data-entry.html">Quality Checks</a></div>
+	          </section>
+	          <section class="services-mega-panel" data-service-panel="digital-marketing" role="tabpanel">
+	            <div class="services-mega-panel-column"><h3>Services</h3><a href="digital-marketing.html">SEO &amp; Local SEO</a><a href="digital-marketing.html">Technical SEO</a><a href="digital-marketing.html">PPC &amp; Paid Ads</a><a href="digital-marketing.html">Social Media Marketing</a><a href="digital-marketing.html">Email &amp; Content Marketing</a></div>
+	            <div class="services-mega-panel-column"><h3>Technologies</h3><a href="digital-marketing.html">Search Analytics</a><a href="digital-marketing.html">Paid Campaigns</a><a href="digital-marketing.html">Social Platforms</a><a href="digital-marketing.html">Content Systems</a></div>
+	          </section>
 	        </div>
 	      </div>`);
+	    servicesItem.querySelectorAll('[data-service-menu]').forEach((serviceTab) => {
+	      const activateService = () => {
+	        const serviceKey = serviceTab.dataset.serviceMenu;
+	        servicesItem.querySelectorAll('[data-service-menu]').forEach((tab) => {
+	          const active = tab === serviceTab;
+	          tab.classList.toggle('is-active', active);
+	          tab.setAttribute('aria-selected', String(active));
+	        });
+	        servicesItem.querySelectorAll('[data-service-panel]').forEach((panel) => {
+	          panel.classList.toggle('is-active', panel.dataset.servicePanel === serviceKey);
+	        });
+	      };
+      serviceTab.addEventListener('mouseenter', activateService);
+      serviceTab.addEventListener('focus', activateService);
+    });
 	    const servicesToggle = servicesItem.querySelector('.nav-expand-toggle');
 	    const setServicesOpen = (open) => {
 	      servicesItem.classList.toggle('is-open', open);
