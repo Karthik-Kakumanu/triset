@@ -6313,3 +6313,25 @@ body {
   }
   .reveal { filter: none; transform: none; }
 }
+
+/* Internal pages use a solid header from the first frame; the homepage keeps
+   its transparent hero header and changes to white after scrolling. */
+body:not(.home-page) .site-header,
+body:not(.home-page) .site-header.is-scrolled {
+  --header-bg: rgba(255, 255, 255, .98) !important;
+  --header-blur: 0px !important;
+  --header-shadow: 0 2px 14px rgba(7, 16, 24, .08), 0 10px 28px rgba(7, 16, 24, .05) !important;
+  background: #fff !important;
+  box-shadow: var(--header-shadow) !important;
+}
+body:not(.home-page) .site-header .site-nav a:not(.nav-cta),
+body:not(.home-page) .site-header .theme-toggle,
+body:not(.home-page) .site-header .menu-toggle {
+  color: #0f1724 !important;
+}
+body:not(.home-page) .site-header .site-nav a:not(.nav-cta):hover,
+body:not(.home-page) .site-header .site-nav a:not(.nav-cta).active,
+body:not(.home-page) .site-header .theme-toggle:hover {
+  color: var(--brand-primary) !important;
+  background: rgba(11, 102, 255, .07) !important;
+}
