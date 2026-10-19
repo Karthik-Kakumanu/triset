@@ -6532,6 +6532,89 @@ body:not(.home-page) > main#main-content {
   color: #ffffff !important;
 }
 
+/* Cinematic premium treatment for the About hero. */
+.about-page .about-hero {
+  isolation: isolate;
+  background:
+    radial-gradient(620px 360px at 78% 18%, rgba(57, 137, 255, .2), transparent 68%),
+    radial-gradient(420px 260px at 8% 86%, rgba(217, 43, 43, .12), transparent 70%),
+    linear-gradient(145deg, #04101f 0%, #082b50 54%, #0b4e85 100%);
+}
+.about-page .about-hero::before,
+.about-page .about-hero::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+.about-page .about-hero::before {
+  width: 34rem;
+  height: 34rem;
+  right: -11rem;
+  top: 8%;
+  border: 1px solid rgba(165, 211, 255, .13);
+  border-radius: 50%;
+  box-shadow: 0 0 0 34px rgba(130, 190, 255, .035), 0 0 0 70px rgba(130, 190, 255, .022);
+  animation: about-orbit 15s linear infinite;
+}
+.about-page .about-hero::after {
+  inset: 0;
+  background: linear-gradient(115deg, transparent 22%, rgba(255,255,255,.05) 48%, transparent 63%);
+  background-size: 220% 100%;
+  animation: about-sheen 10s ease-in-out infinite;
+}
+.about-page .about-hero-grid-bg {
+  opacity: .72;
+  animation: about-grid-drift 18s linear infinite;
+}
+.about-page .about-hero-copy,
+.about-page .ah-trust-strip {
+  position: relative;
+  z-index: 2;
+}
+.about-page .ah-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .2rem;
+  padding: .4rem .72rem;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+  background: rgba(255,255,255,.055);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 12px 28px rgba(0,0,0,.12);
+}
+.about-page .ah-heading {
+  max-width: 760px;
+  text-wrap: balance;
+  text-shadow: 0 18px 50px rgba(0,0,0,.32);
+}
+.about-page .ah-lead {
+  padding-left: .95rem;
+  border-left: 2px solid rgba(115, 180, 255, .7);
+  text-shadow: 0 8px 24px rgba(0,0,0,.2);
+}
+.about-page .ah-company-facts span {
+  background: linear-gradient(135deg, rgba(255,255,255,.1), rgba(104,170,255,.08));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 8px 20px rgba(0,0,0,.12);
+}
+@keyframes about-orbit {
+  from { transform: rotate(0deg) translateX(10px); }
+  to { transform: rotate(360deg) translateX(10px); }
+}
+@keyframes about-sheen {
+  0%, 72% { background-position: 160% 0; opacity: 0; }
+  82% { opacity: .55; }
+  100% { background-position: -40% 0; opacity: 0; }
+}
+@keyframes about-grid-drift {
+  from { background-position: 0 0; }
+  to { background-position: 64px 64px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-page .about-hero::before,
+  .about-page .about-hero::after,
+  .about-page .about-hero-grid-bg { animation: none; }
+}
+
 /* Consistent premium type hierarchy across every page. */
 body,
 button,
