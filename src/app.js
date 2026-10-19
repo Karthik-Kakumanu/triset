@@ -44,6 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	      <a class="floating-contact-action floating-contact-action--call" href="tel:+917382819292" aria-label="Call TRISET Sales">
 	        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.1 3.5 9.8 3c.7-.1 1.3.3 1.5 1l1 3.1c.2.6 0 1.2-.5 1.5l-1.8 1.1a12 12 0 0 0 4.3 4.3l1.1-1.8c.3-.5.9-.7 1.5-.5l3.1 1c.7.2 1.1.8 1 1.5l-.5 2.7c-.1.7-.7 1.2-1.4 1.2C11.5 17.6 6.4 12.5 5.3 5c-.1-.7.4-1.4 1.1-1.5l.7-.1Z"/></svg>
 	      </a>
+		      <a class="floating-contact-action floating-contact-action--email" href="mailto:info@trisetsolutions.com" aria-label="Email TRISET at info@trisetsolutions.com">
+		        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5h18a1.5 1.5 0 0 1 1.5 1.5v10A1.5 1.5 0 0 1 21 18.5H3A1.5 1.5 0 0 1 1.5 17V7A1.5 1.5 0 0 1 3 5.5Zm0 2.4V17h18V7.9l-8.24 5.86a1.3 1.3 0 0 1-1.52 0L3 7.9Zm1.5-.4L12 12.83l7.5-5.33H4.5Z"/></svg>
+		      </a>
 	      <a class="floating-contact-action floating-contact-action--whatsapp" href="https://wa.me/917382819292" target="_blank" rel="noopener noreferrer" aria-label="Chat with TRISET on WhatsApp">
 	        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8a9.2 9.2 0 0 0-7.9 13.8L2.8 21.2l4.8-1.3A9.2 9.2 0 1 0 12 2.8Zm0 16.7a7.5 7.5 0 0 1-3.8-1l-.3-.2-2.8.8.8-2.7-.2-.3A7.5 7.5 0 1 1 12 19.5Zm4-5.6c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.7.9c-.1.2-.3.2-.5.1a6.2 6.2 0 0 1-3-2.6c-.2-.3 0-.5.1-.6l.4-.5c.1-.2.1-.3 0-.5l-.7-1.7c-.1-.2-.3-.2-.5-.2h-.4c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3s.9 2.6 1.1 2.8a8.5 8.5 0 0 0 3.2 3.1c1.9.8 1.9.5 2.2.5.3 0 1.5-.6 1.7-1.2.2-.6.2-1.2.1-1.3Z"/></svg>
 	      </a>

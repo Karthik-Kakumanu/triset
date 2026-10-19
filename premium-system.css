@@ -5442,7 +5442,7 @@ body.nav-open .theme-toggle,
   .triset-service-studio .services-five-card img { order: -1; height: 82px; max-height: 82px; }
 }
 
-/* Floating call, WhatsApp, and back-to-top controls */
+/* Floating call, email, WhatsApp, and back-to-top controls */
 .floating-contact-actions {
   position: fixed;
   right: clamp(14px, 2.5vw, 34px);
@@ -5465,6 +5465,7 @@ body.nav-open .theme-toggle,
   transform: translateY(0);
 }
 .floating-contact-action {
+  position: relative;
   width: 46px;
   height: 46px;
   display: grid;
@@ -5474,26 +5475,39 @@ body.nav-open .theme-toggle,
   color: #fff;
   text-decoration: none;
   cursor: pointer;
-  box-shadow: 0 10px 22px rgba(15, 23, 36, .18);
-  transition: transform .2s ease, box-shadow .2s ease;
+  overflow: hidden;
+  box-shadow: 0 10px 0 rgba(0, 0, 0, .12), 0 16px 26px rgba(15, 23, 36, .2), inset 0 2px 2px rgba(255,255,255,.45), inset 0 -3px 5px rgba(0,0,0,.16);
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
 }
+.floating-contact-action::before {
+  content: '';
+  position: absolute;
+  inset: 2px 3px 52%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,255,255,0));
+  pointer-events: none;
+}
+.floating-contact-action svg { position: relative; z-index: 1; }
 .floating-contact-action:hover,
 .floating-contact-action:focus-visible {
   color: #fff;
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 15px 28px rgba(15, 23, 36, .25);
+  transform: translateY(-5px) scale(1.08) rotateX(8deg);
+  filter: saturate(1.12) brightness(1.06);
+  box-shadow: 0 13px 0 rgba(0, 0, 0, .12), 0 21px 34px rgba(15, 23, 36, .28), inset 0 2px 2px rgba(255,255,255,.5), inset 0 -3px 5px rgba(0,0,0,.16);
 }
+.floating-contact-action:active { transform: translateY(2px) scale(.98); box-shadow: 0 5px 0 rgba(0,0,0,.12), 0 9px 16px rgba(15,23,36,.18), inset 0 2px 5px rgba(0,0,0,.16); }
 .floating-contact-action svg { width: 23px; height: 23px; fill: currentColor; }
 .floating-contact-action--call,
 .floating-contact-action--whatsapp { background: #25d366; }
 .floating-contact-action--call { margin-bottom: -.45rem; }
+.floating-contact-action--email { background: linear-gradient(145deg, #ff8a3d, #e64b21); }
 .floating-contact-action--whatsapp { background: #22c864; }
 .floating-contact-action--top {
   width: 54px;
   height: 54px;
   margin-top: .35rem;
   background: linear-gradient(145deg, #4169ee, #2947d5);
-  box-shadow: 0 12px 26px rgba(41, 71, 213, .35);
+  box-shadow: 0 12px 0 rgba(25, 46, 145, .42), 0 20px 32px rgba(41, 71, 213, .35), inset 0 2px 2px rgba(255,255,255,.45), inset 0 -4px 6px rgba(0,0,0,.16);
 }
 .floating-contact-action--top svg { width: 24px; height: 24px; }
 @media (max-width: 720px) {
