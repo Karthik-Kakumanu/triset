@@ -1531,6 +1531,26 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   box-shadow: 0 10px 24px rgba(0, 0, 0, .16);
 }
 
+/* Keep the About opening confident, but give the copy more breathing room. */
+.about-page .ah-heading {
+  font-size: clamp(2.45rem, 4.35vw, 4.65rem);
+  line-height: .97;
+}
+.about-page .ah-lead {
+  max-width: 500px;
+  font-size: clamp(.9rem, 1vw, 1rem);
+  line-height: 1.5;
+}
+.about-page .ah-company-facts span {
+  font-size: .57rem;
+  padding: .42rem .6rem;
+}
+
+@media (max-width: 760px) {
+  .about-page .ah-heading { font-size: clamp(2.15rem, 10vw, 3.15rem); }
+  .about-page .ah-lead { font-size: .9rem; }
+}
+
 .about-page .ax-story,
 .about-page .ax-profile,
 .about-page .ax-locations,
@@ -6489,6 +6509,27 @@ body:not(.home-page) > main#main-content {
 @keyframes floating-top-pulse {
   0%, 100% { transform: translateY(0) scale(1); }
   50% { transform: translateY(-4px) scale(1.035); }
+}
+
+/* Keep every floating icon readable while it pops on hover/focus. */
+.floating-contact-action--call:hover,
+.floating-contact-action--call:focus-visible {
+  color: #0b66ff !important;
+  background: linear-gradient(145deg, #ffffff, #eaf3ff) !important;
+}
+.floating-contact-action--email:hover,
+.floating-contact-action--email:focus-visible {
+  color: #e64b21 !important;
+  background: linear-gradient(145deg, #ffffff, #fff1eb) !important;
+}
+.floating-contact-action--whatsapp:hover,
+.floating-contact-action--whatsapp:focus-visible {
+  color: #16b85a !important;
+  background: linear-gradient(145deg, #ffffff, #eafff2) !important;
+}
+.floating-contact-action--top:hover,
+.floating-contact-action--top:focus-visible {
+  color: #ffffff !important;
 }
 
 /* Consistent premium type hierarchy across every page. */
