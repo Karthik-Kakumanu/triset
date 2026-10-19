@@ -4629,7 +4629,6 @@ body.nav-open .theme-toggle,
 .company-marquee__social--facebook { color: #1877f2; font-size: 18px; }
 .company-marquee__social--x { color: #111827; font-size: 12px; }
 .company-marquee__social--instagram { color: #e1306c; font-size: 21px; }
-.company-marquee__social--youtube { color: #f00; font-size: 11px; }
 .company-marquee__social--linkedin { color: #0a66c2; font-size: 11px; }
 .company-marquee__social--whatsapp { color: #18b957; font-size: 19px; }
 .company-marquee a.company-marquee__social--instagram { color: #e1306c; }
@@ -4660,7 +4659,6 @@ body.nav-open .theme-toggle,
   stroke: none;
 }
 
-.company-marquee__social--youtube svg { width: 17px; height: 17px; }
 .company-marquee__social--linkedin svg { width: 16px; height: 16px; }
 .company-marquee__social--whatsapp svg { width: 17px; height: 17px; }
 
@@ -5739,7 +5737,6 @@ body.nav-open .theme-toggle,
   .company-marquee__socials { flex: 0 0 auto; gap: 2px; }
   .company-marquee__social { width: 19px; height: 19px; font-size: 9px; }
   .company-marquee__social svg { width: 12px; height: 12px; }
-  .company-marquee__social--youtube svg,
   .company-marquee__social--whatsapp svg { width: 13px; height: 13px; }
 }
 
@@ -6024,7 +6021,7 @@ body.nav-open .theme-toggle,
     border-bottom: 1px solid rgba(80, 200, 255, .32);
   }
   .company-marquee__inner {
-    width: calc(100% - 1.25rem);
+    width: calc(100% - 1rem);
     height: 100%;
     display: grid;
     grid-template-rows: 1fr 1fr;
@@ -6032,8 +6029,8 @@ body.nav-open .theme-toggle,
   }
   .company-marquee__contact-group {
     width: 100%;
-    justify-content: center;
-    gap: .35rem;
+    justify-content: space-between;
+    gap: .55rem;
     overflow: hidden;
     white-space: nowrap;
   }
@@ -6041,11 +6038,15 @@ body.nav-open .theme-toggle,
   .company-marquee__contact-group .company-marquee__item,
   .company-marquee__contact-group .company-marquee__item a {
     min-width: 0;
-    font-size: 8px;
+    font-size: 9px;
     line-height: 1;
   }
+  .company-marquee__contact-group .company-marquee__item:first-child { flex: 0 1 auto; }
   .company-marquee__contact-group .company-marquee__item:last-child {
-    max-width: 34%;
+    flex: 1 1 auto;
+    max-width: none;
+    overflow: hidden;
+    justify-content: flex-end;
   }
   .company-marquee__contact-group .company-marquee__item:last-child a {
     display: inline-block;
@@ -6056,7 +6057,7 @@ body.nav-open .theme-toggle,
   .company-marquee__divider { height: 11px; }
   .company-marquee__socials {
     justify-content: center;
-    gap: 7px;
+    gap: 9px;
   }
   .company-marquee__social {
     width: 22px;
@@ -6064,7 +6065,6 @@ body.nav-open .theme-toggle,
     box-shadow: 0 3px 8px rgba(0,0,0,.22);
   }
   .company-marquee__social svg { width: 13px; height: 13px; }
-  .company-marquee__social--youtube svg,
   .company-marquee__social--whatsapp svg { width: 14px; height: 14px; }
 }
 
