@@ -6072,10 +6072,17 @@ body.nav-open .theme-toggle,
     max-width: 48%;
     overflow: hidden;
     text-align: right;
+    align-items: center;
+    justify-content: flex-end;
+    gap: .25rem;
+  }
+  .company-marquee__contact-group .company-marquee__item:last-child .company-marquee__icon {
+    flex: 0 0 auto;
   }
   .company-marquee__contact-group .company-marquee__item:last-child a {
     display: inline-block;
-    width: 100%;
+    width: auto;
+    max-width: calc(100% - 16px);
     overflow: hidden;
     text-overflow: ellipsis;
     vertical-align: bottom;
