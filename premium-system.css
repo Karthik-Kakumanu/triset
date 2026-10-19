@@ -6032,8 +6032,10 @@ body.nav-open .theme-toggle,
   }
   .company-marquee__contact-group {
     width: 100%;
-    justify-content: space-between;
-    gap: .8rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: .4rem;
     overflow: hidden;
     white-space: nowrap;
   }
@@ -6046,12 +6048,16 @@ body.nav-open .theme-toggle,
     letter-spacing: .01em;
   }
   .company-marquee__contact-group .company-marquee__item:first-child { font-weight: 800; }
-  .company-marquee__contact-group .company-marquee__item:first-child { flex: 0 1 auto; }
+  .company-marquee__contact-group .company-marquee__item:first-child {
+    justify-self: start;
+    min-width: 0;
+  }
   .company-marquee__contact-group .company-marquee__item:last-child {
-    flex: 1 1 auto;
-    max-width: none;
+    justify-self: end;
+    min-width: 0;
+    max-width: 100%;
     overflow: hidden;
-    justify-content: flex-end;
+    text-align: right;
   }
   .company-marquee__contact-group .company-marquee__item:last-child a {
     display: inline-block;
@@ -6060,10 +6066,12 @@ body.nav-open .theme-toggle,
     vertical-align: bottom;
   }
   .company-marquee__icon { font-size: 12px; }
-  .company-marquee__divider { height: 14px; }
+  .company-marquee__divider { display: none; }
   .company-marquee__socials {
-    justify-content: center;
-    gap: 10px;
+    width: 100%;
+    justify-content: space-evenly;
+    gap: 0;
+    padding: 0 .35rem;
   }
   .company-marquee__social {
     position: relative;
