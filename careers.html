@@ -336,7 +336,8 @@
         font-weight: 700;
       }
 
-      .job-filter select {
+      .job-filter select,
+      .job-filter input {
         width: 100%;
         padding: 0.8rem 0.9rem;
         border-radius: 12px;
@@ -344,6 +345,10 @@
         background: rgba(255,255,255,0.9);
         color: var(--careers-navy);
         font-size: 16px; /* Prevents iOS auto-zoom */
+      }
+
+      .job-filter--search input {
+        background: linear-gradient(135deg, rgba(255,255,255,.98), rgba(240,247,255,.92));
       }
 
       @media (max-width: 980px) {
@@ -1114,6 +1119,10 @@
             </div>
           </div>
           <div class="jobs-toolbar" aria-label="Job filters">
+            <div class="job-filter job-filter--search">
+              <label for="filter-search">Search positions</label>
+              <input id="filter-search" type="search" placeholder="Search by role or skill" autocomplete="off" />
+            </div>
             <div class="job-filter">
               <label for="filter-department">Department</label>
               <select id="filter-department">
@@ -1209,15 +1218,8 @@
               </label>
               <label>
                 Role
-                <select name="role" required>
+                <select name="role" id="application-role" required>
                   <option value="">Select role</option>
-                  <option value="Software">Software</option>
-                  <option value="Geospatial">Geospatial</option>
-                  <option value="Data">Data</option>
-                  <option value="Design">Design</option>
-                  <option value="Digital Marketing">Digital Marketing</option>
-                  <option value="Operations">Operations</option>
-                  <option value="Business">Business</option>
                 </select>
               </label>
             </div>
@@ -1444,6 +1446,8 @@
       const filterLocation = document.getElementById('filter-location');
       const filterExperience = document.getElementById('filter-experience');
       const filterType = document.getElementById('filter-type');
+      const filterSearch = document.getElementById('filter-search');
+      const applicationRole = document.getElementById('application-role');
 
       const state = {
         jobs: [],
@@ -1451,7 +1455,8 @@
           department: 'all',
           location: 'all',
           experience: 'all',
-          type: 'all'
+          type: 'all',
+          search: ''
         }
       };
 
@@ -1508,6 +1513,7 @@
         requirements.innerHTML = requirementList.length ? requirementList.map((item) => `<li>${item.trim()}</li>`).join('') : '<li>Strong communication and a proactive mindset.</li>';
 
         applyLink.href = '#apply';
+        applicationRole.value = job.title;
         const email = job.apply_email || 'info@trisetsolutions.com';
         emailLink.href = `mailto:${email}?subject=${encodeURIComponent('Application for ' + job.title)}`;
 
@@ -1533,12 +1539,15 @@
         const location = normalizeText(job.location);
         const experience = normalizeText(job.experience);
         const type = normalizeText(job.employment_type);
+        const search = state.filters.search.toLowerCase();
+        const searchable = [job.title, job.department, job.description, job.experience, job.skills, job.requirements].join(' ').toLowerCase();
 
         return (
           (state.filters.department === 'all' || department === state.filters.department) &&
           (state.filters.location === 'all' || location === state.filters.location) &&
           (state.filters.experience === 'all' || experience === state.filters.experience) &&
-          (state.filters.type === 'all' || type === state.filters.type)
+          (state.filters.type === 'all' || type === state.filters.type) &&
+          (!search || searchable.includes(search))
         );
       }
 
@@ -1583,6 +1592,10 @@
         });
       }
 
+      function populateApplicationRoles(jobs) {
+        applicationRole.innerHTML = `<option value="">Select role</option>${jobs.map((job) => `<option value="${job.title}">${job.title} — ${job.employment_type}</option>`).join('')}`;
+      }
+
       [filterDepartment, filterLocation, filterExperience, filterType].forEach((select) => {
         select.addEventListener('change', () => {
           state.filters.department = filterDepartment.value;
@@ -1591,6 +1604,11 @@
           state.filters.type = filterType.value;
           renderJobs();
         });
+      });
+
+      filterSearch.addEventListener('input', () => {
+        state.filters.search = filterSearch.value.trim();
+        renderJobs();
       });
 
       async function loadJobs() {
@@ -1609,6 +1627,7 @@
 
           state.jobs = payload.jobs;
           buildFilters(state.jobs);
+          populateApplicationRoles(state.jobs);
           renderJobs();
         } catch (error) {
           jobsContainer.innerHTML = `

@@ -76,13 +76,14 @@ async function createJob(request, response) {
           employment_type,
           experience,
           description,
+          responsibilities,
           requirements,
           apply_email,
           apply_url,
           image_url,
           is_featured,
           is_active
-        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
         RETURNING *;
       `,
       [
@@ -92,6 +93,7 @@ async function createJob(request, response) {
         payload.employment_type || 'Full-time',
         payload.experience || '2+ years',
         description,
+        Array.isArray(payload.responsibilities) ? payload.responsibilities.join('\n') : (payload.responsibilities || ''),
         payload.requirements || '',
         payload.apply_email || 'info@trisetsolutions.com',
         payload.apply_url || '',
@@ -143,14 +145,15 @@ async function updateJob(request, response, jobId) {
           employment_type = COALESCE($4, employment_type),
           experience = COALESCE($5, experience),
           description = COALESCE($6, description),
-          requirements = COALESCE($7, requirements),
-          apply_email = COALESCE($8, apply_email),
-          apply_url = COALESCE($9, apply_url),
-          image_url = COALESCE($10, image_url),
-          is_featured = COALESCE($11, is_featured),
-          is_active = COALESCE($12, is_active),
+          responsibilities = COALESCE($7, responsibilities),
+          requirements = COALESCE($8, requirements),
+          apply_email = COALESCE($9, apply_email),
+          apply_url = COALESCE($10, apply_url),
+          image_url = COALESCE($11, image_url),
+          is_featured = COALESCE($12, is_featured),
+          is_active = COALESCE($13, is_active),
           updated_at = NOW()
-        WHERE id = $13
+        WHERE id = $14
         RETURNING *;
       `,
       [
@@ -160,6 +163,7 @@ async function updateJob(request, response, jobId) {
         payload.employment_type || null,
         payload.experience || null,
         payload.description || null,
+        payload.responsibilities || null,
         payload.requirements || null,
         payload.apply_email || null,
         payload.apply_url || null,
