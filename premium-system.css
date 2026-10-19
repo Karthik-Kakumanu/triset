@@ -6027,11 +6027,14 @@ body.nav-open .theme-toggle,
     width: calc(100% - 1rem);
     height: 100%;
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: 1fr 1fr;
     gap: 5px;
   }
   .company-marquee__contact-group {
     width: 100%;
+    grid-column: 1;
+    align-self: stretch;
     position: relative;
     display: block;
     min-height: 18px;
@@ -6081,6 +6084,8 @@ body.nav-open .theme-toggle,
   .company-marquee__divider { display: none; }
   .company-marquee__socials {
     width: 100%;
+    grid-column: 1;
+    align-self: stretch;
     justify-content: space-evenly;
     gap: 0;
     padding: 0 .35rem;
