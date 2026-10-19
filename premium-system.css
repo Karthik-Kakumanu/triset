@@ -5475,17 +5475,13 @@ body.nav-open .theme-toggle,
   color: #fff;
   text-decoration: none;
   cursor: pointer;
-  overflow: hidden;
-  box-shadow: 0 10px 0 rgba(0, 0, 0, .12), 0 16px 26px rgba(15, 23, 36, .2), inset 0 2px 2px rgba(255,255,255,.45), inset 0 -3px 5px rgba(0,0,0,.16);
-  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  overflow: visible;
+  background: transparent !important;
+  box-shadow: none !important;
+  transition: transform .2s ease, filter .2s ease;
 }
 .floating-contact-action::before {
-  content: '';
-  position: absolute;
-  inset: 2px 3px 52%;
-  border-radius: 999px;
-  background: linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,255,255,0));
-  pointer-events: none;
+  display: none;
 }
 .floating-contact-action svg { position: relative; z-index: 1; }
 .floating-contact-action:hover,
@@ -5493,21 +5489,18 @@ body.nav-open .theme-toggle,
   color: #fff;
   transform: translateY(-5px) scale(1.08) rotateX(8deg);
   filter: saturate(1.12) brightness(1.06);
-  box-shadow: 0 13px 0 rgba(0, 0, 0, .12), 0 21px 34px rgba(15, 23, 36, .28), inset 0 2px 2px rgba(255,255,255,.5), inset 0 -3px 5px rgba(0,0,0,.16);
 }
-.floating-contact-action:active { transform: translateY(2px) scale(.98); box-shadow: 0 5px 0 rgba(0,0,0,.12), 0 9px 16px rgba(15,23,36,.18), inset 0 2px 5px rgba(0,0,0,.16); }
+.floating-contact-action:active { transform: translateY(2px) scale(.98); }
 .floating-contact-action svg { width: 23px; height: 23px; fill: currentColor; }
-.floating-contact-action--call,
-.floating-contact-action--whatsapp { background: #25d366; }
+.floating-contact-action--call { color: #25d366; }
 .floating-contact-action--call { margin-bottom: -.45rem; }
-.floating-contact-action--email { background: linear-gradient(145deg, #ff8a3d, #e64b21); }
-.floating-contact-action--whatsapp { background: #22c864; }
+.floating-contact-action--email { color: #e64b21; }
+.floating-contact-action--whatsapp { color: #22c864; }
 .floating-contact-action--top {
   width: 54px;
   height: 54px;
   margin-top: .35rem;
-  background: linear-gradient(145deg, #4169ee, #2947d5);
-  box-shadow: 0 12px 0 rgba(25, 46, 145, .42), 0 20px 32px rgba(41, 71, 213, .35), inset 0 2px 2px rgba(255,255,255,.45), inset 0 -4px 6px rgba(0,0,0,.16);
+  color: #2947d5;
 }
 .floating-contact-action--top svg { width: 24px; height: 24px; }
 @media (max-width: 720px) {
