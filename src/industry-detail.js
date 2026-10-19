@@ -26,7 +26,8 @@
     entertainment: { ...industries.startups, name: 'Entertainment', kicker: 'Industry / Creative business', title: 'Give every story a stronger digital stage.', points: ['Portfolio and campaign websites', 'Audience and content journeys', 'Social media and digital marketing', 'Event and enquiry experiences'] },
     'human-resources': { ...industries['crm-saas'], name: 'Human Resources', kicker: 'Industry / People operations', title: 'Make people, process, and information easier to connect.', points: ['Recruitment and company websites', 'Candidate enquiry journeys', 'Structured records and workflows', 'Internal data and communication systems'] }
   });
-  const key = new URLSearchParams(window.location.search).get('industry') || 'startups';
+  const pathKey = document.body.dataset.industrySlug || window.location.pathname.split('/').pop().replace(/^industry-/, '').replace(/\.html$/, '');
+  const key = new URLSearchParams(window.location.search).get('industry') || pathKey || 'startups';
   const data = industries[key] || industries.startups;
   const set = (selector, value, attribute) => { const el = document.querySelector(selector); if (!el) return; if (attribute) el.setAttribute(attribute, value); else el.textContent = value; };
   set('[data-industry-kicker]', data.kicker); set('[data-industry-title]', data.title); set('[data-industry-intro]', data.intro); set('[data-industry-heading]', data.heading); set('[data-industry-description]', data.description); set('[data-industry-image]', data.image, 'src'); set('[data-industry-image]', data.name + ' industry visual', 'alt'); document.title = data.name + ' Industry Solutions | TRISET Solutions';

@@ -1113,6 +1113,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (tabs[0]) selectExplorer(tabs[0].dataset.explorerTrigger);
   });
 
+  document.querySelectorAll('a[href^="industry-detail.html?industry="]').forEach((link) => {
+    const industry = new URL(link.href, window.location.href).searchParams.get('industry');
+    if (industry) link.href = `industry-${industry}.html`;
+  });
+
   document.querySelectorAll('.service-card:not(.reveal), .project-card:not(.reveal), .process-step:not(.reveal), .team-card:not(.reveal)').forEach((item, index) => {
     item.classList.add('reveal');
     window.setTimeout(() => item.classList.add('is-visible'), 80 + index * 28);
