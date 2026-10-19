@@ -739,7 +739,7 @@
         position: relative;
         z-index: 1;
         text-align: center;
-        max-width: 700px;
+        max-width: 1200px;
         margin: 0 auto;
         padding: 0 1rem;
       }
@@ -750,6 +750,7 @@
         letter-spacing: -0.02em;
         color: var(--ink);
         margin: 0 0 1.2rem;
+        white-space: nowrap;
       }
 
       .final-cta-content p {
@@ -769,7 +770,15 @@
       .final-cta-actions .btn {
         font-size: 0.95rem;
         padding: 0.85rem 1.6rem;
-        width: min(100%, 260px);
+        width: 260px;
+        flex: 0 1 260px;
+        white-space: nowrap;
+      }
+
+      .final-cta-actions .btn-quiet {
+        color: var(--ink);
+        border-color: rgba(11,102,255,0.2);
+        background: rgba(255,255,255,0.72);
       }
 
       /* ========================================
@@ -787,6 +796,10 @@
       }
 
       @media (max-width: 600px) {
+        .final-cta-content h2 {
+          white-space: normal;
+        }
+
         .form-two-col {
           grid-template-columns: 1fr;
           gap: 0;
@@ -800,6 +813,7 @@
         .contact-hero-cta .btn,
         .final-cta-actions .btn {
           width: 100%;
+          flex-basis: 100%;
         }
       }
 
@@ -1160,7 +1174,7 @@
             <h3>Phone</h3>
             <div class="info-card-content">
               <p><a href="tel:+917382819292">+91 738 281 9292</a></p>
-              <p style="font-size: 0.8rem; margin-top: 0.3rem;">Mon–Fri, 9:00–18:00 IST</p>
+              <p style="font-size: 0.8rem; margin-top: 0.3rem;">Mon–Sat, 9:00–18:00 IST</p>
             </div>
           </div>
 
@@ -1168,8 +1182,7 @@
             <div class="info-card-icon">&#128338;</div>
             <h3>Office Hours</h3>
             <div class="info-card-content">
-              <p>Monday–Friday<br />9:00 AM – 6:00 PM IST</p>
-              <p style="font-size: 0.8rem; margin-top: 0.3rem;">Saturday by appointment</p>
+              <p>Monday–Saturday<br />9:00 AM – 6:00 PM IST</p>
             </div>
           </div>
         </div>
