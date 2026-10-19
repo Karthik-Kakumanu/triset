@@ -6468,3 +6468,27 @@ body:not(.home-page) > main#main-content {
   0%, 100% { transform: translateY(0) scale(1); }
   50% { transform: translateY(-4px) scale(1.035); }
 }
+
+/* Consistent premium type hierarchy across every page. */
+body,
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6,
+.btn,
+.site-nav a,
+.eyebrow,
+.brand,
+.footer h2,
+.footer h3 {
+  font-family: var(--font-display);
+}
+
+body {
+  font-feature-settings: "liga" 1, "kern" 1;
+  text-rendering: optimizeLegibility;
+}
