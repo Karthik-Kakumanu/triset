@@ -7107,3 +7107,154 @@ body {
   font-feature-settings: "liga" 1, "kern" 1;
   text-rendering: optimizeLegibility;
 }
+
+/* Final responsive safety layer: keep every page inside the viewport. */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+svg,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  .container,
+  .site-header .container,
+  .footer .container {
+    width: min(100% - 1.25rem, 1220px);
+  }
+
+  .container > *,
+  [class*='grid'] > *,
+  [class*='layout'] > *,
+  .panel,
+  .card,
+  article,
+  section {
+    min-width: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  li,
+  a,
+  button,
+  label,
+  strong,
+  span {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  .btn,
+  button,
+  input,
+  select,
+  textarea {
+    max-width: 100%;
+  }
+
+  .btn {
+    white-space: normal;
+    text-align: center;
+  }
+
+  .site-nav,
+  .site-nav ul,
+  .header-actions,
+  .hero-actions,
+  .final-cta-actions {
+    max-width: 100%;
+  }
+
+  .careers-page .jobs-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .7rem;
+  }
+
+  .careers-page .job-card {
+    padding: .9rem .75rem;
+    border-radius: 15px;
+  }
+
+  .careers-page .job-card__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .careers-page .job-card__meta strong {
+    font-size: clamp(.95rem, 4vw, 1.25rem);
+  }
+
+  .careers-page .job-card p {
+    font-size: .78rem;
+    line-height: 1.5;
+  }
+
+  .careers-page .job-card__facts {
+    font-size: .68rem;
+  }
+
+  .careers-page .job-card__actions .btn {
+    width: 100%;
+    padding: .62rem .7rem;
+    font-size: .78rem;
+  }
+
+  .job-modal__panel,
+  .application-form,
+  .application-copy,
+  .service-detail-panel,
+  .industry-detail-card {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .job-modal__panel {
+    width: calc(100% - 1.25rem);
+    max-height: calc(100dvh - 1.25rem);
+    overflow-y: auto;
+  }
+
+  .table-wrap,
+  .table-responsive,
+  pre,
+  code {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .footer-grid,
+  .field-grid,
+  .application-shell,
+  .service-detail-layout,
+  .industry-detail-hero-grid {
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}
