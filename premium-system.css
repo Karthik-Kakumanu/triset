@@ -6339,10 +6339,10 @@ body:not(.home-page) .site-header .theme-toggle:hover {
 /* Fixed headers are removed from normal flow, so reserve their exact height
    on every non-home page to keep the first section below the header. */
 body:not(.home-page) > main#main-content {
-  margin-top: calc(76px + var(--company-marquee-height));
+  margin-top: calc(var(--company-marquee-height) + 16px);
 }
 @media (max-width: 720px) {
   body:not(.home-page) > main#main-content {
-    margin-top: calc(58px + var(--company-marquee-height));
+    margin-top: calc(var(--company-marquee-height) + 12px);
   }
 }
