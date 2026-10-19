@@ -6032,10 +6032,9 @@ body.nav-open .theme-toggle,
   }
   .company-marquee__contact-group {
     width: 100%;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center;
-    gap: .4rem;
+    position: relative;
+    display: block;
+    min-height: 18px;
     overflow: hidden;
     white-space: nowrap;
   }
@@ -6049,11 +6048,20 @@ body.nav-open .theme-toggle,
   }
   .company-marquee__contact-group .company-marquee__item:first-child { font-weight: 800; }
   .company-marquee__contact-group .company-marquee__item:first-child {
-    justify-self: start;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 1;
+    transform: translateY(-50%);
     min-width: 0;
   }
   .company-marquee__contact-group .company-marquee__item:last-child {
-    justify-self: end;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 1;
+    display: inline-flex;
+    transform: translateY(-50%);
     min-width: 0;
     max-width: 100%;
     overflow: hidden;
