@@ -851,7 +851,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-scroll-process]').forEach((processSection) => {
     const steps = Array.from(processSection.querySelectorAll('[data-process-step]'));
     const markers = Array.from(processSection.querySelectorAll('[data-stage-marker]'));
-    const scrollList = processSection.querySelector('.process-scroll-list');
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (!steps.length) return;
 
@@ -865,11 +864,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function syncProcess() {
       const rect = processSection.getBoundingClientRect();
       const viewport = window.innerHeight || document.documentElement.clientHeight;
-      const listHasInternalScroll = scrollList && scrollList.scrollHeight > scrollList.clientHeight + 1;
       const travel = Math.max(1, rect.height - viewport * 0.35);
-      const rawProgress = listHasInternalScroll
-        ? scrollList.scrollTop / Math.max(1, scrollList.scrollHeight - scrollList.clientHeight)
-        : (viewport * 0.68 - rect.top) / travel;
+      const rawProgress = (viewport * 0.68 - rect.top) / travel;
       const progress = Math.min(1, Math.max(0, rawProgress));
       const activeIndex = Math.min(steps.length - 1, Math.max(0, Math.floor(progress * steps.length)));
 
@@ -893,7 +889,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       window.addEventListener('scroll', requestSync, { passive: true });
       window.addEventListener('resize', requestSync);
-      scrollList?.addEventListener('scroll', requestSync, { passive: true });
     }
   });
 

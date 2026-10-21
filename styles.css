@@ -2033,41 +2033,6 @@ p { margin: 0; }
   box-shadow: 0 22px 52px rgba(24, 91, 159, 0.12);
 }
 
-/* Desktop process split: keep the left experience pinned while the steps
-   scroll independently on the right. */
-@media (min-width: 961px) {
-  .process-showcase-grid {
-    min-height: calc(100vh - 120px);
-  }
-
-  .process-showcase-copy,
-  .process-showcase-stage {
-    align-self: start;
-  }
-
-  .process-scroll-list {
-    max-height: calc(100vh - 150px);
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    padding-right: .45rem;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(24, 91, 159, .45) transparent;
-  }
-
-  .process-scroll-list::-webkit-scrollbar {
-    width: 7px;
-  }
-
-  .process-scroll-list::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .process-scroll-list::-webkit-scrollbar-thumb {
-    border-radius: 999px;
-    background: rgba(24, 91, 159, .42);
-  }
-}
-
 .service-tab {
   display: grid;
   grid-template-columns: 48px 1fr;
