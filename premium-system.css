@@ -7890,4 +7890,14 @@ body:not(.home-page).nav-open .site-header {
   .site-nav.open .industries-nav-item.is-open > .industries-dropdown {
     display: flex !important;
   }
+
+  .site-header .site-nav.open .services-mega-menu .services-mobile-accordion .services-mobile-subservices .services-mega-panel-column a,
+  :root[data-theme='dark'] .site-header .site-nav.open .services-mega-menu .services-mobile-accordion .services-mobile-subservices .services-mega-panel-column a {
+    color: #f6f9fc !important;
+  }
+
+  .site-header .site-nav.open .services-mega-menu .services-mobile-accordion .services-mobile-subservices .services-mega-panel-column a::before,
+  :root[data-theme='dark'] .site-header .site-nav.open .services-mega-menu .services-mobile-accordion .services-mobile-subservices .services-mega-panel-column a::before {
+    color: #8fc8ff !important;
+  }
 }
