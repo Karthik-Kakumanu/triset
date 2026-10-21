@@ -247,26 +247,20 @@ document.addEventListener('DOMContentLoaded', () => {
 	      </div>`);
 	    const industriesToggle = industriesItem.querySelector('.nav-expand-toggle');
 
+	    const setIndustriesOpen = (open) => {
+	      industriesItem.classList.toggle('is-open', open);
+	      industriesLink.setAttribute('aria-expanded', String(open));
+	      industriesToggle.setAttribute('aria-expanded', String(open));
+	      industriesToggle.setAttribute('aria-label', `${open ? 'Collapse' : 'Expand'} Industries`);
+	      industriesToggle.querySelector('span').textContent = open ? '−' : '+';
+	    };
 	    const closeIndustries = () => {
-	      industriesItem.classList.remove('is-open');
-	      industriesLink.setAttribute('aria-expanded', 'false');
-	      industriesToggle.setAttribute('aria-expanded', 'false');
-	      industriesToggle.setAttribute('aria-label', 'Expand Industries');
-	      industriesToggle.querySelector('span').textContent = '+';
+	      setIndustriesOpen(false);
 	    };
 	    industriesToggle.addEventListener('click', (event) => {
 	      event.preventDefault();
 	      event.stopPropagation();
-	      if (window.matchMedia('(max-width: 720px)').matches) {
-	        if (industriesItem.classList.contains('is-open')) closeIndustries();
-	        else {
-	          industriesItem.classList.add('is-open');
-	          industriesLink.setAttribute('aria-expanded', 'true');
-	          industriesToggle.setAttribute('aria-expanded', 'true');
-	          industriesToggle.setAttribute('aria-label', 'Collapse Industries');
-	          industriesToggle.querySelector('span').textContent = '−';
-	        }
-	      }
+	      if (window.matchMedia('(max-width: 720px)').matches) setIndustriesOpen(!industriesItem.classList.contains('is-open'));
 	    });
 	    industriesItem.addEventListener('mouseenter', () => industriesLink.setAttribute('aria-expanded', 'true'));
 	    industriesItem.addEventListener('mouseleave', closeIndustries);
@@ -279,8 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	      // desktop clicks keep the normal Industries page navigation.
 	      if (window.matchMedia('(max-width: 720px)').matches && !industriesItem.classList.contains('is-open')) {
 	        event.preventDefault();
-	        industriesItem.classList.add('is-open');
-	        industriesLink.setAttribute('aria-expanded', 'true');
+	        setIndustriesOpen(true);
 	      }
 	    });
 	    document.addEventListener('click', (event) => {
