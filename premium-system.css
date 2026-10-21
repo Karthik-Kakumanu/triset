@@ -7463,6 +7463,11 @@ iframe {
     transform: translateY(-50%);
   }
 
+  .site-nav.open .services-nav-item > .nav-expand-toggle,
+  .site-nav.open .industries-nav-item > .nav-expand-toggle {
+    top: 21px;
+  }
+
   .site-nav.open .services-nav-item.is-open > .nav-expand-toggle,
   .site-nav.open .industries-nav-item.is-open > .nav-expand-toggle {
     color: var(--brand-primary);
