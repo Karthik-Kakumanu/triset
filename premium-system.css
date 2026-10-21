@@ -7812,3 +7812,14 @@ iframe {
     background: var(--surface-2);
   }
 }
+
+body:not(.home-page) .site-header,
+body:not(.home-page) .site-header.is-scrolled,
+body:not(.home-page).nav-open .site-header {
+  background: rgba(255, 255, 255, .96) !important;
+  background-color: rgba(255, 255, 255, .96) !important;
+  border-bottom-color: rgba(15, 23, 36, .08) !important;
+  box-shadow: 0 14px 34px rgba(7, 16, 24, .1) !important;
+  backdrop-filter: blur(14px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(140%) !important;
+}
