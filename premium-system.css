@@ -4680,13 +4680,26 @@ body.nav-open .theme-toggle,
 .company-marquee__social--linkedin { color: #0a66c2; font-size: 11px; }
 .company-marquee__social--whatsapp { color: #18b957; font-size: 19px; }
 .company-marquee a.company-marquee__social--instagram { color: #e1306c; }
+.company-marquee a.company-marquee__social--facebook { color: #1877f2; }
+.company-marquee a.company-marquee__social--x { color: #111827; }
 .company-marquee a.company-marquee__social--linkedin { color: #0a66c2; }
+.company-marquee a.company-marquee__social--whatsapp { color: #18a957; }
 .company-marquee a.company-marquee__social:hover,
 .company-marquee a.company-marquee__social:focus-visible { text-decoration: none; color: inherit; }
 .company-marquee a.company-marquee__social--instagram:hover,
 .company-marquee a.company-marquee__social--instagram:focus-visible { color: #e1306c; }
+.company-marquee a.company-marquee__social--facebook:hover,
+.company-marquee a.company-marquee__social--facebook:focus-visible { color: #1877f2; }
+.company-marquee a.company-marquee__social--x:hover,
+.company-marquee a.company-marquee__social--x:focus-visible { color: #111827; }
 .company-marquee a.company-marquee__social--linkedin:hover,
 .company-marquee a.company-marquee__social--linkedin:focus-visible { color: #0a66c2; }
+.company-marquee a.company-marquee__social--whatsapp:hover,
+.company-marquee a.company-marquee__social--whatsapp:focus-visible { color: #18a957; }
+.company-marquee a.company-marquee__social:focus-visible {
+  outline: 2px solid #8fc8ff;
+  outline-offset: 2px;
+}
 
 .company-marquee__social svg {
   width: 15px;
