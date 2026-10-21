@@ -1809,7 +1809,9 @@ p { margin: 0; }
 }
 
 .process-showcase {
-  overflow: clip;
+  /* Keep sticky left columns attached to the viewport while the right
+     process cards continue through the section. */
+  overflow: visible;
   background:
     linear-gradient(90deg, rgba(24, 91, 159, 0.06) 1px, transparent 1px),
     linear-gradient(180deg, rgba(24, 91, 159, 0.05) 1px, transparent 1px),
