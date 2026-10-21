@@ -4800,6 +4800,22 @@ body.nav-open .theme-toggle,
 }
 .service-card-link:hover .service-pill-panel > img { transform: scale(1.06); }
 
+@media (min-width: 721px) {
+  /* Give the photogrammetry artwork more breathing room below the copy so
+     the drone/map illustration stays clean inside its card. */
+  .service-quick-grid .service-card-link[href*="photogrammetry"] .service-pill-panel > img {
+    align-self: end;
+    max-height: 145px;
+    object-fit: contain;
+    object-position: center bottom;
+    transform: translateY(12px);
+  }
+
+  .service-quick-grid .service-card-link[href*="photogrammetry"]:hover .service-pill-panel > img {
+    transform: translateY(8px) scale(1.035);
+  }
+}
+
 @media (max-width: 720px) {
   .service-quick-grid { grid-template-columns: 1fr; gap: 1rem; }
   .service-quick-grid .service-pill-panel {
