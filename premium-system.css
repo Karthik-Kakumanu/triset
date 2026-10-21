@@ -7755,17 +7755,21 @@ iframe {
 
   .site-nav.open .services-mobile-subservices {
     display: block;
-    padding: 0 .45rem .45rem;
-    background: var(--surface-2);
+    padding: 0 .5rem .5rem;
+    background: var(--surface);
   }
 
   .site-nav.open .services-mobile-subservices .services-mega-panel-column {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: .08rem;
-    padding: .4rem .55rem;
-    border-radius: 0 0 6px 6px;
-    background: var(--gradient-brand);
+    gap: .12rem;
+    padding: .5rem;
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 7px;
+    background:
+      radial-gradient(ellipse at 100% 0%, rgba(54, 133, 214, .2), transparent 48%),
+      linear-gradient(145deg, #09182b 0%, #102640 58%, #153b5e 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06);
   }
 
   .site-nav.open .services-mobile-subservices .services-mega-panel-column h3 {
@@ -7773,16 +7777,31 @@ iframe {
   }
 
   .site-nav.open .services-mobile-subservices .services-mega-panel-column a {
-    min-height: 30px !important;
-    padding: .35rem .2rem !important;
+    min-height: 36px !important;
+    padding: .45rem .55rem !important;
     border-radius: 5px !important;
     color: #fff !important;
     font-size: .77rem !important;
     font-weight: 600 !important;
+    text-shadow: none !important;
+    transition: background .18s ease, color .18s ease, padding-left .18s ease;
   }
 
   .site-nav.open .services-mobile-subservices .services-mega-panel-column a::before {
-    color: rgba(255, 255, 255, .75);
+    color: #8fc8ff;
+    font-size: 1.2em;
+  }
+
+  .site-nav.open .services-mobile-subservices .services-mega-panel-column a:hover,
+  .site-nav.open .services-mobile-subservices .services-mega-panel-column a:focus-visible {
+    color: #fff !important;
+    background: rgba(255, 255, 255, .1) !important;
+    padding-left: .7rem !important;
+  }
+
+  .site-nav.open .services-mobile-subservices .services-mega-panel-column a:focus-visible {
+    outline: 2px solid #8fc8ff;
+    outline-offset: 1px;
   }
 
   :root[data-theme='dark'] .site-nav.open .services-mobile-accordion {

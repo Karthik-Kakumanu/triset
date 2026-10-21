@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	    industriesLink.insertAdjacentHTML('afterend', '<button class="nav-expand-toggle" type="button" aria-label="Expand Industries" aria-expanded="false"><span aria-hidden="true">+</span></button>');
     industriesItem.insertAdjacentHTML('beforeend', `
 	      <div class="industries-dropdown" role="menu" aria-label="Industries menu">
-	        <a href="industry-detail.html?industry=healthcare">Healthcare</a><a href="industry-detail.html?industry=education">Education</a><a href="industry-detail.html?industry=it-ites">IT &amp; ITES</a><a href="industry-detail.html?industry=ngos">NGOs</a><a href="industry-detail.html?industry=real-estate">Real Estate</a><a href="industry-detail.html?industry=fintech">Fintech</a><a href="industry-detail.html?industry=manufacturing">Manufacturers</a><a href="industry-detail.html?industry=entertainment">Entertainment</a><a href="industry-detail.html?industry=fashion-beauty">Fashion &amp; Beauty</a><a href="industry-detail.html?industry=solar">Solar</a><a href="industry-detail.html?industry=e-commerce">E-Commerce</a><a href="industry-detail.html?industry=human-resources">Human Resources</a>
+	        <a href="industry-healthcare.html">Healthcare</a><a href="industry-education.html">Education</a><a href="industry-it-ites.html">IT &amp; ITES</a><a href="industry-ngos.html">NGOs</a><a href="industry-real-estate.html">Real Estate</a><a href="industry-fintech.html">Fintech</a><a href="industry-manufacturing.html">Manufacturers</a><a href="industry-entertainment.html">Entertainment</a><a href="industry-fashion-beauty.html">Fashion &amp; Beauty</a><a href="industry-solar.html">Solar</a><a href="industry-e-commerce.html">E-Commerce</a><a href="industry-human-resources.html">Human Resources</a>
 	      </div>`);
 	    const industriesToggle = industriesItem.querySelector('.nav-expand-toggle');
 
@@ -1182,11 +1182,6 @@ document.addEventListener('DOMContentLoaded', () => {
       tab.addEventListener('click', () => selectExplorer(tab.dataset.explorerTrigger));
     });
     if (tabs[0]) selectExplorer(tabs[0].dataset.explorerTrigger);
-  });
-
-  document.querySelectorAll('a[href^="industry-detail.html?industry="]').forEach((link) => {
-    const industry = new URL(link.href, window.location.href).searchParams.get('industry');
-    if (industry) link.href = `industry-${industry}.html`;
   });
 
   document.querySelectorAll('.service-card:not(.reveal), .project-card:not(.reveal), .process-step:not(.reveal), .team-card:not(.reveal)').forEach((item, index) => {
