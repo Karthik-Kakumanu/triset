@@ -4870,7 +4870,7 @@ body.nav-open .theme-toggle,
 .services-mega-menu {
   isolation: isolate;
   position: absolute;
-  top: calc(100% + .55rem);
+  top: 100%;
   left: 50%;
   z-index: 1100;
   display: grid;
