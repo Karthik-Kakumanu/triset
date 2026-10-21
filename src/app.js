@@ -192,13 +192,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       };
       serviceTab.addEventListener('mouseenter', () => {
-        if (!window.matchMedia('(max-width: 720px)').matches) activateService(serviceTab.dataset.serviceMenu);
+        if (!window.matchMedia('(max-width: 980px)').matches) activateService(serviceTab.dataset.serviceMenu);
       });
       serviceTab.addEventListener('focus', () => {
-        if (!window.matchMedia('(max-width: 720px)').matches) activateService(serviceTab.dataset.serviceMenu);
+        if (!window.matchMedia('(max-width: 980px)').matches) activateService(serviceTab.dataset.serviceMenu);
       });
       serviceTab.addEventListener('click', (event) => {
-        if (!window.matchMedia('(max-width: 720px)').matches) return;
+        if (!window.matchMedia('(max-width: 980px)').matches) return;
         event.preventDefault();
         activateService(serviceTab.dataset.serviceMenu);
       });
@@ -214,19 +214,21 @@ document.addEventListener('DOMContentLoaded', () => {
 	    servicesToggle.addEventListener('click', (event) => {
 	      event.preventDefault();
 	      event.stopPropagation();
-	      if (window.matchMedia('(max-width: 720px)').matches) setServicesOpen(!servicesItem.classList.contains('is-open'));
+	      if (window.matchMedia('(max-width: 980px)').matches) setServicesOpen(!servicesItem.classList.contains('is-open'));
 	    });
 
-	    servicesItem.addEventListener('mouseenter', () => servicesLink.setAttribute('aria-expanded', 'true'));
-	    servicesItem.addEventListener('mouseleave', () => servicesLink.setAttribute('aria-expanded', 'false'));
-	    servicesItem.addEventListener('focusin', () => servicesLink.setAttribute('aria-expanded', 'true'));
-	    servicesItem.addEventListener('focusout', (event) => {
-	      if (!servicesItem.contains(event.relatedTarget)) servicesLink.setAttribute('aria-expanded', 'false');
+	    servicesItem.addEventListener('mouseenter', () => {
+	      if (!window.matchMedia('(max-width: 980px)').matches) servicesLink.setAttribute('aria-expanded', 'true');
 	    });
-	    servicesLink.addEventListener('click', (event) => {
-	      if (window.matchMedia('(max-width: 720px)').matches && servicesLink.getAttribute('aria-expanded') !== 'true') {
-	        event.preventDefault();
-	        setServicesOpen(true);
+	    servicesItem.addEventListener('mouseleave', () => {
+	      if (!window.matchMedia('(max-width: 980px)').matches) servicesLink.setAttribute('aria-expanded', 'false');
+	    });
+	    servicesItem.addEventListener('focusin', () => {
+	      if (!window.matchMedia('(max-width: 980px)').matches) servicesLink.setAttribute('aria-expanded', 'true');
+	    });
+	    servicesItem.addEventListener('focusout', (event) => {
+	      if (!window.matchMedia('(max-width: 980px)').matches && !servicesItem.contains(event.relatedTarget)) {
+	        servicesLink.setAttribute('aria-expanded', 'false');
 	      }
 	    });
 	  }
@@ -260,20 +262,20 @@ document.addEventListener('DOMContentLoaded', () => {
 	    industriesToggle.addEventListener('click', (event) => {
 	      event.preventDefault();
 	      event.stopPropagation();
-	      if (window.matchMedia('(max-width: 720px)').matches) setIndustriesOpen(!industriesItem.classList.contains('is-open'));
+	      if (window.matchMedia('(max-width: 980px)').matches) setIndustriesOpen(!industriesItem.classList.contains('is-open'));
 	    });
-	    industriesItem.addEventListener('mouseenter', () => industriesLink.setAttribute('aria-expanded', 'true'));
-	    industriesItem.addEventListener('mouseleave', closeIndustries);
-	    industriesItem.addEventListener('focusin', () => industriesLink.setAttribute('aria-expanded', 'true'));
+	    industriesItem.addEventListener('mouseenter', () => {
+	      if (!window.matchMedia('(max-width: 980px)').matches) industriesLink.setAttribute('aria-expanded', 'true');
+	    });
+	    industriesItem.addEventListener('mouseleave', () => {
+	      if (!window.matchMedia('(max-width: 980px)').matches) closeIndustries();
+	    });
+	    industriesItem.addEventListener('focusin', () => {
+	      if (!window.matchMedia('(max-width: 980px)').matches) industriesLink.setAttribute('aria-expanded', 'true');
+	    });
 	    industriesItem.addEventListener('focusout', (event) => {
-	      if (!industriesItem.contains(event.relatedTarget)) closeIndustries();
-	    });
-	    industriesLink.addEventListener('click', (event) => {
-	      // On mobile there is no hover, so the first tap opens the submenu;
-	      // desktop clicks keep the normal Industries page navigation.
-	      if (window.matchMedia('(max-width: 720px)').matches && !industriesItem.classList.contains('is-open')) {
-	        event.preventDefault();
-	        setIndustriesOpen(true);
+	      if (!window.matchMedia('(max-width: 980px)').matches && !industriesItem.contains(event.relatedTarget)) {
+	        closeIndustries();
 	      }
 	    });
 	    document.addEventListener('click', (event) => {
