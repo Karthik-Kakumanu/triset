@@ -4736,7 +4736,7 @@ body.nav-open .theme-toggle,
   min-height: 220px;
   height: 100%;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(145px, .72fr);
+  grid-template-columns: minmax(0, 1.18fr) minmax(130px, .62fr);
   align-items: center;
   gap: 1rem;
   padding: clamp(1.35rem, 3vw, 2rem);
@@ -4764,7 +4764,11 @@ body.nav-open .theme-toggle,
   background: #fff;
 }
 
-.service-pill-copy { position: relative; z-index: 1; }
+.service-pill-copy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
 .service-pill-copy .eyebrow {
   margin: 0 0 .6rem;
   color: #2656a8;
@@ -4774,6 +4778,8 @@ body.nav-open .theme-toggle,
   margin: 0 0 .65rem;
   color: #214e9c;
   font-size: clamp(1.2rem, 2vw, 1.65rem);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .service-pill-copy > p:not(.eyebrow) {
   margin: 0;
@@ -4792,6 +4798,8 @@ body.nav-open .theme-toggle,
 }
 .service-learn-more b { font-size: 1.2rem; line-height: .7; }
 .service-quick-grid .service-pill-panel > img {
+  min-width: 0;
+  max-width: 100%;
   width: 100%;
   height: 145px;
   max-height: 145px;
