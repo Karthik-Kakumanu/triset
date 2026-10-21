@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	    footer.innerHTML = `
 	      <div class="container">
 	        <div class="footer-intro">
-	          <div><a class="footer-brand footer-brand-logo" href="index.html" aria-label="TRISET Solutions India home"><img src="assets/logo_final.png" alt="TRISET Solutions India Pvt. Ltd." /></a><p class="footer-service-caption">From precise Photogrammetry and Data Entry to Digital Marketing, Web Development, and App Development, TRISET turns complex business needs into clear, reliable digital solutions.</p></div>
+	          <div><a class="footer-brand footer-brand-logo" href="index.html" aria-label="TRISET Solutions India home"><img src="assets/logo_final.png" alt="TRISET Solutions India Pvt. Ltd." /></a><p class="footer-service-caption">From precise Photogrammetry, Digital Marketing, Web Development, and App Development to Data Entry, TRISET turns complex business needs into clear, reliable digital solutions.</p></div>
 	          <div class="footer-contact"><a href="mailto:info@trisetsolutions.com">info@trisetsolutions.com</a><a href="tel:+917382819292">+91 7382 819 292</a></div>
 	        </div>
 	        <div class="footer-service-directory">
@@ -93,11 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	    servicesItem.insertAdjacentHTML('beforeend', `
 	      <div class="services-mega-menu" role="menu" aria-label="Services menu">
 	        <div class="services-mega-sidebar" role="tablist" aria-label="Service categories">
-	          <a class="services-mega-service is-active" href="photogrammetry.html" data-service-menu="photogrammetry" role="tab" aria-selected="true"><span aria-hidden="true">◉</span> Photogrammetry</a>
-	          <a class="services-mega-service" href="digital-marketing.html" data-service-menu="digital-marketing" role="tab" aria-selected="false"><span aria-hidden="true">◈</span> Digital Marketing</a>
-	          <a class="services-mega-service" href="web-development.html" data-service-menu="web-development" role="tab" aria-selected="false"><span aria-hidden="true">▣</span> Web Development</a>
-	          <a class="services-mega-service" href="app-development.html" data-service-menu="app-development" role="tab" aria-selected="false"><span aria-hidden="true">▯</span> App Development</a>
-	          <a class="services-mega-service" href="data-entry.html" data-service-menu="data-entry" role="tab" aria-selected="false"><span aria-hidden="true">▤</span> Data Entry</a>
+	          <a class="services-mega-service is-active" href="photogrammetry.html" data-service-menu="photogrammetry" role="tab" aria-selected="true"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h3l1.5-2h7L17 7h3v12H4z"/><circle cx="12" cy="13" r="3.5"/><path d="M18 10h.01"/></svg></span> Photogrammetry</a>
+	          <a class="services-mega-service" href="digital-marketing.html" data-service-menu="digital-marketing" role="tab" aria-selected="false"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 10v4h4l9 5V5l-9 5H4zM8 14l2 6h3l-2.2-5.2M20 9a5 5 0 0 1 0 6M18.5 10.5a2.5 2.5 0 0 1 0 3"/></svg></span> Digital Marketing</a>
+	          <a class="services-mega-service" href="web-development.html" data-service-menu="web-development" role="tab" aria-selected="false"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18M8 6h.01M6 13l2 2-2 2M12 17l2-4M16 13l2 2-2 2"/></svg></span> Web Development</a>
+	          <a class="services-mega-service" href="app-development.html" data-service-menu="app-development" role="tab" aria-selected="false"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M10 5h4M11 18.5h2"/></svg></span> App Development</a>
+	          <a class="services-mega-service" href="data-entry.html" data-service-menu="data-entry" role="tab" aria-selected="false"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4V2h6v2M8 10h8M8 14h8M8 18h4"/></svg></span> Data Entry</a>
 	        </div>
 	        <div class="services-mega-content">
 	          <section class="services-mega-panel is-active" data-service-panel="photogrammetry" role="tabpanel">
@@ -118,19 +118,27 @@ document.addEventListener('DOMContentLoaded', () => {
 	        </div>
 	      </div>`);
 	    servicesItem.querySelectorAll('[data-service-menu]').forEach((serviceTab) => {
-	      const activateService = () => {
-	        const serviceKey = serviceTab.dataset.serviceMenu;
-	        servicesItem.querySelectorAll('[data-service-menu]').forEach((tab) => {
-	          const active = tab === serviceTab;
-	          tab.classList.toggle('is-active', active);
-	          tab.setAttribute('aria-selected', String(active));
-	        });
-	        servicesItem.querySelectorAll('[data-service-panel]').forEach((panel) => {
-	          panel.classList.toggle('is-active', panel.dataset.servicePanel === serviceKey);
-	        });
-	      };
-      serviceTab.addEventListener('mouseenter', activateService);
-      serviceTab.addEventListener('focus', activateService);
+      const activateService = (activeServiceKey, isActive = true) => {
+        servicesItem.querySelectorAll('[data-service-menu]').forEach((tab) => {
+          const active = isActive && tab.dataset.serviceMenu === activeServiceKey;
+          tab.classList.toggle('is-active', active);
+          tab.setAttribute('aria-selected', String(active));
+        });
+        servicesItem.querySelectorAll('[data-service-panel]').forEach((panel) => {
+          panel.classList.toggle('is-active', isActive && panel.dataset.servicePanel === activeServiceKey);
+        });
+      };
+      serviceTab.addEventListener('mouseenter', () => {
+        if (!window.matchMedia('(max-width: 720px)').matches) activateService(serviceTab.dataset.serviceMenu);
+      });
+      serviceTab.addEventListener('focus', () => {
+        if (!window.matchMedia('(max-width: 720px)').matches) activateService(serviceTab.dataset.serviceMenu);
+      });
+      serviceTab.addEventListener('click', (event) => {
+        if (!window.matchMedia('(max-width: 720px)').matches) return;
+        event.preventDefault();
+        activateService(serviceTab.dataset.serviceMenu);
+      });
     });
 	    const servicesToggle = servicesItem.querySelector('.nav-expand-toggle');
 	    const setServicesOpen = (open) => {
@@ -155,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	    servicesLink.addEventListener('click', (event) => {
 	      if (window.matchMedia('(max-width: 720px)').matches && servicesLink.getAttribute('aria-expanded') !== 'true') {
 	        event.preventDefault();
-	        servicesLink.setAttribute('aria-expanded', 'true');
+	        setServicesOpen(true);
 	      }
 	    });
 	  }
@@ -706,7 +714,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     siteNav.addEventListener('click', (event) => {
-      if (event.target.closest('a')) {
+      if (event.target.closest('a') && !event.defaultPrevented) {
         setMenuOpen(false);
       }
     });
