@@ -757,7 +757,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  const revealItems = document.querySelectorAll('.services-hero, .services-overview, .service-category, .services-cta, .section-header, .panel, .metric, .service-explorer, .service-card, .project-card, .story-node, .process-step, .process-showcase-copy, .process-showcase-stage, .process-scroll-step, .cta-band, .contact-card, .team-card, .image-panel, .story-visual, .story-copy, .value-row, .locations-map, .about-final-cta-inner');
+  const revealItems = document.querySelectorAll('.services-hero, .services-overview, .service-category, .services-cta, .section-header, .panel, .metric, .service-explorer, .service-card, .project-card, .story-node, .process-step, .process-scroll-step, .cta-band, .contact-card, .team-card, .image-panel, .story-visual, .story-copy, .value-row, .locations-map, .about-final-cta-inner');
   if ('IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {

@@ -1831,6 +1831,18 @@ p { margin: 0; }
   top: 94px;
 }
 
+@media (min-width: 961px) {
+  .process-showcase-copy,
+  .process-showcase-stage {
+    position: sticky;
+    top: 94px;
+    align-self: start;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
 .process-showcase-copy h2 {
   max-width: 520px;
   margin: 0.45rem 0 1rem;

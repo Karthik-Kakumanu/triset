@@ -5626,7 +5626,7 @@ body.nav-open .theme-toggle,
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: .55rem;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -5641,8 +5641,8 @@ body.nav-open .theme-toggle,
 }
 .floating-contact-action {
   position: relative;
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   display: grid;
   place-items: center;
   border: 0;
@@ -5666,7 +5666,7 @@ body.nav-open .theme-toggle,
   filter: saturate(1.12) brightness(1.06);
 }
 .floating-contact-action:active { transform: translateY(2px) scale(.98); }
-.floating-contact-action svg { width: 23px; height: 23px; fill: currentColor; }
+.floating-contact-action svg { width: 28px; height: 28px; fill: currentColor; }
 .floating-contact-action--call { color: #0b66ff; }
 .floating-contact-action--call { margin-bottom: -.45rem; }
 .floating-contact-action--email { color: #e64b21; }
@@ -5677,9 +5677,9 @@ body.nav-open .theme-toggle,
   margin-top: .35rem;
   color: #2947d5;
 }
-.floating-contact-action--top svg { width: 24px; height: 24px; }
+.floating-contact-action--top svg { width: 30px; height: 30px; }
 @media (max-width: 720px) {
-  .floating-contact-actions { right: 12px; bottom: 18px; gap: .75rem; }
+  .floating-contact-actions { right: 12px; bottom: 18px; gap: .45rem; }
   .floating-contact-action { width: 42px; height: 42px; }
   .floating-contact-action--top { width: 50px; height: 50px; }
 }
@@ -6543,16 +6543,16 @@ body:not(.home-page) > main#main-content {
   .floating-contact-actions {
     right: 14px !important;
     bottom: 20px !important;
-    gap: .7rem !important;
+    gap: .3rem !important;
     align-items: center;
-    filter: none !important;
+    filter: drop-shadow(0 8px 14px rgba(14, 67, 142, .16)) !important;
   }
 
   .floating-contact-actions::before,
   .floating-contact-action,
   .floating-contact-action--top {
-    width: 52px !important;
-    height: 52px !important;
+    width: 44px !important;
+    height: 44px !important;
     margin: 0 !important;
     border: 0 !important;
     border-radius: 0 !important;
@@ -6575,21 +6575,21 @@ body:not(.home-page) > main#main-content {
   .floating-contact-action--whatsapp { color: #16b85a !important; }
 
   .floating-contact-action--top {
-    width: 56px !important;
-    height: 56px !important;
+    width: 48px !important;
+    height: 48px !important;
     margin-top: .15rem !important;
     color: #2947d5 !important;
   }
 
   .floating-contact-action svg {
-    width: 25px !important;
-    height: 25px !important;
+    width: 29px !important;
+    height: 29px !important;
     fill: currentColor !important;
   }
 
   .floating-contact-action--top svg {
-    width: 27px !important;
-    height: 27px !important;
+    width: 31px !important;
+    height: 31px !important;
   }
 
   .floating-contact-action:hover,
