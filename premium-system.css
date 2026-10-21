@@ -5091,6 +5091,7 @@ body.nav-open .theme-toggle,
   stroke-linejoin: round;
   stroke-width: 1.7;
 }
+.services-mobile-accordion { display: none; }
 .services-mega-service::after {
   content: '';
   width: 5px;
@@ -7642,5 +7643,148 @@ iframe {
   :root[data-theme='dark'] .site-nav.open .services-mega-service.is-active {
     color: var(--ink) !important;
     background: var(--surface-2) !important;
+  }
+
+  .site-nav.open .services-mega-sidebar,
+  .site-nav.open .services-mega-content {
+    display: none !important;
+  }
+
+  .site-nav.open .services-mobile-accordion {
+    display: grid;
+    gap: 0;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--brand-primary);
+    border-radius: 8px;
+    background: var(--surface);
+  }
+
+  .site-nav.open .services-mobile-group + .services-mobile-group {
+    border-top: 1px solid var(--line);
+  }
+
+  .site-nav.open .services-mobile-heading {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+  }
+
+  .site-nav.open .services-mobile-service-link {
+    display: flex !important;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: flex-start !important;
+    gap: .65rem;
+    min-width: 0;
+    min-height: 42px !important;
+    padding: .55rem .7rem !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    color: var(--ink) !important;
+    background: transparent !important;
+    font-size: .7rem !important;
+    font-weight: 750 !important;
+    letter-spacing: .025em;
+    text-decoration: none;
+  }
+
+  .site-nav.open .services-mobile-service-link span {
+    display: grid;
+    flex: 0 0 20px;
+    place-items: center;
+    width: 20px;
+    color: var(--brand-primary) !important;
+  }
+
+  .site-nav.open .services-mobile-service-link svg {
+    display: block;
+    width: 17px;
+    height: 17px;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.7;
+  }
+
+  .site-nav.open .services-mobile-toggle {
+    display: grid;
+    flex: 0 0 38px;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    margin: 0 .35rem;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    color: var(--brand-primary);
+    background: var(--surface-2);
+    font: 600 1.1rem/1 Arial, sans-serif;
+    cursor: pointer;
+    transition: color .18s ease, background .18s ease, transform .18s ease;
+  }
+
+  .site-nav.open .services-mobile-toggle:hover,
+  .site-nav.open .services-mobile-toggle:focus-visible {
+    color: #fff;
+    background: var(--brand-primary);
+  }
+
+  .site-nav.open .services-mobile-toggle:focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+
+  .site-nav.open .services-mobile-group.is-open .services-mobile-heading {
+    background: var(--surface-2);
+  }
+
+  .site-nav.open .services-mobile-group.is-open .services-mobile-toggle span {
+    transform: rotate(180deg);
+  }
+
+  .site-nav.open .services-mobile-subservices[hidden] {
+    display: none !important;
+  }
+
+  .site-nav.open .services-mobile-subservices {
+    display: block;
+    padding: 0 .45rem .45rem;
+    background: var(--surface-2);
+  }
+
+  .site-nav.open .services-mobile-subservices .services-mega-panel-column {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: .08rem;
+    padding: .4rem .55rem;
+    border-radius: 0 0 6px 6px;
+    background: var(--gradient-brand);
+  }
+
+  .site-nav.open .services-mobile-subservices .services-mega-panel-column h3 {
+    display: none;
+  }
+
+  .site-nav.open .services-mobile-subservices .services-mega-panel-column a {
+    min-height: 30px !important;
+    padding: .35rem .2rem !important;
+    border-radius: 5px !important;
+    color: #fff !important;
+    font-size: .77rem !important;
+    font-weight: 600 !important;
+  }
+
+  .site-nav.open .services-mobile-subservices .services-mega-panel-column a::before {
+    color: rgba(255, 255, 255, .75);
+  }
+
+  :root[data-theme='dark'] .site-nav.open .services-mobile-accordion {
+    background: var(--surface);
+  }
+
+  :root[data-theme='dark'] .site-nav.open .services-mobile-group.is-open .services-mobile-heading {
+    background: var(--surface-2);
   }
 }

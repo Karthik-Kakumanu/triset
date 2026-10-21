@@ -117,6 +117,69 @@ document.addEventListener('DOMContentLoaded', () => {
 	          </section>
 	        </div>
 	      </div>`);
+      const servicesMegaMenu = servicesItem.querySelector('.services-mega-menu');
+      const mobileServiceAccordion = document.createElement('div');
+      mobileServiceAccordion.className = 'services-mobile-accordion';
+      mobileServiceAccordion.setAttribute('aria-label', 'Service categories');
+
+      servicesItem.querySelectorAll('[data-service-menu]').forEach((serviceTab) => {
+        const serviceKey = serviceTab.dataset.serviceMenu;
+        const servicePanel = servicesItem.querySelector(`[data-service-panel="${serviceKey}"]`);
+        const panelContent = servicePanel?.querySelector('.services-mega-panel-column');
+        if (!panelContent) {
+          throw new Error(`Missing service navigation panel for "${serviceKey}"`);
+        }
+
+        const group = document.createElement('section');
+        group.className = 'services-mobile-group';
+        const heading = document.createElement('div');
+        heading.className = 'services-mobile-heading';
+        const serviceLink = serviceTab.cloneNode(true);
+        serviceLink.classList.remove('is-active');
+        serviceLink.removeAttribute('data-service-menu');
+        serviceLink.removeAttribute('role');
+        serviceLink.removeAttribute('aria-selected');
+        serviceLink.classList.add('services-mobile-service-link');
+
+        const subservicesId = `mobile-service-panel-${serviceKey}`;
+        const toggle = document.createElement('button');
+        toggle.className = 'services-mobile-toggle';
+        toggle.type = 'button';
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-controls', subservicesId);
+        toggle.setAttribute('aria-label', `Expand ${serviceLink.textContent.trim()} subservices`);
+        toggle.innerHTML = '<span aria-hidden="true">+</span>';
+
+        const subservices = document.createElement('div');
+        subservices.className = 'services-mobile-subservices';
+        subservices.id = subservicesId;
+        subservices.hidden = true;
+        subservices.append(panelContent.cloneNode(true));
+
+        heading.append(serviceLink, toggle);
+        group.append(heading, subservices);
+        mobileServiceAccordion.appendChild(group);
+      });
+
+      servicesMegaMenu.appendChild(mobileServiceAccordion);
+      mobileServiceAccordion.addEventListener('click', (event) => {
+        const toggle = event.target.closest('.services-mobile-toggle');
+        if (!toggle) return;
+
+        const group = toggle.closest('.services-mobile-group');
+        const shouldOpen = toggle.getAttribute('aria-expanded') !== 'true';
+        mobileServiceAccordion.querySelectorAll('.services-mobile-group').forEach((serviceGroup) => {
+          const serviceToggle = serviceGroup.querySelector('.services-mobile-toggle');
+          const isOpen = serviceGroup === group && shouldOpen;
+          const panel = serviceGroup.querySelector('.services-mobile-subservices');
+          serviceGroup.classList.toggle('is-open', isOpen);
+          serviceToggle.setAttribute('aria-expanded', String(isOpen));
+          serviceToggle.setAttribute('aria-label', `${isOpen ? 'Collapse' : 'Expand'} ${serviceGroup.querySelector('.services-mobile-service-link').textContent.trim()} subservices`);
+          serviceToggle.querySelector('span').textContent = isOpen ? '−' : '+';
+          panel.hidden = !isOpen;
+        });
+      });
+
 	    servicesItem.querySelectorAll('[data-service-menu]').forEach((serviceTab) => {
       const activateService = (activeServiceKey, isActive = true) => {
         servicesItem.querySelectorAll('[data-service-menu]').forEach((tab) => {
