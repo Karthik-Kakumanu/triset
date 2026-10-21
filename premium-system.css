@@ -6538,6 +6538,63 @@ body:not(.home-page) > main#main-content {
   color: #ffffff !important;
 }
 
+/* Keep the mobile controls visually consistent with the desktop treatment. */
+@media (max-width: 720px) {
+  .floating-contact-actions {
+    right: 14px !important;
+    bottom: 20px !important;
+    gap: .7rem !important;
+    align-items: center;
+  }
+
+  .floating-contact-action,
+  .floating-contact-action--top {
+    width: 52px !important;
+    height: 52px !important;
+    margin: 0 !important;
+    border: 1px solid rgba(255, 255, 255, .55) !important;
+    border-radius: 50% !important;
+    color: #fff !important;
+    background: linear-gradient(145deg, #2585f5, #174bc2) !important;
+    box-shadow: 0 8px 0 rgba(15, 57, 157, .35),
+      0 14px 24px rgba(16, 76, 190, .3),
+      inset 0 2px 2px rgba(255, 255, 255, .42),
+      inset 0 -4px 7px rgba(5, 31, 104, .24) !important;
+  }
+
+  .floating-contact-action--call {
+    color: #0b66ff !important;
+    background: linear-gradient(145deg, #fff, #eaf3ff) !important;
+    border-color: rgba(11, 102, 255, .28) !important;
+    box-shadow: 0 8px 0 rgba(11, 76, 180, .18),
+      0 14px 24px rgba(16, 76, 190, .2),
+      inset 0 2px 2px rgba(255, 255, 255, .95),
+      inset 0 -4px 7px rgba(11, 102, 255, .08) !important;
+  }
+
+  .floating-contact-action--top {
+    width: 56px !important;
+    height: 56px !important;
+    margin-top: .15rem !important;
+    background: linear-gradient(145deg, #4a8cff, #2448ca) !important;
+    box-shadow: 0 9px 0 rgba(25, 54, 157, .42),
+      0 16px 28px rgba(39, 82, 213, .35),
+      inset 0 2px 2px rgba(255, 255, 255, .5),
+      inset 0 -4px 7px rgba(5, 31, 104, .22) !important;
+  }
+
+  .floating-contact-action svg {
+    width: 25px !important;
+    height: 25px !important;
+    fill: currentColor !important;
+  }
+
+  .floating-contact-action--top svg {
+    width: 27px !important;
+    height: 27px !important;
+  }
+}
+
 /* Services page: make every custom light surface follow dark mode. */
 :root[data-theme='dark'] body.triset-service-studio,
 :root[data-theme='dark'] body.triset-service-studio #main-content {

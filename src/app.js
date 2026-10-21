@@ -26,9 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	          <span class="company-marquee__item"><span class="company-marquee__icon" aria-hidden="true">✉</span> <a href="mailto:info@trisetsolutions.com">info@trisetsolutions.com</a></span>
 	        </div>
 	        <div class="company-marquee__socials" aria-label="Social media links">
+	          <a class="company-marquee__social company-marquee__social--instagram" href="https://www.instagram.com/trisetsolutions/" target="_blank" rel="noopener noreferrer" aria-label="TRISET on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.7" r="1.1" class="social-dot"/></svg></a>
 	          <span class="company-marquee__social company-marquee__social--facebook" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3.3 0-5 2-5 5v3H6v4h3v6h4v-6h3.2l.8-4H13V9c0-.7.3-1 1-1Z"/></svg></span>
 	          <span class="company-marquee__social company-marquee__social--x" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4.2l3.2 4.5L16.2 4H19l-5.3 6.1L19.5 20h-4.2l-3.8-5.2L7 20H4.2l5.6-6.6L5 4Zm3 1.8 7.9 12.4h1.2L9.2 5.8H8Z"/></svg></span>
-	          <a class="company-marquee__social company-marquee__social--instagram" href="https://www.instagram.com/trisetsolutions/" target="_blank" rel="noopener noreferrer" aria-label="TRISET on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.7" r="1.1" class="social-dot"/></svg></a>
 	          <a class="company-marquee__social company-marquee__social--linkedin" href="https://www.linkedin.com/in/triset-solutions-534389440" target="_blank" rel="noopener noreferrer" aria-label="TRISET on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8.2H2V21h3V8.2ZM3.5 3A1.8 1.8 0 1 0 3.5 6.6 1.8 1.8 0 0 0 3.5 3ZM8.5 8.2h3v1.7h.1c.4-.8 1.5-2.1 3.8-2.1 4 0 4.7 2.6 4.7 6V21h-3v-6.4c0-1.5 0-3.5-2.1-3.5s-2.4 1.6-2.4 3.4V21h-3V8.2Z"/></svg></a>
 	          <span class="company-marquee__social company-marquee__social--whatsapp" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a8.8 8.8 0 0 0-7.6 13.2L3 21l4.9-1.3A8.8 8.8 0 1 0 12 3Zm0 15.9a7.1 7.1 0 0 1-3.6-1l-.3-.2-2.9.8.8-2.8-.2-.3A7.1 7.1 0 1 1 12 18.9Zm3.9-5.3c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.1-.3.2-.5.1a5.8 5.8 0 0 1-2.9-2.5c-.2-.3 0-.4.1-.6l.4-.5c.1-.2.1-.3 0-.5l-.7-1.7c-.1-.2-.3-.2-.5-.2h-.4c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7a8.2 8.2 0 0 0 3.1 3c1.8.8 1.8.5 2.1.5.3 0 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2Z"/></svg></span>
 	        </div>
@@ -851,6 +851,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-scroll-process]').forEach((processSection) => {
     const steps = Array.from(processSection.querySelectorAll('[data-process-step]'));
     const markers = Array.from(processSection.querySelectorAll('[data-stage-marker]'));
+    const scrollList = processSection.querySelector('.process-scroll-list');
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (!steps.length) return;
 
@@ -864,8 +865,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function syncProcess() {
       const rect = processSection.getBoundingClientRect();
       const viewport = window.innerHeight || document.documentElement.clientHeight;
+      const listHasInternalScroll = scrollList && scrollList.scrollHeight > scrollList.clientHeight + 1;
       const travel = Math.max(1, rect.height - viewport * 0.35);
-      const rawProgress = (viewport * 0.68 - rect.top) / travel;
+      const rawProgress = listHasInternalScroll
+        ? scrollList.scrollTop / Math.max(1, scrollList.scrollHeight - scrollList.clientHeight)
+        : (viewport * 0.68 - rect.top) / travel;
       const progress = Math.min(1, Math.max(0, rawProgress));
       const activeIndex = Math.min(steps.length - 1, Math.max(0, Math.floor(progress * steps.length)));
 
@@ -889,6 +893,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       window.addEventListener('scroll', requestSync, { passive: true });
       window.addEventListener('resize', requestSync);
+      scrollList?.addEventListener('scroll', requestSync, { passive: true });
     }
   });
 
