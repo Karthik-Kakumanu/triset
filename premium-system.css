@@ -5074,6 +5074,9 @@ body.nav-open .theme-toggle,
 .services-mega-service {
   display: flex !important;
   align-items: center;
+  justify-content: flex-start !important;
+  box-sizing: border-box;
+  width: 100%;
   gap: .7rem;
   min-height: 47px !important;
   padding: .62rem .7rem !important;
@@ -5122,7 +5125,7 @@ body.nav-open .theme-toggle,
   color: #fff !important;
   background: linear-gradient(90deg, rgba(255,255,255,.2), rgba(255,255,255,.06)) !important;
   box-shadow: inset 3px 0 0 #8ed4ff, 0 8px 18px rgba(2, 30, 75, .16);
-  transform: translateX(3px) !important;
+  transform: none !important;
 }
 .services-mega-service:hover::after,
 .services-mega-service:focus-visible::after,
@@ -5212,6 +5215,11 @@ body.nav-open .theme-toggle,
 .site-header .site-nav .services-mega-menu .services-mega-panel-column a {
   color: #fff !important;
 }
+.site-header .site-nav .services-mega-menu .services-mega-service {
+  justify-content: flex-start !important;
+  box-sizing: border-box;
+  width: 100%;
+}
 .site-header .site-nav .services-mega-menu .services-mega-panel-column a:hover,
 .site-header .site-nav .services-mega-menu .services-mega-panel-column a:focus-visible {
   color: #fff !important;
@@ -5279,7 +5287,7 @@ body.nav-open .theme-toggle,
 
 .industries-dropdown {
   position: absolute;
-  top: calc(100% + .55rem);
+  top: 100%;
   left: 0;
   z-index: 1100;
   display: flex;
