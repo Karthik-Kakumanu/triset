@@ -1827,12 +1827,15 @@ p { margin: 0; }
 }
 
 .process-showcase-left {
+  align-self: stretch;
+}
+
+.process-showcase-left-inner {
   position: sticky;
   top: 94px;
   display: grid;
   grid-template-columns: minmax(0, .78fr) minmax(320px, .82fr);
   gap: clamp(1rem, 2.7vw, 2rem);
-  align-self: start;
 }
 
 .process-showcase-copy {
@@ -2580,6 +2583,9 @@ textarea { min-height: 154px; resize: vertical; }
     grid-template-columns: 1fr;
   }
   .process-showcase-left {
+    align-self: start;
+  }
+  .process-showcase-left-inner {
     position: relative;
     top: auto;
     grid-template-columns: 1fr;
