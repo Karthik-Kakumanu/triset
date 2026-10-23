@@ -41,7 +41,7 @@
 .ax-frame-tag {
   position: absolute; bottom: .8rem; left: .8rem;
   font-family: var(--ax-mono); font-size: .7rem; letter-spacing: .08em;
-  background: rgba(7,16,24,.55); color: #fff;
+  background: rgba(0, 0, 0,.55); color: #fff;
   padding: .3rem .55rem; border-radius: 3px; backdrop-filter: blur(4px);
 }
 .ax-statement {
@@ -61,8 +61,8 @@
    ------------------------------------------------------------------------- */
 .ax-profile {
   background:
-    linear-gradient(rgba(15,23,36,.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15,23,36,.035) 1px, transparent 1px),
+    linear-gradient(rgba(0, 0, 0,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0,.035) 1px, transparent 1px),
     var(--paper);
   background-size: 42px 42px;
   border-top: 1px solid var(--line);
@@ -100,7 +100,7 @@
 .ax-profile-item:hover {
   transform: translateY(-4px);
   background: #fff;
-  box-shadow: 0 22px 48px rgba(15,23,36,.08);
+  box-shadow: 0 22px 48px rgba(0, 0, 0,.08);
 }
 .ax-profile-item span {
   display: block;
@@ -258,9 +258,9 @@
   height: clamp(360px, 29vw, 440px);
   overflow: hidden;
   border-radius: 26px;
-  border: 1px solid rgba(15, 23, 36, 0.08);
-  background: #0b1220;
-  box-shadow: 0 30px 70px rgba(15, 23, 36, 0.18);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: linear-gradient(145deg, #241a1c, #6f101c 58%, #cf0000);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.18);
   transform-style: preserve-3d;
   transition: transform .75s cubic-bezier(.2, .7, .2, 1), opacity .75s ease, filter .75s ease, box-shadow .75s ease;
   will-change: transform, opacity, filter;
@@ -280,7 +280,7 @@
   inset: 0;
   background:
     linear-gradient(180deg, rgba(7,10,17,0.08) 0%, rgba(7,10,17,0.2) 40%, rgba(7,10,17,0.82) 100%),
-    linear-gradient(135deg, rgba(27, 87, 245, 0.1), rgba(10, 18, 29, 0));
+    linear-gradient(135deg, rgba(255, 0, 0, 0.1), rgba(10, 18, 29, 0));
 }
 
 .ax-team-card-top {
@@ -316,11 +316,11 @@
 }
 
 .ax-team-card[data-domain="digital"] .ax-team-domain {
-  color: #dce8ff;
+  color: #FAE1E3;
 }
 
 .ax-team-card[data-domain="spatial"] .ax-team-domain {
-  color: #ffe0e0;
+  color: #FFE0E2;
 }
 
 .ax-team-card-body {
@@ -358,7 +358,7 @@
 }
 
 .ax-team-card.is-active {
-  box-shadow: 0 36px 94px rgba(15, 23, 36, 0.28);
+  box-shadow: 0 36px 94px rgba(0, 0, 0, 0.28);
 }
 
 .ax-team-arrow {
@@ -377,7 +377,7 @@
 }
 
 .ax-team-arrow:hover {
-  border-color: rgba(15,23,36,.2);
+  border-color: rgba(0, 0, 0,.2);
   background: #fff;
   transform: translateY(-2px);
 }
@@ -394,7 +394,7 @@
   height: 10px;
   border-radius: 50%;
   border: 0;
-  background: rgba(15, 23, 36, 0.2);
+  background: rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: transform .25s var(--ease), background .25s var(--ease), opacity .25s var(--ease);
 }

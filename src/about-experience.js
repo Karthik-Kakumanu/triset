@@ -121,11 +121,11 @@
       var experience = escapeHtml(normalized.experience);
       var domain = domainForRole(normalized.role);
       var domainLabel = domain === 'spatial' ? 'Spatial' : 'Digital';
-      var image = TEAM_IMAGES[normalized.name] || 'assets/lidar.webp';
+      var image = TEAM_IMAGES[normalized.name];
 
       return (
         '<article class="ax-team-card" data-domain="' + domain + '" data-name="' + name + '" style="--ax-i:' + i + '">' +
-          '<img src="' + image + '" alt="' + name + '" loading="lazy" />' +
+          (image ? '<img src="' + image + '" alt="" loading="eager" decoding="async" />' : '') +
           '<div class="ax-team-card-overlay"></div>' +
           '<div class="ax-team-card-top">' +
             '<span class="ax-team-index">' + String(i + 1).padStart(2, '0') + ' / ' + String(team.length).padStart(2, '0') + '</span>' +
@@ -141,6 +141,11 @@
     }).join('');
 
     var cards = Array.from(grid.children);
+    grid.querySelectorAll('.ax-team-card img').forEach(function (image) {
+      image.addEventListener('error', function () {
+        image.remove();
+      }, { once: true });
+    });
     var activeIndex = 0;
     var prevButton = document.querySelector('[data-ax-team-prev]');
     var nextButton = document.querySelector('[data-ax-team-next]');
@@ -170,7 +175,8 @@
         if (delta < -(cards.length / 2)) delta += cards.length;
 
         var abs = Math.abs(delta);
-        var translateX = delta * 170;
+        var cardWidth = card.getBoundingClientRect().width;
+        var translateX = delta * Math.min(170, Math.max(92, cardWidth * .72));
         var rotateY = -delta * 24;
         var scale = 1 - abs * 0.14;
         var opacity = abs > 2 ? 0.18 : 1 - abs * 0.22;
@@ -193,6 +199,7 @@
 
     function restartAuto() {
       if (autoTimer) clearInterval(autoTimer);
+      if (reduceMotion) return;
       autoTimer = setInterval(function () {
         updateSlider(activeIndex + 1);
       }, 4200);
@@ -214,7 +221,10 @@
 
     buildDots();
     updateSlider(0);
-    restartAuto();
+    if (!reduceMotion) restartAuto();
+    window.addEventListener('resize', function () {
+      updateSlider(activeIndex);
+    });
 
     if (!('IntersectionObserver' in window)) {
       grid.classList.add('is-visible');

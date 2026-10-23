@@ -1,19 +1,1108 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="TRISET industry-specific digital, data, and geo-spatial solutions." />
-  <title>Industry Solutions | TRISET Solutions</title>
-  <link rel="icon" href="assets/logo_final.png" /><script src="src/theme-init.js"></script><link rel="stylesheet" href="styles.css" /><link rel="stylesheet" href="premium-system.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TRISET Solutions provides digital, mapping, and spatial data solutions for the solar and renewable energy industry including aerial site mapping, 3D terrain visualization, and technical web platforms." />
+  <title>Solar &amp; Renewable Energy Solutions: Make Energy Projects Easier to Understand | TRISET Solutions</title>
+  <link rel="icon" href="assets/logo_final.png" />
+  <script src="src/theme-init.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="premium-system.css" />
+  <style>
+    /* ==========================================================================
+       Scoped Solar & Energy Industry Page Styles (Mobile-Optimized & High Contrast)
+       ========================================================================== */
+    
+    body.industry-detail-page {
+      overflow-x: hidden;
+    }
+
+    /* Hero Section - Matching Standard Centered Container Boundaries */
+    body.industry-detail-page .industry-detail-hero,
+    .industry-detail-hero {
+      position: relative !important;
+      overflow: hidden !important;
+      padding: clamp(4.5rem, 8vw, 7.5rem) 0 clamp(3.5rem, 6vw, 5.5rem) !important;
+      background: linear-gradient(135deg, #7A0000 0%, #D40000 50%, #660000 100%) !important;
+      color: #ffffff !important;
+      isolation: isolate !important;
+    }
+    body.industry-detail-page .industry-detail-hero::before,
+    .industry-detail-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.14) 0%, transparent 45%),
+        radial-gradient(circle at 82% 78%, rgba(0, 0, 0, 0.45) 0%, transparent 55%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .solar-hero-grid {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1.32fr) minmax(0, 1fr) !important;
+      gap: clamp(2rem, 3.5vw, 3.5rem) !important;
+      align-items: center !important;
+      position: relative !important;
+      z-index: 2 !important;
+    }
+
+    .solar-hero-copy {
+      min-width: 0 !important;
+      max-width: 100% !important;
+      overflow-wrap: break-word !important;
+      position: relative !important;
+      z-index: 3 !important;
+    }
+
+    /* High-Contrast Hero Typography */
+    .industry-detail-page .industry-detail-hero h1,
+    .solar-hero-copy h1 {
+      max-width: 100% !important;
+      margin: 0.6rem 0 1rem !important;
+      color: #ffffff !important;
+      font-family: var(--font-display, inherit) !important;
+      font-size: clamp(2rem, 3.1vw, 3rem) !important;
+      line-height: 1.16 !important;
+      letter-spacing: -0.03em !important;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+      animation: none !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+    }
+
+    .hero-title-main {
+      display: block;
+      white-space: normal !important;
+      word-break: normal !important;
+    }
+
+    .hero-title-sub {
+      display: block;
+      color: #FFE6E8 !important;
+      font-weight: 700 !important;
+      font-size: clamp(1.15rem, 1.8vw, 1.65rem) !important;
+      line-height: 1.25 !important;
+      margin-top: 0.35rem;
+      white-space: normal !important;
+      word-break: normal !important;
+    }
+
+    /* Premium Frosted Eyebrow Badge */
+    .hero-badge-pill {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.5rem !important;
+      padding: 0.38rem 0.95rem !important;
+      background: rgba(255, 255, 255, 0.12) !important;
+      border: 1px solid rgba(255, 255, 255, 0.28) !important;
+      border-radius: 999px !important;
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+      margin-bottom: 0.85rem !important;
+    }
+    .hero-badge-pill .badge-dot {
+      width: 8px !important;
+      height: 8px !important;
+      border-radius: 50% !important;
+      background: #4ade80 !important;
+      box-shadow: 0 0 10px #4ade80 !important;
+      display: inline-block !important;
+      flex-shrink: 0 !important;
+    }
+    .hero-badge-pill .badge-text {
+      color: #ffffff !important;
+      font-size: 0.8rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.08em !important;
+      text-transform: uppercase !important;
+    }
+
+    .solar-hero-copy .industry-backlink {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.4rem !important;
+      margin-bottom: 0.9rem !important;
+      color: #FFE6E8 !important;
+      font-size: 0.86rem !important;
+      font-weight: 700 !important;
+      text-decoration: none !important;
+      opacity: 0.95 !important;
+      transition: opacity 0.2s ease !important;
+    }
+    .solar-hero-copy .industry-backlink:hover {
+      opacity: 1 !important;
+      text-decoration: underline !important;
+    }
+
+    /* Animated Shimmer Text Effect */
+    .hero-accent-text {
+      background: linear-gradient(135deg, #ffffff 0%, #FFEAEA 50%, #FFCCD0 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textShimmer 7s ease-in-out infinite;
+      display: inline;
+    }
+    @keyframes textShimmer {
+      0% { background-position: 0% center; }
+      50% { background-position: 100% center; }
+      100% { background-position: 0% center; }
+    }
+
+    /* Premium Lead Tagline Highlight Box */
+    .lead-tagline-box {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.55rem !important;
+      background: rgba(0, 0, 0, 0.24) !important;
+      border-left: 3px solid #FFCCD0 !important;
+      padding: 0.55rem 1rem !important;
+      border-radius: 0 10px 10px 0 !important;
+      margin-bottom: 1.25rem !important;
+      color: #FFE6E8 !important;
+      font-weight: 600 !important;
+      font-size: clamp(0.96rem, 1.2vw, 1.12rem) !important;
+      line-height: 1.4 !important;
+      backdrop-filter: blur(6px) !important;
+      -webkit-backdrop-filter: blur(6px) !important;
+    }
+    .lead-tagline-box .tagline-sparkle {
+      color: #FFB7BC !important;
+      font-size: 1rem !important;
+      flex-shrink: 0 !important;
+    }
+
+    .solar-hero-copy p {
+      color: rgba(255, 255, 255, 0.95) !important;
+      font-size: clamp(0.98rem, 1.15vw, 1.08rem) !important;
+      line-height: 1.62 !important;
+      margin-bottom: 0.9rem !important;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.18) !important;
+      animation: none !important;
+    }
+
+    .solar-hero-actions {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 0.9rem !important;
+      margin-top: 1.8rem !important;
+    }
+
+    /* High Contrast Button System */
+    .btn-solid-white {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0.5rem !important;
+      background: #ffffff !important;
+      color: #b80000 !important;
+      font-weight: 700 !important;
+      font-size: 0.95rem !important;
+      padding: 0.75rem 1.45rem !important;
+      border-radius: 999px !important;
+      border: 1px solid #ffffff !important;
+      text-decoration: none !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
+      transition: all 0.25s var(--ease) !important;
+      min-height: 46px !important;
+    }
+    .btn-solid-white:hover {
+      background: #f4f6f8 !important;
+      color: #8c0000 !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35) !important;
+    }
+
+    .btn-glass-outline {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0.5rem !important;
+      background: rgba(0, 0, 0, 0.28) !important;
+      color: #ffffff !important;
+      font-weight: 600 !important;
+      font-size: 0.95rem !important;
+      padding: 0.75rem 1.45rem !important;
+      border-radius: 999px !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.75) !important;
+      text-decoration: none !important;
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+      transition: all 0.25s var(--ease) !important;
+      min-height: 46px !important;
+    }
+    .btn-glass-outline:hover {
+      background: rgba(255, 255, 255, 0.22) !important;
+      border-color: #ffffff !important;
+      color: #ffffff !important;
+      transform: translateY(-2px) !important;
+    }
+
+    /* macOS Tech Window Mockup Frame */
+    .hero-mockup-window {
+      border-radius: 20px;
+      overflow: hidden;
+      background: #11141a;
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 30px 75px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 0, 0, 0.22);
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+      width: 100%;
+      min-width: 0 !important;
+    }
+    .hero-mockup-window:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 36px 85px rgba(0, 0, 0, 0.7), 0 0 50px rgba(255, 0, 0, 0.3);
+    }
+    .window-titlebar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.65rem 1rem;
+      background: rgba(18, 22, 28, 0.96);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .window-controls {
+      display: flex;
+      gap: 0.45rem;
+    }
+    .control-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .control-dot.red { background: #ff5f56; }
+    .control-dot.yellow { background: #ffbd2e; }
+    .control-dot.green { background: #27c93f; }
+    .window-address-bar {
+      font-family: monospace;
+      font-size: 0.78rem;
+      color: #FFE6E8;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.22rem 1.1rem;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .window-status-pill {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #4ade80;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-image-frame {
+      position: relative;
+      background: #000;
+      line-height: 0;
+    }
+    .hero-image-frame img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 10.5;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s var(--ease);
+    }
+    .hero-mockup-window:hover .hero-image-frame img {
+      transform: scale(1.02);
+    }
+
+    /* Metrics Strip */
+    .solar-metrics-strip {
+      background: #ffffff;
+      border-bottom: 1px solid var(--line, rgba(0, 0, 0, 0.1));
+      padding: 2.2rem 0;
+      position: relative;
+      z-index: 5;
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      align-items: center;
+    }
+    .metric-card {
+      text-align: center;
+      position: relative;
+    }
+    .metric-card:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: -0.75rem;
+      top: 20%;
+      height: 60%;
+      width: 1px;
+      background: var(--line, rgba(0, 0, 0, 0.12));
+    }
+    .metric-number {
+      font-family: var(--font-display, inherit);
+      font-size: clamp(2rem, 3.2vw, 2.75rem);
+      font-weight: 800;
+      color: var(--brand-primary, #FF0000);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .metric-label {
+      font-size: 0.86rem;
+      color: var(--ink-light, #4b5563);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* Core Services Section */
+    .solar-section-header {
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto 3rem;
+    }
+    .solar-section-header h2 {
+      font-size: clamp(1.85rem, 2.8vw, 2.5rem);
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+    .solar-section-header p {
+      font-size: 1.05rem;
+      color: var(--ink-light, #4b5563);
+      line-height: 1.65;
+    }
+
+    /* Services Grid */
+    .solar-services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.8rem;
+      margin-bottom: 4rem;
+    }
+    .solar-service-card {
+      position: relative;
+      background: var(--surface, #ffffff);
+      border: 1px solid var(--line, rgba(0, 0, 0, 0.1));
+      border-top: 3px solid var(--brand-primary, #FF0000);
+      border-radius: 18px;
+      padding: clamp(1.6rem, 2.5vw, 2.2rem);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .solar-service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(255, 0, 0, 0.12);
+      border-color: rgba(255, 0, 0, 0.3);
+    }
+    .card-badge-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #FF0000, #B80000);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 6px 16px rgba(255, 0, 0, 0.3);
+    }
+    .solar-service-card h3 {
+      font-size: 1.35rem;
+      line-height: 1.28;
+      margin-bottom: 0.85rem;
+      color: var(--ink, #111827);
+    }
+    .solar-service-card p {
+      color: var(--ink-light, #4b5563);
+      font-size: 0.98rem;
+      line-height: 1.68;
+      margin-bottom: 1.2rem;
+      flex-grow: 1;
+    }
+    .card-feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      border-top: 1px dashed var(--line, rgba(0, 0, 0, 0.12));
+      padding-top: 1rem;
+    }
+    .card-feature-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ink, #111827);
+    }
+    .card-feature-list li::before {
+      content: "✓";
+      color: var(--brand-primary, #FF0000);
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    /* Spatial & Site Detail Showcase Section */
+    .solar-spatial-section {
+      padding: clamp(3.5rem, 6vw, 5.5rem) 0;
+      background: var(--surface-alt, #f9fafb);
+      border-top: 1px solid var(--line, rgba(0, 0, 0, 0.08));
+      border-bottom: 1px solid var(--line, rgba(0, 0, 0, 0.08));
+    }
+    .solar-spatial-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: clamp(2rem, 4vw, 4rem);
+      align-items: center;
+    }
+    .solar-spatial-copy h2 {
+      font-size: clamp(1.85rem, 2.7vw, 2.4rem);
+      line-height: 1.22;
+      margin: 0.4rem 0 1rem;
+    }
+    .solar-spatial-copy p {
+      color: var(--ink, #1f2937);
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .solar-pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.4rem;
+      padding: 0;
+      list-style: none;
+    }
+    .solar-pill-list li {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.95rem;
+      background: var(--surface, #fff);
+      border: 1px solid var(--line, rgba(0,0,0,0.12));
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--ink, #111827);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      transition: transform 0.2s var(--ease), border-color 0.2s var(--ease);
+    }
+    .solar-pill-list li:hover {
+      transform: translateY(-2px);
+      border-color: var(--brand-primary, #FF0000);
+    }
+    .solar-pill-list li::before {
+      content: "✓";
+      color: var(--brand-primary, #FF0000);
+      font-weight: 800;
+    }
+
+    .solar-spatial-frame {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1.5px solid var(--line, rgba(0, 0, 0, 0.12));
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
+      background: #000;
+      width: 100%;
+    }
+    .solar-spatial-frame img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 10.5;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s var(--ease);
+    }
+    .solar-spatial-frame:hover img {
+      transform: scale(1.025);
+    }
+
+    /* Supported Energy Sectors Grid */
+    .supported-sectors-section {
+      padding: clamp(3.5rem, 6vw, 5.5rem) 0;
+    }
+    .sector-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .sector-card {
+      background: var(--surface, #fff);
+      border: 1px solid var(--line, rgba(0, 0, 0, 0.1));
+      border-radius: 16px;
+      padding: 1.6rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      transition: transform 0.3s var(--ease), border-color 0.3s var(--ease);
+    }
+    .sector-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--brand-primary, #FF0000);
+      box-shadow: 0 14px 32px rgba(255, 0, 0, 0.08);
+    }
+    .sector-card-icon {
+      font-size: 2rem;
+      margin-bottom: 0.85rem;
+      display: inline-block;
+    }
+    .sector-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--ink, #111827);
+    }
+    .sector-card p {
+      font-size: 0.92rem;
+      color: var(--ink-light, #4b5563);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Why Choose TRISET Section */
+    .why-choose-section {
+      background: var(--surface-alt, #f9fafb);
+      padding: clamp(3.5rem, 6vw, 5.5rem) 0;
+      border-top: 1px solid var(--line, rgba(0, 0, 0, 0.08));
+    }
+    .why-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+    }
+    .why-pillar-card {
+      background: var(--surface, #ffffff);
+      border: 1px solid var(--line, rgba(0, 0, 0, 0.1));
+      border-radius: 16px;
+      padding: 1.8rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      transition: transform 0.3s var(--ease);
+    }
+    .why-pillar-card:hover {
+      transform: translateY(-4px);
+    }
+    .why-pillar-card h3 {
+      font-size: 1.22rem;
+      margin-bottom: 0.65rem;
+      color: var(--ink, #111827);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .why-pillar-card p {
+      font-size: 0.94rem;
+      color: var(--ink-light, #4b5563);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* Partner CTA Section (Full-Width, Single-Row Headline, Zero Empty Void) */
+    body.industry-detail-page .solar-cta-section,
+    .solar-cta-section {
+      position: relative !important;
+      overflow: hidden !important;
+      padding: clamp(3.8rem, 7vw, 6rem) 0 !important;
+      color: #fff !important;
+      background: linear-gradient(135deg, #850000 0%, #D40000 52%, #750000 100%) !important;
+    }
+    .solar-cta-section h2 {
+      max-width: 100% !important;
+      width: 100% !important;
+      margin: 0.4rem 0 1.2rem !important;
+      color: #ffffff !important;
+      font-family: var(--font-display, inherit);
+      font-size: clamp(2rem, 3.2vw, 3rem) !important;
+      line-height: 1.16 !important;
+      letter-spacing: -0.035em !important;
+    }
+    .solar-cta-section p {
+      max-width: 100% !important;
+      width: 100% !important;
+      color: rgba(255, 255, 255, 0.95) !important;
+      font-size: clamp(1rem, 1.2vw, 1.12rem) !important;
+      line-height: 1.75 !important;
+    }
+    .cta-highlight-box {
+      background: rgba(0, 0, 0, 0.28) !important;
+      padding: 1.35rem 1.8rem !important;
+      border-radius: 14px !important;
+      border: 1px solid rgba(255, 255, 255, 0.25) !important;
+      max-width: 100% !important;
+      width: 100% !important;
+      margin-bottom: 2rem !important;
+    }
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    /* Scroll Animations */
+    .fade-in-on-scroll {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+      will-change: opacity, transform;
+    }
+    .fade-in-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 980px) {
+      .solar-hero-grid,
+      .solar-spatial-grid,
+      .solar-services-grid,
+      .why-pillars-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+      }
+      .hero-mockup-window,
+      .solar-spatial-frame {
+        max-width: 580px;
+        margin: 0 auto;
+      }
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
+      }
+      .metric-card:nth-child(2)::after {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .solar-hero-actions,
+      .cta-actions {
+        flex-direction: column !important;
+        align-items: stretch !important;
+      }
+      .btn-solid-white,
+      .btn-glass-outline {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .metrics-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .metric-card::after {
+        display: none !important;
+      }
+    }
+
+    /* Dark Mode Overrides */
+    :root[data-theme='dark'] .solar-metrics-strip {
+      background: #000000 !important;
+      border-color: rgba(248, 232, 233, 0.12) !important;
+    }
+    :root[data-theme='dark'] .metric-card::after {
+      background: rgba(248, 232, 233, 0.14) !important;
+    }
+    :root[data-theme='dark'] .solar-spatial-section,
+    :root[data-theme='dark'] .why-choose-section {
+      background: #000000 !important;
+      border-color: rgba(248, 232, 233, 0.12) !important;
+    }
+    :root[data-theme='dark'] .solar-service-card,
+    :root[data-theme='dark'] .sector-card,
+    :root[data-theme='dark'] .why-pillar-card,
+    :root[data-theme='dark'] .solar-spatial-frame {
+      background: #050b12 !important;
+      border-color: rgba(248, 232, 233, 0.12) !important;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5) !important;
+    }
+    :root[data-theme='dark'] .solar-service-card h3,
+    :root[data-theme='dark'] .sector-card h3,
+    :root[data-theme='dark'] .why-pillar-card h3 {
+      color: #ffffff !important;
+    }
+    :root[data-theme='dark'] .solar-service-card p,
+    :root[data-theme='dark'] .sector-card p,
+    :root[data-theme='dark'] .why-pillar-card p,
+    :root[data-theme='dark'] .solar-spatial-copy p,
+    :root[data-theme='dark'] .solar-section-header p {
+      color: #9ca3af !important;
+    }
+    :root[data-theme='dark'] .card-feature-list li,
+    :root[data-theme='dark'] .solar-pill-list li {
+      color: #e5e7eb !important;
+      background: #0b1523 !important;
+      border-color: rgba(255, 255, 255, 0.15) !important;
+    }
+  </style>
 </head>
-<body class="internal-page industry-detail-page" data-industry-slug="solar">
+<body class="internal-page industry-detail-page">
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header"><div class="container site-header-container"><a class="brand" href="index.html" aria-label="TRISET Solutions home"><img src="assets/logo_final.png" alt="TRISET Logo" /></a><button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Open navigation"></button><nav class="site-nav" data-site-nav aria-label="Primary navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a class="active" href="industries.html">Industries</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a><button class="theme-toggle" data-theme-toggle type="button">☀️</button><a class="btn btn-sm btn-primary nav-cta" href="contact.html">Start a project</a></nav></div></header>
+
+  <!-- Global Header Navigation -->
+  <header class="site-header">
+    <div class="container site-header-container">
+      <a class="brand" href="index.html" aria-label="TRISET Solutions home">
+        <img src="assets/logo_final.png" alt="TRISET Logo" />
+      </a>
+      <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Open navigation"></button>
+      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a class="active" href="industries.html">Industries</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact</a>
+        <button class="theme-toggle" data-theme-toggle type="button">☀️</button>
+        <a class="btn btn-sm btn-primary nav-cta" href="contact.html">Start a project</a>
+      </nav>
+    </div>
+  </header>
+
   <main id="main-content">
-    <section class="industry-detail-hero"><div class="container industry-detail-hero-grid"><div><a class="industry-backlink" href="solutions.html">← Back to industries</a><p class="eyebrow" data-industry-kicker>Industry / TRISET solutions</p><h1 data-industry-title>Industry solutions built around your work.</h1><p class="lead" data-industry-intro>Digital, data, and geo-spatial capability shaped around the way your organization operates.</p><a class="btn btn-primary" href="contact.html">Discuss your industry →</a></div><div class="industry-detail-visual"><img data-industry-image src="assets/DEM.jpg" alt="Industry solution visual" /></div></div></section>
-    <section class="section industry-detail-content"><div class="container"><div class="industry-detail-copy"><p class="eyebrow">Where we help</p><h2 data-industry-heading>Turn industry complexity into a clearer next step.</h2><p data-industry-description>We combine practical digital execution, structured data, and spatial intelligence to help teams present better, work smarter, and make more informed decisions.</p></div><div class="industry-detail-grid" data-industry-points></div></div></section>
-    <section class="industry-detail-cta"><div class="container"><p class="eyebrow">Built around your context</p><h2>Let’s shape the right solution for your industry.</h2><p>Tell us what your team is trying to improve, launch, organize, or understand.</p><a class="btn btn-primary" href="contact.html">Start a conversation</a></div></section>
+    <!-- Hero Section: Centered Container & 1.32fr : 1fr Golden Ratio -->
+    <section class="industry-detail-hero">
+      <div class="container solar-hero-grid">
+        <div class="solar-hero-copy">
+          <a class="industry-backlink" href="industries.html">← Back to industries</a>
+          <div class="hero-badge-pill">
+            <span class="badge-dot"></span>
+            <span class="badge-text">Solar &amp; Renewable Infrastructure Intelligence</span>
+          </div>
+          
+          <!-- High-Contrast Headline (Wraps Naturally, Never Overlaps Window) -->
+          <h1>
+            <span class="hero-title-main hero-accent-text">Solar &amp; Renewable Energy Solutions</span>
+            <span class="hero-title-sub">Make Energy Projects Easier to Understand</span>
+          </h1>
+          
+          <div class="lead-tagline-box">
+            <span class="tagline-sparkle">✦</span>
+            <span>Organizing the Digital, Data &amp; Spatial Information Behind Clean Energy</span>
+          </div>
+          <p>We help solar and energy teams communicate projects and organize the digital, data, and spatial information behind them. From solar power installations and renewable energy developments to large-scale energy infrastructure projects, we support businesses with practical digital solutions that make project information easier to present, review, and manage.</p>
+          <p>Energy projects often involve complex site conditions, technical information, planning documents, and multiple stakeholders. Bringing these elements together in a clear and organized format can improve communication and support informed decision-making. At <strong>TRISET Solutions</strong>, we combine photogrammetry, spatial visualization, website development, and data processing to help energy businesses present project details with greater clarity.</p>
+          
+          <div class="solar-hero-actions">
+            <a class="btn-solid-white" href="contact.html">Discuss your solar project →</a>
+            <a class="btn-glass-outline" href="#where-we-help">Explore capabilities ↓</a>
+          </div>
+        </div>
+
+        <!-- Hero Visual: macOS Tech Window Mockup -->
+        <div class="hero-mockup-window">
+          <div class="window-titlebar">
+            <div class="window-controls">
+              <span class="control-dot red"></span>
+              <span class="control-dot yellow"></span>
+              <span class="control-dot green"></span>
+            </div>
+            <div class="window-address-bar">triset.com/solar</div>
+            <div class="window-status-pill">● Solar Array Online</div>
+          </div>
+          <div class="hero-image-frame">
+            <img src="assets/solar-farm-aerial-sunrise.jpg" alt="Vast utility-scale solar farm array across rolling hills in golden sunrise sunlight" width="1200" height="750" loading="eager" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Animated Performance & Metrics Strip -->
+    <section class="solar-metrics-strip fade-in-on-scroll">
+      <div class="container">
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-number"><span class="count-up" data-target="99">0</span>.8%</div>
+            <span class="metric-label">Spatial Mapping Accuracy</span>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number"><span class="count-up" data-target="5">0</span>x</div>
+            <span class="metric-label">Faster Stakeholder Reviews</span>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number"><span class="count-up" data-target="100">0</span>%</div>
+            <span class="metric-label">Digital Site Documentation</span>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number"><span class="count-up" data-target="24">0</span>/7</div>
+            <span class="metric-label">Remote Project Access</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Solutions Grid ("Where We Help") -->
+    <section id="where-we-help" class="section fade-in-on-scroll">
+      <div class="container">
+        <div class="solar-section-header">
+          <p class="eyebrow">Where We Help</p>
+          <h2>Bring Site Detail and Project Story Together</h2>
+          <p>
+            Aerial imagery, mapping, dashboards, and clear digital communication support planning, review, and stakeholder confidence across the clean energy lifecycle.
+          </p>
+        </div>
+
+        <div class="solar-services-grid">
+          <!-- 01. Aerial and Site Mapping -->
+          <div class="solar-service-card fade-in-on-scroll">
+            <div class="card-badge-num">01</div>
+            <h3>Aerial &amp; Site Mapping</h3>
+            <p>
+              Understanding the site is an important part of planning solar installations and other energy infrastructure. Aerial imagery and mapping help teams visualize site boundaries, surrounding features, access routes, and land characteristics.
+            </p>
+            <p>
+              TRISET Solutions transforms aerial images and spatial data into orthophotos, mapping outputs, and geospatial deliverables. These outputs support site documentation, preliminary assessment, and clear stakeholder presentations.
+            </p>
+            <ul class="card-feature-list">
+              <li>High-resolution orthomosaic maps &amp; boundary overlays</li>
+              <li>Solar panel array layout planning &amp; spacing analysis</li>
+              <li>Site access roads &amp; transmission corridor mapping</li>
+              <li>Surrounding obstacle &amp; shadow assessment reference maps</li>
+            </ul>
+          </div>
+
+          <!-- 02. Terrain and Spatial Visualization -->
+          <div class="solar-service-card fade-in-on-scroll">
+            <div class="card-badge-num">02</div>
+            <h3>Terrain &amp; Spatial Visualization</h3>
+            <p>
+              Terrain conditions and surrounding land features influence how energy projects are assessed and presented. Clear spatial visualization helps teams understand the relationship between a project site and its physical environment.
+            </p>
+            <p>
+              We support terrain workflows using digital elevation models (DEMs), digital surface models (DSMs), orthophotos, and 3D terrain models to communicate site characteristics in an accessible visual format.
+            </p>
+            <ul class="card-feature-list">
+              <li>Digital Elevation Models (DEM/DSM) for slope &amp; grade analysis</li>
+              <li>3D interactive terrain models for investor walkthroughs</li>
+              <li>Hydrological runoff &amp; watershed topography profiling</li>
+              <li>Complementary GIS formats ready for engineering workflows</li>
+            </ul>
+          </div>
+
+          <!-- 03. Project Websites and Presentation -->
+          <div class="solar-service-card fade-in-on-scroll">
+            <div class="card-badge-num">03</div>
+            <h3>Project Websites &amp; Presentation</h3>
+            <p>
+              A professional digital presence helps energy businesses explain their capabilities, showcase completed projects, and communicate their value to prospective clients, EPC partners, and institutional investors.
+            </p>
+            <p>
+              We develop responsive websites and project-focused digital pages that present technical services, project milestones, company certifications, and contact channels in a structured, credibility-building layout.
+            </p>
+            <ul class="card-feature-list">
+              <li>Solar EPC &amp; developer capability showcases with case studies</li>
+              <li>Interactive project milestone galleries &amp; plant specifications</li>
+              <li>B2B RFP enquiry funnels &amp; technical brochure downloads</li>
+              <li>Clean, high-performance responsive web architecture</li>
+            </ul>
+          </div>
+
+          <!-- 04. Data Processing and Reporting -->
+          <div class="solar-service-card fade-in-on-scroll">
+            <div class="card-badge-num">04</div>
+            <h3>Data Processing &amp; Reporting</h3>
+            <p>
+              Energy projects generate large amounts of information, including survey data, generation records, technical spreadsheets, and regulatory updates. Keeping this information accurate is essential for smooth communication.
+            </p>
+            <p>
+              TRISET Solutions provides data entry, data cleansing, format conversion, and document digitization to organize project records into structured, presentation-ready spreadsheets, dashboards, and reports.
+            </p>
+            <ul class="card-feature-list">
+              <li>Field survey data entry, cleaning &amp; standardization</li>
+              <li>Generation log &amp; solar radiation data consolidation</li>
+              <li>Regulatory compliance document digitization &amp; archival</li>
+              <li>Structured executive dashboards for investor review</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Spatial & Site Detail Showcase Section -->
+    <section class="solar-spatial-section fade-in-on-scroll">
+      <div class="container solar-spatial-grid">
+        <div class="solar-spatial-copy">
+          <p class="eyebrow">Clearer Digital Foundations</p>
+          <h2>Build a Clearer Digital Foundation for Energy Projects</h2>
+          <p>
+            From site mapping and spatial visualization to project websites and organized data, TRISET Solutions helps solar and energy businesses bring critical project information together.
+          </p>
+          <p>
+            Whether you are preparing project presentations, improving your online presence, or organizing technical survey information, we deliver practical digital support shaped around your business needs.
+          </p>
+          <ul class="solar-pill-list">
+            <li>Drone Orthophoto Mapping</li>
+            <li>3D Elevation Models (DEM)</li>
+            <li>Interactive Plant Portals</li>
+            <li>Array Layout Visualization</li>
+            <li>Audit-Ready Record Archives</li>
+            <li>Multi-Stakeholder Dashboards</li>
+          </ul>
+        </div>
+        <div class="solar-spatial-frame">
+          <img src="assets/solar-farm-aerial-sunrise.jpg" alt="Vast utility-scale solar farm array across rolling hills in golden sunrise sunlight" width="1200" height="750" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Supported Energy Sectors Grid -->
+    <section class="supported-sectors-section fade-in-on-scroll">
+      <div class="container">
+        <div class="solar-section-header">
+          <p class="eyebrow">Sectors We Empower</p>
+          <h2>Tailored for Every Renewable Energy Venture</h2>
+          <p>Delivering high-accuracy spatial data, technical web platforms, and data pipelines across diverse clean energy categories.</p>
+        </div>
+
+        <div class="sector-cards-grid">
+          <div class="sector-card fade-in-on-scroll">
+            <div class="sector-card-icon" aria-hidden="true">☀️</div>
+            <h3>Utility-Scale Solar Developers</h3>
+            <p>Large-scale site mapping, terrain contour DEMs, investor presentation microsites, and regulatory boundary documentation.</p>
+          </div>
+
+          <div class="sector-card fade-in-on-scroll">
+            <div class="sector-card-icon" aria-hidden="true">🏢</div>
+            <h3>Commercial &amp; Industrial Rooftop Solar</h3>
+            <p>Rooftop orthomosaics, shadow analysis maps, B2B proposal websites, and commercial energy savings calculators.</p>
+          </div>
+
+          <div class="sector-card fade-in-on-scroll">
+            <div class="sector-card-icon" aria-hidden="true">⚡</div>
+            <h3>Renewable EPC Contractors</h3>
+            <p>Construction progress orthophotos, engineering capability portals, procurement RFQ workflows, and handover documentation.</p>
+          </div>
+
+          <div class="sector-card fade-in-on-scroll">
+            <div class="sector-card-icon" aria-hidden="true">🍃</div>
+            <h3>Wind &amp; Hybrid Energy Parks</h3>
+            <p>Terrain slope models, turbine placement spatial visualization, transmission line route mapping, and environmental reporting.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose TRISET Section -->
+    <section class="why-choose-section fade-in-on-scroll">
+      <div class="container">
+        <div class="solar-section-header">
+          <p class="eyebrow">Strategic Value</p>
+          <h2>Why Choose TRISET Solutions?</h2>
+          <p>
+            We eliminate communication friction by unifying geospatial photogrammetry, technical web development, and data processing under one reliable team.
+          </p>
+        </div>
+
+        <div class="why-pillars-grid">
+          <div class="why-pillar-card fade-in-on-scroll">
+            <h3><span>🗺️</span> Geospatial &amp; Web Expertise</h3>
+            <p>Deep competency in processing drone spatial outputs combined with modern responsive web engineering for technical presentations.</p>
+          </div>
+
+          <div class="why-pillar-card fade-in-on-scroll">
+            <h3><span>🤝</span> Stakeholder Clarity</h3>
+            <p>Transforming complex topographic contours, boundary coordinates, and engineering specs into accessible, visual digital assets.</p>
+          </div>
+
+          <div class="why-pillar-card fade-in-on-scroll">
+            <h3><span>📊</span> Reliable Data Precision</h3>
+            <p>Meticulous data cleansing, survey normalization, and structured reporting workflows that support your existing engineering teams.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partner CTA Section (Full-Width, Single-Row Headline, Zero Empty Void) -->
+    <section class="solar-cta-section fade-in-on-scroll">
+      <div class="container">
+        <p class="eyebrow" style="color: #FFB7BC;">Ready to Present with Greater Clarity?</p>
+        <h2>Ready to Present Your Energy Projects with Greater Clarity?</h2>
+        <p>
+          Connect with TRISET Solutions to discuss your project requirements and explore suitable digital, mapping, and data solutions.
+        </p>
+        <p style="margin-bottom: 2rem;">
+          Whether preparing project presentations, building a technical website, or digitizing site survey records, our team is ready to assist.
+        </p>
+        
+        <div class="cta-highlight-box">
+          <strong style="display: block; font-size: 1.05rem; color: #fff; margin-bottom: 0.35rem;">
+            Ready to elevate your solar and renewable energy digital systems?
+          </strong>
+          <span style="color: #F8E8E9; font-size: 0.95rem;">
+            Contact TRISET Solutions today to discuss your aerial mapping, 3D terrain modeling, and project website requirements.
+          </span>
+        </div>
+
+        <div class="cta-actions">
+          <a class="btn-solid-white" href="contact.html">Contact TRISET Solutions →</a>
+          <a class="btn-glass-outline" href="tel:+917382819292">Call: +91 7382 819 292</a>
+        </div>
+      </div>
+    </section>
   </main>
-  <footer class="footer"></footer><script src="src/industry-detail.js"></script><script src="src/app.js"></script>
+
+  <footer class="footer"></footer>
+
+  <script src="src/app.js"></script>
+
+  <!-- Interactive Scripts: Metric Counter & Scroll-Reveal -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // 1. Animated Counter for Metrics Strip
+      const countElements = document.querySelectorAll('.count-up');
+      let countersStarted = false;
+
+      function startCounters() {
+        countElements.forEach(function (el) {
+          const targetNum = parseInt(el.dataset.target, 10);
+          const duration = 1600;
+          const stepTime = 25;
+          const totalSteps = duration / stepTime;
+          const stepValue = targetNum / totalSteps;
+          let currentNum = 0;
+
+          const timer = setInterval(function () {
+            currentNum += stepValue;
+            if (currentNum >= targetNum) {
+              el.textContent = targetNum;
+              clearInterval(timer);
+            } else {
+              el.textContent = Math.floor(currentNum);
+            }
+          }, stepTime);
+        });
+      }
+
+      // 2. Scroll Reveal via IntersectionObserver
+      const revealItems = document.querySelectorAll('.fade-in-on-scroll');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(function (entries, obs) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              
+              if (!countersStarted && entry.target.classList.contains('solar-metrics-strip')) {
+                countersStarted = true;
+                startCounters();
+              }
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        revealItems.forEach(function (el) {
+          observer.observe(el);
+        });
+      } else {
+        revealItems.forEach(function (el) {
+          el.classList.add('is-visible');
+        });
+        startCounters();
+      }
+    });
+  </script>
 </body>
 </html>

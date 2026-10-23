@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Activity, ArrowDownToLine, BarChart3, Building2, ChevronRight, CircleHelp, ClipboardList, FileCheck2, FilePlus2, FileText, LayoutDashboard, LogOut, Menu, Pencil, ReceiptText, Search, Settings2, ShieldCheck, Sparkles, Trash2, Users, WalletCards, X } from 'lucide-react';
 import './styles.css';
-import './blue-theme.css';
+import './red-theme.css';
 import { AuthGate } from './AuthGate.jsx';
 
 const DEFAULT_PAYMENT_NOTE = 'Payment Terms: 50% advance to start the project and 50% before final deployment.';

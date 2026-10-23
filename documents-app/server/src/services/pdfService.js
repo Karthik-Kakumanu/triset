@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
 import { config } from '../config.js';
 
-const MAROON = rgb(11 / 255, 102 / 255, 255 / 255);
+const MAROON = rgb(215 / 255, 10 / 255, 23 / 255);
 const BLACK = rgb(0, 0, 0);
 const WHITE = rgb(1, 1, 1);
 const A4 = [595.28, 841.89];
@@ -60,11 +60,11 @@ export async function createBusinessPdf(document, settings = {}) {
   const headerTextX = 42 + logoWidth + 18;
 
   if (isQuotation || isInvoice || isPurchaseOrder || isPayslip) {
-    const ink = rgb(24 / 255, 40 / 255, 65 / 255);
-    const blue = rgb(18 / 255, 100 / 255, 232 / 255);
-    const muted = rgb(103 / 255, 118 / 255, 138 / 255);
-    const pale = rgb(244 / 255, 247 / 255, 252 / 255);
-    const border = rgb(205 / 255, 220 / 255, 241 / 255);
+    const ink = rgb(31 / 255, 22 / 255, 21 / 255);
+    const red = rgb(215 / 255, 10 / 255, 23 / 255);
+    const muted = rgb(103 / 255, 103 / 255, 103 / 255);
+    const pale = rgb(252 / 255, 239 / 255, 238 / 255);
+    const border = rgb(234 / 255, 207 / 255, 204 / 255);
     const amount = (value) => Number(value || 0).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     const quotationItems = (document.items?.length ? document.items : [{ description: document.description || 'Service item', quantity: document.quantity ?? 1, rate: document.amount ?? 0 }]).slice(0, 3);
     const subtotal = quotationItems.reduce((sum, item) => sum + Number(item.quantity || 1) * Number(item.rate || 0), 0);
@@ -78,8 +78,8 @@ export async function createBusinessPdf(document, settings = {}) {
     const headerTextX = 460;
     const titleRight = headerTextX + bold.widthOfTextAtSize(documentTitle, 14);
     text(page, documentTitle, headerTextX, 776, 14, bold, ink);
-    fittedRightText(page, String(documentSubject).toUpperCase(), titleRight, 757, 8, regular, 200, blue);
-    coloredLine(page, 45, 730, 505, 1.7, blue);
+    fittedRightText(page, String(documentSubject).toUpperCase(), titleRight, 757, 8, regular, 200, red);
+    coloredLine(page, 45, 730, 505, 1.7, red);
     text(page, companyName, 45, 702, 10, bold, ink);
     const addressText = String(address || '').split(/\r?\n/).map((value) => value.trim()).filter(Boolean);
     const addressLineCount = addressText.length
@@ -89,13 +89,13 @@ export async function createBusinessPdf(document, settings = {}) {
     text(page, 'DOCUMENT DATE', 416, 704, 7.3, bold, muted);
     text(page, quotationDate(document.date), 416, 686, 9, regular, ink);
     text(page, 'REFERENCE', 416, 665, 7.3, bold, muted);
-    text(page, document.reference || 'Not provided', 416, 649, 8, regular, blue);
+    text(page, document.reference || 'Not provided', 416, 649, 8, regular, red);
 
     page.drawRectangle({ x: 45, y: 558, width: 505, height: 62, color: pale, borderColor: border, borderWidth: .5 });
     text(page, recipientLabel, 58, 601, 7.3, bold, muted);
     fittedText(page, document.party || (isPayslip ? 'Employee' : isPurchaseOrder ? 'Supplier' : 'Client'), 58, 575, 12, bold, 430, ink);
 
-    page.drawRectangle({ x: 45, y: 507, width: 505, height: 28, color: blue });
+    page.drawRectangle({ x: 45, y: 507, width: 505, height: 28, color: red });
     text(page, 'DESCRIPTION', 57, 519, 7.5, bold, WHITE);
     text(page, 'QTY', 351, 519, 7.5, bold, WHITE);
     text(page, 'RATE', 400, 519, 7.5, bold, WHITE);
@@ -112,14 +112,14 @@ export async function createBusinessPdf(document, settings = {}) {
     text(page, isPayslip ? 'Payroll amounts in INR' : 'All amounts in INR', 45, 340, 7.5, regular, muted);
     text(page, 'SUBTOTAL', 347, 324, 8, bold, muted);
     rightText(page, `INR ${amount(subtotal)}`, 550, 319, 10, regular, ink);
-    coloredLine(page, 339, 307, 211, 1, blue);
-    text(page, 'TOTAL', 347, 286, 10, bold, blue);
+    coloredLine(page, 339, 307, 211, 1, red);
+    text(page, 'TOTAL', 347, 286, 10, bold, red);
     rightText(page, `INR ${amount(total)}`, 550, 281, 13, bold, ink);
     text(page, 'Before applicable taxes, if any.', 347, 264, 7.5, regular, muted);
 
     const noteLabel = isInvoice ? 'NOTES' : isPurchaseOrder ? 'DELIVERY NOTE' : isPayslip ? 'PAYROLL NOTE' : 'SERVICE NOTE';
     const noteText = document.serviceNote || document.notes || (isInvoice ? 'Thank you for your business.' : isPurchaseOrder ? 'Delivery details to be confirmed with the supplier.' : isPayslip ? 'This document is confidential and intended for the named employee.' : 'Service details to be confirmed with the client.');
-    text(page, noteLabel, 45, 258, 8, bold, blue);
+    text(page, noteLabel, 45, 258, 8, bold, red);
     wrappedText(page, noteText, 45, 236, 9, regular, 505, 12, ink);
 
     page.drawRectangle({ x: 45, y: 102, width: 505, height: 88, color: pale, borderColor: border, borderWidth: .5 });

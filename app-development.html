@@ -1,4 +1,1109 @@
 <!doctype html>
-<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="TRISET creates functional, engaging Android and iOS applications for modern businesses." /><title>Mobile App Development Services | TRISET Solutions</title><link rel="icon" href="assets/logo_final.png" /><script src="src/theme-init.js"></script><link rel="stylesheet" href="styles.css" /><link rel="stylesheet" href="premium-system.css" /></head>
-<body class="internal-page service-detail-page" data-service-detail="app-development"><a class="skip-link" href="#main-content">Skip to content</a><header class="site-header"><div class="container site-header-container"><a class="brand" href="index.html" aria-label="TRISET Solutions home"><img src="assets/logo_final.png" alt="TRISET Logo" /></a><button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Open navigation"></button><nav class="site-nav" data-site-nav aria-label="Primary navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html" class="active">Services</a><a href="industries.html">Industries</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a><button class="theme-toggle" data-theme-toggle type="button">☀️</button><a class="btn btn-sm btn-primary nav-cta" href="contact.html">Start a project</a></nav></div></header>
-<main id="main-content"><section class="service-detail-hero"><div class="container service-detail-hero-grid"><div><p class="eyebrow">Digital / Mobile Products</p><h1>Mobile experiences people enjoy using.</h1><p class="lead">We turn ideas into functional and engaging mobile applications that help businesses connect with customers, improve accessibility, and simplify everyday operations.</p><a class="btn btn-primary" href="contact.html">Plan your app →</a></div><div class="service-detail-visual"><img src="assets/service-app-development.png" alt="Mobile application development" /></div></div></section><section class="service-detail-body"><div class="container service-detail-layout"><article class="service-detail-panel"><p class="eyebrow">The app experience</p><h2>From a useful idea to a reliable product.</h2><p>We bring together product thinking, intuitive UI/UX, platform-aware engineering, integrations, and ongoing maintenance to keep your app useful after launch.</p><div class="service-detail-benefits"><span>Android and iOS</span><span>Thoughtful UI/UX</span><span>Long-term support</span></div></article><article class="service-detail-panel"><p class="eyebrow">What we deliver</p><h2>Mobile products built to connect.</h2><ul class="service-detail-list"><li>Custom mobile app development</li><li>Android and iOS applications</li><li>Business and service-based apps</li><li>E-commerce applications</li><li>UI/UX design and app maintenance</li></ul></article></div></section><section class="service-detail-cta"><div class="container"><h2>Have an app idea ready to move?</h2><p>Let’s shape the product, platform, and experience around your users.</p><a class="btn btn-primary" href="contact.html">Start an app project</a></div></section></main><footer class="footer"></footer><script src="src/app.js"></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Custom mobile app development, iOS, Android, cross-platform, UI/UX design, and app integration services by TRISET Solutions." />
+  <title>App Development Services for Growing Businesses | TRISET Solutions</title>
+  <link rel="icon" href="assets/logo_final.png" />
+  <script src="src/theme-init.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="premium-system.css" />
+
+  <style>
+    /* ==========================================================================
+       HERO SPECIFICITY OVERRIDES & PREMIUM SYSTEM LOCK-IN
+       ========================================================================== */
+    body.service-detail-page .service-detail-hero,
+    .app-hero-section {
+      background: linear-gradient(135deg, #7A0000 0%, #D40000 50%, #660000 100%) !important;
+      color: #ffffff !important;
+      position: relative !important;
+      overflow: hidden !important;
+      padding: clamp(4.5rem, 8vw, 7.5rem) 0 clamp(3.5rem, 6vw, 5.5rem) !important;
+      isolation: isolate !important;
+    }
+
+    body.service-detail-page .service-detail-hero::before,
+    .app-hero-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.14) 0%, transparent 45%),
+        radial-gradient(circle at 82% 78%, rgba(0, 0, 0, 0.45) 0%, transparent 55%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Balanced 1.32fr to 1fr Golden Ratio Grid */
+    .app-hero-grid {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1.32fr) minmax(0, 1fr) !important;
+      gap: clamp(2rem, 3.5vw, 3.5rem) !important;
+      align-items: center !important;
+      position: relative !important;
+      z-index: 2 !important;
+    }
+
+    .app-hero-copy {
+      min-width: 0 !important;
+      max-width: 100% !important;
+      overflow-wrap: break-word !important;
+      position: relative !important;
+      z-index: 3 !important;
+    }
+
+    /* High-Contrast Hero Typography */
+    body.service-detail-page .service-detail-hero h1,
+    .app-hero-copy h1 {
+      font-family: var(--font-display, inherit) !important;
+      font-size: clamp(2rem, 3.1vw, 3rem) !important;
+      font-weight: 800 !important;
+      line-height: 1.16 !important;
+      letter-spacing: -0.03em !important;
+      color: #ffffff !important;
+      margin: 0.6rem 0 1rem !important;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+      animation: none !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+    }
+
+    .hero-title-main {
+      display: block;
+      white-space: normal !important;
+      word-break: normal !important;
+    }
+
+    .hero-title-sub {
+      display: block;
+      color: #FFE6E8 !important;
+      font-weight: 700 !important;
+      font-size: clamp(1.15rem, 1.8vw, 1.65rem) !important;
+      line-height: 1.25 !important;
+      margin-top: 0.35rem;
+      white-space: normal !important;
+      word-break: normal !important;
+    }
+
+    /* Premium Frosted Eyebrow Badge */
+    .hero-badge-pill {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.5rem !important;
+      padding: 0.38rem 0.95rem !important;
+      background: rgba(255, 255, 255, 0.12) !important;
+      border: 1px solid rgba(255, 255, 255, 0.28) !important;
+      border-radius: 999px !important;
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+      margin-bottom: 0.85rem !important;
+    }
+    .hero-badge-pill .badge-dot {
+      width: 8px !important;
+      height: 8px !important;
+      border-radius: 50% !important;
+      background: #4ade80 !important;
+      box-shadow: 0 0 10px #4ade80 !important;
+      display: inline-block !important;
+      flex-shrink: 0 !important;
+    }
+    .hero-badge-pill .badge-text {
+      color: #ffffff !important;
+      font-size: 0.8rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.08em !important;
+      text-transform: uppercase !important;
+    }
+
+    .app-hero-copy .service-backlink {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.4rem !important;
+      margin-bottom: 0.9rem !important;
+      color: #FFE6E8 !important;
+      font-size: 0.86rem !important;
+      font-weight: 700 !important;
+      text-decoration: none !important;
+      opacity: 0.95 !important;
+      transition: opacity 0.2s ease !important;
+    }
+    .app-hero-copy .service-backlink:hover {
+      opacity: 1 !important;
+      text-decoration: underline !important;
+    }
+
+    /* Rock-Solid Animated Shimmer Accent */
+    .hero-accent-text {
+      background: linear-gradient(120deg, #ffffff 0%, #FFE6E8 35%, #ffffff 65%, #FFB7BC 90%, #ffffff 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textShimmer 7s ease-in-out infinite;
+      display: inline;
+    }
+    @keyframes textShimmer {
+      0% { background-position: 0% center; }
+      50% { background-position: 100% center; }
+      100% { background-position: 0% center; }
+    }
+
+    /* Premium Lead Tagline Highlight Box */
+    .lead-tagline-box {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.55rem !important;
+      background: rgba(0, 0, 0, 0.24) !important;
+      border-left: 3px solid #FFCCD0 !important;
+      padding: 0.55rem 1rem !important;
+      border-radius: 0 10px 10px 0 !important;
+      margin-bottom: 1.25rem !important;
+      color: #FFE6E8 !important;
+      font-weight: 600 !important;
+      font-size: clamp(0.96rem, 1.2vw, 1.12rem) !important;
+      line-height: 1.4 !important;
+      backdrop-filter: blur(6px) !important;
+      -webkit-backdrop-filter: blur(6px) !important;
+    }
+    .lead-tagline-box .tagline-sparkle {
+      color: #FFB7BC !important;
+      font-size: 1rem !important;
+      flex-shrink: 0 !important;
+    }
+
+    .app-hero-copy p {
+      color: rgba(255, 255, 255, 0.95) !important;
+      font-size: clamp(0.98rem, 1.15vw, 1.08rem) !important;
+      line-height: 1.72 !important;
+      margin-bottom: 1.1rem !important;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.18) !important;
+      animation: none !important;
+    }
+
+    .app-hero-copy p strong {
+      color: #ffffff !important;
+      font-weight: 700 !important;
+    }
+
+    .app-hero-actions {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 0.9rem !important;
+      margin-top: 1.8rem !important;
+    }
+
+    /* High Contrast Button System */
+    .btn-solid-white {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0.5rem !important;
+      background: #ffffff !important;
+      color: #b80000 !important;
+      font-weight: 700 !important;
+      font-size: 0.95rem !important;
+      padding: 0.75rem 1.45rem !important;
+      border-radius: 999px !important;
+      border: 1px solid #ffffff !important;
+      text-decoration: none !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
+      transition: all 0.25s var(--ease) !important;
+      min-height: 46px !important;
+    }
+    .btn-solid-white:hover {
+      background: #f4f6f8 !important;
+      color: #8c0000 !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35) !important;
+    }
+
+    .btn-glass-outline {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0.5rem !important;
+      background: rgba(0, 0, 0, 0.28) !important;
+      color: #ffffff !important;
+      font-weight: 600 !important;
+      font-size: 0.95rem !important;
+      padding: 0.75rem 1.45rem !important;
+      border-radius: 999px !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.75) !important;
+      text-decoration: none !important;
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+      transition: all 0.25s var(--ease) !important;
+      min-height: 46px !important;
+    }
+    .btn-glass-outline:hover {
+      background: rgba(255, 255, 255, 0.22) !important;
+      border-color: #ffffff !important;
+      color: #ffffff !important;
+      transform: translateY(-2px) !important;
+    }
+
+    /* Ultra-Premium Window Mockup Frame */
+    .hero-mockup-window {
+      border-radius: 20px;
+      overflow: hidden;
+      background: #11141a;
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 30px 75px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 0, 0, 0.22);
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+      width: 100%;
+    }
+    .hero-mockup-window:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 36px 85px rgba(0, 0, 0, 0.7), 0 0 50px rgba(255, 0, 0, 0.3);
+    }
+    .window-titlebar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.65rem 1rem;
+      background: rgba(18, 22, 28, 0.96);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-family: var(--font-mono, monospace);
+    }
+    .window-controls {
+      display: flex;
+      gap: 0.35rem;
+      align-items: center;
+    }
+    .control-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .control-dot.red { background: #ff5f56; }
+    .control-dot.yellow { background: #ffbd2e; }
+    .control-dot.green { background: #27c93f; }
+    .window-address-bar {
+      color: rgba(255, 255, 255, 0.65);
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.2rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .window-status-pill {
+      color: #4ade80;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+    .hero-image-frame {
+      position: relative;
+      overflow: hidden;
+      background: #0a0a0a;
+      width: 100%;
+    }
+    .hero-image-frame img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 10.5;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s var(--ease);
+    }
+    .hero-mockup-window:hover .hero-image-frame img {
+      transform: scale(1.02);
+    }
+
+    /* Metrics Strip */
+    .app-metrics-strip {
+      background: #ffffff;
+      border-bottom: 1px solid var(--line, rgba(0, 0, 0, 0.1));
+      padding: clamp(1.8rem, 3.2vw, 2.8rem) 0;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03);
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+    .metric-card {
+      text-align: center;
+      padding: 0.5rem 0.75rem;
+      position: relative;
+    }
+    .metric-card:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 15%;
+      height: 70%;
+      width: 1px;
+      background: var(--line, rgba(0, 0, 0, 0.1));
+    }
+    .metric-number {
+      font-family: var(--font-display, inherit);
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--brand-primary, #FF0000);
+      margin-bottom: 0.4rem;
+      display: inline-flex;
+      align-items: baseline;
+      justify-content: center;
+    }
+    .metric-label {
+      color: var(--muted, #607080);
+      font-size: 0.9rem;
+      font-weight: 600;
+      line-height: 1.4;
+      display: block;
+    }
+
+    /* Sections */
+    .app-section {
+      padding: clamp(3.2rem, 6vw, 5.5rem) 0;
+      position: relative;
+    }
+    .app-section-alt {
+      background: var(--paper, #f7f9fb);
+    }
+    .section-header-centered {
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto clamp(2rem, 4vw, 3.2rem);
+    }
+    .section-header-centered h2 {
+      font-family: var(--font-display, inherit);
+      font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      margin: 0.4rem 0 1rem;
+    }
+    .section-header-centered p {
+      font-size: 1.08rem;
+      color: var(--muted, #607080);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* 6-Card Services Grid */
+    .services-catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.6rem;
+    }
+    .service-catalog-card {
+      background: var(--surface, #ffffff);
+      border: 1px solid var(--line, rgba(0, 0, 0, 0.1));
+      border-radius: 18px;
+      padding: 1.85rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      height: 100%;
+    }
+    .service-catalog-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 0, 0, 0.4);
+      box-shadow: 0 20px 45px rgba(255, 0, 0, 0.1);
+    }
+    .service-catalog-card .card-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.2rem;
+    }
+    .service-catalog-card .card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(255, 0, 0, 0.08);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.55rem;
+      color: var(--brand-primary, #FF0000);
+      transition: transform 0.3s ease;
+    }
+    .service-catalog-card:hover .card-icon {
+      transform: scale(1.1) rotate(2deg);
+      background: var(--brand-primary, #FF0000);
+      color: #ffffff;
+    }
+    .service-catalog-card .card-index {
+      font-family: var(--font-mono, monospace);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--brand-primary, #FF0000);
+      letter-spacing: 0.12em;
+    }
+    .service-catalog-card h3 {
+      font-family: var(--font-display, inherit);
+      font-size: 1.28rem;
+      line-height: 1.3;
+      margin: 0 0 0.85rem;
+      letter-spacing: -0.02em;
+    }
+    .service-catalog-card p {
+      color: var(--muted, #607080);
+      font-size: 0.95rem;
+      line-height: 1.68;
+      margin: 0 0 1.2rem;
+      flex-grow: 1;
+    }
+    .service-card-meta {
+      border-top: 1px solid var(--line, rgba(0, 0, 0, 0.08));
+      padding-top: 0.95rem;
+      margin-top: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .service-meta-tag {
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.04);
+      color: var(--ink, #111827);
+    }
+
+    /* Device-Adaptive Showcase Split Row (100% Uncovered Images) */
+    .showcase-split-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1.15fr);
+      gap: clamp(2rem, 4.5vw, 4rem);
+      align-items: center;
+    }
+    .showcase-visual {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--line, rgba(0, 0, 0, 0.1));
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.1);
+      background: #000;
+    }
+    .showcase-visual img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 10.5;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s var(--ease);
+    }
+    .showcase-visual:hover img {
+      transform: scale(1.025);
+    }
+    .showcase-copy h3 {
+      font-family: var(--font-display, inherit);
+      font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+      line-height: 1.22;
+      letter-spacing: -0.025em;
+      margin: 0.4rem 0 1.2rem;
+    }
+    .showcase-copy p {
+      color: var(--muted, #607080);
+      font-size: 1.02rem;
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+    .showcase-features-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+      margin-top: 1.5rem;
+    }
+    .showcase-feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--ink, #111827);
+    }
+    .showcase-feature-item span {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(255, 0, 0, 0.1);
+      color: var(--brand-primary, #FF0000);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* Why Choose TRISET Section */
+    .why-choose-card {
+      background: var(--surface, #ffffff);
+      border: 1px solid var(--line, rgba(0, 0, 0, 0.1));
+      border-radius: 20px;
+      padding: clamp(1.8rem, 4vw, 3rem);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+      gap: clamp(1.5rem, 3.5vw, 3rem);
+      align-items: center;
+    }
+    .why-choose-copy h3 {
+      font-family: var(--font-display, inherit);
+      font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+      line-height: 1.2;
+      margin: 0 0 1rem;
+      letter-spacing: -0.025em;
+    }
+    .why-choose-copy p {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: var(--muted, #607080);
+      margin-bottom: 1rem;
+    }
+    .why-choose-copy p:last-child {
+      margin-bottom: 0;
+    }
+    .why-choose-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .highlight-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1.15rem;
+      background: var(--paper, #f7f9fb);
+      border: 1px solid var(--line, rgba(0, 0, 0, 0.1));
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--ink, #111827);
+    }
+    .highlight-pill span {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--brand-primary, #FF0000);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* Bottom CTA Section (Full-Width, Single-Row Headline, Zero Empty Void) */
+    body.service-detail-page .app-cta-section,
+    .app-cta-section {
+      position: relative !important;
+      overflow: hidden !important;
+      padding: clamp(3.8rem, 7vw, 6rem) 0 !important;
+      color: #fff !important;
+      background: linear-gradient(135deg, #850000 0%, #D40000 52%, #750000 100%) !important;
+    }
+    .app-cta-section h2 {
+      max-width: 100% !important;
+      width: 100% !important;
+      margin: 0.4rem 0 1.2rem !important;
+      color: #ffffff !important;
+      font-family: var(--font-display, inherit);
+      font-size: clamp(2rem, 3.2vw, 3rem) !important;
+      line-height: 1.16 !important;
+      letter-spacing: -0.035em !important;
+    }
+    .app-cta-section p {
+      max-width: 100% !important;
+      width: 100% !important;
+      color: rgba(255, 255, 255, 0.95) !important;
+      font-size: clamp(1rem, 1.2vw, 1.12rem) !important;
+      line-height: 1.75 !important;
+    }
+    .cta-highlight-box {
+      background: rgba(0, 0, 0, 0.28) !important;
+      padding: 1.35rem 1.8rem !important;
+      border-radius: 14px !important;
+      border: 1px solid rgba(255, 255, 255, 0.25) !important;
+      max-width: 100% !important;
+      width: 100% !important;
+      margin-bottom: 2rem !important;
+    }
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    /* Scroll Reveal Animations */
+    .fade-in-on-scroll {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .fade-in-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       MOBILE OPTIMIZATIONS
+       ========================================================================== */
+    @media (max-width: 980px) {
+      body.service-detail-page .service-detail-hero,
+      .app-hero-section {
+        padding-top: 6rem !important;
+        padding-bottom: 3rem !important;
+      }
+      .app-hero-grid,
+      .showcase-split-row,
+      .why-choose-card {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+      }
+      .hero-mockup-window,
+      .showcase-visual {
+        max-width: 580px;
+        margin: 0 auto;
+      }
+      .services-catalog-grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+        gap: 1.2rem !important;
+      }
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
+      }
+      .metric-card:nth-child(2)::after {
+        display: none;
+      }
+      .showcase-features-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .metrics-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .metric-card::after {
+        display: none !important;
+      }
+      .app-hero-actions,
+      .cta-actions {
+        flex-direction: column !important;
+        align-items: stretch !important;
+      }
+      .btn-solid-white,
+      .btn-glass-outline {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+    }
+  </style>
+</head>
+<body class="internal-page service-detail-page" data-service-detail="app-development">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- Global Header Navigation -->
+  <header class="site-header">
+    <div class="container site-header-container">
+      <a class="brand" href="index.html" aria-label="TRISET Solutions home">
+        <img src="assets/logo_final.png" alt="TRISET Logo" />
+      </a>
+      <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Open navigation"></button>
+      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="industries.html">Industries</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact</a>
+        <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle light or dark theme">☀️</button>
+        <a class="btn btn-sm btn-primary nav-cta" href="contact.html">Start a project</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Hero Section: App Development Services for Growing Businesses -->
+    <section class="service-detail-hero app-hero-section">
+      <div class="container app-hero-grid">
+        <div class="app-hero-copy">
+          <a href="services.html" class="service-backlink">← Back to Services</a>
+          <div class="hero-badge-pill">
+            <span class="badge-dot"></span>
+            <span class="badge-text">Mobile Engineering &amp; Native Apps</span>
+          </div>
+          <h1>
+            <span class="hero-title-main hero-accent-text">App Development Services</span>
+            <span class="hero-title-sub">for Growing Businesses</span>
+          </h1>
+          <div class="lead-tagline-box">
+            <span class="tagline-sparkle">✦</span>
+            <span>Turn Your Business Ideas into Powerful Mobile Applications</span>
+          </div>
+          
+          <p>
+            In a world where customers rely on their smartphones for everyday tasks, a well-designed mobile application can help businesses connect with their audience more effectively. From simplifying daily operations to improving customer engagement, mobile apps create new opportunities to deliver value and build lasting relationships.
+          </p>
+          <p>
+            At <strong>TRISET Solutions</strong>, we provide app development services that transform business ideas into practical digital solutions. We focus on building applications that combine useful features, intuitive design, reliable performance, and a smooth user experience. Whether you are a startup planning your first application or an established business looking to expand your digital capabilities, we help you explore solutions that fit your requirements.
+          </p>
+
+          <div class="app-hero-actions">
+            <a class="btn-solid-white" href="contact.html">Discuss your app project →</a>
+            <a class="btn-glass-outline" href="tel:+917382819292">Call: +91 7382 819 292</a>
+          </div>
+        </div>
+
+        <!-- Hero Visual: macOS Tech Window Mockup -->
+        <div class="hero-mockup-window">
+          <div class="window-titlebar">
+            <div class="window-controls">
+              <span class="control-dot red"></span>
+              <span class="control-dot yellow"></span>
+              <span class="control-dot green"></span>
+            </div>
+            <div class="window-address-bar">triset.com/app-development</div>
+            <div class="window-status-pill">● iOS &amp; Android Active</div>
+          </div>
+          <div class="hero-image-frame">
+            <img 
+              src="assets/app-development-curved-workstation.jpg" 
+              alt="Android Studio and iOS mobile app development workspace with live dashboard device" 
+              width="1200" 
+              height="750" 
+              loading="eager" 
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Animated Metrics Strip -->
+    <div class="app-metrics-strip" aria-label="Key mobile application metrics">
+      <div class="container">
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-number"><span class="count-up" data-target="100">0</span>%</div>
+            <span class="metric-label">Native &amp; Cross-Platform</span>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number">60<span style="font-size: 1.5rem; margin-left: 2px;">fps</span></div>
+            <span class="metric-label">Fluid UI Motion &amp; Speed</span>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number"><span class="count-up" data-target="6">0</span>+</div>
+            <span class="metric-label">Mobile Engineering Disciplines</span>
+          </div>
+          <div class="metric-card">
+            <div class="metric-number">99.<span class="count-up" data-target="9">0</span>%</div>
+            <span class="metric-label">Crash-Free Stability Focus</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: Our App Development Services (6 Cards Grid) -->
+    <section class="app-section">
+      <div class="container">
+        <div class="section-header-centered fade-in-on-scroll">
+          <p class="eyebrow" style="color: var(--brand-primary, #FF0000);">Engineered for iOS &amp; Android</p>
+          <h2>Our App Development Services</h2>
+          <p>From native smartphone apps to cross-platform architectures and enterprise integrations, we create dependable digital solutions designed to scale.</p>
+        </div>
+
+        <div class="services-catalog-grid">
+          <!-- 1. Custom Mobile App Development -->
+          <div class="service-catalog-card fade-in-on-scroll">
+            <div class="card-top-row">
+              <div class="card-icon" aria-hidden="true">📱</div>
+              <span class="card-index">01</span>
+            </div>
+            <h3>1. Custom Mobile App Development</h3>
+            <p>Every business has different goals, and its application should reflect those needs. Our mobile app development services focus on creating customized applications for Android and iOS devices based on your business objectives and target audience.</p>
+            <p style="margin-top: -0.5rem; font-size: 0.9rem;">From customer-facing applications to tools that support business operations, we help plan and develop features that make everyday tasks easier. Our approach considers usability, performance, security requirements, and future scalability to create applications that can evolve alongside your business.</p>
+            <div class="service-card-meta">
+              <span class="service-meta-tag">iOS &amp; Android</span>
+              <span class="service-meta-tag">Operational Tools</span>
+              <span class="service-meta-tag">Scalable Logic</span>
+            </div>
+          </div>
+
+          <!-- 2. UI/UX Design for Mobile Applications -->
+          <div class="service-catalog-card fade-in-on-scroll">
+            <div class="card-top-row">
+              <div class="card-icon" aria-hidden="true">✨</div>
+              <span class="card-index">02</span>
+            </div>
+            <h3>2. UI/UX Design for Mobile Applications</h3>
+            <p>An application should be easy to understand from the moment someone opens it. Complicated navigation and confusing layouts can make users abandon an app before experiencing its benefits.</p>
+            <p style="margin-top: -0.5rem; font-size: 0.9rem;">Our UI/UX design services focus on creating clear, intuitive, and engaging digital experiences. We consider user expectations, screen layouts, navigation patterns, visual consistency, and the steps users take to complete important actions. The result is a design approach that helps users interact with your application more comfortably and efficiently.</p>
+            <div class="service-card-meta">
+              <span class="service-meta-tag">Intuitive Layouts</span>
+              <span class="service-meta-tag">Smooth Navigation</span>
+              <span class="service-meta-tag">Visual Consistency</span>
+            </div>
+          </div>
+
+          <!-- 3. Cross-Platform App Development -->
+          <div class="service-catalog-card fade-in-on-scroll">
+            <div class="card-top-row">
+              <div class="card-icon" aria-hidden="true">⚡</div>
+              <span class="card-index">03</span>
+            </div>
+            <h3>3. Cross-Platform App Development</h3>
+            <p>Businesses often want to reach customers using different mobile operating systems without managing entirely separate development projects. Cross-platform app development can help address this requirement by allowing applications to share a significant portion of their code across supported platforms.</p>
+            <p style="margin-top: -0.5rem; font-size: 0.9rem;">TRISET Solutions helps businesses explore cross-platform development approaches based on their features, performance needs, budget, and technical requirements. This can simplify development and maintenance while supporting a consistent experience across compatible devices.</p>
+            <div class="service-card-meta">
+              <span class="service-meta-tag">Flutter &amp; React Native</span>
+              <span class="service-meta-tag">Shared Codebase</span>
+              <span class="service-meta-tag">Cost-Effective</span>
+            </div>
+          </div>
+
+          <!-- 4. White-Label App Development -->
+          <div class="service-catalog-card fade-in-on-scroll">
+            <div class="card-top-row">
+              <div class="card-icon" aria-hidden="true">🏷️</div>
+              <span class="card-index">04</span>
+            </div>
+            <h3>4. White-Label App Development</h3>
+            <p>Launching an application from the ground up may require considerable time and resources. White-label app solutions offer an alternative for businesses that want to introduce a branded application using an existing customizable foundation.</p>
+            <p style="margin-top: -0.5rem; font-size: 0.9rem;">We provide white-label app development options that can be adapted to suitable business requirements, including branding, visual elements, and selected features. This approach may help businesses reduce development effort and move toward launch more efficiently, depending on the level of customization required.</p>
+            <div class="service-card-meta">
+              <span class="service-meta-tag">Rapid Deployment</span>
+              <span class="service-meta-tag">Branded UI</span>
+              <span class="service-meta-tag">Proven Foundation</span>
+            </div>
+          </div>
+
+          <!-- 5. App Integration Services -->
+          <div class="service-catalog-card fade-in-on-scroll">
+            <div class="card-top-row">
+              <div class="card-icon" aria-hidden="true">🔌</div>
+              <span class="card-index">05</span>
+            </div>
+            <h3>5. App Integration Services</h3>
+            <p>Many businesses use multiple digital systems to manage customers, payments, communication, and daily operations. When these systems work independently, information can become fragmented and processes may require unnecessary manual effort.</p>
+            <p style="margin-top: -0.5rem; font-size: 0.9rem;">Our app integration services help connect applications with suitable third-party tools, APIs, payment gateways, and business platforms. By planning integrations around your operational requirements, we aim to improve information flow, reduce repetitive tasks, and create a more connected digital experience.</p>
+            <div class="service-card-meta">
+              <span class="service-meta-tag">REST &amp; GraphQL APIs</span>
+              <span class="service-meta-tag">Payment Gateways</span>
+              <span class="service-meta-tag">CRM Sync</span>
+            </div>
+          </div>
+
+          <!-- 6. App Maintenance and Technical Support -->
+          <div class="service-catalog-card fade-in-on-scroll">
+            <div class="card-top-row">
+              <div class="card-icon" aria-hidden="true">🛡️</div>
+              <span class="card-index">06</span>
+            </div>
+            <h3>6. App Maintenance &amp; Technical Support</h3>
+            <p>Application development does not end when an app is launched. Operating systems change, user expectations evolve, and businesses may need additional features as they grow.</p>
+            <p style="margin-top: -0.5rem; font-size: 0.9rem;">Our app maintenance and support services help businesses address technical issues, implement updates, improve functionality, and maintain application performance. Depending on the agreed scope, support can also include compatibility checks, bug fixing, security-related updates, and enhancements to existing features.</p>
+            <p style="margin-top: -0.5rem; font-size: 0.85rem; font-style: italic; color: var(--muted, #607080);">Regular maintenance helps keep an application aligned with changing technical requirements and business needs.</p>
+            <div class="service-card-meta">
+              <span class="service-meta-tag">OS Version Updates</span>
+              <span class="service-meta-tag">Security Patches</span>
+              <span class="service-meta-tag">Performance Tuning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Showcase Section (Second Image: 100% Uncovered) -->
+    <section class="app-section app-section-alt">
+      <div class="container">
+        <div class="showcase-split-row">
+          <div class="showcase-visual fade-in-on-scroll">
+            <img 
+              src="assets/app-development-multidevice-figma.jpg" 
+              alt="Mobile app UI wireframe design workflow on multi-device workstation with iPhone, iPad, and desktop" 
+              width="1000" 
+              height="650" 
+              loading="lazy" 
+            />
+          </div>
+
+          <div class="showcase-copy fade-in-on-scroll">
+            <p class="eyebrow" style="color: var(--brand-primary, #FF0000);">From Figma Wireframes to Native Production</p>
+            <h3>Seamless Mobile Workflows Across Every Device &amp; Screen Size</h3>
+            <p>
+              Mobile applications demand pixel precision, rapid user feedback, and predictable behavior across hundreds of phone models and tablet resolutions. We architect applications from early wireframe prototypes all the way through automated testing suites and live App Store and Google Play deployments.
+            </p>
+            <p>
+              By combining platform-standard gesture handlers, optimized caching layers, and secure cloud endpoints, your users experience instantaneous responses and battery-conscious performance.
+            </p>
+
+            <div class="showcase-features-list">
+              <div class="showcase-feature-item">
+                <span aria-hidden="true">✓</span>
+                Real-device automated UI testing
+              </div>
+              <div class="showcase-feature-item">
+                <span aria-hidden="true">✓</span>
+                Adaptive dark mode &amp; dynamic font sizing
+              </div>
+              <div class="showcase-feature-item">
+                <span aria-hidden="true">✓</span>
+                Biometric login &amp; encrypted local storage
+              </div>
+              <div class="showcase-feature-item">
+                <span aria-hidden="true">✓</span>
+                Offline synchronization &amp; background push
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Why Choose TRISET Solutions for App Development? -->
+    <section class="app-section">
+      <div class="container">
+        <div class="why-choose-card fade-in-on-scroll">
+          <div class="why-choose-copy">
+            <p class="eyebrow" style="color: var(--brand-primary, #FF0000);">Our Development Philosophy</p>
+            <h3>Why Choose TRISET Solutions for App Development?</h3>
+            <p>
+              Choosing an app development partner involves more than finding someone who can write code. You need a team that understands your objectives, considers your users, and translates your requirements into a practical technical solution.
+            </p>
+            <p>
+              At TRISET Solutions, we emphasize a structured development process that begins with understanding your idea and identifying essential features. We then consider design, technology selection, development, testing, and deployment requirements to help guide the project from concept toward launch.
+            </p>
+            <p>
+              Our focus is on creating applications that serve a clear purpose, provide a convenient user experience, and support your wider business goals. We also consider future improvements so your digital solution can adapt as your requirements change.
+            </p>
+          </div>
+          <div class="why-choose-highlights">
+            <div class="highlight-pill">
+              <span aria-hidden="true">✓</span>
+              Structured discovery &amp; feature roadmap
+            </div>
+            <div class="highlight-pill">
+              <span aria-hidden="true">✓</span>
+              Native &amp; cross-platform architecture
+            </div>
+            <div class="highlight-pill">
+              <span aria-hidden="true">✓</span>
+              Rigorous device testing &amp; QA
+            </div>
+            <div class="highlight-pill">
+              <span aria-hidden="true">✓</span>
+              Post-launch updates &amp; store compliance
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Let's Build Your App with TRISET Solutions (CTA) -->
+    <section class="app-cta-section fade-in-on-scroll">
+      <div class="container">
+        <p class="eyebrow" style="color: #FFB7BC;">Let's Build Your App</p>
+        <h2>Let's Build Your App with TRISET Solutions</h2>
+        <p style="margin: 0.8rem 0 1.2rem; font-size: 1.08rem; line-height: 1.7;">
+          Have an idea for a mobile application or looking to improve an existing one? TRISET Solutions can help you explore the right development approach for your business.
+        </p>
+        <p style="margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.7;">
+          Whether you need a custom Android or iOS application, a cross-platform solution, a white-label app, or ongoing technical support, we are ready to discuss your requirements.
+        </p>
+
+        <div class="cta-highlight-box">
+          <strong style="display: block; font-size: 1.1rem; color: #fff; margin-bottom: 0.35rem;">
+            Ready to turn your idea into a digital product?
+          </strong>
+          <span style="color: #F8E8E9; font-size: 0.95rem;">
+            Contact TRISET Solutions today to discuss your app development project and take the next step toward your digital goals.
+          </span>
+        </div>
+
+        <div class="cta-actions">
+          <a class="btn-solid-white" href="contact.html">Discuss your app project →</a>
+          <a class="btn-glass-outline" href="tel:+917382819292">Call: +91 7382 819 292</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Site Footer -->
+  <footer class="footer"></footer>
+
+  <script src="src/app.js"></script>
+
+  <!-- Interactive Scripts: Metric Counter & Scroll-Reveal -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // 1. Animated Counter for Metrics Strip
+      const countElements = document.querySelectorAll('.count-up');
+      let countersStarted = false;
+
+      function startCounters() {
+        countElements.forEach(function (el) {
+          const targetNum = parseInt(el.dataset.target, 10);
+          const duration = 1600;
+          const stepTime = 25;
+          const totalSteps = duration / stepTime;
+          const stepValue = targetNum / totalSteps;
+          let currentNum = 0;
+
+          const timer = setInterval(function () {
+            currentNum += stepValue;
+            if (currentNum >= targetNum) {
+              el.textContent = targetNum;
+              clearInterval(timer);
+            } else {
+              el.textContent = Math.floor(currentNum);
+            }
+          }, stepTime);
+        });
+      }
+
+      // 2. Scroll Reveal via IntersectionObserver
+      const revealItems = document.querySelectorAll('.fade-in-on-scroll');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(function (entries, obs) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        revealItems.forEach(function (el) {
+          observer.observe(el);
+        });
+
+        // Trigger counters when metrics strip scrolls into view
+        const metricsStrip = document.querySelector('.app-metrics-strip');
+        if (metricsStrip) {
+          const metricsObserver = new IntersectionObserver(function (entries, obs) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting && !countersStarted) {
+                countersStarted = true;
+                startCounters();
+                obs.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.3 });
+          metricsObserver.observe(metricsStrip);
+        }
+      } else {
+        // Fallback for older browsers
+        revealItems.forEach(function (el) {
+          el.classList.add('is-visible');
+        });
+        startCounters();
+      }
+    });
+  </script>
+</body>
+</html>

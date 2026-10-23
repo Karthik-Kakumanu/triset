@@ -296,35 +296,35 @@ document.addEventListener('DOMContentLoaded', () => {
     duration: 1650,
     palette: {
       light: {
-        ink: '#0F1724',
-        ink2: '#152331',
+        ink: '#000000',
+        ink2: '#000000',
         muted: '#5B6B7C',
         paper: '#FBFCFD',
         surface: '#ffffff',
         surface2: '#f4f8fc',
-        line: 'rgba(15, 23, 36, 0.12)',
-        gridLine: 'rgba(15, 23, 36, 0.06)',
+        line: 'rgba(0, 0, 0, 0.12)',
+        gridLine: 'rgba(0, 0, 0, 0.06)',
         themePanel: '#ffffff',
         themePanelSoft: '#f4f8fc',
         themePanelGlass: 'rgba(255, 255, 255, 0.86)',
-        themeBorder: 'rgba(15, 23, 36, 0.12)',
+        themeBorder: 'rgba(0, 0, 0, 0.12)',
         themeInput: '#ffffff',
-        themeInputText: '#0f1724'
+        themeInputText: '#000000'
       },
       dark: {
         ink: '#f6f9fc',
-        ink2: '#e2edf8',
+        ink2: '#F8E2E3',
         muted: '#a9b8c8',
         paper: '#050b12',
-        surface: '#0b1724',
-        surface2: '#0f2236',
-        line: 'rgba(232, 240, 248, 0.16)',
-        gridLine: 'rgba(232, 240, 248, 0.07)',
-        themePanel: '#0b1724',
-        themePanelSoft: '#0f2236',
-        themePanelGlass: 'rgba(11, 23, 36, 0.88)',
-        themeBorder: 'rgba(232, 240, 248, 0.16)',
-        themeInput: '#071523',
+        surface: '#000000',
+        surface2: '#000000',
+        line: 'rgba(248, 232, 233, 0.16)',
+        gridLine: 'rgba(248, 232, 233, 0.07)',
+        themePanel: '#000000',
+        themePanelSoft: '#000000',
+        themePanelGlass: 'rgba(0, 0, 0, 0.88)',
+        themeBorder: 'rgba(248, 232, 233, 0.16)',
+        themeInput: '#000000',
         themeInputText: '#f6f9fc'
       }
     }
@@ -437,7 +437,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function syncThemeMeta(theme) {
     const themeMeta = document.querySelector('meta[name="theme-color"]');
     if (themeMeta) {
-      themeMeta.setAttribute('content', theme === 'dark' ? '#050b12' : '#185B9F');
+      themeMeta.setAttribute('content', theme === 'dark' ? '#050b12' : '#FF0000');
     }
   }
 
@@ -665,16 +665,16 @@ document.addEventListener('DOMContentLoaded', () => {
             <stop offset="100%" stop-color="#c8beaa" />
           </linearGradient>
           <linearGradient id="themePants" x1="0" x2="1" y1="0" y2="1">
-            <stop offset="0%" stop-color="#152331" />
-            <stop offset="100%" stop-color="#071523" />
+            <stop offset="0%" stop-color="#000000" />
+            <stop offset="100%" stop-color="#000000" />
           </linearGradient>
           <radialGradient id="themeEye" cx="45%" cy="40%" r="65%">
             <stop offset="0%" stop-color="#ffffff" />
-            <stop offset="62%" stop-color="#eaf7ff" />
+            <stop offset="62%" stop-color="#FCEDEE" />
             <stop offset="100%" stop-color="#4c5b6a" />
           </radialGradient>
           <filter id="themeSoftShadow" x="-40%" y="-40%" width="180%" height="180%">
-            <feDropShadow dx="0" dy="1.5" stdDeviation="1.2" flood-color="#071018" flood-opacity="0.22" />
+            <feDropShadow dx="0" dy="1.5" stdDeviation="1.2" flood-color="#000000" flood-opacity="0.22" />
           </filter>
         </defs>
         <g class="theme-thread">
@@ -1085,14 +1085,14 @@ document.addEventListener('DOMContentLoaded', () => {
           if (col === 0) context.moveTo(x, y);
           else context.lineTo(x, y);
         }
-        context.strokeStyle = row % 4 === 0 ? 'rgba(255,0,0,.36)' : 'rgba(197,214,231,.20)';
+        context.strokeStyle = row % 4 === 0 ? 'rgba(255, 0, 0,.36)' : 'rgba(231, 197, 199,.20)';
         context.stroke();
       }
 
       for (let i = 0; i < 72; i += 1) {
         const x = w * (0.12 + ((i * 37) % 77) / 100);
         const y = h * (0.18 + ((i * 19) % 62) / 100) + Math.sin(frame * 0.02 + i) * 4;
-        context.fillStyle = i % 9 === 0 ? 'rgba(255,0,0,.82)' : 'rgba(197,214,231,.56)';
+        context.fillStyle = i % 9 === 0 ? 'rgba(255, 0, 0,.82)' : 'rgba(231, 197, 199,.56)';
         context.fillRect(x, y, i % 9 === 0 ? 3 : 2, i % 9 === 0 ? 3 : 2);
       }
 
