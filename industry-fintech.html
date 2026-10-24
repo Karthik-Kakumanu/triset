@@ -1,19 +1,315 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="TRISET industry-specific digital, data, and geo-spatial solutions." />
-  <title>Industry Solutions | TRISET Solutions</title>
-  <link rel="icon" href="assets/logo_final.png" /><script src="src/theme-init.js"></script><link rel="stylesheet" href="styles.css" /><link rel="stylesheet" href="premium-system.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TRISET Solutions supports fintech businesses with web and app development, data management, digital marketing, and practical digital experiences." />
+  <title>Fintech Digital Solutions for Modern Financial Businesses | TRISET Solutions</title>
+  <link rel="icon" href="assets/logo_final.png" />
+  <script src="src/theme-init.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="premium-system.css" />
+  <style>
+    .fintech-page {
+      --industry-accent: #D70A17;
+      --fintech-accent: #D70A17;
+      --fintech-accent-soft: rgba(215,10,23,.14);
+    }
+    .fintech-page .industry-detail-hero {
+      background:
+        radial-gradient(ellipse at 82% 20%, rgba(255,255,255,.16), transparent 34%),
+        linear-gradient(135deg, #790610 0%, #D70A17 52%, #920713 100%);
+      background-size: 100% 100%, 180% 180%;
+      animation: fintech-hero-gradient 16s ease-in-out infinite alternate;
+    }
+    .fintech-page .industry-detail-hero::after {
+      position: absolute;
+      z-index: 0;
+      inset: -35%;
+      background: radial-gradient(ellipse at 72% 48%, rgba(255,255,255,.12), transparent 35%);
+      content: "";
+      pointer-events: none;
+      animation: fintech-glow-drift 18s ease-in-out infinite alternate;
+    }
+    .fintech-page .industry-detail-hero-grid { z-index: 1; }
+    .fintech-page .industry-detail-hero .eyebrow,
+    .fintech-page .industry-detail-hero .industry-backlink,
+    .fintech-page .industry-detail-cta .eyebrow { color: #ffe1e3 !important; }
+    .fintech-page .industry-detail-hero .btn-primary {
+      border-color: #fff;
+      background: #fff;
+      color: #A20712;
+      box-shadow: 0 12px 30px rgba(36,0,4,.24);
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+    .fintech-page .industry-detail-hero .btn-primary:hover {
+      transform: translateY(-3px);
+      background: #fff5f5;
+      box-shadow: 0 18px 38px rgba(36,0,4,.32);
+    }
+    .fintech-page .industry-detail-content .eyebrow,
+    .fintech-page .fintech-why .eyebrow { color: var(--fintech-accent); }
+    .fintech-page .industry-detail-hero h1 {
+      max-width: 16ch;
+      font-size: clamp(2.35rem, 5vw, 4.8rem);
+    }
+    .fintech-page .industry-detail-hero .fintech-hero-subtitle {
+      display: block;
+      margin-top: .5rem;
+      color: #ffe1e3;
+      font-size: clamp(1.2rem, 2vw, 1.75rem);
+      line-height: 1.25;
+      letter-spacing: -.02em;
+    }
+    .fintech-page .industry-detail-visual {
+      min-height: 0;
+      aspect-ratio: 16 / 9;
+      background: rgba(255,255,255,.08);
+      animation: fintech-image-arrive .9s cubic-bezier(.2,.75,.25,1) both;
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+    .fintech-page .industry-detail-visual img {
+      width: 100%;
+      height: auto;
+      min-height: 0;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+    }
+    .fintech-page .industry-detail-visual:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 34px 82px rgba(0,0,0,.3), 0 0 0 8px rgba(255,255,255,.1);
+    }
+    .fintech-page .industry-detail-visual:hover img { transform: none; }
+    .fintech-page .industry-detail-visual::after { pointer-events: none; }
+    .fintech-page .industry-detail-content { padding-top: clamp(3.5rem, 7vw, 6rem); }
+    .fintech-overview-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, .85fr);
+      align-items: center;
+      gap: clamp(2rem, 5vw, 4.5rem);
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    }
+    .fintech-overview-grid .industry-detail-copy { margin: 0; }
+    .fintech-overview-visual {
+      overflow: hidden;
+      border: 1px solid var(--fintech-accent-soft);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 20px 50px rgba(15,23,42,.14);
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+    .fintech-overview-visual:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 28px 60px rgba(15,23,42,.2);
+    }
+    .fintech-overview-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+    }
+    .fintech-page .industry-detail-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .fintech-page .industry-detail-card {
+      height: 100%;
+      border-color: var(--fintech-accent-soft);
+      border-top-color: var(--fintech-accent);
+      animation: fintech-card-arrive .7s cubic-bezier(.2,.75,.25,1) both;
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+    .fintech-page .industry-detail-card:nth-child(2) { animation-delay: .1s; }
+    .fintech-page .industry-detail-card:nth-child(3) { animation-delay: .2s; }
+    .fintech-page .industry-detail-card:nth-child(4) { animation-delay: .3s; }
+    .fintech-page .industry-detail-card span { color: var(--fintech-accent); }
+    .fintech-page .industry-detail-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(215,10,23,.3);
+      box-shadow: 0 25px 55px rgba(215,10,23,.14);
+    }
+    .fintech-page .industry-detail-card p { font-size: .95rem; line-height: 1.65; }
+    .fintech-why {
+      padding: clamp(3.5rem, 7vw, 6rem) 0;
+      background: #fff;
+    }
+    .fintech-why-copy { max-width: 850px; }
+    .fintech-why-copy h2 {
+      margin: .4rem 0 .8rem;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.08;
+      letter-spacing: -.045em;
+    }
+    .fintech-why-copy p:not(.eyebrow) {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .fintech-page .industry-detail-cta {
+      background: linear-gradient(135deg, #790610 0%, #D70A17 58%, #920713 100%);
+    }
+    .fintech-page .industry-detail-cta .btn-primary {
+      display: inline-flex;
+      margin-top: .6rem;
+      color: #A20712;
+      background: #fff;
+      box-shadow: 0 12px 28px rgba(36,0,4,.2);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .fintech-page .industry-detail-cta .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 36px rgba(36,0,4,.3);
+    }
+    @keyframes fintech-hero-gradient {
+      from { background-position: 0 0, 0% 50%; }
+      to { background-position: 0 0, 100% 50%; }
+    }
+    @keyframes fintech-glow-drift {
+      from { transform: translate3d(-2%, -1%, 0) scale(.96); opacity: .55; }
+      to { transform: translate3d(2%, 1%, 0) scale(1.04); opacity: 1; }
+    }
+    @keyframes fintech-image-arrive {
+      from { opacity: 0; transform: translateY(18px) scale(.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes fintech-card-arrive {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    :root[data-theme='dark'] .fintech-why {
+      background: #050b12;
+      color: var(--theme-text);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fintech-page .industry-detail-hero,
+      .fintech-page .industry-detail-hero::after,
+      .fintech-page .industry-detail-visual,
+      .fintech-page .industry-detail-card {
+        animation: none !important;
+      }
+      .fintech-page *,
+      .fintech-page *::before,
+      .fintech-page *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+    @media (max-width: 760px) {
+      .fintech-overview-grid { grid-template-columns: 1fr; }
+      .fintech-page .industry-detail-grid { grid-template-columns: 1fr; }
+      .fintech-overview-visual { order: -1; }
+    }
+  </style>
 </head>
-<body class="internal-page industry-detail-page" data-industry-slug="fintech">
+<body class="internal-page industry-detail-page fintech-page" data-industry-slug="fintech">
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header"><div class="container site-header-container"><a class="brand" href="index.html" aria-label="TRISET Solutions home"><img src="assets/logo_final.png" alt="TRISET Logo" /></a><button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Open navigation"></button><nav class="site-nav" data-site-nav aria-label="Primary navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a class="active" href="industries.html">Industries</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a><button class="theme-toggle" data-theme-toggle type="button">☀️</button><a class="btn btn-sm btn-primary nav-cta" href="contact.html">Start a project</a></nav></div></header>
+  <header class="site-header">
+    <div class="container site-header-container">
+      <a class="brand" href="index.html" aria-label="TRISET Solutions home">
+        <img src="assets/logo_final.png" alt="TRISET Logo" />
+      </a>
+      <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Open navigation"></button>
+      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a class="active" href="industries.html">Industries</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact</a>
+        <button class="theme-toggle" data-theme-toggle type="button">☀️</button>
+        <a class="btn btn-sm btn-primary nav-cta" href="contact.html">Start a project</a>
+      </nav>
+    </div>
+  </header>
+
   <main id="main-content">
-    <section class="industry-detail-hero"><div class="container industry-detail-hero-grid"><div><a class="industry-backlink" href="solutions.html">← Back to industries</a><p class="eyebrow" data-industry-kicker>Industry / TRISET solutions</p><h1 data-industry-title>Industry solutions built around your work.</h1><p class="lead" data-industry-intro>Digital, data, and geo-spatial capability shaped around the way your organization operates.</p><a class="btn btn-primary" href="contact.html">Discuss your industry →</a></div><div class="industry-detail-visual"><img data-industry-image src="assets/DEM.jpg" alt="Industry solution visual" /></div></div></section>
-    <section class="section industry-detail-content"><div class="container"><div class="industry-detail-copy"><p class="eyebrow">Where we help</p><h2 data-industry-heading>Turn industry complexity into a clearer next step.</h2><p data-industry-description>We combine practical digital execution, structured data, and spatial intelligence to help teams present better, work smarter, and make more informed decisions.</p></div><div class="industry-detail-grid" data-industry-points></div></div></section>
-    <section class="industry-detail-cta"><div class="container"><p class="eyebrow">Built around your context</p><h2>Let’s shape the right solution for your industry.</h2><p>Tell us what your team is trying to improve, launch, organize, or understand.</p><a class="btn btn-primary" href="contact.html">Start a conversation</a></div></section>
+    <section class="industry-detail-hero">
+      <div class="container industry-detail-hero-grid">
+        <div>
+          <a class="industry-backlink" href="industries.html">← Back to industries</a>
+          <p class="eyebrow">Industry / Financial technology</p>
+          <h1>Fintech Digital Solutions for Modern Financial Businesses<span class="fintech-hero-subtitle">Build Trust into Every Digital Interaction</span></h1>
+          <p class="lead">The financial technology industry is transforming how businesses manage payments, customer relationships, financial information, and digital services. To keep pace with changing customer expectations, fintech companies need reliable digital platforms, streamlined workflows, and user-friendly experiences.</p>
+          <p>At <strong>TRISET Solutions</strong>, we help businesses strengthen their digital presence through web development, application development, digital marketing, data management, and technology-driven solutions. We focus on creating digital experiences that connect teams, simplify information management, and make customer interactions easier to navigate.</p>
+          <p>Whether you are developing a financial technology platform, improving an existing website, organizing business data, or expanding your online reach, our solutions are designed around your operational goals and business requirements.</p>
+          <a class="btn btn-primary" href="contact.html">Discuss Your Industry →</a>
+        </div>
+        <div class="industry-detail-visual">
+          <img src="assets/fintech-contactless-payment.png" alt="Customer making a contactless digital payment with a smartphone at a cafe counter" width="1365" height="768" loading="eager" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section industry-detail-content">
+      <div class="container">
+        <div class="fintech-overview-grid">
+          <div class="industry-detail-copy">
+            <p class="eyebrow">Digital Solutions That Support Fintech Growth</p>
+            <h2>Make Every Handoff More Visible</h2>
+            <p>Fintech businesses often manage complex processes involving customers, digital platforms, internal teams, and large volumes of information. Disconnected systems and unclear workflows can make everyday operations difficult to manage.</p>
+            <p>Our digital solutions help businesses create more organized workflows, improve access to information, and deliver consistent online experiences. By combining technology, structured data, and digital marketing, we help organizations build a stronger foundation for their digital operations.</p>
+          </div>
+          <div class="fintech-overview-visual">
+            <img src="assets/fintech-dashboard-workspace.png" alt="Financial dashboards displaying market charts and business data in a fintech workspace" width="1365" height="768" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="industry-detail-grid">
+          <article class="industry-detail-card">
+            <span>01 / Platform Experience</span>
+            <h3>Product and Platform Interfaces</h3>
+            <p>A well-designed digital interface makes it easier for users to understand and navigate a platform. We provide website and application development services that focus on usability, clear information presentation, and responsive design.</p>
+            <p>From business websites to custom web applications, we help shape digital interfaces around user needs and organizational objectives. Our development approach emphasizes practical functionality, intuitive navigation, and experiences that work across different devices.</p>
+            <p>For fintech businesses, a clear and accessible interface can help customers understand available services and navigate important information more confidently.</p>
+          </article>
+          <article class="industry-detail-card">
+            <span>02 / Customer Experience</span>
+            <h3>Clear Customer Journeys</h3>
+            <p>Every digital interaction contributes to the customer experience. A confusing website, complicated navigation, or inconsistent communication can make it harder for potential customers to engage with a business.</p>
+            <p>TRISET Solutions helps businesses improve their digital customer journeys through website development, application solutions, and digital marketing strategies. We focus on presenting information clearly, creating accessible contact points, and supporting a smoother transition from initial discovery to customer enquiry.</p>
+            <p>Our goal is to help businesses build stronger digital connections with their audiences through consistent and user-focused experiences.</p>
+          </article>
+          <article class="industry-detail-card">
+            <span>03 / Organized Operations</span>
+            <h3>Data and Workflow Organization</h3>
+            <p>Accurate information and organized workflows are essential for businesses that handle multiple processes and customer interactions. Poorly structured data can make it difficult to locate records, maintain consistency, and coordinate everyday activities.</p>
+            <p>Our data entry, data processing, data conversion, document digitization, and data verification services help businesses maintain structured information. We support organizations in organizing records, standardizing formats, and making information easier to access and manage.</p>
+            <p>Where required, digital workflow improvements can also help teams coordinate tasks more efficiently and reduce repetitive manual work.</p>
+          </article>
+          <article class="industry-detail-card">
+            <span>04 / Digital Growth</span>
+            <h3>Digital Visibility and Campaigns</h3>
+            <p>Building a useful digital platform is only one part of business growth. Reaching the right audience and communicating your value effectively are equally important.</p>
+            <p>Our digital marketing services help fintech and financial technology businesses strengthen their online presence through search engine optimization (SEO), social media marketing, paid advertising, and lead generation strategies.</p>
+            <p>We focus on relevant messaging, audience targeting, and measurable campaign objectives to help businesses improve online visibility and generate potential customer enquiries. Campaign strategies can be adapted to your services, target audience, and growth priorities.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="fintech-why">
+      <div class="container fintech-why-copy">
+        <p class="eyebrow">Why Choose TRISET Solutions?</p>
+        <h2>Practical digital solutions shaped around your business goals.</h2>
+        <p>Every fintech business has its own objectives, customer expectations, and operational challenges. We take a requirement-focused approach to developing digital solutions that align with your business goals.</p>
+        <p>Our services bring together technology development, digital marketing, and data support to address different aspects of your digital operations. From building an online presence to organizing business information, we help you identify practical opportunities to improve efficiency and customer engagement.</p>
+        <p>For financial applications, security, regulatory compliance, and data protection require specialized attention. These requirements should be addressed according to the nature of the platform, applicable regulations, and appropriate technical standards.</p>
+      </div>
+    </section>
+
+    <section class="industry-detail-cta">
+      <div class="container">
+        <p class="eyebrow">Enterprise Technology &amp; Spatial Operations</p>
+        <h2>Let’s Shape the Right Digital Solution for Your Industry</h2>
+        <p>Whether you want to launch a new digital platform, improve your website, streamline data workflows, or strengthen your online visibility, TRISET Solutions can help you explore the right approach.</p>
+        <p>Tell us what your business wants to improve, launch, organize, or achieve. Our team will work with you to understand your requirements and discuss suitable digital solutions.</p>
+        <p>Start building better digital experiences with TRISET Solutions.</p>
+        <p>Connect with our team in Hyderabad to discuss your web development, application development, digital marketing, data management, and other technology requirements.</p>
+        <a class="btn btn-primary" href="contact.html">Start a Conversation →</a>
+      </div>
+    </section>
   </main>
-  <footer class="footer"></footer><script src="src/industry-detail.js"></script><script src="src/app.js"></script>
+
+  <footer class="footer"></footer>
+  <script src="src/app.js"></script>
 </body>
 </html>

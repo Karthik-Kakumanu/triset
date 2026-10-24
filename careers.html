@@ -343,8 +343,13 @@
         border-radius: 12px;
         border: 1px solid var(--careers-line);
         background: rgba(255,255,255,0.9);
-        color: var(--careers-navy);
+        color: #111;
         font-size: 16px; /* Prevents iOS auto-zoom */
+      }
+
+      .job-filter select option,
+      .application-form select option {
+        color: #111;
       }
 
       .job-filter--search input {
@@ -590,7 +595,7 @@
 
       .application-copy h2 {
         margin: 0.4rem 0 1rem;
-        color: var(--careers-navy);
+        color: #111;
         font-size: clamp(2rem, 3.8vw, 3.8rem);
         line-height: 1.06;
         letter-spacing: -0.05em;
@@ -666,6 +671,15 @@
         font-size: 16px; /* Prevents iOS auto-zoom */
       }
 
+      .application-form select,
+      .application-form select option {
+        color: #111;
+      }
+
+      .careers-page .application-form select {
+        color: #111;
+      }
+
       .application-form textarea {
         min-height: 110px;
         resize: vertical;
@@ -726,58 +740,6 @@
         color: #146a3d;
       }
 
-      .culture-section {
-        background: linear-gradient(180deg, rgba(255, 0, 0, 1) 0%, rgba(255, 0, 0, 0.96) 100%);
-      }
-
-      .culture-section .section-header h2,
-      .culture-section .section-header .eyebrow {
-        color: #fff;
-      }
-
-      .culture-values {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1rem;
-      }
-
-      .culture-value {
-        position: relative;
-        display: block;
-        border: 1px solid rgba(255,255,255,0.12);
-        background: rgba(255,255,255,0.03);
-        border-radius: 20px;
-        overflow: hidden;
-        padding: 1.4rem 1.1rem;
-        min-height: 160px;
-        cursor: pointer;
-        text-align: left;
-        transition: transform 0.26s ease, border-color 0.26s ease, background 0.26s ease;
-      }
-
-      .culture-value:hover,
-      .culture-value.is-active {
-        transform: translateY(-3px);
-        border-color: rgba(255, 0, 0, 0.5);
-        background: rgba(255,255,255,0.05);
-      }
-
-      .culture-value strong {
-        display: block;
-        font-size: clamp(1.25rem, 2.5vw, 1.9rem);
-        color: #fff;
-        line-height: 1.1;
-        letter-spacing: -0.04em;
-      }
-
-      .culture-value span {
-        display: block;
-        margin-top: 0.8rem;
-        color: rgba(248, 232, 233, 0.8);
-        line-height: 1.6;
-        font-size: 0.88rem;
-      }
-
       .cta-band {
         display: flex;
         align-items: center;
@@ -821,8 +783,7 @@
 
         .reasons-grid,
         .jobs-grid,
-        .path-role-grid,
-        .culture-values {
+        .path-role-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
@@ -840,7 +801,6 @@
         .reasons-grid,
         .jobs-grid,
         .path-role-grid,
-        .culture-values,
         .field-grid,
         .job-detail-grid {
           grid-template-columns: 1fr;
@@ -1253,43 +1213,6 @@
         </div>
       </section>
 
-      <section class="section culture-section" aria-labelledby="culture-title">
-        <div class="container">
-          <div class="section-header">
-            <div>
-              <p class="eyebrow">Culture + values</p>
-              <h2 id="culture-title">We value clarity, discipline and ambition.</h2>
-            </div>
-          </div>
-          <div class="culture-values">
-            <button class="culture-value is-active" type="button" data-value="Precision">
-              <strong>Precision</strong>
-              <span>We care about doing the right work, with attention to detail and a strong sense of responsibility.</span>
-            </button>
-            <button class="culture-value" type="button" data-value="Curiosity">
-              <strong>Curiosity</strong>
-              <span>We explore, question assumptions and look for better ways to solve real challenges.</span>
-            </button>
-            <button class="culture-value" type="button" data-value="Ownership">
-              <strong>Ownership</strong>
-              <span>We move with accountability and take initiative, even when the work is unfamiliar.</span>
-            </button>
-            <button class="culture-value" type="button" data-value="Integrity">
-              <strong>Integrity</strong>
-              <span>We keep our standards high, communicate honestly and respect the work and the people around it.</span>
-            </button>
-            <button class="culture-value" type="button" data-value="Collaboration">
-              <strong>Collaboration</strong>
-              <span>We work across disciplines, share context and deliver better outcomes together.</span>
-            </button>
-            <button class="culture-value" type="button" data-value="Continuous improvement">
-              <strong>Continuous improvement</strong>
-              <span>We learn quickly, respond with intent and improve the way we build and operate.</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
       <section class="section compact-section">
         <div class="container">
           <div class="cta-band">
@@ -1306,34 +1229,6 @@
 
     <footer class="footer">
       <div class="container footer-premium-container">
-        <!-- Pre-Footer High-Impact Consultation Banner -->
-        <div class="footer-preaction-banner">
-          <div class="footer-preaction-copy">
-            <div class="footer-preaction-badge">
-              <span class="footer-pulse-dot"></span>
-              <span>Enterprise Technology &amp; Spatial Operations</span>
-            </div>
-            <h2>Ready to Build Scalable Digital &amp; Spatial Solutions?</h2>
-            <p>Connect directly with our engineering architects, GIS specialists, and digital growth strategists in Hyderabad.</p>
-          </div>
-          <div class="footer-preaction-actions">
-            <a class="footer-btn-primary" href="contact.html">
-              <span>Schedule Consultation</span>
-              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
-            </a>
-            <div class="footer-preaction-contacts">
-              <a class="footer-quick-contact" href="tel:+917382819292">
-                <span class="quick-icon" aria-hidden="true">📞</span>
-                <span>+91 7382 819 292</span>
-              </a>
-              <a class="footer-quick-contact" href="mailto:info@trisetsolutions.com">
-                <span class="quick-icon" aria-hidden="true">✉️</span>
-                <span>info@trisetsolutions.com</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
         <!-- Main Multi-Column Directory Grid -->
         <div class="footer-main-columns">
           <!-- Col 1: Brand, Headquarters & Socials -->
@@ -1542,13 +1437,6 @@
       });
 
       renderDomain('geospatial');
-
-      const cultureValues = document.querySelectorAll('.culture-value');
-      cultureValues.forEach((value) => {
-        value.addEventListener('click', () => {
-          cultureValues.forEach((item) => item.classList.toggle('is-active', item === value));
-        });
-      });
 
       const jobsContainer = document.getElementById('careers-list');
       const modal = document.getElementById('job-modal');

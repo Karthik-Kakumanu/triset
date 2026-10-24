@@ -62,38 +62,79 @@ document.addEventListener('DOMContentLoaded', () => {
 	    const serviceKey = window.location.pathname.split('/').pop().replace('.html', '') || 'services';
 	    serviceDetailPage.dataset.serviceDetail = serviceKey;
 	  }
+	  const footerServiceGroups = [
+	    {
+	      name: 'Photogrammetry',
+	      href: 'photogrammetry.html',
+	      subservices: ['Image Analysis', '3D Modeling', 'Mapping & Cartography', 'DEM & Orthophoto', 'LiDAR, GIS & Drone Services']
+	    },
+	    {
+	      name: 'Digital Marketing',
+	      href: 'digital-marketing.html',
+	      subservices: ['SEO & Local SEO', 'Technical SEO', 'PPC & Paid Ads', 'Social Media Marketing', 'Email & Content Marketing']
+	    },
+	    {
+	      name: 'Web Development',
+	      href: 'web-development.html',
+	      subservices: ['Custom Web Development', 'WordPress', 'UI/UX Design', 'API Integration']
+	    },
+	    {
+	      name: 'App Development',
+	      href: 'app-development.html',
+	      subservices: ['Android Apps', 'iOS Apps', 'Cross-Platform Apps', 'App UI/UX']
+	    },
+	    {
+	      name: 'Data Entry',
+	      href: 'data-entry.html',
+	      subservices: ['Data Entry Services', 'Data Processing', 'Data Cleansing', 'Data Conversion', 'Document Digitization']
+	    }
+	  ];
+	  const footerServiceDirectory = `
+	    <section class="footer-service-directory" aria-label="Services and subservices">
+	      ${footerServiceGroups.map((service) => `
+	        <section class="footer-service-column" aria-label="${service.name} subservices">
+	          <h2><a href="${service.href}">${service.name}</a></h2>
+	          <ul>
+	            ${service.subservices.map((subservice) => `<li><a href="${service.href}">${subservice}</a></li>`).join('')}
+	          </ul>
+	        </section>
+	      `).join('')}
+	    </section>
+	  `;
+	  const footerContactPanel = `
+	    <section class="footer-contact-panel" aria-label="TRISET contact information">
+	      <div class="footer-contact-brand">
+	        <a class="footer-brand-link" href="index.html" aria-label="TRISET Solutions home">
+	          <img class="footer-logo-img" src="assets/logo_final.png" alt="TRISET Solutions" />
+	        </a>
+	        <p>Enterprise technology and spatial operations, delivered with care.</p>
+	      </div>
+	      <div class="footer-contact-details">
+	        <h2>Visit or contact us</h2>
+	        <p><span aria-hidden="true">⌖</span> Hyderabad, Telangana 500081, India</p>
+	        <a href="tel:+917382819292"><span aria-hidden="true">☎</span> +91 73828 19292</a>
+	        <a href="mailto:info@trisetsolutions.com"><span aria-hidden="true">✉</span> info@trisetsolutions.com</a>
+	      </div>
+	    </section>
+	  `;
+	  const footerLegalBar = `
+	    <div class="footer-legal-bar">
+	      <span>© 2026 TRISET Solutions India Private Limited. All rights reserved.</span>
+	      <nav aria-label="Legal links">
+	        <a href="privacy.html">Privacy Policy</a>
+	        <a href="terms.html">Terms and Conditions</a>
+	        <a href="disclaimer.html">Disclaimer</a>
+	      </nav>
+	      <span class="footer-designed-by">Designed by the TRISET Team</span>
+	    </div>
+	  `;
+	  if (footer) {
+	    footer.innerHTML = `<div class="footer-premium-container">${footerContactPanel}${footerServiceDirectory}${footerLegalBar}</div>`;
+	  }
 	  if (footer && !footer.querySelector('.footer-premium-container')) {
 	    footer.innerHTML = `
+	      ${footerServiceDirectory}
 	      <div class="container footer-premium-container">
-	        <!-- Pre-Footer High-Impact Consultation Banner -->
-	        <div class="footer-preaction-banner">
-	          <div class="footer-preaction-copy">
-	            <div class="footer-preaction-badge">
-	              <span class="footer-pulse-dot"></span>
-	              <span>Enterprise Technology &amp; Spatial Operations</span>
-	            </div>
-	            <h2>Ready to Build Scalable Digital &amp; Spatial Solutions?</h2>
-	            <p>Connect directly with our engineering architects, GIS specialists, and digital growth strategists in Hyderabad.</p>
-	          </div>
-	          <div class="footer-preaction-actions">
-	            <a class="footer-btn-primary" href="contact.html">
-	              <span>Schedule Consultation</span>
-	              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
-	            </a>
-	            <div class="footer-preaction-contacts">
-	              <a class="footer-quick-contact" href="tel:+917382819292">
-	                <span class="quick-icon" aria-hidden="true">📞</span>
-	                <span>+91 7382 819 292</span>
-	              </a>
-	              <a class="footer-quick-contact" href="mailto:info@trisetsolutions.com">
-	                <span class="quick-icon" aria-hidden="true">✉️</span>
-	                <span>info@trisetsolutions.com</span>
-	              </a>
-	            </div>
-	          </div>
-	        </div>
-
-	        <!-- Main Multi-Column Directory Grid -->
 	        <div class="footer-main-columns">
 	          <!-- Col 1: Brand, Headquarters & Socials -->
 	          <div class="footer-col footer-col-brand">
@@ -137,20 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	            </div>
 	          </div>
 
-	          <!-- Col 2: Core Engineering Services -->
-	          <div class="footer-col">
-	            <h3 class="footer-heading">Services</h3>
-	            <ul class="footer-links-list">
-	              <li><a href="web-development.html">Web Development</a></li>
-	              <li><a href="app-development.html">Mobile App Development</a></li>
-	              <li><a href="photogrammetry.html">Photogrammetry &amp; 3D</a></li>
-	              <li><a href="digital-marketing.html">Digital Marketing &amp; SEO</a></li>
-	              <li><a href="data-entry.html">Data Entry &amp; Operations</a></li>
-	              <li><a href="services.html">All Solutions &amp; Capabilities</a></li>
-	            </ul>
-	          </div>
-
-	          <!-- Col 3: Industry Solutions -->
+	          <!-- Col 2: Industry Solutions -->
 	          <div class="footer-col">
 	            <h3 class="footer-heading">Industry Verticals</h3>
 	            <ul class="footer-links-list">
@@ -168,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	            </ul>
 	          </div>
 
-	          <!-- Col 4: Company & Careers & Newsletter -->
+	          <!-- Col 3: Company & Careers & Newsletter -->
 	          <div class="footer-col">
 	            <h3 class="footer-heading">Company</h3>
 	            <ul class="footer-links-list">
@@ -211,7 +239,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	        </div>
 	      </div>`;
 	  }
-
 	  // Services mega-menu shared by every public page.
 	  const servicesLink = siteNav && Array.from(siteNav.querySelectorAll('a')).find((link) => link.textContent.trim() === 'Services');
 	  if (servicesLink && !siteNav.querySelector('.services-nav-item')) {

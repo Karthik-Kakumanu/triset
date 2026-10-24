@@ -1,4 +1,439 @@
 <!doctype html>
-<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="TRISET provides organized data entry, processing, digitization, and validation services." /><title>Data Entry Services | TRISET Solutions</title><link rel="icon" href="assets/logo_final.png" /><script src="src/theme-init.js"></script><link rel="stylesheet" href="styles.css" /><link rel="stylesheet" href="premium-system.css" /></head>
-<body class="internal-page service-detail-page" data-service-detail="data-entry"><a class="skip-link" href="#main-content">Skip to content</a><header class="site-header"><div class="container site-header-container"><a class="brand" href="index.html" aria-label="TRISET Solutions home"><img src="assets/logo_final.png" alt="TRISET Logo" /></a><button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Open navigation"></button><nav class="site-nav" data-site-nav aria-label="Primary navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html" class="active">Services</a><a href="industries.html">Industries</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a><button class="theme-toggle" data-theme-toggle type="button">☀️</button><a class="btn btn-sm btn-primary nav-cta" href="contact.html">Start a project</a></nav></div></header>
-<main id="main-content"><section class="service-detail-hero"><div class="container service-detail-hero-grid"><div><p class="eyebrow">Operations / Data Services</p><h1>Organized data for smoother operations.</h1><p class="lead">We provide reliable and organized data entry solutions that help businesses manage information efficiently, maintain accurate records, and reduce manual workload.</p><a class="btn btn-primary" href="contact.html">Organize your data →</a></div><div class="service-detail-visual"><img src="assets/service-data-entry.png" alt="Organized data entry workflow" /></div></div></section><section class="service-detail-body"><div class="container service-detail-layout"><article class="service-detail-panel"><p class="eyebrow">The data workflow</p><h2>Cleaner records. Easier decisions.</h2><p>We support detail-sensitive workflows with consistent processes, careful validation, and clear output formats that make information easier to access and maintain.</p><div class="service-detail-benefits"><span>Reliable processing</span><span>Accurate records</span><span>Reduced manual workload</span></div></article><article class="service-detail-panel"><p class="eyebrow">What we deliver</p><h2>Data support built around your format.</h2><ul class="service-detail-list"><li>Online and offline data entry</li><li>Data processing and organization</li><li>Data conversion and formatting</li><li>Spreadsheet and database management</li><li>Document digitization</li><li>Data verification and validation</li></ul></article></div></section><section class="service-detail-cta"><div class="container"><h2>Make information easier to manage.</h2><p>Tell us what needs to be organized, processed, digitized, or checked.</p><a class="btn btn-primary" href="contact.html">Start a data project</a></div></section></main><footer class="footer"></footer><script src="src/app.js"></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TRISET Solutions provides reliable data entry, data processing, document digitization, spreadsheet management, and data validation services." />
+  <title>Data Entry and Data Processing Services | TRISET Solutions</title>
+  <link rel="icon" href="assets/logo_final.png" />
+  <script src="src/theme-init.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="premium-system.css" />
+  <style>
+    body.service-detail-page[data-service-detail="data-entry"] { overflow-x: hidden; }
+    [data-service-detail="data-entry"] .de-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding: clamp(4.5rem, 8vw, 7.5rem) 0 clamp(3.5rem, 6vw, 5.5rem);
+      color: #fff;
+      background: linear-gradient(135deg, #7a0000 0%, #d40000 52%, #660000 100%);
+    }
+    [data-service-detail="data-entry"] .de-hero::before {
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(255,255,255,.14), transparent 45%),
+        radial-gradient(circle at 82% 78%, rgba(0,0,0,.4), transparent 55%);
+      content: "";
+      pointer-events: none;
+    }
+    [data-service-detail="data-entry"] .de-hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, .9fr);
+      align-items: center;
+      gap: clamp(2rem, 5vw, 4rem);
+      position: relative;
+      z-index: 1;
+    }
+    [data-service-detail="data-entry"] .de-hero-copy { min-width: 0; }
+    [data-service-detail="data-entry"] .de-backlink {
+      display: inline-flex;
+      margin-bottom: .9rem;
+      color: #ffe6e8;
+      font-size: .9rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    [data-service-detail="data-entry"] .de-backlink:hover { text-decoration: underline; }
+    [data-service-detail="data-entry"] .de-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      margin-bottom: .7rem;
+      padding: .4rem .9rem;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    [data-service-detail="data-entry"] .de-badge::before {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 10px #4ade80;
+      content: "";
+    }
+    [data-service-detail="data-entry"] .de-hero h1 {
+      max-width: 15ch;
+      margin: .3rem 0 .9rem;
+      color: #fff;
+      font-family: var(--font-display, inherit);
+      font-size: clamp(2.25rem, 4.5vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -.035em;
+      text-shadow: 0 4px 20px rgba(0,0,0,.3);
+    }
+    [data-service-detail="data-entry"] .de-subtitle {
+      display: block;
+      margin-top: .35rem;
+      color: #ffe6e8;
+      font-size: clamp(1.2rem, 2vw, 1.7rem);
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+    [data-service-detail="data-entry"] .de-tagline {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      margin: 1.2rem 0;
+      color: #fff;
+      font-weight: 700;
+    }
+    [data-service-detail="data-entry"] .de-tagline span { color: #ffd166; }
+    [data-service-detail="data-entry"] .de-hero-copy > p:not(.de-tagline) {
+      max-width: 68ch;
+      margin: 0 0 1rem;
+      color: rgba(255,255,255,.9);
+      line-height: 1.7;
+    }
+    [data-service-detail="data-entry"] .de-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .8rem;
+      margin-top: 1.5rem;
+    }
+    [data-service-detail="data-entry"] .de-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: .75rem 1.15rem;
+      border: 1px solid #fff;
+      border-radius: 8px;
+      background: #fff;
+      color: #8c0000;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .2s ease, background .2s ease;
+    }
+    [data-service-detail="data-entry"] .de-button:hover { transform: translateY(-2px); background: #fff3f3; }
+    [data-service-detail="data-entry"] .de-button-outline { background: transparent; color: #fff; }
+    [data-service-detail="data-entry"] .de-button-outline:hover { background: rgba(255,255,255,.12); }
+    [data-service-detail="data-entry"] .de-hero-image {
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.32);
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: 0 25px 60px rgba(0,0,0,.35);
+    }
+    [data-service-detail="data-entry"] .de-hero-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    [data-service-detail="data-entry"] .de-section { padding: clamp(4rem, 7vw, 6.5rem) 0; }
+    [data-service-detail="data-entry"] .de-workflow-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, .9fr);
+      align-items: center;
+      gap: clamp(2rem, 5vw, 4.5rem);
+    }
+    [data-service-detail="data-entry"] .de-copy h2,
+    [data-service-detail="data-entry"] .de-section-heading h2,
+    [data-service-detail="data-entry"] .de-why-copy h2 {
+      margin: .4rem 0 1rem;
+      color: #111827;
+      font-family: var(--font-display, inherit);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      line-height: 1.12;
+      letter-spacing: -.025em;
+    }
+    [data-service-detail="data-entry"] .de-copy > p:not(.eyebrow),
+    [data-service-detail="data-entry"] .de-section-heading > p:not(.eyebrow),
+    [data-service-detail="data-entry"] .de-why-copy > p:not(.eyebrow) {
+      color: #61738a;
+      line-height: 1.7;
+    }
+    [data-service-detail="data-entry"] .de-eyebrow {
+      margin: 0;
+      color: #d40000;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    [data-service-detail="data-entry"] .de-workflow-image {
+      overflow: hidden;
+      border-radius: 18px;
+      box-shadow: 0 22px 50px rgba(15,23,42,.16);
+    }
+    [data-service-detail="data-entry"] .de-workflow-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    [data-service-detail="data-entry"] .de-process-list {
+      display: grid;
+      gap: .85rem;
+      margin: 1.5rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    [data-service-detail="data-entry"] .de-process-list li {
+      position: relative;
+      padding-left: 1.8rem;
+      color: #344256;
+      line-height: 1.55;
+    }
+    [data-service-detail="data-entry"] .de-process-list li::before {
+      position: absolute;
+      top: .1rem;
+      left: 0;
+      color: #d40000;
+      font-weight: 900;
+      content: "✓";
+    }
+    [data-service-detail="data-entry"] .de-services { background: #f7f8fa; }
+    [data-service-detail="data-entry"] .de-section-heading {
+      max-width: 760px;
+      margin: 0 auto 2.3rem;
+      text-align: center;
+    }
+    [data-service-detail="data-entry"] .de-service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.15rem;
+    }
+    [data-service-detail="data-entry"] .de-service-card {
+      min-width: 0;
+      padding: clamp(1.35rem, 2.5vw, 1.8rem);
+      border: 1px solid #e7eaf0;
+      border-top: 3px solid #d40000;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 12px 30px rgba(15,23,42,.05);
+    }
+    [data-service-detail="data-entry"] .de-card-number {
+      color: #d40000;
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    [data-service-detail="data-entry"] .de-service-card h3 {
+      margin: .65rem 0 .55rem;
+      color: #111827;
+      font-size: 1.15rem;
+      line-height: 1.35;
+    }
+    [data-service-detail="data-entry"] .de-service-card p {
+      margin: 0;
+      color: #61738a;
+      line-height: 1.65;
+    }
+    [data-service-detail="data-entry"] .de-why-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr);
+      align-items: center;
+      gap: clamp(2rem, 5vw, 4rem);
+    }
+    [data-service-detail="data-entry"] .de-benefits {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .8rem;
+      margin: 1.5rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    [data-service-detail="data-entry"] .de-benefits li {
+      padding: .9rem 1rem;
+      border: 1px solid rgba(212,0,0,.14);
+      border-radius: 10px;
+      background: #fff7f7;
+      color: #7a0000;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+    [data-service-detail="data-entry"] .de-cta {
+      padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+      background: linear-gradient(135deg, #7a0000, #d40000);
+      color: #fff;
+      text-align: center;
+    }
+    [data-service-detail="data-entry"] .de-cta h2 {
+      margin: 0 0 .8rem;
+      color: #fff;
+      font-family: var(--font-display, inherit);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+    }
+    [data-service-detail="data-entry"] .de-cta p {
+      max-width: 720px;
+      margin: 0 auto 1.4rem;
+      color: rgba(255,255,255,.88);
+      line-height: 1.7;
+    }
+    [data-service-detail="data-entry"] .de-cta .de-button { margin-top: .2rem; }
+    @media (max-width: 850px) {
+      [data-service-detail="data-entry"] .de-hero-grid,
+      [data-service-detail="data-entry"] .de-workflow-grid,
+      [data-service-detail="data-entry"] .de-why-grid { grid-template-columns: 1fr; }
+      [data-service-detail="data-entry"] .de-hero-grid { gap: 2rem; }
+      [data-service-detail="data-entry"] .de-hero h1 { max-width: 18ch; }
+      [data-service-detail="data-entry"] .de-hero-image { max-width: 620px; }
+      [data-service-detail="data-entry"] .de-service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      [data-service-detail="data-entry"] .de-workflow-image { order: -1; }
+    }
+    @media (max-width: 560px) {
+      [data-service-detail="data-entry"] .de-hero { padding-top: 6.5rem; }
+      [data-service-detail="data-entry"] .de-hero h1 { font-size: clamp(2.25rem, 11vw, 3.4rem); }
+      [data-service-detail="data-entry"] .de-service-grid,
+      [data-service-detail="data-entry"] .de-benefits { grid-template-columns: 1fr; }
+      [data-service-detail="data-entry"] .de-actions { align-items: stretch; flex-direction: column; }
+      [data-service-detail="data-entry"] .de-button { width: 100%; }
+    }
+  </style>
+</head>
+<body class="internal-page service-detail-page" data-service-detail="data-entry">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <div class="container site-header-container">
+      <a class="brand" href="index.html" aria-label="TRISET Solutions home">
+        <img src="assets/logo_final.png" alt="TRISET Logo" />
+      </a>
+      <button class="menu-toggle" data-menu-toggle aria-expanded="false" aria-label="Open navigation"></button>
+      <nav class="site-nav" data-site-nav aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="industries.html">Industries</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact</a>
+        <button class="theme-toggle" data-theme-toggle type="button">☀️</button>
+        <a class="btn btn-sm btn-primary nav-cta" href="contact.html">Start a project</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="de-hero">
+      <div class="container de-hero-grid">
+        <div class="de-hero-copy">
+          <a class="de-backlink" href="services.html">← Back to services</a>
+          <div class="de-badge">Operations / Data Services</div>
+          <h1>Data Entry and Data Processing Services<span class="de-subtitle">Organized Data for Smoother Business Operations</span></h1>
+          <p class="de-tagline"><span aria-hidden="true">✦</span> Accurate information. Smoother everyday work.</p>
+          <p>Accurate and well-organized data plays an important role in helping businesses operate efficiently. At <strong>TRISET Solutions</strong>, we provide reliable data entry and data processing services designed to help organizations manage information, maintain accurate records, and simplify everyday administrative tasks. Our solutions support businesses in organizing large volumes of information while reducing repetitive manual work and improving overall productivity.</p>
+          <p>Whether you need to digitize paper documents, update spreadsheets, organize business records, or validate existing information, our team follows a structured approach to deliver consistent and dependable results. We help transform unorganized information into structured, accessible data that supports smoother workflows and better business decisions.</p>
+          <div class="de-actions">
+            <a class="de-button" href="https://www.trisetsolutions.com/contact.html">Organize Your Data →</a>
+            <a class="de-button de-button-outline" href="#data-services">Explore data services ↓</a>
+          </div>
+        </div>
+        <div class="de-hero-image">
+          <img src="assets/data-entry-document-processing.png" alt="Laptop converting paper invoices into organized digital records and spreadsheet data" width="1365" height="768" loading="eager" />
+        </div>
+      </div>
+    </section>
+
+    <section class="de-section">
+      <div class="container de-workflow-grid">
+        <div class="de-copy">
+          <p class="de-eyebrow">The Data Workflow: From Information to Insights</p>
+          <h2>Cleaner Records. Easier Decisions.</h2>
+          <p>Managing business information can become challenging when records are scattered across multiple files, spreadsheets, databases, or physical documents. Our data management support helps businesses bring their information into a clear, consistent, and manageable format.</p>
+          <p>We follow systematic processes that focus on data accuracy, consistency, verification, and proper formatting. By organizing information according to your business requirements, we make it easier to retrieve records, maintain documentation, and use data across different operational activities.</p>
+          <ul class="de-process-list">
+            <li><strong>Accurate data processing:</strong> Careful handling of information to minimize avoidable errors and inconsistencies.</li>
+            <li><strong>Structured data organization:</strong> Arranging information into well-defined formats for easier access and management.</li>
+            <li><strong>Data verification and validation:</strong> Reviewing records to identify missing details, duplicate entries, and formatting inconsistencies.</li>
+            <li><strong>Reduced manual workload:</strong> Supporting repetitive data-related tasks so your internal team can focus on essential business activities.</li>
+            <li><strong>Consistent output formats:</strong> Preparing data according to your specified templates, spreadsheets, or database requirements.</li>
+          </ul>
+        </div>
+        <div class="de-workflow-image">
+          <img src="assets/data-entry-office-processing.png" alt="Office professional organizing business information in a spreadsheet at a desktop computer" width="1365" height="768" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <section class="de-section de-services" id="data-services">
+      <div class="container">
+        <div class="de-section-heading">
+          <p class="de-eyebrow">Our Data Entry and Processing Services</p>
+          <h2>Data Support Built Around Your Requirements</h2>
+          <p>TRISET Solutions offers flexible data services that can be adapted to different business processes, industries, and information management needs.</p>
+        </div>
+        <div class="de-service-grid">
+          <article class="de-service-card">
+            <span class="de-card-number">Service 01</span>
+            <h3>Online and Offline Data Entry</h3>
+            <p>We help transfer information from digital sources, scanned files, forms, and physical documents into structured digital formats. This supports businesses that need organized records for daily operations and documentation.</p>
+          </article>
+          <article class="de-service-card">
+            <span class="de-card-number">Service 02</span>
+            <h3>Data Processing and Organization</h3>
+            <p>Our data processing services help arrange, categorize, sort, and structure information for easier access. We work with your preferred formats to make business records more consistent and manageable.</p>
+          </article>
+          <article class="de-service-card">
+            <span class="de-card-number">Service 03</span>
+            <h3>Data Conversion and Formatting</h3>
+            <p>We assist with converting information between suitable file formats and standardizing layouts to meet specific requirements, helping businesses maintain consistent documentation.</p>
+          </article>
+          <article class="de-service-card">
+            <span class="de-card-number">Service 04</span>
+            <h3>Spreadsheet and Database Management</h3>
+            <p>We support spreadsheet updates, record organization, data sorting, and database maintenance tasks. Properly maintained records make it easier to locate information and keep business data organized.</p>
+          </article>
+          <article class="de-service-card">
+            <span class="de-card-number">Service 05</span>
+            <h3>Document Digitization</h3>
+            <p>Convert paper-based records into digital files that are easier to store, search, and retrieve. Digitization can help reduce dependence on physical paperwork and simplify document management.</p>
+          </article>
+          <article class="de-service-card">
+            <span class="de-card-number">Service 06</span>
+            <h3>Data Verification and Validation</h3>
+            <p>We review records for completeness, consistency, and formatting issues. Validation helps identify potential inaccuracies and supports better data quality before information is used for reporting or operations.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="de-section">
+      <div class="container de-why-grid">
+        <div class="de-why-copy">
+          <p class="de-eyebrow">Why Choose TRISET Solutions for Data Services?</p>
+          <h2>Dependable data support shaped around your workflow.</h2>
+          <p>Every business has different information management requirements. We focus on understanding your workflow, following your preferred formats, and delivering organized outputs that fit your operational needs.</p>
+          <p>Our structured approach prioritizes attention to detail, consistent processing, and dependable communication throughout the project. Whether you require assistance with a one-time data organization task or recurring data processing support, we work toward making information easier to maintain and use.</p>
+        </div>
+        <ul class="de-benefits">
+          <li>Processes aligned with your requirements</li>
+          <li>Consistent handling and organized outputs</li>
+          <li>Support for one-time or recurring tasks</li>
+          <li>Clear communication throughout the project</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="de-cta">
+      <div class="container">
+        <p class="de-eyebrow" style="color:#ffe6e8;">Connect with TRISET Solutions</p>
+        <h2>Make Your Business Information Easier to Manage</h2>
+        <p>Well-organized data can support efficient workflows, clearer reporting, and more informed business decisions. Let TRISET Solutions help you streamline data entry, processing, digitization, and verification tasks with solutions tailored to your requirements.</p>
+        <p>Have a data project in mind? Contact our team to discuss your requirements and explore the right approach for your business.</p>
+        <a class="de-button" href="https://www.trisetsolutions.com/contact.html">Start a Data Project →</a>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"></footer>
+  <script src="src/app.js"></script>
+</body>
+</html>

@@ -100,6 +100,172 @@
         }
       }
     </style>
+    <style>
+      .home-faq {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(4.5rem, 8vw, 7.5rem) 0;
+        background:
+          radial-gradient(ellipse at 8% 12%, rgba(215,10,23,.09), transparent 32%),
+          linear-gradient(145deg, #f8fafc, #fff 56%, #f7f8fa);
+        isolation: isolate;
+      }
+      .home-faq::before {
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background-image: linear-gradient(rgba(15,23,42,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,.025) 1px, transparent 1px);
+        background-size: 42px 42px;
+        content: "";
+        mask-image: linear-gradient(115deg, #000, transparent 76%);
+        pointer-events: none;
+      }
+      .home-faq-layout {
+        display: grid;
+        grid-template-columns: minmax(230px, .75fr) minmax(0, 1.25fr);
+        align-items: start;
+        gap: clamp(2rem, 6vw, 5.5rem);
+      }
+      .home-faq-intro {
+        position: sticky;
+        top: 115px;
+      }
+      .home-faq-intro .eyebrow {
+        color: var(--brand-primary);
+        font-weight: 800;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+      .home-faq-intro h2 {
+        margin: .55rem 0 1rem;
+        color: #101828;
+        font-family: var(--font-display);
+        font-size: clamp(2.2rem, 4vw, 3.7rem);
+        line-height: 1.02;
+        letter-spacing: -.055em;
+        text-wrap: balance;
+      }
+      .home-faq-intro > p:not(.eyebrow) {
+        max-width: 38ch;
+        color: #526176;
+        line-height: 1.7;
+      }
+      .home-faq-contact {
+        display: inline-flex;
+        align-items: center;
+        gap: .55rem;
+        margin-top: .9rem;
+        color: var(--brand-primary-deep);
+        font-weight: 800;
+        text-decoration: none;
+      }
+      .home-faq-contact span { transition: transform .2s ease; }
+      .home-faq-contact:hover span { transform: translateX(4px); }
+      .home-faq-list {
+        display: grid;
+        gap: .8rem;
+        perspective: 1000px;
+      }
+      .home-faq-item {
+        overflow: hidden;
+        border: 1px solid rgba(15,23,42,.09);
+        border-radius: 16px;
+        background: rgba(255,255,255,.9);
+        box-shadow: 0 12px 32px rgba(15,23,42,.045);
+        animation: home-faq-enter .65s cubic-bezier(.2,.75,.25,1) both;
+        transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+      }
+      .home-faq-item:nth-child(2) { animation-delay: .06s; }
+      .home-faq-item:nth-child(3) { animation-delay: .12s; }
+      .home-faq-item:nth-child(4) { animation-delay: .18s; }
+      .home-faq-item:nth-child(5) { animation-delay: .24s; }
+      .home-faq-item:nth-child(6) { animation-delay: .3s; }
+      .home-faq-item:hover,
+      .home-faq-item[open] {
+        border-color: rgba(215,10,23,.28);
+        box-shadow: 0 18px 40px rgba(15,23,42,.09), 0 0 0 3px rgba(215,10,23,.035);
+      }
+      .home-faq-item[open] { transform: translateY(-2px); }
+      .home-faq-item summary {
+        display: flex;
+        min-height: 76px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1.15rem 1.35rem;
+        color: #111827;
+        cursor: pointer;
+        font-size: clamp(1rem, 1.5vw, 1.12rem);
+        font-weight: 750;
+        line-height: 1.45;
+        list-style: none;
+      }
+      .home-faq-item summary::-webkit-details-marker { display: none; }
+      .home-faq-item summary::after {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        flex: 0 0 34px;
+        place-items: center;
+        border: 1px solid rgba(215,10,23,.18);
+        border-radius: 50%;
+        background: rgba(215,10,23,.06);
+        color: var(--brand-primary-deep);
+        content: "+";
+        font-size: 1.4rem;
+        font-weight: 500;
+        line-height: 1;
+        transition: transform .3s ease, background .3s ease, color .3s ease;
+      }
+      .home-faq-item[open] summary::after {
+        transform: rotate(45deg);
+        background: var(--brand-primary);
+        color: #fff;
+      }
+      .home-faq-item summary:focus-visible {
+        outline: 3px solid rgba(215,10,23,.35);
+        outline-offset: -4px;
+      }
+      .home-faq-answer {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows .35s ease;
+      }
+      .home-faq-item[open] .home-faq-answer { grid-template-rows: 1fr; }
+      .home-faq-answer-inner { overflow: hidden; }
+      .home-faq-answer p {
+        margin: 0;
+        padding: 0 1.35rem 1.35rem;
+        color: #526176;
+        line-height: 1.7;
+      }
+      @keyframes home-faq-enter {
+        from { opacity: 0; transform: translateY(16px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @media (max-width: 760px) {
+        .home-faq-layout { grid-template-columns: 1fr; gap: 1.8rem; }
+        .home-faq-intro { position: static; }
+        .home-faq-intro h2 { max-width: 15ch; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .home-faq-item { animation: none; transition: none; }
+        .home-faq-answer,
+        .home-faq-item summary::after,
+        .home-faq-contact span { transition: none; }
+      }
+      :root[data-theme='dark'] .home-faq {
+        background: radial-gradient(ellipse at 8% 12%, rgba(215,10,23,.12), transparent 32%), #050b12;
+      }
+      :root[data-theme='dark'] .home-faq-intro h2,
+      :root[data-theme='dark'] .home-faq-item summary { color: var(--theme-text); }
+      :root[data-theme='dark'] .home-faq-intro > p:not(.eyebrow),
+      :root[data-theme='dark'] .home-faq-answer p { color: var(--theme-muted); }
+      :root[data-theme='dark'] .home-faq-item {
+        border-color: var(--theme-border);
+        background: rgba(12,18,27,.92);
+      }
+    </style>
 
     <!-- LOCAL SEO SCHEMA -->
     <script type="application/ld+json">
@@ -119,6 +285,62 @@
         "addressRegion": "Telangana",
         "addressCountry": "IN"
       }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What can TRISET help my business build or improve?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TRISET provides web and application development, e-commerce, digital marketing, data entry and processing, and geospatial services. We can help shape a project around your business goals and operational requirements."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you decide which services are right for a project?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We start by understanding your objectives, users, existing systems, timeline, and constraints. From there, we discuss an appropriate scope, delivery steps, and the services that fit your needs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which industries does TRISET work with?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TRISET supports organizations across industries including healthcare, education, IT and ITES, manufacturing, real estate, fintech, solar, e-commerce, fashion and beauty, and other sectors."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a website, app, or data project take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Delivery time depends on the project scope, features, integrations, content, and review needs. We outline milestones and expected timelines after understanding the requirements."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is project pricing determined?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pricing depends on the work involved, required capabilities, project duration, and support needs. Contact our team with your goals and we can discuss a suitable scope and estimate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I get started with TRISET?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Contact TRISET with a short description of what you want to improve, build, organize, or map. Our team will discuss your requirements and the next steps with you."
+          }
+        }
+      ]
     }
     </script>
   </head>
@@ -330,39 +552,61 @@
           </div>
         </div>
       </section>
+
+      <section class="home-faq" aria-labelledby="home-faq-title">
+        <div class="container home-faq-layout">
+          <div class="home-faq-intro">
+            <p class="eyebrow">Good questions. Clear answers.</p>
+            <h2 id="home-faq-title">A few things worth knowing.</h2>
+            <p>Get a clearer picture of what we do, how projects take shape, and what the next step can look like.</p>
+            <a class="home-faq-contact" href="contact.html">Have a different question? Talk to us <span aria-hidden="true">→</span></a>
+          </div>
+
+          <div class="home-faq-list">
+            <details class="home-faq-item" name="home-faq">
+              <summary>What can TRISET help my business build or improve?</summary>
+              <div class="home-faq-answer"><div class="home-faq-answer-inner">
+                <p>We bring together web and application development, e-commerce, digital marketing, data entry and processing, and geospatial services. We can help shape the right mix around your business goals and day-to-day needs.</p>
+              </div></div>
+            </details>
+            <details class="home-faq-item" name="home-faq">
+              <summary>How do you work out which services are right for a project?</summary>
+              <div class="home-faq-answer"><div class="home-faq-answer-inner">
+                <p>We begin with your goals, users, current systems, timeline, and constraints. Once we understand the context, we can discuss a practical scope, delivery steps, and the capabilities that best fit.</p>
+              </div></div>
+            </details>
+            <details class="home-faq-item" name="home-faq">
+              <summary>What kinds of industries do you support?</summary>
+              <div class="home-faq-answer"><div class="home-faq-answer-inner">
+                <p>We work with organizations across healthcare, education, IT and ITES, manufacturing, real estate, fintech, solar, e-commerce, fashion and beauty, and other sectors. We tailor our approach to each organization’s requirements.</p>
+              </div></div>
+            </details>
+            <details class="home-faq-item" name="home-faq">
+              <summary>How long might a website, app, or data project take?</summary>
+              <div class="home-faq-answer"><div class="home-faq-answer-inner">
+                <p>Timing depends on the scope, features, integrations, content, and review process. After learning what you need, we can outline milestones and a realistic delivery timeline.</p>
+              </div></div>
+            </details>
+            <details class="home-faq-item" name="home-faq">
+              <summary>How do you estimate the cost of a project?</summary>
+              <div class="home-faq-answer"><div class="home-faq-answer-inner">
+                <p>Estimates are based on the work involved, capabilities required, project duration, and any ongoing support. Tell us what you’re planning, and we’ll discuss a scope and estimate that suit your requirements.</p>
+              </div></div>
+            </details>
+            <details class="home-faq-item" name="home-faq">
+              <summary>What is the best way to get started?</summary>
+              <div class="home-faq-answer"><div class="home-faq-answer-inner">
+                <p>Send us a short description of what you want to build, improve, organize, or map. Our team will learn about your requirements and help you identify the next step.</p>
+              </div></div>
+            </details>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- FOOTER -->
     <footer class="footer">
       <div class="container footer-premium-container">
-        <!-- Pre-Footer High-Impact Consultation Banner -->
-        <div class="footer-preaction-banner">
-          <div class="footer-preaction-copy">
-            <div class="footer-preaction-badge">
-              <span class="footer-pulse-dot"></span>
-              <span>Enterprise Technology &amp; Spatial Operations</span>
-            </div>
-            <h2>Ready to Build Scalable Digital &amp; Spatial Solutions?</h2>
-            <p>Connect directly with our engineering architects, GIS specialists, and digital growth strategists in Hyderabad.</p>
-          </div>
-          <div class="footer-preaction-actions">
-            <a class="footer-btn-primary" href="contact.html">
-              <span>Schedule Consultation</span>
-              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
-            </a>
-            <div class="footer-preaction-contacts">
-              <a class="footer-quick-contact" href="tel:+917382819292">
-                <span class="quick-icon" aria-hidden="true">📞</span>
-                <span>+91 7382 819 292</span>
-              </a>
-              <a class="footer-quick-contact" href="mailto:info@trisetsolutions.com">
-                <span class="quick-icon" aria-hidden="true">✉️</span>
-                <span>info@trisetsolutions.com</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
         <!-- Main Multi-Column Directory Grid -->
         <div class="footer-main-columns">
           <!-- Col 1: Brand, Headquarters & Socials -->
@@ -407,20 +651,7 @@
             </div>
           </div>
 
-          <!-- Col 2: Core Engineering Services -->
-          <div class="footer-col">
-            <h3 class="footer-heading">Services</h3>
-            <ul class="footer-links-list">
-              <li><a href="web-development.html">Web Development</a></li>
-              <li><a href="app-development.html">Mobile App Development</a></li>
-              <li><a href="photogrammetry.html">Photogrammetry &amp; 3D</a></li>
-              <li><a href="digital-marketing.html">Digital Marketing &amp; SEO</a></li>
-              <li><a href="data-entry.html">Data Entry &amp; Operations</a></li>
-              <li><a href="services.html">All Solutions &amp; Capabilities</a></li>
-            </ul>
-          </div>
-
-          <!-- Col 3: Industry Solutions -->
+          <!-- Col 2: Industry Solutions -->
           <div class="footer-col">
             <h3 class="footer-heading">Industry Verticals</h3>
             <ul class="footer-links-list">
@@ -438,7 +669,7 @@
             </ul>
           </div>
 
-          <!-- Col 4: Company & Careers & Newsletter -->
+          <!-- Col 3: Company & Careers & Newsletter -->
           <div class="footer-col">
             <h3 class="footer-heading">Company</h3>
             <ul class="footer-links-list">
@@ -483,6 +714,18 @@
     </footer>
 
     <script src="src/content.js"></script>
+    <script>
+      document.querySelectorAll('.home-faq-item summary').forEach((summary) => {
+        summary.addEventListener('click', () => {
+          const currentItem = summary.parentElement;
+          if (!(currentItem instanceof HTMLDetailsElement) || currentItem.open) return;
+
+          document.querySelectorAll('.home-faq-item[open]').forEach((openItem) => {
+            if (openItem !== currentItem) openItem.open = false;
+          });
+        });
+      });
+    </script>
     <script src="src/app.js"></script>
     <script>
       function copyEmail() {
