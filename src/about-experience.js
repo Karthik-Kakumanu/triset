@@ -5,7 +5,7 @@
 
   function ready(fn) {
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
-    else fn();
+    else window.setTimeout(fn, 0);
   }
 
   ready(function () {

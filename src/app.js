@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+const initializePage = () => {
   const currentPage = window.location.pathname.split('/').pop().toLowerCase();
   if (currentPage === 'projects.html' || currentPage === 'work.html') {
     window.location.replace('index.html');
@@ -12,6 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const siteNav = document.querySelector('[data-site-nav]');
   const themeToggle = document.querySelector('[data-theme-toggle]');
   const siteHeader = document.querySelector('.site-header');
+
+  // Keep the primary section state correct on clean and legacy routes.
+  const navPath = window.location.pathname.replace(/\/+$/, '').toLowerCase() || '/';
+  const navPage = navPath === '/' ? 'index' : navPath.split('/').pop().replace(/\.html$/, '');
+  const isServiceRoute = ['services', 'photogrammetry', 'digital-marketing', 'web-development', 'app-development', 'data-entry'].includes(navPage);
+  const isIndustryRoute = navPage === 'industries' || navPage.startsWith('industry-');
+  const markSectionActive = (link, wrapper, active) => {
+    if (!link) return;
+    link.classList.toggle('nav-section-active', active);
+    if (active) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+    wrapper?.classList.toggle('nav-section-active', active);
+  };
 
 	  // Shared company-information marquee above the sticky site header.
 	  if (siteHeader && !document.querySelector('.company-marquee')) {
@@ -33,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	          <a class="company-marquee__social company-marquee__social--whatsapp" href="https://wa.me/917382819292" target="_blank" rel="noopener noreferrer" aria-label="Chat with TRISET on WhatsApp at +91 7382 819 292"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a8.8 8.8 0 0 0-7.6 13.2L3 21l4.9-1.3A8.8 8.8 0 1 0 12 3Zm0 15.9a7.1 7.1 0 0 1-3.6-1l-.3-.2-2.9.8.8-2.8-.2-.3A7.1 7.1 0 1 1 12 18.9Zm3.9-5.3c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.1-.3.2-.5.1a5.8 5.8 0 0 1-2.9-2.5c-.2-.3 0-.4.1-.6l.4-.5c.1-.2.1-.3 0-.5l-.7-1.7c-.1-.2-.3-.2-.5-.2h-.4c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7a8.2 8.2 0 0 0 3.1 3c1.8.8 1.8.5 2.1.5.3 0 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2Z"/></svg></a>
 	        </div>
 	      </div>`;
-	    document.body.insertBefore(marquee, siteHeader);
+	    siteHeader.parentNode.insertBefore(marquee, siteHeader);
 	  }
 
 	  if (!document.querySelector('.floating-contact-actions')) {
@@ -390,10 +403,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	        servicesLink.setAttribute('aria-expanded', 'false');
 	      }
 	    });
+	    markSectionActive(servicesLink, servicesItem, isServiceRoute);
 	  }
 
 	  // Click-open Industries dropdown, matching the compact reference menu.
-	  const industriesLink = siteNav && Array.from(siteNav.querySelectorAll('a')).find((link) => /industries\.html/.test(link.getAttribute('href') || ''));
+	  const industriesLink = siteNav && Array.from(siteNav.querySelectorAll('a')).find((link) => link.textContent.trim() === 'Industries');
 	  if (industriesLink && !siteNav.querySelector('.industries-nav-item')) {
 	    const industriesItem = document.createElement('div');
 	    industriesItem.className = 'industries-nav-item';
@@ -443,7 +457,21 @@ document.addEventListener('DOMContentLoaded', () => {
 	    document.addEventListener('keydown', (event) => {
 	      if (event.key === 'Escape') closeIndustries();
 	    });
+	    markSectionActive(industriesLink, industriesItem, isIndustryRoute);
 	  }
+
+  // Clear stale hard-coded Home states and mark the current primary page.
+  siteNav?.querySelectorAll(':scope > a[href]:not(.nav-cta)').forEach((link) => {
+    const target = new URL(link.getAttribute('href'), window.location.href).pathname
+      .replace(/\/+$/, '')
+      .split('/')
+      .pop()
+      .replace(/\.html$/, '') || 'index';
+    const active = (navPage === 'index' && target === 'index') || target === navPage;
+    link.classList.toggle('active', active);
+    if (active) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  });
 
   const storedTheme = localStorage.getItem('triset-theme');
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -596,7 +624,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function syncThemeMeta(theme) {
     const themeMeta = document.querySelector('meta[name="theme-color"]');
     if (themeMeta) {
-      themeMeta.setAttribute('content', theme === 'dark' ? '#050b12' : '#FF0000');
+      themeMeta.setAttribute('content', theme === 'dark' ? '#050b12' : '#014D9D');
     }
   }
 
@@ -1244,14 +1272,14 @@ document.addEventListener('DOMContentLoaded', () => {
           if (col === 0) context.moveTo(x, y);
           else context.lineTo(x, y);
         }
-        context.strokeStyle = row % 4 === 0 ? 'rgba(255, 0, 0,.36)' : 'rgba(231, 197, 199,.20)';
+        context.strokeStyle = row % 4 === 0 ? 'rgba(1, 77, 157,.36)' : 'rgba(184, 212, 239,.20)';
         context.stroke();
       }
 
       for (let i = 0; i < 72; i += 1) {
         const x = w * (0.12 + ((i * 37) % 77) / 100);
         const y = h * (0.18 + ((i * 19) % 62) / 100) + Math.sin(frame * 0.02 + i) * 4;
-        context.fillStyle = i % 9 === 0 ? 'rgba(255, 0, 0,.82)' : 'rgba(231, 197, 199,.56)';
+        context.fillStyle = i % 9 === 0 ? 'rgba(1, 77, 157,.82)' : 'rgba(184, 212, 239,.56)';
         context.fillRect(x, y, i % 9 === 0 ? 3 : 2, i % 9 === 0 ? 3 : 2);
       }
 
@@ -1342,4 +1370,10 @@ document.addEventListener('DOMContentLoaded', () => {
     item.classList.add('reveal');
     window.setTimeout(() => item.classList.add('is-visible'), 80 + index * 28);
   });
-});
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializePage, { once: true });
+} else {
+  initializePage();
+}

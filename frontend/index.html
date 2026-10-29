@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" class="page-loading">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      /* Keep the shell visible if a page module fails before React mounts. */
+      html.page-loading body {
+        visibility: visible;
+      }
+      #loading-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: grid;
+        place-items: center;
+        background: var(--paper, #f7f9fb);
+        transition: opacity 0.16s ease, visibility 0.16s ease;
+      }
+      html:not(.page-loading) #loading-screen {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .loading-dots {
+        display: flex;
+        gap: 5px;
+      }
+      .loading-dots span {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #014d9d;
+        animation: loading-dot 0.55s ease-in-out infinite;
+      }
+      .loading-dots span:nth-child(2) { animation-delay: 0.14s; }
+      .loading-dots span:nth-child(3) { animation-delay: 0.28s; }
+      @keyframes loading-dot {
+        0%, 100% { opacity: 0.35; transform: translateY(0); }
+        50% { opacity: 1; transform: translateY(-3px); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .loading-dots span { animation: none; opacity: 0.7; }
+      }
+      html.page-loading #root {
+        min-height: 100vh;
+        visibility: hidden;
+      }
+    </style>
+    <script src="/src/theme-init.js"></script>
+    <title>TRISET Solutions</title>
+  </head>
+  <body>
+    <div id="loading-screen" role="status" aria-live="polite" aria-label="Loading TRISET Solutions">
+      <div class="loading-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/frontend/src/main.jsx"></script>
+  </body>
+</html>

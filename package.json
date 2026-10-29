@@ -4,8 +4,17 @@
   "private": true,
   "scripts": {
     "start": "node backend/server.js",
-    "dev": "node backend/server.js",
-    "check": "node --check src/app.js && node --check src/content.js && npm --prefix backend run check"
+    "dev": "npm run build && node backend/server.js",
+    "build": "vite build --config frontend/vite.config.js",
+    "check": "node --check src/app.js && node --check src/content.js && node --check src/about-experience.js && node --check src/sw-register.js && node --check src/cache-preloader.js && node --check sw.js && npm --prefix backend run check"
+  },
+  "dependencies": {
+    "html-react-parser": "^5.2.10",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
   },
   "engines": {
     "node": ">=18"

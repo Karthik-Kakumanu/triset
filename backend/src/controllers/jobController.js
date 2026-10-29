@@ -1,10 +1,21 @@
 const { pool } = require('../config/db');
+const { careerJobs } = require('../data/careerJobs');
 const { sendJson, readJson } = require('../utils/http');
 const { sendJobPostedEmail } = require('../services/emailService');
 
 const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'trisetsolutions.com';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'passtriset';
 const ADMIN_TOKEN = 'triset-admin-token';
+
+function getDemoJobs() {
+  return careerJobs.map((job, index) => ({
+    ...job,
+    id: `demo-${index + 1}`,
+    apply_email: 'info@trisetsolutions.com',
+    is_active: true,
+    is_featured: index < 3
+  }));
+}
 
 function getAuthToken(request) {
   const authHeader = request.headers.authorization || '';
@@ -21,10 +32,10 @@ async function listJobs(_request, response) {
     const { rows } = await pool.query(
       `SELECT * FROM job_posts WHERE is_active = TRUE ORDER BY is_featured DESC, created_at DESC`
     );
-    sendJson(response, 200, { ok: true, jobs: rows });
+    sendJson(response, 200, { ok: true, jobs: rows.length ? rows : getDemoJobs(), demo: !rows.length });
   } catch (error) {
     console.error('[jobs:list:error]', error);
-    sendJson(response, 500, { ok: false, error: 'Unable to load jobs' });
+    sendJson(response, 200, { ok: true, jobs: getDemoJobs(), demo: true });
   }
 }
 

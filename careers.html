@@ -9,7 +9,7 @@
     <meta property="og:description" content="Careers at TRISET Solutions. Join a modern technology company building geospatial, software, data and digital products that shape the real world." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://www.trisetsolutions.com/assets/hero.png" />
-    <meta name="theme-color" content="#FF0000" />
+    <meta name="theme-color" content="#014D9D" />
     <title>Careers | TRISET Solutions</title>
     <link rel="icon" href="assets/logo_final.png" />
     <script src="src/theme-init.js"></script>
@@ -17,12 +17,12 @@
     <link rel="stylesheet" href="premium-system.css" />
     <style>
       :root {
-        --careers-navy: #FF0000;
-        --careers-navy-2: #FF0000;
-        --careers-accent: #FF0000;
-        --careers-accent-soft: #FBE3E5;
-        --careers-cyan: #FF0000;
-        --careers-signal: #FF0000;
+        --careers-navy: #014D9D;
+        --careers-navy-2: #014D9D;
+        --careers-accent: #014D9D;
+        --careers-accent-soft: #84BFFB;
+        --careers-cyan: #014D9D;
+        --careers-signal: #014D9D;
         --careers-paper: #f6f8fb;
         --careers-surface: #ffffff;
         --careers-line: rgba(0, 0, 0, 0.12);
@@ -69,7 +69,7 @@
         display: grid;
         place-items: center;
         overflow: hidden;
-        background: linear-gradient(180deg, rgba(255, 0, 0, 0.4), rgba(255, 0, 0, 0.65)), url('assets/hero.png') center/cover no-repeat;
+        background: linear-gradient(180deg, rgba(1, 77, 157, 0.4), rgba(1, 77, 157, 0.65)), url('assets/hero.png') center/cover no-repeat;
       }
 
       .careers-hero__media {
@@ -107,7 +107,7 @@
       .careers-hero__copy .lead {
         margin: 1rem 0 0;
         max-width: 56ch;
-        color: rgba(248, 232, 233, 0.9);
+        color: rgba(224, 239, 255, 0.9);
         font-size: clamp(0.98rem, 1.5vw, 1.25rem);
         line-height: 1.6;
       }
@@ -117,6 +117,63 @@
         flex-wrap: wrap;
         gap: 0.8rem;
         margin-top: 1.8rem;
+      }
+
+      .careers-page .btn-primary {
+        color: #fff !important;
+        background: #014D9D !important;
+        border: 1px solid #014D9D !important;
+        box-shadow: 0 8px 20px rgba(1, 77, 157, 0.24) !important;
+      }
+
+      .careers-page .btn-primary:hover,
+      .careers-page .btn-primary:focus-visible {
+        color: #fff !important;
+        background: #003b78 !important;
+        border-color: #003b78 !important;
+        box-shadow: 0 10px 24px rgba(1, 77, 157, 0.32) !important;
+      }
+
+      .careers-page .btn:not(.btn-primary) {
+        color: #014D9D !important;
+        background: #fff !important;
+        border: 1px solid rgba(1, 77, 157, 0.28) !important;
+      }
+
+      .careers-page .btn:not(.btn-primary):hover,
+      .careers-page .btn:not(.btn-primary):focus-visible {
+        color: #003b78 !important;
+        background: #eef6ff !important;
+        border-color: #014D9D !important;
+      }
+
+      .careers-page .cta-band {
+        background: linear-gradient(120deg, #003b78, #014D9D) !important;
+        color: #fff !important;
+      }
+
+      .careers-page .cta-band .eyebrow,
+      .careers-page .cta-band h2,
+      .careers-page .cta-band p {
+        color: #fff !important;
+      }
+
+      .careers-page .cta-band p {
+        opacity: 0.9;
+      }
+
+      .careers-page .cta-band .btn-primary {
+        color: #014D9D !important;
+        background: #fff !important;
+        border-color: #fff !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18) !important;
+      }
+
+      .careers-page .cta-band .btn-primary:hover,
+      .careers-page .cta-band .btn-primary:focus-visible {
+        color: #003b78 !important;
+        background: #eef6ff !important;
+        border-color: #eef6ff !important;
       }
 
       .careers-hero__meta {
@@ -167,7 +224,7 @@
       }
 
       .story-section {
-        background: linear-gradient(180deg, rgba(246, 248, 251, 1) 0%, rgba(249, 233, 234, 0.72) 100%);
+        background: linear-gradient(180deg, rgba(246, 248, 251, 1) 0%, rgba(232, 242, 252, 0.72) 100%);
       }
 
       .story-shell {
@@ -253,7 +310,7 @@
         right: -0.45rem;
         width: 0.9rem;
         height: 1.5px;
-        background: rgba(255, 0, 0, 0.28);
+        background: rgba(1, 77, 157, 0.28);
       }
 
       .path-step strong {
@@ -353,7 +410,7 @@
       }
 
       .job-filter--search input {
-        background: linear-gradient(135deg, rgba(255,255,255,.98), rgba(253, 242, 243,.92));
+        background: linear-gradient(135deg, rgba(255,255,255,.98), rgba(237, 246, 255,.92));
       }
 
       @media (max-width: 980px) {
@@ -382,7 +439,7 @@
       .job-card:hover {
         transform: translateY(-3px);
         box-shadow: 0 20px 44px rgba(0, 0, 0, 0.08);
-        border-color: rgba(255, 0, 0, 0.22);
+        border-color: rgba(1, 77, 157, 0.22);
       }
 
       .job-card__meta {
@@ -406,7 +463,7 @@
       .job-card__type {
         padding: 0.38rem 0.6rem;
         border-radius: 999px;
-        background: rgba(255, 0, 0, 0.08);
+        background: rgba(1, 77, 157, 0.08);
         color: var(--careers-accent);
         font-size: 0.68rem;
         letter-spacing: 0.08em;
@@ -534,7 +591,7 @@
         display: inline-flex;
         padding: 0.42rem 0.65rem;
         border-radius: 999px;
-        background: rgba(255, 0, 0, 0.06);
+        background: rgba(1, 77, 157, 0.06);
         color: var(--careers-accent);
         font-size: 0.68rem;
         letter-spacing: 0.06em;
@@ -629,7 +686,7 @@
         align-items: center;
         justify-content: center;
         border-radius: 50%;
-        background: rgba(255, 0, 0, 0.08);
+        background: rgba(1, 77, 157, 0.08);
         color: var(--careers-accent);
         font-weight: 700;
         font-size: 0.82rem;
@@ -690,9 +747,9 @@
         display: grid;
         place-items: center;
         min-height: 110px;
-        border: 1px dashed rgba(255, 0, 0, 0.4);
+        border: 1px dashed rgba(1, 77, 157, 0.4);
         border-radius: 16px;
-        background: rgba(255, 0, 0, 0.03);
+        background: rgba(1, 77, 157, 0.03);
         text-align: center;
         padding: 0.9rem;
         cursor: pointer;
@@ -701,7 +758,7 @@
 
       .upload-box.dragover {
         border-color: var(--careers-accent);
-        background: rgba(255, 0, 0, 0.06);
+        background: rgba(1, 77, 157, 0.06);
         transform: translateY(-2px);
       }
 
@@ -746,14 +803,14 @@
         justify-content: space-between;
         gap: 1.2rem;
         padding: clamp(1.5rem, 2.8vw, 2.4rem);
-        background: linear-gradient(135deg, rgba(255, 0, 0, 0.1), rgba(255, 0, 0, 0.96));
+        background: linear-gradient(135deg, rgba(1, 77, 157, 0.1), rgba(1, 77, 157, 0.96));
         border: 1px solid rgba(255,255,255,0.08);
         border-radius: 24px;
         box-shadow: 0 30px 80px rgba(0, 0, 0, 0.14);
       }
 
       .cta-band .eyebrow {
-        color: rgba(255, 0, 0, 0.9);
+        color: rgba(1, 77, 157, 0.9);
       }
 
       .cta-band h2 {
@@ -765,7 +822,7 @@
 
       .cta-band p {
         margin: 0.4rem 0 0;
-        color: rgba(248, 232, 233, 0.8);
+        color: rgba(224, 239, 255, 0.8);
         font-size: 0.94rem;
       }
 
@@ -895,7 +952,7 @@
       }
 
       .sw-update-notification {
-        background: #FF0000;
+        background: #014D9D;
         color: white;
       }
 
@@ -922,7 +979,7 @@
 
       .sw-update-notification #sw-update-btn {
         background: white;
-        color: #FF0000;
+        color: #014D9D;
       }
 
       .sw-update-notification #sw-dismiss-btn {
@@ -932,7 +989,7 @@
 
       .sw-offline-notification {
         background: #F59E0B;
-        color: #78350F;
+        color: #B7C6D5;
       }
 
       .sw-online-notification {
@@ -988,7 +1045,6 @@
           <div class="careers-hero__copy">
             <p class="eyebrow">TRISET careers</p>
             <h1 id="careers-title">Build What Comes Next.</h1>
-            <p class="lead">TRISET brings together geospatial intelligence, software, digital solutions, data and creative technology to build the next generation of useful work.</p>
             <div class="careers-hero__actions">
               <a class="btn btn-primary" href="#open-roles">View open roles</a>
               <a class="btn" href="#apply">Send your profile</a>
@@ -1457,6 +1513,34 @@
         }
       };
 
+      // Keep the demo openings visible while the optional jobs database is unavailable.
+      const demoJobs = [
+        ['Sales Executive Intern', 'Business Development', 'Internship', 'Students / recent graduates'],
+        ['Sales Executive', 'Business Development', 'Full-time', 'Professional experience in sales or business development'],
+        ['Digital Marketing Intern', 'Digital Marketing', 'Internship', 'Students / recent graduates'],
+        ['Digital Marketing Associate', 'Digital Marketing', 'Full-time', 'Hands-on digital marketing experience'],
+        ['Digital Marketing Specialist', 'Digital Marketing', 'Full-time', 'Professional experience in performance marketing'],
+        ['Web Developer Intern', 'Web Development', 'Internship', 'Students / recent graduates'],
+        ['Web Developer', 'Web Development', 'Full-time', 'Professional web development experience'],
+        ['Video Editor Intern', 'Creative Studio', 'Internship', 'Students / recent graduates'],
+        ['Video Editor', 'Creative Studio', 'Full-time', 'Professional video editing experience'],
+        ['Graphic Designer Intern', 'Creative Studio', 'Internship', 'Students / recent graduates'],
+        ['Graphic Designer', 'Creative Studio', 'Full-time', 'Professional graphic design experience'],
+        ['GIS / Photogrammetry Associate', 'Geospatial Engineering', 'Full-time', 'Hands-on GIS or photogrammetry experience']
+      ].map(([title, department, employment_type, experience], index) => ({
+        id: `demo-${index + 1}`,
+        title,
+        department,
+        employment_type,
+        experience,
+        location: 'Hyderabad / Flexible',
+        description: `Join TRISET as a ${title} and contribute to meaningful client work across digital, creative, and geospatial delivery.`,
+        responsibilities: ['Collaborate with the team on real client projects.', 'Keep work organized and communicate progress clearly.', 'Learn, improve, and apply feedback through delivery.'],
+        requirements: ['Strong communication and a proactive mindset.', 'Curiosity about the role and willingness to learn.', 'Reliable attention to detail.'],
+        apply_email: 'info@trisetsolutions.com',
+        is_active: true
+      }));
+
       function normalizeText(value) {
         return String(value || '').trim();
       }
@@ -1593,6 +1677,13 @@
         applicationRole.innerHTML = `<option value="">Select role</option>${jobs.map((job) => `<option value="${job.title}">${job.title} — ${job.employment_type}</option>`).join('')}`;
       }
 
+      function useJobs(jobs) {
+        state.jobs = jobs;
+        buildFilters(state.jobs);
+        populateApplicationRoles(state.jobs);
+        renderJobs();
+      }
+
       [filterLocation, filterExperience, filterType].forEach((select) => {
         select.addEventListener('change', () => {
           state.filters.location = filterLocation.value;
@@ -1612,6 +1703,10 @@
           const response = await fetch('/api/jobs');
           const payload = await response.json();
           if (!payload.ok || !Array.isArray(payload.jobs) || !payload.jobs.length) {
+            useJobs(demoJobs);
+            return;
+          }
+          if (!payload.ok || !Array.isArray(payload.jobs) || !payload.jobs.length) {
             jobsContainer.innerHTML = `
               <article class="job-empty">
                 <h3>No roles are open right now.</h3>
@@ -1626,6 +1721,8 @@
           populateApplicationRoles(state.jobs);
           renderJobs();
         } catch (error) {
+          useJobs(demoJobs);
+          return;
           jobsContainer.innerHTML = `
             <article class="job-empty">
               <h3>Open roles are temporarily unavailable.</h3>

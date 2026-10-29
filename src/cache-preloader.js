@@ -83,10 +83,12 @@
   }
 
   // Preload on page load
-  window.addEventListener('load', () => {
+  const onPageLoad = () => {
     setTimeout(preloadAssets, 2000); // Wait 2s to avoid blocking
     setTimeout(reportCacheStats, 3000);
-  });
+  };
+  if (document.readyState === 'complete') onPageLoad();
+  else window.addEventListener('load', onPageLoad, { once: true });
 
   // Also preload if online after being offline
   window.addEventListener('online', () => {

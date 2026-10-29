@@ -124,10 +124,10 @@
       function draw(){ ctx.clearRect(0,0,w,h); ctx.globalCompositeOperation='lighter';
         // soft radial brand glow
         const grd = ctx.createRadialGradient(w*0.65, h*0.35, 20, w*0.65, h*0.35, Math.max(w,h));
-        grd.addColorStop(0, 'rgba(255, 0, 0,0.10)'); grd.addColorStop(0.6, 'rgba(255, 0, 0,0.04)'); grd.addColorStop(1, 'transparent');
+        grd.addColorStop(0, 'rgba(11,102,255,0.10)'); grd.addColorStop(0.6, 'rgba(217,43,43,0.04)'); grd.addColorStop(1, 'transparent');
         ctx.fillStyle = grd; ctx.fillRect(0,0,w,h);
         // animated grid lines
-        ctx.strokeStyle = 'rgba(231, 197, 199,0.12)'; ctx.lineWidth=1;
+        ctx.strokeStyle = 'rgba(197,214,231,0.12)'; ctx.lineWidth=1;
         for(let y=0;y<h;y+=28){ ctx.beginPath(); ctx.moveTo(0,(y+Math.sin(t*0.02+y*0.01)*6)); ctx.lineTo(w,(y+Math.sin(t*0.02+y*0.01)*6)); ctx.stroke(); }
         t+=1; if(!window.__TRISET_3D) requestAnimationFrame(draw);
       }

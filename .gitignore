@@ -1,5 +1,6 @@
 .env
 node_modules/
 backend/node_modules/
+dist/
 storage/*.jsonl
 npm-debug.log*

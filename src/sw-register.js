@@ -11,7 +11,7 @@
   }
 
   // Register service worker
-  window.addEventListener('load', () => {
+  const registerServiceWorker = () => {
     navigator.serviceWorker.register('/sw.js', { scope: '/' })
       .then((registration) => {
         console.log('[SW] Registration successful:', registration.scope);
@@ -35,7 +35,9 @@
       .catch((error) => {
         console.warn('[SW] Registration failed:', error);
       });
-  });
+  };
+  if (document.readyState === 'complete') registerServiceWorker();
+  else window.addEventListener('load', registerServiceWorker, { once: true });
 
   let refreshing = false;
   navigator.serviceWorker.addEventListener('controllerchange', () => {

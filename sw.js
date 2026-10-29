@@ -3,34 +3,11 @@
  * Provides offline functionality, fast caching, and performance optimization
  */
 
-const CACHE_VERSION = 'v6';
+const CACHE_VERSION = 'v8';
 const CACHE_NAMES = {
-  static: `triset-static-${CACHE_VERSION}`,
-  dynamic: `triset-dynamic-${CACHE_VERSION}`,
   images: `triset-images-${CACHE_VERSION}`,
   videos: `triset-videos-${CACHE_VERSION}`,
 };
-
-// Core assets to cache immediately
-const CRITICAL_ASSETS = [
-  '/',
-  '/index.html',
-  '/about.html',
-  '/services.html',
-  '/solutions.html',
-  '/projects.html',
-  '/careers.html',
-  '/contact.html',
-  '/styles.css',
-  '/premium-system.css',
-  '/src/theme-init.js',
-  '/src/app.js',
-  '/src/content.js',
-  '/src/sw-register.js',
-  '/src/cache-preloader.js',
-  '/robots.txt',
-  '/sitemap.xml',
-];
 
 // Images to preload for better offline UX
 const PRELOAD_IMAGES = [
@@ -45,31 +22,20 @@ self.addEventListener('install', (event) => {
   console.log('[SW] Installing service worker...');
 
   event.waitUntil(
-    Promise.all([
-      // Cache critical assets
-      caches.open(CACHE_NAMES.static).then((cache) => {
-        console.log('[SW] Caching critical assets...');
-        return cache.addAll(CRITICAL_ASSETS).catch((error) => {
-          console.warn('[SW] Some critical assets failed to cache:', error);
-          return Promise.resolve();
-        });
-      }),
-      // Preload common images
-      caches.open(CACHE_NAMES.images).then((cache) => {
-        console.log('[SW] Preloading images...');
-        return Promise.all(
-          PRELOAD_IMAGES.map((url) =>
-            fetch(url).then((response) => {
-              if (response && response.status === 200) {
-                cache.put(url, response);
-              }
-            }).catch(() => {
-              // Image fetch failed, continue anyway
-            })
-          )
-        );
-      }),
-    ]).then(() => {
+    caches.open(CACHE_NAMES.images).then((cache) => {
+      console.log('[SW] Preloading images...');
+      return Promise.all(
+        PRELOAD_IMAGES.map((url) =>
+          fetch(url).then((response) => {
+            if (response && response.status === 200) {
+              cache.put(url, response);
+            }
+          }).catch(() => {
+            // Image fetch failed, continue anyway
+          })
+        )
+      );
+    }).then(() => {
       console.log('[SW] Installation complete');
       return self.skipWaiting();
     })
@@ -86,8 +52,13 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          // Delete caches that don't match current version
-          if (!Object.values(CACHE_NAMES).includes(cacheName)) {
+          if (
+            cacheName.startsWith('triset-static-')
+            || cacheName.startsWith('triset-dynamic-')
+            || cacheName.startsWith('triset-images-')
+            || cacheName.startsWith('triset-videos-')
+          ) {
+            if (Object.values(CACHE_NAMES).includes(cacheName)) return undefined;
             console.log('[SW] Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
@@ -117,17 +88,13 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Strategy selection based on resource type
+  // Pages, scripts, styles, and API responses always come from the network.
   if (isImage(url.pathname)) {
     event.respondWith(cacheImageStrategy(request));
   } else if (isVideo(url.pathname)) {
     event.respondWith(cacheVideoStrategy(request));
-  } else if (isDocument(url.pathname)) {
-    event.respondWith(cacheDocumentStrategy(request));
-  } else if (isScript(url.pathname) || isStyle(url.pathname)) {
-    event.respondWith(cacheAssetStrategy(request));
   } else {
-    event.respondWith(cacheNetworkStrategy(request));
+    event.respondWith(fetch(request));
   }
 });
 
@@ -195,73 +162,6 @@ function cacheVideoStrategy(request) {
   });
 }
 
-// Network-first: HTML documents (fresh content priority with fallback)
-function cacheDocumentStrategy(request) {
-  return fetch(request)
-    .then((response) => {
-      // Cache successful response
-      if (response && response.status === 200) {
-        const clonedResponse = response.clone();
-        caches.open(CACHE_NAMES.dynamic).then((cache) => {
-          cache.put(request, clonedResponse);
-        });
-      }
-      return response;
-    })
-    .catch(() => {
-      // Network failed, return cached version
-      return caches.open(CACHE_NAMES.dynamic)
-        .then((cache) => cache.match(request))
-        .then((response) => {
-          if (response) return response;
-          // Return cached home page as fallback
-          return caches.match('/index.html').catch(() => null);
-        });
-    });
-}
-
-// Network-first: CSS, JS (fresh UI/theme code with cached offline fallback)
-function cacheAssetStrategy(request) {
-  return fetch(request).then((response) => {
-    if (response && response.status === 200) {
-      const clonedResponse = response.clone();
-      caches.open(CACHE_NAMES.static).then((cache) => {
-        cache.put(request, clonedResponse);
-      });
-    }
-    return response;
-  }).catch(() => {
-    return caches.open(CACHE_NAMES.static).then((cache) => {
-      return cache.match(request).then((response) => {
-        if (response) return response;
-        return new Response('/* Resource not available offline */', {
-          status: 503,
-          headers: { 'Content-Type': 'text/css' },
-        });
-      });
-    });
-  });
-}
-
-// Network-first: Everything else
-function cacheNetworkStrategy(request) {
-  return fetch(request)
-    .then((response) => {
-      // Cache if successful
-      if (response && response.status === 200) {
-        const clonedResponse = response.clone();
-        caches.open(CACHE_NAMES.dynamic).then((cache) => {
-          cache.put(request, clonedResponse);
-        });
-      }
-      return response;
-    })
-    .catch(() => {
-      // Return cached if available
-      return caches.match(request);
-    });
-}
-
 /**
  * HELPER FUNCTIONS
  */
@@ -272,18 +172,6 @@ function isImage(pathname) {
 
 function isVideo(pathname) {
   return /\.(mp4|webm|ogg|mov|mkv)$/i.test(pathname);
-}
-
-function isDocument(pathname) {
-  return /\.html$/i.test(pathname) || pathname.endsWith('/');
-}
-
-function isScript(pathname) {
-  return /\.js$/i.test(pathname);
-}
-
-function isStyle(pathname) {
-  return /\.css$/i.test(pathname);
 }
 
 /**
@@ -321,4 +209,3 @@ async function clearAllCaches() {
     });
   });
 }
-

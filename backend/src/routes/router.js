@@ -45,20 +45,12 @@ const mimeTypes = {
   '.txt': 'text/plain; charset=utf-8',
 };
 
-const routeFiles = new Map([
-  ['/', 'index.html'],
-  ['/about', 'about.html'],
-  ['/services', 'services.html'],
-  ['/industries', 'solutions.html'],
-  ['/work', 'projects.html'],
-  ['/projects', 'projects.html'],
-  ['/careers', 'careers.html'],
-  ['/admin', 'admin.html'],
-  ['/contact', 'contact.html'],
-  ['/privacy', 'privacy.html'],
-  ['/terms', 'terms.html'],
-  ['/404', '404.html'],
-]);
+const pageRoutes = new Map();
+for (const fileName of fs.readdirSync(rootDir)) {
+  if (!fileName.endsWith('.html') || fileName === 'solutions.html') continue;
+  const pageName = fileName.slice(0, -5);
+  pageRoutes.set(pageName === 'index' ? '/' : `/${pageName}`, fileName);
+}
 
 const legacyRedirects = new Map([
   ['/solutions', '/industries'],
@@ -255,24 +247,85 @@ async function handleRequest(request, response) {
     return;
   }
 
-  const file = routeFiles.get(pathname) || (pathname.endsWith('.html') ? pathname.slice(1) : pathname.slice(1));
-  const safePath = path.normalize(path.join(rootDir, file));
-  if (!safePath.startsWith(rootDir)) {
+  if (pathname.length > 1 && pathname.endsWith('/')) {
+    response.writeHead(301, { Location: `${pathname.slice(0, -1)}${url.search}` });
+    response.end();
+    return;
+  }
+
+  if (pathname.endsWith('.html')) {
+    const pageName = path.basename(pathname, '.html');
+    const target = pageName === 'solutions'
+      ? '/industries'
+      : pageName === 'index'
+        ? '/'
+        : `/${pageName}`;
+    if (pageRoutes.has(target) || pageName === 'solutions') {
+      response.writeHead(301, { Location: `${target}${url.search}` });
+      response.end();
+      return;
+    }
     serve404(response);
     return;
   }
 
-  if (fs.existsSync(safePath) && fs.statSync(safePath).isFile()) {
-    serveFile(response, safePath, 200);
+  if (pageRoutes.has(pathname)) {
+    // Detail pages contain their own complete markup and page-specific scripts.
+    // Serve that source document directly so clean routes cannot fall back to
+    // the generic React shell and lose part of the page during hydration.
+    const pageFile = pathname === '/industries'
+      ? 'solutions.html'
+      : pathname === '/work'
+        ? 'projects.html'
+        : pageRoutes.get(pathname);
+    const pagePath = path.join(rootDir, pageFile);
+    if (fs.existsSync(pagePath)) {
+      serveFile(response, pagePath, 200);
+      return;
+    }
+    serveFrontend(response, 200);
+    return;
+  }
+
+  const requestedPath = pathname.replace(/^\/+/, '');
+  const buildPath = path.resolve(rootDir, 'dist', requestedPath);
+  const rootPath = path.resolve(rootDir, requestedPath);
+  const safeBuildPath = isWithinRoot(path.resolve(rootDir, 'dist'), buildPath);
+  const safeRootPath = isWithinRoot(rootDir, rootPath);
+  const staticPath = safeBuildPath && fs.existsSync(buildPath) && fs.statSync(buildPath).isFile()
+    ? buildPath
+    : safeRootPath && fs.existsSync(rootPath) && fs.statSync(rootPath).isFile()
+      ? rootPath
+      : null;
+
+  if (staticPath) {
+    serveFile(response, staticPath, 200);
     return;
   }
 
   serve404(response);
 }
 
+function serveFrontend(response, statusCode) {
+  const frontendPath = path.join(rootDir, 'dist', 'frontend', 'index.html');
+  if (fs.existsSync(frontendPath)) {
+    serveFile(response, frontendPath, statusCode);
+    return;
+  }
+  response.writeHead(503, { 'Content-Type': 'text/plain; charset=utf-8' });
+  response.end('Frontend build is missing. Run npm run build before starting the server.');
+}
+
+function isWithinRoot(root, filePath) {
+  const relativePath = path.relative(root, filePath);
+  return relativePath === '' || (!relativePath.startsWith('..') && !path.isAbsolute(relativePath));
+}
+
 function serveFile(response, filePath, statusCode) {
   const ext = path.extname(filePath).toLowerCase();
-  response.writeHead(statusCode, { 'Content-Type': mimeTypes[ext] || 'application/octet-stream' });
+  const headers = { 'Content-Type': mimeTypes[ext] || 'application/octet-stream' };
+  if (ext === '.html') headers['Cache-Control'] = 'no-store';
+  response.writeHead(statusCode, headers);
   fs.createReadStream(filePath).pipe(response);
 }
 
@@ -280,6 +333,10 @@ function serve404(response) {
   const filePath = path.join(rootDir, '404.html');
   if (fs.existsSync(filePath)) {
     serveFile(response, filePath, 404);
+    return;
+  }
+  if (fs.existsSync(path.join(rootDir, 'dist', 'frontend', 'index.html'))) {
+    serveFrontend(response, 404);
     return;
   }
   response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });

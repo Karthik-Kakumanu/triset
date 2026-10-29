@@ -259,7 +259,7 @@
   overflow: hidden;
   border-radius: 26px;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  background: linear-gradient(145deg, #241a1c, #6f101c 58%, #cf0000);
+  background: linear-gradient(145deg, #241a1c, #AFBFCF 58%, #FFFFFF);
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.18);
   transform-style: preserve-3d;
   transition: transform .75s cubic-bezier(.2, .7, .2, 1), opacity .75s ease, filter .75s ease, box-shadow .75s ease;
@@ -280,7 +280,7 @@
   inset: 0;
   background:
     linear-gradient(180deg, rgba(7,10,17,0.08) 0%, rgba(7,10,17,0.2) 40%, rgba(7,10,17,0.82) 100%),
-    linear-gradient(135deg, rgba(255, 0, 0, 0.1), rgba(10, 18, 29, 0));
+    linear-gradient(135deg, rgba(1, 77, 157, 0.1), rgba(10, 18, 29, 0));
 }
 
 .ax-team-card-top {
@@ -316,11 +316,11 @@
 }
 
 .ax-team-card[data-domain="digital"] .ax-team-domain {
-  color: #FAE1E3;
+  color: #72B6FA;
 }
 
 .ax-team-card[data-domain="spatial"] .ax-team-domain {
-  color: #FFE0E2;
+  color: #FFFFFF;
 }
 
 .ax-team-card-body {
