@@ -925,6 +925,110 @@
         }
       }
 
+      :root[data-theme="dark"] .careers-page {
+        --careers-navy: #eaf3fb;
+        --careers-accent: #9acbff;
+        --careers-signal: #9acbff;
+        --careers-paper: #050b12;
+        --careers-surface: #0b1724;
+        --careers-line: rgba(232, 240, 248, 0.18);
+        --careers-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+      }
+
+      :root[data-theme="dark"] .careers-page .story-section {
+        background: linear-gradient(180deg, #071523, #050b12) !important;
+      }
+
+      :root[data-theme="dark"] .careers-page .path-step,
+      :root[data-theme="dark"] .careers-page .path-role,
+      :root[data-theme="dark"] .careers-page .jobs-toolbar,
+      :root[data-theme="dark"] .careers-page .job-card,
+      :root[data-theme="dark"] .careers-page .job-empty,
+      :root[data-theme="dark"] .careers-page .job-modal__panel,
+      :root[data-theme="dark"] .careers-page .job-detail-block,
+      :root[data-theme="dark"] .careers-page .application-form {
+        background: #0b1724 !important;
+        border-color: var(--careers-line) !important;
+        color: #eaf3fb !important;
+      }
+
+      :root[data-theme="dark"] .careers-page .section-header h2,
+      :root[data-theme="dark"] .careers-page .story-copy h2,
+      :root[data-theme="dark"] .careers-page .path-step h3,
+      :root[data-theme="dark"] .careers-page .path-role h3,
+      :root[data-theme="dark"] .careers-page .job-card__meta strong,
+      :root[data-theme="dark"] .careers-page .job-modal__header h3,
+      :root[data-theme="dark"] .careers-page .job-detail-block h4,
+      :root[data-theme="dark"] .careers-page .application-copy h2,
+      :root[data-theme="dark"] .careers-page .upload-box strong {
+        color: #eaf3fb !important;
+      }
+
+      :root[data-theme="dark"] .careers-page .story-copy > p:last-child,
+      :root[data-theme="dark"] .careers-page .path-role ul,
+      :root[data-theme="dark"] .careers-page .job-card__facts,
+      :root[data-theme="dark"] .careers-page .job-card p,
+      :root[data-theme="dark"] .careers-page .job-empty p,
+      :root[data-theme="dark"] .careers-page .job-detail-block p,
+      :root[data-theme="dark"] .careers-page .job-detail-block li,
+      :root[data-theme="dark"] .careers-page .application-copy p:not(.eyebrow),
+      :root[data-theme="dark"] .careers-page .application-points div,
+      :root[data-theme="dark"] .careers-page .job-filter label,
+      :root[data-theme="dark"] .careers-page .application-form label,
+      :root[data-theme="dark"] .careers-page .upload-box small,
+      :root[data-theme="dark"] .careers-page .upload-meta,
+      :root[data-theme="dark"] .careers-page .form-status {
+        color: #c3d1df !important;
+      }
+
+      :root[data-theme="dark"] .careers-page .job-modal__close {
+        background: rgba(154, 203, 255, 0.1);
+        color: #eaf3fb;
+      }
+
+      :root[data-theme="dark"] .careers-page .form-status.error {
+        color: #ff9a9a !important;
+      }
+
+      :root[data-theme="dark"] .careers-page .form-status.success {
+        color: #75dda6 !important;
+      }
+
+      :root[data-theme="dark"] .careers-page .job-card__facts span,
+      :root[data-theme="dark"] .careers-page .job-modal__meta span,
+      :root[data-theme="dark"] .careers-page .application-points span {
+        background: rgba(154, 203, 255, 0.12) !important;
+        color: #9acbff !important;
+      }
+
+      :root[data-theme="dark"] .careers-page .job-filter input,
+      :root[data-theme="dark"] .careers-page .job-filter select,
+      :root[data-theme="dark"] .careers-page .application-form input,
+      :root[data-theme="dark"] .careers-page .application-form select,
+      :root[data-theme="dark"] .careers-page .application-form textarea {
+        background: #07111d !important;
+        border-color: var(--careers-line) !important;
+        color: #eaf3fb !important;
+      }
+
+      :root[data-theme="dark"] .careers-page .job-filter select option,
+      :root[data-theme="dark"] .careers-page .application-form select option {
+        background: #0b1724;
+        color: #eaf3fb;
+      }
+
+      :root[data-theme="dark"] .careers-page .job-filter input::placeholder,
+      :root[data-theme="dark"] .careers-page .application-form input::placeholder,
+      :root[data-theme="dark"] .careers-page .application-form textarea::placeholder {
+        color: #9eb0c2;
+        opacity: 1;
+      }
+
+      :root[data-theme="dark"] .careers-page .upload-box {
+        background: rgba(154, 203, 255, 0.06);
+        border-color: rgba(154, 203, 255, 0.45);
+      }
+
       @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after {
           animation: none !important;
