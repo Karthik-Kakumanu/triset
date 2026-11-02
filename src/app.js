@@ -946,8 +946,69 @@ const initializePage = () => {
     animateThemeSwitch(root.dataset.theme === 'dark' ? 'light' : 'dark');
   });
 
+  const heroCopyBlocks = document.querySelectorAll(
+    'body.service-detail-page .service-detail-hero > .container > :first-child, ' +
+    'body.service-detail-page .de-hero > .container > :first-child, ' +
+    'body.industry-detail-page .industry-detail-hero > .container > :first-child'
+  );
+  const mobileHeroBreakpoint = window.matchMedia('(max-width: 720px)');
+  heroCopyBlocks.forEach((copy) => {
+    const descriptions = Array.from(copy.children).filter((child) =>
+      child.tagName === 'P' &&
+      !child.classList.contains('eyebrow') &&
+      !child.classList.contains('de-tagline')
+    );
+    const expandableDescriptions = descriptions.filter((description) => !description.classList.contains('lead'));
+    if (expandableDescriptions.length === 0) return;
+
+    const more = document.createElement('details');
+    more.className = 'mobile-hero-more';
+    const summary = document.createElement('summary');
+    summary.textContent = `More about this ${copy.closest('.service-detail-page') ? 'service' : 'industry'}`;
+    more.append(summary);
+    expandableDescriptions[0].before(more);
+    expandableDescriptions.forEach((description) => more.append(description));
+
+    const syncHeroDetails = () => {
+      more.open = !mobileHeroBreakpoint.matches;
+    };
+    syncHeroDetails();
+    if (mobileHeroBreakpoint.addEventListener) {
+      mobileHeroBreakpoint.addEventListener('change', syncHeroDetails);
+    } else {
+      mobileHeroBreakpoint.addListener(syncHeroDetails);
+    }
+  });
+
   if (menuToggle && siteNav) {
+    let lockedScrollY = 0;
+    let previousBodyStyles = null;
+
     function setMenuOpen(isOpen) {
+      if (isOpen && !siteNav.classList.contains('open')) {
+        lockedScrollY = window.scrollY;
+        previousBodyStyles = {
+          position: document.body.style.position,
+          top: document.body.style.top,
+          left: document.body.style.left,
+          right: document.body.style.right,
+          width: document.body.style.width
+        };
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${lockedScrollY}px`;
+        document.body.style.left = '0';
+        document.body.style.right = '0';
+        document.body.style.width = '100%';
+      } else if (!isOpen && siteNav.classList.contains('open')) {
+        document.body.style.position = previousBodyStyles.position;
+        document.body.style.top = previousBodyStyles.top;
+        document.body.style.left = previousBodyStyles.left;
+        document.body.style.right = previousBodyStyles.right;
+        document.body.style.width = previousBodyStyles.width;
+        previousBodyStyles = null;
+        window.scrollTo({ top: lockedScrollY, behavior: 'instant' });
+      }
+
       siteNav.classList.toggle('open', isOpen);
       document.body.classList.toggle('nav-open', isOpen);
       menuToggle.setAttribute('aria-expanded', String(isOpen));

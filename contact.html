@@ -565,12 +565,6 @@
         gap: clamp(1.5rem, 2.5vw, 2.5rem);
       }
 
-      @media (max-width: 768px) {
-        .locations-grid-premium {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-      }
-
       .location-card-premium {
         padding: clamp(2rem, 3vw, 3rem);
         background: #ffffff;
@@ -624,6 +618,31 @@
         color: var(--brand-primary);
         text-decoration: none;
         font-weight: 600;
+      }
+
+      @media (max-width: 768px) {
+        .locations-grid-premium {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 1rem;
+        }
+
+        .location-card-premium {
+          padding: 1.25rem;
+        }
+
+        .location-card-premium h3 {
+          font-size: 1.35rem;
+          margin-bottom: 1rem;
+        }
+
+        .location-details-premium {
+          gap: 0.9rem;
+        }
+
+        .detail-value-premium,
+        .detail-value-premium a {
+          overflow-wrap: anywhere;
+        }
       }
 
       /* ========================================

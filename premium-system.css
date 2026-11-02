@@ -8029,7 +8029,7 @@ iframe {
   }
 
   .site-nav.open {
-    top: 66px !important;
+    top: calc(var(--company-marquee-height) + 68px) !important;
     left: .65rem !important;
     right: .65rem !important;
     width: auto !important;
@@ -8472,6 +8472,60 @@ iframe {
 
   :root[data-theme='dark'] .site-nav.open .services-mobile-group.is-open .services-mobile-heading {
     background: var(--surface-2);
+  }
+}
+
+/* Keep the mobile drawer anchored to the bottom of the fixed header. */
+@media (max-width: 980px) {
+  .site-header {
+    top: var(--company-marquee-height) !important;
+    min-height: 68px !important;
+  }
+
+  .site-header .site-header-container,
+  .site-header .container {
+    min-height: 68px !important;
+    height: 68px !important;
+    transform: none !important;
+  }
+
+  .site-nav.open {
+    position: absolute !important;
+    top: 100% !important;
+    left: .65rem !important;
+    right: .65rem !important;
+    justify-content: flex-start !important;
+    max-height: calc(100dvh - var(--company-marquee-height) - 84px) !important;
+    overflow-y: auto !important;
+    overscroll-behavior-y: contain !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none !important;
+  }
+
+  .site-nav.open::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .site-nav.open > * {
+    flex: 0 0 auto !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .site-header,
+  .site-header.is-scrolled {
+    min-height: 58px !important;
+  }
+
+  .site-header .site-header-container,
+  .site-header .container {
+    min-height: 58px !important;
+    height: 58px !important;
+  }
+
+  .site-nav.open {
+    top: 100% !important;
+    max-height: calc(100dvh - var(--company-marquee-height) - 70px) !important;
   }
 }
 
@@ -10158,6 +10212,31 @@ body.service-detail-page[data-service-detail="data-entry"] .de-workflow-image im
 
 /* Compact, intentional image stacking on phones for service and industry detail pages. */
 @media (max-width: 720px) {
+  body.industry-detail-page #main-content .industry-detail-hero {
+    padding-top: 2.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  body.industry-detail-page #main-content .industry-detail-hero > .container {
+    row-gap: .65rem !important;
+  }
+
+  body.industry-detail-page #main-content .industry-detail-hero > .container > :first-child > :is(.hero-badge-pill, .eyebrow) {
+    margin-bottom: .35rem !important;
+  }
+
+  body.industry-detail-page #main-content .industry-detail-hero > .container > :first-child > h1 {
+    margin: .35rem 0 .5rem !important;
+  }
+
+  body.industry-detail-page #main-content .industry-detail-hero > .container > :first-child > :is(.lead-tagline-box, .lead) {
+    margin-bottom: .35rem !important;
+  }
+
+  body.industry-detail-page #main-content .industry-detail-hero > .container > :first-child > :last-child {
+    margin-top: .4rem !important;
+  }
+
   body.service-detail-page .service-detail-hero-grid,
   body.industry-detail-page .industry-detail-hero-grid {
     gap: 1.65rem !important;
@@ -10213,11 +10292,84 @@ body.service-detail-page[data-service-detail="data-entry"] .de-workflow-image im
 }
 
 @media (max-width: 720px) {
+  body.service-detail-page :is(.service-detail-hero, .de-hero) > .container > :first-child:has(> .mobile-hero-more),
+  body.industry-detail-page .industry-detail-hero > .container > :first-child:has(> .mobile-hero-more) {
+    display: contents !important;
+  }
+
+  .mobile-hero-more {
+    order: 1;
+    color: #fff;
+  }
+
+  .mobile-hero-more > summary {
+    cursor: pointer;
+    font-weight: 700;
+    padding: .65rem 0;
+  }
+
+  body.service-detail-page :is(.service-detail-hero, .de-hero) > .container:has(> :first-child > .mobile-hero-more) > :last-child,
+  body.industry-detail-page .industry-detail-hero > .container:has(> :first-child > .mobile-hero-more) > :last-child {
+    order: -1;
+  }
+
+  body.service-detail-page :is(.service-detail-hero, .de-hero) > .container > :first-child > :last-child,
+  body.industry-detail-page .industry-detail-hero > .container > :first-child > :last-child {
+    order: -2;
+  }
+
+  body.service-detail-page :is(.service-detail-hero, .de-hero) > .container > :first-child > :is(.hero-badge-pill, .eyebrow, .de-badge),
+  body.industry-detail-page .industry-detail-hero > .container > :first-child > :is(.hero-badge-pill, .eyebrow) {
+    order: -4;
+  }
+
+  body.service-detail-page :is(.service-detail-hero, .de-hero) > .container > :first-child > h1,
+  body.industry-detail-page .industry-detail-hero > .container > :first-child > h1 {
+    order: -3;
+  }
+
+  body.service-detail-page :is(.service-detail-hero, .de-hero) > .container > :first-child > :is(.lead-tagline-box, .lead, .de-tagline),
+  body.industry-detail-page .industry-detail-hero > .container > :first-child > :is(.lead-tagline-box, .lead) {
+    order: -2;
+  }
+
+  body.service-detail-page :is(.service-detail-hero, .de-hero) > .container > :first-child > p:not(.eyebrow, .lead, .de-tagline),
+  body.industry-detail-page .industry-detail-hero > .container > :first-child > p:not(.eyebrow, .lead) {
+    order: 1;
+  }
+}
+
+@media (min-width: 721px) {
+  .mobile-hero-more > summary {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
   body.service-detail-page[data-service-detail] .showcase-split-row,
   body.service-detail-page[data-service-detail] .marketing-split-row,
   body.service-detail-page[data-service-detail] .spatial-split-row,
   body.service-detail-page[data-service-detail="data-entry"] .de-workflow-grid {
     gap: 1.7rem !important;
+  }
+}
+
+@media (max-width: 380px) {
+  body.service-detail-page .window-address-bar,
+  body.industry-detail-page .window-address-bar {
+    display: none !important;
+  }
+
+  body.service-detail-page .window-titlebar,
+  body.industry-detail-page .window-titlebar {
+    gap: .5rem;
+    padding: .45rem .6rem;
+  }
+
+  body.service-detail-page .window-status-pill,
+  body.industry-detail-page .window-status-pill {
+    font-size: .58rem !important;
+    white-space: nowrap;
   }
 }
 

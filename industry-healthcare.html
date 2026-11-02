@@ -630,9 +630,10 @@
         padding-bottom: 3rem;
       }
       .healthcare-hero-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 1.5rem !important;
       }
+      .healthcare-hero-copy { width: 100%; }
       .hero-mockup-window {
         max-width: 580px;
         margin: 0 auto;
@@ -667,9 +668,15 @@
 
     @media (max-width: 560px) {
       .industry-detail-page .industry-detail-hero {
-        padding-top: 5.5rem;
-        padding-bottom: 2.5rem;
+        padding-top: 4.5rem !important;
+        padding-bottom: 2rem !important;
       }
+      .healthcare-hero-grid { gap: 1.25rem !important; }
+      .healthcare-hero-copy > p { margin-bottom: 0.75rem !important; }
+      .healthcare-hero-actions { margin-top: 1rem; }
+      .hero-mockup-window { border-radius: 14px; }
+      .window-titlebar { padding: 0.45rem 0.7rem; }
+      .window-status-pill { font-size: 0.58rem; }
       .industry-detail-page .industry-detail-hero h1,
       .healthcare-hero-copy h1 {
         font-size: 1.85rem !important;
@@ -804,7 +811,7 @@
     <section class="industry-detail-hero">
       <div class="container healthcare-hero-grid">
         <div class="healthcare-hero-copy">
-          <a class="industry-backlink" href="industries.html">← Back to industries</a>
+
           <div class="hero-badge-pill">
             <span class="badge-dot"></span>
             <span class="badge-text">Healthcare &amp; Clinical Digital Solutions</span>
@@ -820,9 +827,8 @@
             <span class="tagline-sparkle">✦</span>
             <span>Transforming Healthcare Through Smart Digital Solutions</span>
           </div>
-          <p>The healthcare industry is evolving rapidly, with technology playing an important role in improving patient experiences and simplifying everyday operations. From online appointment booking to digital patient services, healthcare organizations need reliable technology to meet changing expectations and deliver convenient services.</p>
-          <p><strong>TRISET Solutions</strong> provides healthcare technology solutions that help hospitals, clinics, diagnostic centres, and healthcare businesses strengthen their digital presence, streamline workflows, and improve operational efficiency. Our services include healthcare website development, mobile app development, workflow automation, data management, and digital marketing.</p>
-          <p>We work towards building practical, scalable digital solutions that align with your organization's requirements and long-term business goals.</p>
+          <p>Healthcare technology can make patient services more convenient and everyday operations more efficient, from appointment requests to digital patient information.</p>
+          <p><strong>TRISET Solutions</strong> helps hospitals, clinics, and diagnostic centres strengthen their digital presence and streamline workflows with responsive websites, mobile apps, workflow automation, data management, and digital marketing—tailored to each organization's goals.</p>
           <div class="healthcare-hero-actions">
             <a class="btn-solid-white" href="contact.html">Discuss your healthcare project →</a>
             <a class="btn-glass-outline" href="#core-services">Explore services ↓</a>
