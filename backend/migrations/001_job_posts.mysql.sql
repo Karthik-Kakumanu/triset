@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS job_posts (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  title TEXT NOT NULL,
+  location TEXT NOT NULL,
+  department TEXT,
+  employment_type TEXT,
+  experience TEXT,
+  description TEXT NOT NULL,
+  responsibilities TEXT,
+  requirements TEXT,
+  apply_email TEXT,
+  apply_url TEXT,
+  image_url TEXT,
+  is_featured BOOLEAN NOT NULL DEFAULT FALSE,
+  is_active BOOLEAN NOT NULL DEFAULT TRUE,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_job_posts_active_created (is_active, created_at),
+  INDEX idx_job_posts_featured_active_created (is_featured, is_active, created_at)
+);

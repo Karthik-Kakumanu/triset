@@ -1,14 +1,14 @@
 # Hostinger deployment plan
 
-The target architecture is one Hostinger Node.js Web App:
+The target architecture is a separate Hostinger Node.js Web App for the documents subdomain:
 
 `documents.trisetsolutions.com -> Hostinger Node.js app -> Hostinger MySQL`
 
-Render and Railway are not needed after migration. Do not delete the Render or Railway projects until the Hostinger health check, login, database migration, PDF download, and share-link tests pass.
+Use the repository-level `HOSTINGER_DEPLOYMENT.md` for the end-to-end migration and DNS cutover of both apps. Do not delete the Render or Railway projects until the Hostinger health check, login, database migration, PDF download, and share-link tests pass.
 
 ## 1. Create the Hostinger database
 
-In hPanel open `Websites -> Dashboard -> Databases -> Management`, create a MySQL database, user, and password. Hostinger documents the normal database host as `localhost` and port `3306`. Import `migrations/001_initial.sql` in phpMyAdmin. The migration creates all document tables and indexes.
+In hPanel open `Websites -> Dashboard -> Databases -> Management`, create a MySQL database and user, and note the exact database host and port shown there. Import `migrations/001_initial.sql` in phpMyAdmin. The migration creates all document tables and indexes.
 
 ## 2. Upload the app
 
@@ -16,8 +16,8 @@ Deploy `documents-app` as a Node.js Web App from GitHub or upload the folder. Th
 
 Use these settings:
 
-- Node version: 20 or newer
-- Build command: `npm install && npm run build`
+- Node version: 22
+- Build command: `npm install --include=dev && npm run build`
 - Start command: `npm start`
 - Application port: use the port Hostinger provides through `PORT`
 - Domain: `documents.trisetsolutions.com`
@@ -53,5 +53,5 @@ Hostinger provides the hosting environment, but it cannot migrate the existing R
 To create the first admin from SSH after setting the database environment variables, run:
 
 ```bash
-ADMIN_EMAIL=admin@trisetsolutions.com ADMIN_PASSWORD='use-a-new-12-character-password' npm run seed:admin
+ADMIN_EMAIL=admin@trisetsolutions.com ADMIN_PASSWORD='use-a-new-strong-password' npm run seed:admin
 ```

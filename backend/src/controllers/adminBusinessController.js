@@ -1,6 +1,8 @@
 const { readJson, sendJson } = require('../utils/http');
 const { readData, writeData, createId } = require('../services/adminDataStore');
 
+const ADMIN_TOKEN = process.env.ADMIN_TOKEN || (process.env.NODE_ENV === 'production' ? '' : 'triset-admin-token');
+
 function getAuthToken(request) {
   const authHeader = request.headers.authorization || '';
   if (!authHeader.toLowerCase().startsWith('bearer ')) return null;
@@ -8,7 +10,7 @@ function getAuthToken(request) {
 }
 
 function isAdminAuthorized(request) {
-  return getAuthToken(request) === 'triset-admin-token';
+  return Boolean(ADMIN_TOKEN) && getAuthToken(request) === ADMIN_TOKEN;
 }
 
 function withAdminGuard(request, response, handler) {

@@ -1,11 +1,21 @@
-const { pool } = require('../config/db');
+const { databaseType, query } = require('../config/db');
 const { careerJobs } = require('../data/careerJobs');
 const { sendJson, readJson } = require('../utils/http');
 const { sendJobPostedEmail } = require('../services/emailService');
 
-const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'trisetsolutions.com';
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'passtriset';
-const ADMIN_TOKEN = 'triset-admin-token';
+const isProduction = process.env.NODE_ENV === 'production';
+const ADMIN_USERNAME = process.env.ADMIN_USERNAME || (isProduction ? '' : 'trisetsolutions.com');
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || (isProduction ? '' : 'passtriset');
+const ADMIN_TOKEN = process.env.ADMIN_TOKEN || (isProduction ? '' : 'triset-admin-token');
+
+function normalizeJob(job) {
+  if (!job) return job;
+  return {
+    ...job,
+    is_active: Boolean(job.is_active),
+    is_featured: Boolean(job.is_featured),
+  };
+}
 
 function getDemoJobs() {
   return careerJobs.map((job, index) => ({
@@ -24,15 +34,16 @@ function getAuthToken(request) {
 }
 
 function isAdminAuthorized(request) {
-  return getAuthToken(request) === ADMIN_TOKEN;
+  return Boolean(ADMIN_TOKEN) && getAuthToken(request) === ADMIN_TOKEN;
 }
 
 async function listJobs(_request, response) {
   try {
-    const { rows } = await pool.query(
+    const { rows } = await query(
       `SELECT * FROM job_posts WHERE is_active = TRUE ORDER BY is_featured DESC, created_at DESC`
     );
-    sendJson(response, 200, { ok: true, jobs: rows.length ? rows : getDemoJobs(), demo: !rows.length });
+    const jobs = rows.map(normalizeJob);
+    sendJson(response, 200, { ok: true, jobs: jobs.length ? jobs : getDemoJobs(), demo: !jobs.length });
   } catch (error) {
     console.error('[jobs:list:error]', error);
     sendJson(response, 200, { ok: true, jobs: getDemoJobs(), demo: true });
@@ -46,13 +57,13 @@ async function getJob(_request, response, jobId) {
       return;
     }
 
-    const { rows } = await pool.query('SELECT * FROM job_posts WHERE id = $1', [Number(jobId)]);
+    const { rows } = await query('SELECT * FROM job_posts WHERE id = ?', [Number(jobId)]);
     if (!rows[0]) {
       sendJson(response, 404, { ok: false, error: 'Job not found' });
       return;
     }
 
-    sendJson(response, 200, { ok: true, job: rows[0] });
+    sendJson(response, 200, { ok: true, job: normalizeJob(rows[0]) });
   } catch (error) {
     console.error('[jobs:get:error]', error);
     sendJson(response, 500, { ok: false, error: 'Unable to fetch job' });
@@ -78,7 +89,7 @@ async function createJob(request, response) {
       return;
     }
 
-    const { rows } = await pool.query(
+    const result = await query(
       `
         INSERT INTO job_posts (
           title,
@@ -94,8 +105,7 @@ async function createJob(request, response) {
           image_url,
           is_featured,
           is_active
-        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
-        RETURNING *;
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)${databaseType === 'postgres' ? ' RETURNING *' : ''};
       `,
       [
         title,
@@ -113,14 +123,21 @@ async function createJob(request, response) {
         payload.is_active !== false,
       ]
     );
+    let job;
+    if (databaseType === 'postgres') {
+      job = normalizeJob(result.rows[0]);
+    } else {
+      const { rows } = await query('SELECT * FROM job_posts WHERE id = ?', [result.insertId]);
+      job = normalizeJob(rows[0]);
+    }
 
     try {
-      await sendJobPostedEmail(rows[0]);
+      await sendJobPostedEmail(job);
     } catch (emailError) {
       console.warn('[jobs:create:email:warn]', emailError.message || emailError);
     }
 
-    sendJson(response, 201, { ok: true, job: rows[0] });
+    sendJson(response, 201, { ok: true, job });
   } catch (error) {
     console.error('[jobs:create:error]', error);
     sendJson(response, error.statusCode || 500, {
@@ -146,26 +163,24 @@ async function updateJob(request, response, jobId) {
     const imageUrl = payload.image_url !== undefined ? String(payload.image_url || '').trim() : null;
     const isFeatured = payload.is_featured !== undefined ? Boolean(payload.is_featured || payload.featured) : null;
 
-    const { rows } = await pool.query(
+    await query(
       `
         UPDATE job_posts
         SET
-          title = COALESCE($1, title),
-          location = COALESCE($2, location),
-          department = COALESCE($3, department),
-          employment_type = COALESCE($4, employment_type),
-          experience = COALESCE($5, experience),
-          description = COALESCE($6, description),
-          responsibilities = COALESCE($7, responsibilities),
-          requirements = COALESCE($8, requirements),
-          apply_email = COALESCE($9, apply_email),
-          apply_url = COALESCE($10, apply_url),
-          image_url = COALESCE($11, image_url),
-          is_featured = COALESCE($12, is_featured),
-          is_active = COALESCE($13, is_active),
-          updated_at = NOW()
-        WHERE id = $14
-        RETURNING *;
+          title = COALESCE(?, title),
+          location = COALESCE(?, location),
+          department = COALESCE(?, department),
+          employment_type = COALESCE(?, employment_type),
+          experience = COALESCE(?, experience),
+          description = COALESCE(?, description),
+          responsibilities = COALESCE(?, responsibilities),
+          requirements = COALESCE(?, requirements),
+          apply_email = COALESCE(?, apply_email),
+          apply_url = COALESCE(?, apply_url),
+          image_url = COALESCE(?, image_url),
+          is_featured = COALESCE(?, is_featured),
+          is_active = COALESCE(?, is_active)
+        WHERE id = ?;
       `,
       [
         payload.title || null,
@@ -185,12 +200,13 @@ async function updateJob(request, response, jobId) {
       ]
     );
 
+    const { rows } = await query('SELECT * FROM job_posts WHERE id = ?', [Number(jobId)]);
     if (!rows[0]) {
       sendJson(response, 404, { ok: false, error: 'Job not found' });
       return;
     }
 
-    sendJson(response, 200, { ok: true, job: rows[0] });
+    sendJson(response, 200, { ok: true, job: normalizeJob(rows[0]) });
   } catch (error) {
     console.error('[jobs:update:error]', error);
     sendJson(response, error.statusCode || 500, {
@@ -212,8 +228,8 @@ async function deleteJob(request, response, jobId) {
       return;
     }
 
-    const { rowCount } = await pool.query('DELETE FROM job_posts WHERE id = $1', [Number(jobId)]);
-    if (rowCount === 0) {
+    const result = await query('DELETE FROM job_posts WHERE id = ?', [Number(jobId)]);
+    if (result.rowCount === 0) {
       sendJson(response, 404, { ok: false, error: 'Job not found' });
       return;
     }
@@ -230,6 +246,11 @@ async function adminLogin(request, response) {
     const payload = await readJson(request, 64 * 1024);
     const username = String(payload.username || '').trim();
     const password = String(payload.password || '').trim();
+
+    if (!ADMIN_USERNAME || !ADMIN_PASSWORD || !ADMIN_TOKEN) {
+      sendJson(response, 503, { ok: false, error: 'Admin credentials are not configured' });
+      return;
+    }
 
     if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
       sendJson(response, 200, { ok: true, token: ADMIN_TOKEN });

@@ -3,7 +3,7 @@ const { validateContact } = require('../validators/contactValidator');
 const { saveContactSubmission, readContactSubmissions } = require('../services/contactStore');
 const { sendContactEmail } = require('../services/emailService');
 const { rateLimit } = require('../middleware/rateLimit');
-const { pool } = require('../config/db');
+const { query } = require('../config/db');
 
 async function createContact(request, response) {
   const ip = request.headers['x-forwarded-for'] || request.socket.remoteAddress || 'unknown';
@@ -52,16 +52,16 @@ async function listContactSubmissions(_request, response) {
 
 async function getAdminOverview(_request, response) {
   try {
-    const jobsResult = await pool.query(`
+    const { rows: jobs } = await query(`
       SELECT
-        COUNT(*)::int AS total_jobs,
-        COUNT(*) FILTER (WHERE is_active = TRUE)::int AS active_jobs,
-        COUNT(*) FILTER (WHERE is_featured = TRUE)::int AS featured_jobs
+        COUNT(*) AS total_jobs,
+        COALESCE(SUM(CASE WHEN is_active = TRUE THEN 1 ELSE 0 END), 0) AS active_jobs,
+        COALESCE(SUM(CASE WHEN is_featured = TRUE THEN 1 ELSE 0 END), 0) AS featured_jobs
       FROM job_posts;
     `);
 
     const inquiries = readContactSubmissions().slice(0, 12);
-    const summary = jobsResult.rows[0] || { total_jobs: 0, active_jobs: 0, featured_jobs: 0 };
+    const summary = jobs[0] || { total_jobs: 0, active_jobs: 0, featured_jobs: 0 };
 
     sendJson(response, 200, {
       ok: true,

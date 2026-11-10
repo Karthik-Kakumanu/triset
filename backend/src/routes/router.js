@@ -3,6 +3,7 @@ const path = require('path');
 const { rootDir } = require('../config/paths');
 const { setSecurityHeaders } = require('../middleware/security');
 const { sendJson } = require('../utils/http');
+const { query } = require('../config/db');
 const { createContact, listContactSubmissions, getAdminOverview } = require('../controllers/contactController');
 const { listSiteContent, listServices, getService, listProjects, getProject, getCompany } = require('../controllers/contentController');
 const {
@@ -82,7 +83,14 @@ async function handleRequest(request, response) {
   }
 
   if (pathname === '/api/health' && request.method === 'GET') {
-    sendJson(response, 200, { ok: true, service: 'triset-website', time: new Date().toISOString() });
+    let database = false;
+    try {
+      await query('SELECT 1');
+      database = true;
+    } catch (error) {
+      console.warn('[health:database:warning]', error.message);
+    }
+    sendJson(response, 200, { ok: true, database, service: 'triset-website', time: new Date().toISOString() });
     return;
   }
 
